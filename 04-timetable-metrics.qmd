@@ -1,0 +1,21 @@
+---
+title: "Timetable Metrics" 
+---
+
+
+## Timetable Quality Metrics and Insights (1500-2000 words)
+
+### 4.1 Defining Timetable Quality
+
+### 4.2 Implemented Metrics
+* Constraint violations (max hours per day, days per week, lunch breaks, etc.)
+* Distance-based metrics using room properties
+
+### 4.3 Aggregation Methods
+* Student-level, programme-level, and other relevant groupings
+
+### 4.4 Cypher Queries for Metric Calculation
+* Example queries with explanations
+
+### 4.5 Visualization of Results
+* Bloom visualisations or other relevant charts

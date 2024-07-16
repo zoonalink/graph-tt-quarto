@@ -1,0 +1,8 @@
+---
+title: "Future Opportunities" 
+---
+
+## Future Opportunities and Potential Insights (500 words)
+
+* Discussion of potential analyses (module combinations, student clustering, etc.)
+* Integration of additional data sources

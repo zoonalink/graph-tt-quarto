@@ -1,0 +1,4 @@
+---
+title: "References"
+nocite: '@*' # Include all entries from references.bib
+---

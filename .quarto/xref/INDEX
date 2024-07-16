@@ -1,0 +1,34 @@
+{
+  "01-introduction.qmd": {
+    "01-introduction.html": "0249bb26",
+    "01-introduction.tex": "74c78501"
+  },
+  "02-data-engineering.qmd": {
+    "02-data-engineering.html": "53c98e06",
+    "02-data-engineering.tex": "9ba75024"
+  },
+  "03-graph-data-model.qmd": {
+    "03-graph-data-model.html": "cea64704",
+    "03-graph-data-model.tex": "1b1ab90f"
+  },
+  "04-timetable-metrics.qmd": {
+    "04-timetable-metrics.html": "9d69f3ba",
+    "04-timetable-metrics.tex": "3f699462"
+  },
+  "05-future-opportunities.qmd": {
+    "05-future-opportunities.html": "e45d80a0",
+    "05-future-opportunities.tex": "cd90817f"
+  },
+  "06-conclusion.qmd": {
+    "06-conclusion.html": "bc66efec",
+    "06-conclusion.tex": "e54fcc0b"
+  },
+  "index.qmd": {
+    "index.html": "056a8c91",
+    "index.tex": "de6e4fc0"
+  },
+  "references.qmd": {
+    "references.html": "b79a70d1",
+    "references.tex": "02dce582"
+  }
+}

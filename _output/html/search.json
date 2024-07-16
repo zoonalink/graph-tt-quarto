@@ -1,0 +1,93 @@
+[
+  {
+    "objectID": "06-conclusion.html",
+    "href": "06-conclusion.html",
+    "title": "Conclusion",
+    "section": "",
+    "text": "Summary of key achievements\nReflection on the project’s impact and potential for timetabling processes\nFuture work and recommendations"
+  },
+  {
+    "objectID": "06-conclusion.html#conclusion-500-words",
+    "href": "06-conclusion.html#conclusion-500-words",
+    "title": "Conclusion",
+    "section": "",
+    "text": "Summary of key achievements\nReflection on the project’s impact and potential for timetabling processes\nFuture work and recommendations"
+  },
+  {
+    "objectID": "04-timetable-metrics.html",
+    "href": "04-timetable-metrics.html",
+    "title": "Timetable Metrics",
+    "section": "",
+    "text": "Constraint violations (max hours per day, days per week, lunch breaks, etc.)\nDistance-based metrics using room properties\n\n\n\n\n\nStudent-level, programme-level, and other relevant groupings\n\n\n\n\n\nExample queries with explanations\n\n\n\n\n\nBloom visualisations or other relevant charts"
+  },
+  {
+    "objectID": "04-timetable-metrics.html#timetable-quality-metrics-and-insights-1500-2000-words",
+    "href": "04-timetable-metrics.html#timetable-quality-metrics-and-insights-1500-2000-words",
+    "title": "Timetable Metrics",
+    "section": "",
+    "text": "Constraint violations (max hours per day, days per week, lunch breaks, etc.)\nDistance-based metrics using room properties\n\n\n\n\n\nStudent-level, programme-level, and other relevant groupings\n\n\n\n\n\nExample queries with explanations\n\n\n\n\n\nBloom visualisations or other relevant charts"
+  },
+  {
+    "objectID": "02-data-engineering.html",
+    "href": "02-data-engineering.html",
+    "title": "Data Engineering",
+    "section": "",
+    "text": "High-level architecture (data flow diagram)\nKey features: modularity, configurability, scalability, error handling\n\n\n\n\n\nBrief overview of SQL extraction techniques\n\n\n\n\n\nDetailed discussion of the Python-based transformation process\nHighlight of the anonymisation function\nDiscussion on safeguarding personal identifiable information\n\n\n\n\n\nChallenges and solutions with Neo4j Aura\nCloud vs. desktop considerations\n\n\n\n\n\nEnd-to-end automated process for specific programme data\n\n\n\n\n\nReflection on the agile approach and discoveries made during development\nPotential future enhancements, developments"
+  },
+  {
+    "objectID": "02-data-engineering.html#data-engineering-an-end-to-end-solution-1500-2000-words",
+    "href": "02-data-engineering.html#data-engineering-an-end-to-end-solution-1500-2000-words",
+    "title": "Data Engineering",
+    "section": "",
+    "text": "High-level architecture (data flow diagram)\nKey features: modularity, configurability, scalability, error handling\n\n\n\n\n\nBrief overview of SQL extraction techniques\n\n\n\n\n\nDetailed discussion of the Python-based transformation process\nHighlight of the anonymisation function\nDiscussion on safeguarding personal identifiable information\n\n\n\n\n\nChallenges and solutions with Neo4j Aura\nCloud vs. desktop considerations\n\n\n\n\n\nEnd-to-end automated process for specific programme data\n\n\n\n\n\nReflection on the agile approach and discoveries made during development\nPotential future enhancements, developments"
+  },
+  {
+    "objectID": "01-introduction.html",
+    "href": "01-introduction.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "Background on university timetabling challenges\nMotivation for exploring graph-based approaches\nProject scope and objectives"
+  },
+  {
+    "objectID": "01-introduction.html#intro-500-words",
+    "href": "01-introduction.html#intro-500-words",
+    "title": "Introduction",
+    "section": "",
+    "text": "Background on university timetabling challenges\nMotivation for exploring graph-based approaches\nProject scope and objectives"
+  },
+  {
+    "objectID": "03-graph-data-model.html",
+    "href": "03-graph-data-model.html",
+    "title": "Graph Data Model",
+    "section": "",
+    "text": "Visual representation of both models - mermaid, or simmilar\n\n\n\n\n\n\n\n\nRoom properties example (lat, long)\nPotential for additional data integration (curriculum, student outcomes, etc.)"
+  },
+  {
+    "objectID": "03-graph-data-model.html#graph-data-model-for-timetabling-1000-words",
+    "href": "03-graph-data-model.html#graph-data-model-for-timetabling-1000-words",
+    "title": "Graph Data Model",
+    "section": "",
+    "text": "Visual representation of both models - mermaid, or simmilar\n\n\n\n\n\n\n\n\nRoom properties example (lat, long)\nPotential for additional data integration (curriculum, student outcomes, etc.)"
+  },
+  {
+    "objectID": "05-future-opportunities.html",
+    "href": "05-future-opportunities.html",
+    "title": "Future Opportunities",
+    "section": "",
+    "text": "Discussion of potential analyses (module combinations, student clustering, etc.)\nIntegration of additional data sources"
+  },
+  {
+    "objectID": "05-future-opportunities.html#future-opportunities-and-potential-insights-500-words",
+    "href": "05-future-opportunities.html#future-opportunities-and-potential-insights-500-words",
+    "title": "Future Opportunities",
+    "section": "",
+    "text": "Discussion of potential analyses (module combinations, student clustering, etc.)\nIntegration of additional data sources"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Exploring Graph Data Models for Timetabling Insights",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  }
+]

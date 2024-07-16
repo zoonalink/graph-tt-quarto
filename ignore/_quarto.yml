@@ -1,0 +1,71 @@
+project:
+  type: website
+  output-dir: _output/html
+  render:
+    - "*.qmd"
+    - "!ignored.qmd"
+    - "!code/"
+    - "!data/"
+    - "!images/"
+    - "!ignore/"
+
+
+website:
+  title: "Graph Time"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: 01-introduction.qmd
+        text: Introduction
+      - href: 02-data-engineering.qmd
+        text: Data Engineering
+      - href: 03-graph-data-model.qmd
+        text: Graph Data Model
+      - href: 04-timetable-metrics.qmd
+        text: Timetable Metrics
+      - href: 05-future-opportunities.qmd
+        text: Future Opportunities
+      - href: 06-conclusion.qmd
+        text: Conclusion
+      - href: references.qmd
+        text: References
+    right:
+      - icon: bug
+        href: "https://github.com/your-username/your-repo/issues/new"
+        aria-label: Report an issue
+      - icon: github
+        href: https://github.com/
+        aria-label: GitHub
+      - icon: envelope
+        href: "mailto:zoonalink@gmail.com"
+        aria-label: Email me
+  sidebar:
+    style: "docked"
+    search: true
+    logo: "images/logo.png"
+    tools:
+      - icon: file-pdf
+        href: ../pdf/Exploring-Graph-Data-Models-for-Timetabling-Insights.pdf
+        text: "Download PDF"
+  page-footer:
+    left: "Copyright 2024, Petter Lövehagen"
+    right: "Powered by Quarto"
+
+format:
+  
+  html:
+    #output-dir: _output/html
+    theme:
+      light: lightly
+      dark: cyborg
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    code-overflow: wrap
+    code-summary: "Click to show code"
+    page-layout: full
+
+execute:
+  freeze: auto  # This is important to keep your website up-to-date

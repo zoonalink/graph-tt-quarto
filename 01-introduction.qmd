@@ -1,0 +1,9 @@
+---
+title: "Introduction" 
+---
+
+## Intro 500 words
+
+* Background on university timetabling challenges
+* Motivation for exploring graph-based approaches
+* Project scope and objectives

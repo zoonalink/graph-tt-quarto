@@ -1,0 +1,28 @@
+---
+title: "Data Engineering" 
+---
+
+## Data Engineering: An End-to-End Solution (1500-2000 words)
+
+### 2.1 Overview of the Data Pipeline
+* High-level architecture (data flow diagram)
+* Key features: modularity, configurability, scalability, error handling
+  
+### 2.2 Extraction Process
+* Brief overview of SQL extraction techniques
+  
+### 2.3 Transformation and Anonymisation
+* Detailed discussion of the Python-based transformation process
+* Highlight of the anonymisation function
+* Discussion on safeguarding personal identifiable information
+
+### 2.4 Loading to Graph Database
+* Challenges and solutions with Neo4j Aura
+* Cloud vs. desktop considerations
+  
+### 2.5 Automation and Workflow
+* End-to-end automated process for specific programme data
+
+### 2.6 Lessons Learned and Iterative Development
+* Reflection on the agile approach and discoveries made during development
+* Potential future enhancements, developments
