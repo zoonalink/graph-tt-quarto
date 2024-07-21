@@ -1,6 +1,19 @@
 ---
 title: "Data Engineering" 
 ---
+:::{.callout-warning}
+## TODO
+
+* look for update notes
+* fix yml so that the pages are grouped: 
+  * Overview
+  * Approach
+  * ETL
+  * Reflection
+* Rewrite 3.3.2 - into paragraphs and reference ETL yaml in appendix
+
+:::
+
 
 ## 3.1 Overview of the Data Pipeline
 
@@ -56,7 +69,6 @@ digraph Overview {
 ```
 <figcaption>Data Pipeline Overview</figcaption>
 :::
-
 
 
 ### 3.1.2 Key Design Principles
@@ -198,6 +210,12 @@ The configuration and logging approach has been based on centralising configurat
 
 ### 3.3.2 Main Configuration options
 
+The configuration for the ETL pipeline is designed to be flexible and customizable through a YAML file (etl_config.yaml). This configuration file allows users to specify a range of options to tailor the pipeline to their specific needs.
+
+General settings include a list of program codes (hostkeys) used for filtering data and naming folders, as well as a customizable folder name for organization. File paths and directories can be configured to point to the locations of source data files, Google Drive folders for storing processed data, and Google service account credentials. Data processing parameters include the chunk size for SQL extraction and templates for output file names.
+
+The configuration also provides options for customizing the schema of the Neo4j database and setting the batch size for data loading. For each node and relationship type, detailed configuration options are available, such as file patterns, column mappings, and data types. Additionally, users can customize the handling and display of specific data types through mappings. Finally, separate loggers for different stages of the ETL process and a configurable log level provide detailed logging capabilities.
+
 * **General**
   * `hostkeys`: list of programme codes for filtering at extract and naming folders
   * `folder_name`:name for organising directories; default = `hostkeys`
@@ -227,12 +245,20 @@ The configuration and logging approach has been based on centralising configurat
   * Log level configurable: Controls the verbosity of logging (DEBUG, INFO, WARNING, ERROR, CRITICAL)
   * Custom `timeit` function to log time elapsed
 
+See [Appendix](appendix.qmd) for Configuration YAML
+
 ## 3.4 Extraction Process
 * Brief overview of SQL extraction techniques
 * Data Sources
 * Code snippet
 
+- **Extract (from SQL Database)**: SQL queries are executed to extract both node and relationship data, which are saved into separate CSV files.
 
+**Extraction (from SQL Database):**
+- The extraction process uses the provided SQL queries and connection details to retrieve data.
+- Data Validation:
+  - Before Extraction: The configuration might include validation rules to check SQL query syntax or data source availability.
+  - After Extraction: The extracted data is validated against rules defined in the configuration (e.g., checking for missing values, data type validation).
 
 
 ### notes to include:

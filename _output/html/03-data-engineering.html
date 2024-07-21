@@ -244,6 +244,29 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+TODO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>look for update notes</li>
+<li>fix yml so that the pages are grouped:
+<ul>
+<li>Overview</li>
+<li>Approach</li>
+<li>ETL</li>
+<li>Reflection</li>
+</ul></li>
+<li>Rewrite 3.3.2 - into paragraphs and reference ETL yaml in appendix</li>
+</ul>
+</div>
+</div>
 <section id="overview-of-the-data-pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="overview-of-the-data-pipeline">3.1 Overview of the Data Pipeline</h2>
 <p>The data engineering pipeline is designed to efficiently and securely transfer selected university timetabling data from a relational database (<a href="https://www.microsoft.com/en-us/sql-server/sql-server-2019">MS SQL</a>) to a graph database (<a href="https://neo4j.com/">Neo4j</a>), enabling advanced analytics and insights.</p>
@@ -500,6 +523,9 @@ Figure&nbsp;1
 </section>
 <section id="main-configuration-options" class="level3">
 <h3 class="anchored" data-anchor-id="main-configuration-options">3.3.2 Main Configuration options</h3>
+<p>The configuration for the ETL pipeline is designed to be flexible and customizable through a YAML file (etl_config.yaml). This configuration file allows users to specify a range of options to tailor the pipeline to their specific needs.</p>
+<p>General settings include a list of program codes (hostkeys) used for filtering data and naming folders, as well as a customizable folder name for organization. File paths and directories can be configured to point to the locations of source data files, Google Drive folders for storing processed data, and Google service account credentials. Data processing parameters include the chunk size for SQL extraction and templates for output file names.</p>
+<p>The configuration also provides options for customizing the schema of the Neo4j database and setting the batch size for data loading. For each node and relationship type, detailed configuration options are available, such as file patterns, column mappings, and data types. Additionally, users can customize the handling and display of specific data types through mappings. Finally, separate loggers for different stages of the ETL process and a configurable log level provide detailed logging capabilities.</p>
 <ul>
 <li><strong>General</strong>
 <ul>
@@ -546,15 +572,18 @@ Figure&nbsp;1
 <li>Custom <code>timeit</code> function to log time elapsed</li>
 </ul></li>
 </ul>
+<p>See <a href="appendix.qmd">Appendix</a> for Configuration YAML</p>
 </section>
 </section>
 <section id="extraction-process" class="level2">
 <h2 class="anchored" data-anchor-id="extraction-process">3.4 Extraction Process</h2>
 <ul>
-<li>Brief overview of SQL extraction techniques</li>
-<li>Data Sources</li>
-<li>Code snippet</li>
+<li><p>Brief overview of SQL extraction techniques</p></li>
+<li><p>Data Sources</p></li>
+<li><p>Code snippet</p></li>
+<li><p><strong>Extract (from SQL Database)</strong>: SQL queries are executed to extract both node and relationship data, which are saved into separate CSV files.</p></li>
 </ul>
+<p><strong>Extraction (from SQL Database):</strong> - The extraction process uses the provided SQL queries and connection details to retrieve data. - Data Validation: - Before Extraction: The configuration might include validation rules to check SQL query syntax or data source availability. - After Extraction: The extracted data is validated against rules defined in the configuration (e.g., checking for missing values, data type validation).</p>
 <section id="notes-to-include" class="level3">
 <h3 class="anchored" data-anchor-id="notes-to-include">notes to include:</h3>
 <ul>
