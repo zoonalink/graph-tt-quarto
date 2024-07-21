@@ -227,6 +227,13 @@ The configuration and logging approach has been based on centralising configurat
   * Log level configurable: Controls the verbosity of logging (DEBUG, INFO, WARNING, ERROR, CRITICAL)
   * Custom `timeit` function to log time elapsed
 
+## 3.4 Extraction Process
+* Brief overview of SQL extraction techniques
+* Data Sources
+* Code snippet
+
+
+
 
 ### notes to include:
 
@@ -255,10 +262,7 @@ The configuration and logging approach has been based on centralising configurat
 
 
   
-### 3.4 Extraction Process
-* Brief overview of SQL extraction techniques
-* Data Sources
-* Code snippet
+
   
 ### 3.5 Transformation and Processing
 * Data cleaning and preproessing
