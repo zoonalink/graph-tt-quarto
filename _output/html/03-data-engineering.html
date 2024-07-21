@@ -195,9 +195,22 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#key-design-principles" id="toc-key-design-principles" class="nav-link" data-scroll-target="#key-design-principles">3.1.2 Key Design Principles</a></li>
   <li><a href="#implementation-approach" id="toc-implementation-approach" class="nav-link" data-scroll-target="#implementation-approach">3.1.3 Implementation Approach</a></li>
   <li><a href="#upcoming-sections" id="toc-upcoming-sections" class="nav-link" data-scroll-target="#upcoming-sections">3.1.4 Upcoming Sections</a></li>
-  <li><a href="#iterative-development-approach" id="toc-iterative-development-approach" class="nav-link" data-scroll-target="#iterative-development-approach">3.2 Iterative Development Approach</a></li>
+  </ul></li>
+  <li><a href="#iterative-development-approach" id="toc-iterative-development-approach" class="nav-link" data-scroll-target="#iterative-development-approach">3.2 Iterative Development Approach</a>
+  <ul class="collapse">
+  <li><a href="#initial-planning-and-requirements-gathering" id="toc-initial-planning-and-requirements-gathering" class="nav-link" data-scroll-target="#initial-planning-and-requirements-gathering">3.2.1 Initial Planning and Requirements Gathering</a></li>
+  <li><a href="#prototyping" id="toc-prototyping" class="nav-link" data-scroll-target="#prototyping">3.2.2 Prototyping</a></li>
+  <li><a href="#component-based-development-and-testing" id="toc-component-based-development-and-testing" class="nav-link" data-scroll-target="#component-based-development-and-testing">3.2.3 Component-Based Development and Testing</a></li>
+  <li><a href="#integration-and-review" id="toc-integration-and-review" class="nav-link" data-scroll-target="#integration-and-review">3.2.4 Integration and Review</a></li>
+  <li><a href="#feedback-integration-and-iteration" id="toc-feedback-integration-and-iteration" class="nav-link" data-scroll-target="#feedback-integration-and-iteration">3.2.5 Feedback Integration and Iteration</a></li>
+  <li><a href="#version-validation-and-documentation" id="toc-version-validation-and-documentation" class="nav-link" data-scroll-target="#version-validation-and-documentation">3.2.6 Version Validation and Documentation</a></li>
+  <li><a href="#continuous-learning-and-adaptation" id="toc-continuous-learning-and-adaptation" class="nav-link" data-scroll-target="#continuous-learning-and-adaptation">3.2.7 Continuous Learning and Adaptation</a></li>
+  </ul></li>
+  <li><a href="#configuration-and-logging" id="toc-configuration-and-logging" class="nav-link" data-scroll-target="#configuration-and-logging">3.3 Configuration and Logging</a>
+  <ul class="collapse">
+  <li><a href="#approach" id="toc-approach" class="nav-link" data-scroll-target="#approach">3.3.1 Approach</a></li>
+  <li><a href="#main-configuration-options" id="toc-main-configuration-options" class="nav-link" data-scroll-target="#main-configuration-options">3.3.2 Main Configuration options</a></li>
   <li><a href="#notes-to-include" id="toc-notes-to-include" class="nav-link" data-scroll-target="#notes-to-include">notes to include:</a></li>
-  <li><a href="#configuration-and-logging" id="toc-configuration-and-logging" class="nav-link" data-scroll-target="#configuration-and-logging">3.3 Configuration and Logging</a></li>
   <li><a href="#extraction-process" id="toc-extraction-process" class="nav-link" data-scroll-target="#extraction-process">3.4 Extraction Process</a></li>
   <li><a href="#transformation-and-processing" id="toc-transformation-and-processing" class="nav-link" data-scroll-target="#transformation-and-processing">3.5 Transformation and Processing</a></li>
   <li><a href="#loading-to-graph-database" id="toc-loading-to-graph-database" class="nav-link" data-scroll-target="#loading-to-graph-database">3.4 Loading to Graph Database</a></li>
@@ -393,7 +406,7 @@ Figure&nbsp;1
 <p>The pipeline was developed using an iterative approach, allowing for continuous discovery, refinement and improvement.</p>
 <p>Key aspects of the implementation include:</p>
 <ul>
-<li><strong>Technology Stack</strong>: Python for data processing, MS SQL for source data, Neo4j for the target graph database. <strong>ADD LINK TO TECH APPENDIX</strong></li>
+<li><strong>Technology Stack</strong>: Python for data processing, MS SQL for source data, Neo4j for the target graph database. See <a href="appendix.qmd">Appendix</a> for more details.</li>
 <li><strong>Cloud Integration</strong>: Utilisation of Google Drive for intermediate storage, compatible with Neo4j Aura.</li>
 <li><strong>Validation</strong>: Implemented at various stages to ensure data integrity and fitness for processing.</li>
 <li><strong>Testing</strong>: Continuous simulated unit testing to ensure that componentsare behaving as expected.</li>
@@ -404,18 +417,133 @@ Figure&nbsp;1
 <p>The following sections will delve into the specific implementation details of each stage in the pipeline, demonstrating how these principles are put into practice.</p>
 <p>I will explore the iterative development process, configuration management, extraction techniques, transformation processes, loading strategies, and automation workflows. Finally, I will reflect on lessons learned and potential future enhancements to the data engineering components.</p>
 </section>
-<section id="iterative-development-approach" class="level3">
-<h3 class="anchored" data-anchor-id="iterative-development-approach">3.2 Iterative Development Approach</h3>
-<ul>
-<li>Description of the iterative process</li>
-<li>Testing methodology</li>
-</ul>
+</section>
+<section id="iterative-development-approach" class="level2">
+<h2 class="anchored" data-anchor-id="iterative-development-approach">3.2 Iterative Development Approach</h2>
+<p>I followed an interative, agile-inspired approach when developing the data pipeline, despite being a team of one. This allowed for flexibility, continuous improvement and the opportunity to adapt to new insights during the process. The bulk of my effort was spent <em>prototyping</em>, <em>testing</em> and <em>reviewing</em> with each iteration resulting in a new challenge, issue, opportunity or occasionally, success.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./images/iteration.png" class="img-fluid figure-img"></p>
 <figcaption>Iterative Development Approach</figcaption>
 </figure>
 </div>
+<section id="initial-planning-and-requirements-gathering" class="level3">
+<h3 class="anchored" data-anchor-id="initial-planning-and-requirements-gathering">3.2.1 Initial Planning and Requirements Gathering</h3>
+<p>The development cycle began with initial high-level planning and requirements gathering, where I imagined how each stage should work, trying to bear in mind future-proofing and repeatability principles.</p>
+<p>I defined core functionality for each module (extraction, transformation, loading) adn outlined initial technical requirements and constraints. The planning documentation was maintained in Quarto and markdown files in a centralised repository for project information.</p>
+</section>
+<section id="prototyping" class="level3">
+<h3 class="anchored" data-anchor-id="prototyping">3.2.2 Prototyping</h3>
+<p>Following the initial planning, rapid prototyping was undertaken for each module:</p>
+<ul>
+<li>SQL prototyping for data extraction queries</li>
+<li>Python prototyping for data transformation and processing logic</li>
+<li>Neo4j prototyping for graph database schema and loading procedures</li>
+</ul>
+<p>This stage allowed for quick exploration of different approaches and early identification of potential challenges as well as giving me the confidence to continue with my exploration.</p>
+</section>
+<section id="component-based-development-and-testing" class="level3">
+<h3 class="anchored" data-anchor-id="component-based-development-and-testing">3.2.3 Component-Based Development and Testing</h3>
+<p>Development proceeded with a focus on individual components:</p>
+<ul>
+<li>Each module (extraction, transformation, loading) was developed separately</li>
+<li>An iterative, component-based testing approach was employed</li>
+<li>While formal unit tests were not always created, each component was thoroughly tested for functionality</li>
+</ul>
+<p>This approach allowed for rapid progress while maintaining a focus on component-level quality. It was during this phase that I started expanding configuration, logging and error-handling options.</p>
+</section>
+<section id="integration-and-review" class="level3">
+<h3 class="anchored" data-anchor-id="integration-and-review">3.2.4 Integration and Review</h3>
+<p>As components reached a stable state, they were integrated and reviewed:</p>
+<ul>
+<li>Components were combined to form larger functional units</li>
+<li>Integrated functionality was occasioanlly demonstrated to subject matter experts (operational timetablers)</li>
+<li>Feedback was gathered on functionality, usability, and alignment with requirements</li>
+</ul>
+</section>
+<section id="feedback-integration-and-iteration" class="level3">
+<h3 class="anchored" data-anchor-id="feedback-integration-and-iteration">3.2.5 Feedback Integration and Iteration</h3>
+<p>Insights gained from reviews and ongoing development were fed back into the process:</p>
+<ul>
+<li>New requirements or modifications were documented, for example updates to SQL SELECT statements and data model interpretations.</li>
+<li>The planning stage was revisited to incorporate new information.</li>
+<li>The development cycle was repeated, focusing on areas needing improvement or new functionality.</li>
+<li>Decisions were made to park some development opportunities for the future.</li>
+</ul>
+</section>
+<section id="version-validation-and-documentation" class="level3">
+<h3 class="anchored" data-anchor-id="version-validation-and-documentation">3.2.6 Version Validation and Documentation</h3>
+<p>At key milestones, when a stable version was achieved:</p>
+<ul>
+<li>End-to-end validation of the entire pipeline was performed.</li>
+<li>Results were documented in notebooks, including opportunities for improvement.</li>
+<li>Any issues identified were logged for the next iteration.</li>
+</ul>
+</section>
+<section id="continuous-learning-and-adaptation" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-learning-and-adaptation">3.2.7 Continuous Learning and Adaptation</h3>
+<p>Throughout the development process, learning and adaptation became central to the project’s evolution. Each iteration brought new insights, often through trial and error. Early challenges included the need to modularise components before they became unmanageable, resisting the temptation to make overly ambitious changes, and recognising when refactoring was necessary. These experiences underscored the importance of incremental progress and consistent testing in maintaining project stability and direction.</p>
+<p>This iterative journey was far from linear. There were many moments of frustration, periods of painstaking troubleshooting, and the constant urge to overdeliver, sometimes exceeding the original proof-of-concept scope. Yet, with each stumble and course correction, the process itself became more refined, transforming into a powerful tool for identifying and resolving issues.</p>
+<p>While the core MVP (minimum viable product) requirements remained relatively stable (I set them after all), the iterative approach empowered me to seize opportunities for enhancement. Each chance to modularise, parameterise, or fine-tune sparked an almost compulsive drive for improvement, pushing the pipeline beyond its initial scope. This dedication to continuous refinement, while time-consuming, ultimately fostered a robust, flexible solution that could adapt gracefully to unforeseen challenges and embrace future opportunities.</p>
+<p>It also meant the the proportion of overall emphasis shifted slightly from exploring Neo4j insights towards the development of a comprenhensive data engineering solution - entirely by virtue of where I spent my time.</p>
+<p>The iterative approach proved to be more than just a development methodology. It facilitated personal growth, enhanced technical skills, and improved project management capabilities. This process emphasized the importance of persistence, learning from mistakes, and continual improvement in creating an effective data engineering solution. While challenging at times, this approach ultimately led to a more robust and flexible final product.</p>
+</section>
+</section>
+<section id="configuration-and-logging" class="level2">
+<h2 class="anchored" data-anchor-id="configuration-and-logging">3.3 Configuration and Logging</h2>
+<section id="approach" class="level3">
+<h3 class="anchored" data-anchor-id="approach">3.3.1 Approach</h3>
+<p>The configuration and logging approach has been based on centralising configuration parameters into a python script and it has been organised into sections to manage the different aspects of the ETL pipeline:</p>
+<p><strong>[CHANGE IF YAML BASED APPROACHED FINISH, ELSE UPDATE FUTURE DEV]</strong></p>
+</section>
+<section id="main-configuration-options" class="level3">
+<h3 class="anchored" data-anchor-id="main-configuration-options">3.3.2 Main Configuration options</h3>
+<ul>
+<li><strong>General</strong>
+<ul>
+<li><code>hostkeys</code>: list of programme codes for filtering at extract and naming folders</li>
+<li><code>folder_name</code>:name for organising directories; default = <code>hostkeys</code></li>
+</ul></li>
+<li><strong>Filepaths and Directories</strong>
+<ul>
+<li><code>root_dir</code>: project root directory; default = current working directory</li>
+<li><code>nodes_folder_url</code>, <code>relationships_folder_url</code>: Google Drive URLs to override dynamic data location, if needed</li>
+<li><code>gdrive_root_folder_url</code>, <code>gdrive_folder_name</code>: Google Drive for storing processed data - shared root folder</li>
+<li><code>google_credentials_path</code>: Path to the Google service account credentials file.</li>
+<li><code>department_source</code>, <code>archibus_source</code>: Paths to source data files to augment extracted data.</li>
+</ul></li>
+<li><strong>Data Processing</strong>
+<ul>
+<li><code>chunk_size</code>: number of rows to process during SQL extraction</li>
+<li><code>temp_table_sql_files</code>: SQL script files</li>
+<li><code>node_output_filename_template</code>, <code>rel_output_filename_template</code>: Templates for output file names.</li>
+</ul></li>
+<li><strong>neo4j</strong>
+<ul>
+<li>Schema configuration options (dynamic or custom).</li>
+<li><code>batch_size</code>: Batch size for loading data into Neo4j.</li>
+</ul></li>
+<li><strong><code>nodes</code>, <code>relationships</code></strong>:
+<ul>
+<li>Detailed configuration for each node and relationship type, including file patterns, column mappings, data types, and more.</li>
+</ul></li>
+<li><strong>data_type_mapping, display_name_mapping</strong>
+<ul>
+<li>Mappings to customise how specific data types are handled and displayed.</li>
+</ul></li>
+<li><strong>Logging</strong>
+<ul>
+<li>Separate loggers for:
+<ul>
+<li><code>extract</code></li>
+<li><code>process</code></li>
+<li><code>load</code></li>
+<li><code>gdrive</code></li>
+</ul></li>
+<li>Log level configurable: Controls the verbosity of logging (DEBUG, INFO, WARNING, ERROR, CRITICAL)</li>
+<li>Custom <code>timeit</code> function to log time elapsed</li>
+</ul></li>
+</ul>
 </section>
 <section id="notes-to-include" class="level3">
 <h3 class="anchored" data-anchor-id="notes-to-include">notes to include:</h3>
@@ -432,13 +560,6 @@ Figure&nbsp;1
 <li><p>error handling</p></li>
 <li><p>consistent logging</p></li>
 <li><p>validation data</p></li>
-</ul>
-</section>
-<section id="configuration-and-logging" class="level3">
-<h3 class="anchored" data-anchor-id="configuration-and-logging">3.3 Configuration and Logging</h3>
-<ul>
-<li>Configuration Management</li>
-<li>Logging strategy and implementation</li>
 </ul>
 </section>
 <section id="extraction-process" class="level3">
