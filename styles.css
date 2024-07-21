@@ -39,3 +39,11 @@
 }
 
 
+.smaller-image {
+  width: 20%;  
+  height: auto;
+  display: block;    /* Ensures the image is treated as a block element */
+  margin-left: 0;    /* Remove any default left margin */
+  text-align: left;  /* Align the image to the left */
+  caption-side: bottom;
+}

@@ -2,21 +2,20 @@
 title: "Data Engineering" 
 ---
 
-
 ## 3.1 Overview of the Data Pipeline
 
-::: {.callout-note}
-## NOTES TO DELETE
-* High-level architecture (data flow diagram)
-* Key features: modularity, configurability, scalability, error handling, etc. 
-:::
+The data engineering pipeline is designed to efficiently and securely transfer selected university timetabling data from a relational database ([MS SQL](https://www.microsoft.com/en-us/sql-server/sql-server-2019)) to a graph database ([Neo4j](https://neo4j.com/)), enabling advanced analytics and insights. 
 
-The data engineering pipeline is designed to efficiently and securely transfer selected university timetabling data from a relational database (MS SQL) to a graph database (Neo4j), thereby enabling the opportunity for advanced analytics and insights. The process involves several key stages, each built on robust design principles to ensure data integrity, security, and scalability.
+This section provides an overview of the pipeline architecture, key design principles, and implementation approach.
 
 ### 3.1.1 High-level Architecture
 
-The following diagram illustrates the high level end-to-end flow of the data pipeline:
+The data pipeline consists of several key stages:
 
+1. **Extraction**: Data is extracted from the SQL database and saved into CSV files.
+2. **Transformation**: The CSV files are processed, cleaned, transformed, merged, and anonymised using Python code.
+3. **Intermediate Storage**: Processed CSVs are saved locally and uploaded to Google Drive (required for [Neo4j Aura](https://neo4j.com/cloud/platform/aura-graph-database/) free instance).
+4. **Loading**: Clean data is processed and loaded into Neo4j.
 
 :::{.figure #fig-pipeline fig-align="center"}
 ```{dot}
@@ -48,7 +47,7 @@ digraph Overview {
   // Edges and Labels 
   A -> B [label=" 1. 𝗘𝗫𝗧𝗥𝗔𝗖𝗧: filter"];
   B -> C [label=" 2. 𝗧𝗥𝗔𝗡𝗦𝗙𝗢𝗥𝗠: Validate, Process & Anonymise"];
-  C -> D [label=" 3. Upload"];
+  C -> D [label=" 3. 𝐔𝐏𝐋𝐎𝐀𝐃"];
   
   // Arrows from Google Drive (left and right)
   D:w -> E [label=" 4. Load Schema", style=dashed];   
@@ -58,44 +57,99 @@ digraph Overview {
 <figcaption>Data Pipeline Overview</figcaption>
 :::
 
-This pipeline represents a comprehensive approach to data engineering, incorporating several best practices in data handling, processing, and database management.
 
-### 3.1.2 Key Design Features
+
+### 3.1.2 Key Design Principles
+
+This pipeline represents a comprehensive approach to data engineering, incorporating several best practices in data handling, processing, and database management.
 
 ![Design Principles](./images/design-principles-graph.png){.small-image}
 
-The data pipeline is built on several core design principles.  Several were in place from the very beginning whilst others emerged in the development process; some opportunities were eschewed given the proof-of-concept nature of this project and the limitations of time and resource. That said, the goal was always to build a scalable, reusable, modular data processing pipeline.  I wanted to create a mechanism which could conceivably be used in an operational setting, but exactly what this meant was discovered through iteration and countless - '*ah, it would be better if...*' moments.  
+The data pipeline is built on several core design principles.  I started with a strong sense of what I wanted to achieve - a modular, scalable, secure and configurable design - however, what *exactly* this meant was discovered in the development process.  Given that the project has several limitations including resources, technology and is also time-constrained, it was important to make the final result one which can be built upon and potentially be developed within operational contexts.  However, the project is also a *proof-of-concept* and as such, some design opportunities were eschewed in favour of simplicity and progress.
 
 
-1. Secure,  Controlled Access and Anonymised
-2. Modular, Scalable, Validation and Automated
-3. Robust Error Handling and Logging functionality
-4. User configurable
+#### Security and Data Protection
+
+![](./images/designSecure.png){.smaller-image fig-alt="Security, Access, Anonymisation"}
+
+* Secure access controls
+* Data anonymisation
+* Controlled handling of personally identifiable information
+
+#### Modularity, Scalability and Automation
+
+![](./images/designModular.png){.smaller-image fig-alt="Modularity, Scalability, Validity, Automation"}
+
+* Distinct, interoperable modules (extract, transform, load)
+* Ability to handle increased data volume and complexity
+* Automation, where possible
+* Configurable data processing options (e.g., data chunking, row processing)
+* Optimised, where possible
 
 
-1. **Modularity and Automation**: The pipeline is composed of distinct, interoperable modules (extract, transform, load) that can be automated for efficiency.
+#### Error Handling and Logging
 
-2. **Scalability and Configurability**: The system is designed to handle varying data volumes and can be easily configured to adapt to different data scenarios.
+![](./images/designLog.png){.smaller-image fig-alt="Logging and Error Handling"}
 
-3. **Robust Error Handling and Logging**: Comprehensive error handling and logging mechanisms are in place to ensure data integrity and facilitate troubleshooting.
+* Robust error handling mechanisms
+* Comprehensive logging for troubleshooting and auditing
 
-4. **Security and Access Control**: Implementing secure data management practices and controlled access to sensitive information.
+#### User configurable
 
-5. **Data Validation and Integrity**: Extensible data validation checks are incorporated to maintain data quality throughout the pipeline.
+![](./images/designConfig.png){.smaller-image fig-alt="Configurability"}
 
-6. **Dynamic Schema Handling**: The system can adapt to changes in the Neo4j schema, providing flexibility for future data model adjustments.
+* Flexible configuration options for data filtering, directory controls, and schema handling
 
-7. **Anonymization of Sensitive Data**: A crucial feature that ensures compliance with data protection regulations and maintains individual privacy.
+### 3.1.3 Implementation Approach
 
-These design principles not only guide the current implementation but also provide a foundation for future enhancements and scalability of the system.
+The pipeline was developed using an iterative approach, allowing for continuous discovery, refinement and improvement. 
 
+Key aspects of the implementation include:
 
+* **Technology Stack**: Python for data processing, MS SQL for source data, Neo4j for the target graph database. **ADD LINK TO TECH APPENDIX**
+* **Cloud Integration**: Utilisation of Google Drive for intermediate storage, compatible with Neo4j Aura.
+* **Validation**: Implemented at various stages to ensure data integrity and fitness for processing.
+* **Testing**: Continuous simulated unit testing to ensure that componentsare behaving as expected.
 
+### 3.1.4 Upcoming Sections
 
+The following sections will delve into the specific implementation details of each stage in the pipeline, demonstrating how these principles are put into practice.
+
+I will explore the iterative development process, configuration management, extraction techniques, transformation processes, loading strategies, and automation workflows. Finally, I will reflect on lessons learned and potential future enhancements to the data engineering components.
 
 ### 3.2 Iterative Development Approach
 * Description of the iterative process
 * Testing methodology
+
+![Iterative Development Approach](./images/iteration.png)
+
+
+
+
+### notes to include:
+
+* information security
+* controlled access
+* secure university databases, windows system user, servers
+* anonymisation protocol - minimal personal information, still want operatinalisable tool 
+
+* reusability, maintainability, testability
+* more data -> scale
+* more data -> properties, relationships
+* sql code changes
+* google drive apis
+
+* error handling
+* consistent logging
+* validation data
+
+
+
+
+
+
+
+
 
 ### 3.3 Configuration and Logging
 * Configuration Management

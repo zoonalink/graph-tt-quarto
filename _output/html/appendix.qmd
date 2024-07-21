@@ -1,0 +1,18 @@
+--- 
+title: Appendix
+---
+
+TO ADD: 
+
+* Technology Stack
+  * Python used
+  * Python packages used and why
+  * Neo4j used
+  * Google API
+  * VS code
+  * Quarto
+  * SQL
+
+
+* Github gists ??
+* Github repo?

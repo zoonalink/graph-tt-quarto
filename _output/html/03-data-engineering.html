@@ -119,6 +119,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Conclusion</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./appendix.qmd"> 
+<span class="menu-text">Appendix</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./references.html"> 
 <span class="menu-text">References</span></a>
   </li>  
@@ -188,8 +192,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#overview-of-the-data-pipeline" id="toc-overview-of-the-data-pipeline" class="nav-link active" data-scroll-target="#overview-of-the-data-pipeline">3.1 Overview of the Data Pipeline</a>
   <ul class="collapse">
   <li><a href="#high-level-architecture" id="toc-high-level-architecture" class="nav-link" data-scroll-target="#high-level-architecture">3.1.1 High-level Architecture</a></li>
-  <li><a href="#key-design-features" id="toc-key-design-features" class="nav-link" data-scroll-target="#key-design-features">3.1.2 Key Design Features</a></li>
+  <li><a href="#key-design-principles" id="toc-key-design-principles" class="nav-link" data-scroll-target="#key-design-principles">3.1.2 Key Design Principles</a></li>
+  <li><a href="#implementation-approach" id="toc-implementation-approach" class="nav-link" data-scroll-target="#implementation-approach">3.1.3 Implementation Approach</a></li>
+  <li><a href="#upcoming-sections" id="toc-upcoming-sections" class="nav-link" data-scroll-target="#upcoming-sections">3.1.4 Upcoming Sections</a></li>
   <li><a href="#iterative-development-approach" id="toc-iterative-development-approach" class="nav-link" data-scroll-target="#iterative-development-approach">3.2 Iterative Development Approach</a></li>
+  <li><a href="#notes-to-include" id="toc-notes-to-include" class="nav-link" data-scroll-target="#notes-to-include">notes to include:</a></li>
   <li><a href="#configuration-and-logging" id="toc-configuration-and-logging" class="nav-link" data-scroll-target="#configuration-and-logging">3.3 Configuration and Logging</a></li>
   <li><a href="#extraction-process" id="toc-extraction-process" class="nav-link" data-scroll-target="#extraction-process">3.4 Extraction Process</a></li>
   <li><a href="#transformation-and-processing" id="toc-transformation-and-processing" class="nav-link" data-scroll-target="#transformation-and-processing">3.5 Transformation and Processing</a></li>
@@ -224,26 +231,17 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="overview-of-the-data-pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="overview-of-the-data-pipeline">3.1 Overview of the Data Pipeline</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-NOTES TO DELETE
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>High-level architecture (data flow diagram)</li>
-<li>Key features: modularity, configurability, scalability, error handling, etc.</li>
-</ul>
-</div>
-</div>
-<p>The data engineering pipeline is designed to efficiently and securely transfer selected university timetabling data from a relational database (MS SQL) to a graph database (Neo4j), thereby enabling the opportunity for advanced analytics and insights. The process involves several key stages, each built on robust design principles to ensure data integrity, security, and scalability.</p>
+<p>The data engineering pipeline is designed to efficiently and securely transfer selected university timetabling data from a relational database (<a href="https://www.microsoft.com/en-us/sql-server/sql-server-2019">MS SQL</a>) to a graph database (<a href="https://neo4j.com/">Neo4j</a>), enabling advanced analytics and insights.</p>
+<p>This section provides an overview of the pipeline architecture, key design principles, and implementation approach.</p>
 <section id="high-level-architecture" class="level3">
 <h3 class="anchored" data-anchor-id="high-level-architecture">3.1.1 High-level Architecture</h3>
-<p>The following diagram illustrates the high level end-to-end flow of the data pipeline:</p>
+<p>The data pipeline consists of several key stages:</p>
+<ol type="1">
+<li><strong>Extraction</strong>: Data is extracted from the SQL database and saved into CSV files.</li>
+<li><strong>Transformation</strong>: The CSV files are processed, cleaned, transformed, merged, and anonymised using Python code.</li>
+<li><strong>Intermediate Storage</strong>: Processed CSVs are saved locally and uploaded to Google Drive (required for <a href="https://neo4j.com/cloud/platform/aura-graph-database/">Neo4j Aura</a> free instance).</li>
+<li><strong>Loading</strong>: Clean data is processed and loaded into Neo4j.</li>
+</ol>
 <div id="fig-pipeline" class="figure quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pipeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -303,7 +301,7 @@ NOTES TO DELETE
 <title>C-&gt;D</title>
 <path fill="none" stroke="black" d="M200,-193.45C200,-181.32 200,-164.82 200,-150.92"></path>
 <polygon fill="black" stroke="black" points="203.5,-150.91 200,-140.91 196.5,-150.91 203.5,-150.91"></polygon>
-<text text-anchor="middle" x="231.91" y="-163" font-family="Arial" font-size="14.00"> 3. Upload</text>
+<text text-anchor="middle" x="256.4" y="-163" font-family="Arial" font-size="14.00"> 3. 𝐔𝐏𝐋𝐎𝐀𝐃</text>
 </g>
 <!-- E -->
 <g id="node5" class="node">
@@ -343,37 +341,97 @@ Figure&nbsp;1
 </figcaption>
 </figure>
 </div>
-<p>This pipeline represents a comprehensive approach to data engineering, incorporating several best practices in data handling, processing, and database management.</p>
 </section>
-<section id="key-design-features" class="level3">
-<h3 class="anchored" data-anchor-id="key-design-features">3.1.2 Key Design Features</h3>
+<section id="key-design-principles" class="level3">
+<h3 class="anchored" data-anchor-id="key-design-principles">3.1.2 Key Design Principles</h3>
+<p>This pipeline represents a comprehensive approach to data engineering, incorporating several best practices in data handling, processing, and database management.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./images/design-principles-graph.png" class="small-image img-fluid figure-img"></p>
 <figcaption>Design Principles</figcaption>
 </figure>
 </div>
-<p>The data pipeline is built on several core design principles. Several were in place from the very beginning whilst others emerged in the development process; some opportunities were eschewed given the proof-of-concept nature of this project and the limitations of time and resource. That said, the goal was always to build a scalable, reusable, modular data processing pipeline. I wanted to create a mechanism which could conceivably be used in an operational setting, but exactly what this meant was discovered through iteration and countless - ‘<em>ah, it would be better if…</em>’ moments.</p>
-<ol type="1">
-<li><p>Secure, Controlled Access and Anonymised</p></li>
-<li><p>Modular, Scalable, Validation and Automated</p></li>
-<li><p>Robust Error Handling and Logging functionality</p></li>
-<li><p>User configurable</p></li>
-<li><p><strong>Modularity and Automation</strong>: The pipeline is composed of distinct, interoperable modules (extract, transform, load) that can be automated for efficiency.</p></li>
-<li><p><strong>Scalability and Configurability</strong>: The system is designed to handle varying data volumes and can be easily configured to adapt to different data scenarios.</p></li>
-<li><p><strong>Robust Error Handling and Logging</strong>: Comprehensive error handling and logging mechanisms are in place to ensure data integrity and facilitate troubleshooting.</p></li>
-<li><p><strong>Security and Access Control</strong>: Implementing secure data management practices and controlled access to sensitive information.</p></li>
-<li><p><strong>Data Validation and Integrity</strong>: Extensible data validation checks are incorporated to maintain data quality throughout the pipeline.</p></li>
-<li><p><strong>Dynamic Schema Handling</strong>: The system can adapt to changes in the Neo4j schema, providing flexibility for future data model adjustments.</p></li>
-<li><p><strong>Anonymization of Sensitive Data</strong>: A crucial feature that ensures compliance with data protection regulations and maintains individual privacy.</p></li>
-</ol>
-<p>These design principles not only guide the current implementation but also provide a foundation for future enhancements and scalability of the system.</p>
+<p>The data pipeline is built on several core design principles. I started with a strong sense of what I wanted to achieve - a modular, scalable, secure and configurable design - however, what <em>exactly</em> this meant was discovered in the development process. Given that the project has several limitations including resources, technology and is also time-constrained, it was important to make the final result one which can be built upon and potentially be developed within operational contexts. However, the project is also a <em>proof-of-concept</em> and as such, some design opportunities were eschewed in favour of simplicity and progress.</p>
+<section id="security-and-data-protection" class="level4">
+<h4 class="anchored" data-anchor-id="security-and-data-protection">Security and Data Protection</h4>
+<p><img src="./images/designSecure.png" class="smaller-image img-fluid" alt="Security, Access, Anonymisation"></p>
+<ul>
+<li>Secure access controls</li>
+<li>Data anonymisation</li>
+<li>Controlled handling of personally identifiable information</li>
+</ul>
+</section>
+<section id="modularity-scalability-and-automation" class="level4">
+<h4 class="anchored" data-anchor-id="modularity-scalability-and-automation">Modularity, Scalability and Automation</h4>
+<p><img src="./images/designModular.png" class="smaller-image img-fluid" alt="Modularity, Scalability, Validity, Automation"></p>
+<ul>
+<li>Distinct, interoperable modules (extract, transform, load)</li>
+<li>Ability to handle increased data volume and complexity</li>
+<li>Automation, where possible</li>
+<li>Configurable data processing options (e.g., data chunking, row processing)</li>
+<li>Optimised, where possible</li>
+</ul>
+</section>
+<section id="error-handling-and-logging" class="level4">
+<h4 class="anchored" data-anchor-id="error-handling-and-logging">Error Handling and Logging</h4>
+<p><img src="./images/designLog.png" class="smaller-image img-fluid" alt="Logging and Error Handling"></p>
+<ul>
+<li>Robust error handling mechanisms</li>
+<li>Comprehensive logging for troubleshooting and auditing</li>
+</ul>
+</section>
+<section id="user-configurable" class="level4">
+<h4 class="anchored" data-anchor-id="user-configurable">User configurable</h4>
+<p><img src="./images/designConfig.png" class="smaller-image img-fluid" alt="Configurability"></p>
+<ul>
+<li>Flexible configuration options for data filtering, directory controls, and schema handling</li>
+</ul>
+</section>
+</section>
+<section id="implementation-approach" class="level3">
+<h3 class="anchored" data-anchor-id="implementation-approach">3.1.3 Implementation Approach</h3>
+<p>The pipeline was developed using an iterative approach, allowing for continuous discovery, refinement and improvement.</p>
+<p>Key aspects of the implementation include:</p>
+<ul>
+<li><strong>Technology Stack</strong>: Python for data processing, MS SQL for source data, Neo4j for the target graph database. <strong>ADD LINK TO TECH APPENDIX</strong></li>
+<li><strong>Cloud Integration</strong>: Utilisation of Google Drive for intermediate storage, compatible with Neo4j Aura.</li>
+<li><strong>Validation</strong>: Implemented at various stages to ensure data integrity and fitness for processing.</li>
+<li><strong>Testing</strong>: Continuous simulated unit testing to ensure that componentsare behaving as expected.</li>
+</ul>
+</section>
+<section id="upcoming-sections" class="level3">
+<h3 class="anchored" data-anchor-id="upcoming-sections">3.1.4 Upcoming Sections</h3>
+<p>The following sections will delve into the specific implementation details of each stage in the pipeline, demonstrating how these principles are put into practice.</p>
+<p>I will explore the iterative development process, configuration management, extraction techniques, transformation processes, loading strategies, and automation workflows. Finally, I will reflect on lessons learned and potential future enhancements to the data engineering components.</p>
 </section>
 <section id="iterative-development-approach" class="level3">
 <h3 class="anchored" data-anchor-id="iterative-development-approach">3.2 Iterative Development Approach</h3>
 <ul>
 <li>Description of the iterative process</li>
 <li>Testing methodology</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/iteration.png" class="img-fluid figure-img"></p>
+<figcaption>Iterative Development Approach</figcaption>
+</figure>
+</div>
+</section>
+<section id="notes-to-include" class="level3">
+<h3 class="anchored" data-anchor-id="notes-to-include">notes to include:</h3>
+<ul>
+<li><p>information security</p></li>
+<li><p>controlled access</p></li>
+<li><p>secure university databases, windows system user, servers</p></li>
+<li><p>anonymisation protocol - minimal personal information, still want operatinalisable tool</p></li>
+<li><p>reusability, maintainability, testability</p></li>
+<li><p>more data -&gt; scale</p></li>
+<li><p>more data -&gt; properties, relationships</p></li>
+<li><p>sql code changes</p></li>
+<li><p>google drive apis</p></li>
+<li><p>error handling</p></li>
+<li><p>consistent logging</p></li>
+<li><p>validation data</p></li>
 </ul>
 </section>
 <section id="configuration-and-logging" class="level3">

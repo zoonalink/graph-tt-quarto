@@ -18,6 +18,7 @@ book:
     - 04-timetable-metrics.qmd
     - 05-future-opportunities.qmd
     - 06-conclusion.qmd
+    - appendix.qmd
     - references.qmd
 
 format:
