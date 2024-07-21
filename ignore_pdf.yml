@@ -13,8 +13,8 @@ book:
   chapters:
     - index.qmd
     - 01-introduction.qmd
-    - 02-data-engineering.qmd
-    - 03-graph-data-model.qmd
+    - 02-graph-data-model.qmd
+    - 03-data-engineering.qmd
     - 04-timetable-metrics.qmd
     - 05-future-opportunities.qmd
     - 06-conclusion.qmd

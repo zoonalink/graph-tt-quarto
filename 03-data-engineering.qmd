@@ -1,0 +1,128 @@
+---
+title: "Data Engineering" 
+---
+
+
+## 3.1 Overview of the Data Pipeline
+
+::: {.callout-note}
+## NOTES TO DELETE
+* High-level architecture (data flow diagram)
+* Key features: modularity, configurability, scalability, error handling, etc. 
+:::
+
+The data engineering pipeline is designed to efficiently and securely transfer selected university timetabling data from a relational database (MS SQL) to a graph database (Neo4j), thereby enabling the opportunity for advanced analytics and insights. The process involves several key stages, each built on robust design principles to ensure data integrity, security, and scalability.
+
+### 3.1.1 High-level Architecture
+
+The following diagram illustrates the high level end-to-end flow of the data pipeline:
+
+
+:::{.figure #fig-pipeline fig-align="center"}
+```{dot}
+#| fig-cap: "Data Pipeline Overview" 
+
+digraph Overview {
+
+  // graph layout - td
+  rankdir = TD;
+  nodesep = 1.0; 
+  node [shape=box, style="filled,rounded", fillcolor="#f0f0f0", fontname="Arial"]; 
+  edge [fontname="Arial"]; 
+
+  // Nodes 
+  A [label="SQL Database", shape=cylinder, fillcolor="#ffc0cb"];  //  pink 
+  B [label="CSV Files"];
+  C [label="Processed CSV Files"];
+  
+  // Subgraph to enforce vertical positioning
+  subgraph cluster_D_E { 
+      style=invis;  //  subgraph invisible
+      D [label="Google Drive", shape=folder]; 
+      E [label="Neo4j Aura DB", style="filled", fillcolor="#e0f0e0", shape=cylinder];
+      
+      // invisible edge to force positioning
+      D -> E [style=invis]; 
+  }
+
+  // Edges and Labels 
+  A -> B [label=" 1. 𝗘𝗫𝗧𝗥𝗔𝗖𝗧: filter"];
+  B -> C [label=" 2. 𝗧𝗥𝗔𝗡𝗦𝗙𝗢𝗥𝗠: Validate, Process & Anonymise"];
+  C -> D [label=" 3. Upload"];
+  
+  // Arrows from Google Drive (left and right)
+  D:w -> E [label=" 4. Load Schema", style=dashed];   
+  D:e-> E [label=" 5. 𝗟𝗢𝗔𝗗: Load & Validate Data"]; 
+}
+```
+<figcaption>Data Pipeline Overview</figcaption>
+:::
+
+This pipeline represents a comprehensive approach to data engineering, incorporating several best practices in data handling, processing, and database management.
+
+### 3.1.2 Key Design Features
+
+![Design Principles](./images/design-principles-graph.png){.small-image}
+
+The data pipeline is built on several core design principles.  Several were in place from the very beginning whilst others emerged in the development process; some opportunities were eschewed given the proof-of-concept nature of this project and the limitations of time and resource. That said, the goal was always to build a scalable, reusable, modular data processing pipeline.  I wanted to create a mechanism which could conceivably be used in an operational setting, but exactly what this meant was discovered through iteration and countless - '*ah, it would be better if...*' moments.  
+
+
+1. Secure,  Controlled Access and Anonymised
+2. Modular, Scalable, Validation and Automated
+3. Robust Error Handling and Logging functionality
+4. User configurable
+
+
+1. **Modularity and Automation**: The pipeline is composed of distinct, interoperable modules (extract, transform, load) that can be automated for efficiency.
+
+2. **Scalability and Configurability**: The system is designed to handle varying data volumes and can be easily configured to adapt to different data scenarios.
+
+3. **Robust Error Handling and Logging**: Comprehensive error handling and logging mechanisms are in place to ensure data integrity and facilitate troubleshooting.
+
+4. **Security and Access Control**: Implementing secure data management practices and controlled access to sensitive information.
+
+5. **Data Validation and Integrity**: Extensible data validation checks are incorporated to maintain data quality throughout the pipeline.
+
+6. **Dynamic Schema Handling**: The system can adapt to changes in the Neo4j schema, providing flexibility for future data model adjustments.
+
+7. **Anonymization of Sensitive Data**: A crucial feature that ensures compliance with data protection regulations and maintains individual privacy.
+
+These design principles not only guide the current implementation but also provide a foundation for future enhancements and scalability of the system.
+
+
+
+
+
+### 3.2 Iterative Development Approach
+* Description of the iterative process
+* Testing methodology
+
+### 3.3 Configuration and Logging
+* Configuration Management
+* Logging strategy and implementation
+  
+### 3.4 Extraction Process
+* Brief overview of SQL extraction techniques
+* Data Sources
+* Code snippet
+  
+### 3.5 Transformation and Processing
+* Data cleaning and preproessing
+* Detailed discussion of the Python-based transformation process
+* Highlight of the anonymisation function
+* Discussion on safeguarding personal identifiable information
+
+### 3.4 Loading to Graph Database
+* Database schema
+* Loading process
+* Challenges and solutions with Neo4j Aura
+* Cloud vs. desktop considerations
+  
+### 3.5 Automation and Workflow
+* End-to-end automated process for specific programme data
+
+### 3.6 Refelction and Lessons Learned
+* Reflection on the agile approach and discoveries made during development
+* Best practices discovered
+* Challenges over come
+* Potential future enhancements, developments

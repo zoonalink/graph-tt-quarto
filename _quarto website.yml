@@ -18,10 +18,10 @@ website:
         text: Home
       - href: 01-introduction.qmd
         text: Introduction
-      - href: 02-data-engineering.qmd
-        text: Data Engineering
-      - href: 03-graph-data-model.qmd
+      - href: 02-graph-data-model.qmd
         text: Graph Data Model
+      - href: 03-data-engineering.qmd
+        text: Data Engineering
       - href: 04-timetable-metrics.qmd
         text: Timetable Metrics
       - href: 05-future-opportunities.qmd

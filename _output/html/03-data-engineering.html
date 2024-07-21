@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Graph Time - References</title>
+<title>Graph Time - Data Engineering</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -151,7 +151,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">References</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Data Engineering</li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -180,20 +180,37 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview-of-the-data-pipeline" id="toc-overview-of-the-data-pipeline" class="nav-link active" data-scroll-target="#overview-of-the-data-pipeline">3.1 Overview of the Data Pipeline</a>
+  <ul class="collapse">
+  <li><a href="#high-level-architecture" id="toc-high-level-architecture" class="nav-link" data-scroll-target="#high-level-architecture">3.1.1 High-level Architecture</a></li>
+  <li><a href="#key-design-features" id="toc-key-design-features" class="nav-link" data-scroll-target="#key-design-features">3.1.2 Key Design Features</a></li>
+  <li><a href="#iterative-development-approach" id="toc-iterative-development-approach" class="nav-link" data-scroll-target="#iterative-development-approach">3.2 Iterative Development Approach</a></li>
+  <li><a href="#configuration-and-logging" id="toc-configuration-and-logging" class="nav-link" data-scroll-target="#configuration-and-logging">3.3 Configuration and Logging</a></li>
+  <li><a href="#extraction-process" id="toc-extraction-process" class="nav-link" data-scroll-target="#extraction-process">3.4 Extraction Process</a></li>
+  <li><a href="#transformation-and-processing" id="toc-transformation-and-processing" class="nav-link" data-scroll-target="#transformation-and-processing">3.5 Transformation and Processing</a></li>
+  <li><a href="#loading-to-graph-database" id="toc-loading-to-graph-database" class="nav-link" data-scroll-target="#loading-to-graph-database">3.4 Loading to Graph Database</a></li>
+  <li><a href="#automation-and-workflow" id="toc-automation-and-workflow" class="nav-link" data-scroll-target="#automation-and-workflow">3.5 Automation and Workflow</a></li>
+  <li><a href="#refelction-and-lessons-learned" id="toc-refelction-and-lessons-learned" class="nav-link" data-scroll-target="#refelction-and-lessons-learned">3.6 Refelction and Lessons Learned</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title">Data Engineering</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -205,8 +222,211 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="overview-of-the-data-pipeline" class="level2">
+<h2 class="anchored" data-anchor-id="overview-of-the-data-pipeline">3.1 Overview of the Data Pipeline</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+NOTES TO DELETE
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>High-level architecture (data flow diagram)</li>
+<li>Key features: modularity, configurability, scalability, error handling, etc.</li>
+</ul>
+</div>
+</div>
+<p>The data engineering pipeline is designed to efficiently and securely transfer selected university timetabling data from a relational database (MS SQL) to a graph database (Neo4j), thereby enabling the opportunity for advanced analytics and insights. The process involves several key stages, each built on robust design principles to ensure data integrity, security, and scalability.</p>
+<section id="high-level-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="high-level-architecture">3.1.1 High-level Architecture</h3>
+<p>The following diagram illustrates the high level end-to-end flow of the data pipeline:</p>
+<div id="fig-pipeline" class="figure quarto-figure quarto-figure-center quarto-float anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pipeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<svg width="672" height="480" viewbox="0.00 0.00 570.58 415.20" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 411.2)">
+<title>Overview</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-411.2 566.58,-411.2 566.58,4 -4,4"></polygon>
+<g id="clust1" class="cluster">
+<title>cluster_D_E</title>
+</g>
+<!-- A -->
+<g id="node1" class="node">
+<title>A</title>
+<path fill="#ffc0cb" stroke="black" d="M253.83,-403.93C253.83,-405.73 229.7,-407.2 200,-407.2 170.3,-407.2 146.17,-405.73 146.17,-403.93 146.17,-403.93 146.17,-374.47 146.17,-374.47 146.17,-372.67 170.3,-371.2 200,-371.2 229.7,-371.2 253.83,-372.67 253.83,-374.47 253.83,-374.47 253.83,-403.93 253.83,-403.93"></path>
+<path fill="none" stroke="black" d="M253.83,-403.93C253.83,-402.12 229.7,-400.65 200,-400.65 170.3,-400.65 146.17,-402.12 146.17,-403.93"></path>
+<text text-anchor="middle" x="200" y="-385" font-family="Arial" font-size="14.00">SQL Database</text>
+</g>
+<!-- B -->
+<g id="node2" class="node">
+<title>B</title>
+<path fill="#f0f0f0" stroke="black" d="M227.23,-318.4C227.23,-318.4 172.77,-318.4 172.77,-318.4 166.77,-318.4 160.77,-312.4 160.77,-306.4 160.77,-306.4 160.77,-294.4 160.77,-294.4 160.77,-288.4 166.77,-282.4 172.77,-282.4 172.77,-282.4 227.23,-282.4 227.23,-282.4 233.23,-282.4 239.23,-288.4 239.23,-294.4 239.23,-294.4 239.23,-306.4 239.23,-306.4 239.23,-312.4 233.23,-318.4 227.23,-318.4"></path>
+<text text-anchor="middle" x="200" y="-296.2" font-family="Arial" font-size="14.00">CSV Files</text>
+</g>
+<!-- A&#45;&gt;B -->
+<g id="edge2" class="edge">
+<title>A-&gt;B</title>
+<path fill="none" stroke="black" d="M200,-371.05C200,-358.92 200,-342.42 200,-328.52"></path>
+<polygon fill="black" stroke="black" points="203.5,-328.51 200,-318.51 196.5,-328.51 203.5,-328.51"></polygon>
+<text text-anchor="middle" x="281.3" y="-340.6" font-family="Arial" font-size="14.00"> 1. 𝗘𝗫𝗧𝗥𝗔𝗖𝗧: filter</text>
+</g>
+<!-- C -->
+<g id="node3" class="node">
+<title>C</title>
+<path fill="#f0f0f0" stroke="black" d="M262.27,-229.6C262.27,-229.6 137.73,-229.6 137.73,-229.6 131.73,-229.6 125.73,-223.6 125.73,-217.6 125.73,-217.6 125.73,-205.6 125.73,-205.6 125.73,-199.6 131.73,-193.6 137.73,-193.6 137.73,-193.6 262.27,-193.6 262.27,-193.6 268.27,-193.6 274.27,-199.6 274.27,-205.6 274.27,-205.6 274.27,-217.6 274.27,-217.6 274.27,-223.6 268.27,-229.6 262.27,-229.6"></path>
+<text text-anchor="middle" x="200" y="-207.4" font-family="Arial" font-size="14.00">Processed CSV Files</text>
+</g>
+<!-- B&#45;&gt;C -->
+<g id="edge3" class="edge">
+<title>B-&gt;C</title>
+<path fill="none" stroke="black" d="M200,-282.25C200,-270.12 200,-253.62 200,-239.72"></path>
+<polygon fill="black" stroke="black" points="203.5,-239.71 200,-229.71 196.5,-239.71 203.5,-239.71"></polygon>
+<text text-anchor="middle" x="381.29" y="-251.8" font-family="Arial" font-size="14.00"> 2. 𝗧𝗥𝗔𝗡𝗦𝗙𝗢𝗥𝗠: Validate, Process &amp; Anonymise</text>
+</g>
+<!-- D -->
+<g id="node4" class="node">
+<title>D</title>
+<polygon fill="#f0f0f0" stroke="black" points="248.7,-140.8 245.7,-144.8 224.7,-144.8 221.7,-140.8 151.3,-140.8 151.3,-104.8 248.7,-104.8 248.7,-140.8"></polygon>
+<text text-anchor="middle" x="200" y="-118.6" font-family="Arial" font-size="14.00">Google Drive</text>
+</g>
+<!-- C&#45;&gt;D -->
+<g id="edge4" class="edge">
+<title>C-&gt;D</title>
+<path fill="none" stroke="black" d="M200,-193.45C200,-181.32 200,-164.82 200,-150.92"></path>
+<polygon fill="black" stroke="black" points="203.5,-150.91 200,-140.91 196.5,-150.91 203.5,-150.91"></polygon>
+<text text-anchor="middle" x="231.91" y="-163" font-family="Arial" font-size="14.00"> 3. Upload</text>
+</g>
+<!-- E -->
+<g id="node5" class="node">
+<title>E</title>
+<path fill="#e0f0e0" stroke="black" d="M254.88,-48.73C254.88,-50.53 230.28,-52 200,-52 169.72,-52 145.12,-50.53 145.12,-48.73 145.12,-48.73 145.12,-19.27 145.12,-19.27 145.12,-17.47 169.72,-16 200,-16 230.28,-16 254.88,-17.47 254.88,-19.27 254.88,-19.27 254.88,-48.73 254.88,-48.73"></path>
+<path fill="none" stroke="black" d="M254.88,-48.73C254.88,-46.92 230.28,-45.45 200,-45.45 169.72,-45.45 145.12,-46.92 145.12,-48.73"></path>
+<text text-anchor="middle" x="200" y="-29.8" font-family="Arial" font-size="14.00">Neo4j Aura DB</text>
+</g>
+<!-- D&#45;&gt;E -->
+<!-- D&#45;&gt;E -->
+<g id="edge5" class="edge">
+<title>D:w-&gt;E</title>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M150,-122.8C109.65,-122.8 51.81,-102.18 76.15,-70 83.86,-59.81 109.41,-51.74 135.31,-45.93"></path>
+<polygon fill="black" stroke="black" points="136.17,-49.32 145.22,-43.81 134.71,-42.48 136.17,-49.32"></polygon>
+<text text-anchor="middle" x="128.92" y="-74.2" font-family="Arial" font-size="14.00"> 4. Load Schema</text>
+</g>
+<!-- D&#45;&gt;E -->
+<g id="edge6" class="edge">
+<title>D:e-&gt;E</title>
+<path fill="none" stroke="black" d="M250,-122.8C279.22,-122.8 249.25,-85.63 224.74,-59.66"></path>
+<polygon fill="black" stroke="black" points="227.16,-57.13 217.71,-52.35 222.12,-61.98 227.16,-57.13"></polygon>
+<text text-anchor="middle" x="358.89" y="-74.2" font-family="Arial" font-size="14.00"> 5. 𝗟𝗢𝗔𝗗: Load &amp; Validate Data</text>
+</g>
+</g>
+</svg>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<figcaption>
+Data Pipeline Overview
+</figcaption>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-pipeline-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+<p>This pipeline represents a comprehensive approach to data engineering, incorporating several best practices in data handling, processing, and database management.</p>
+</section>
+<section id="key-design-features" class="level3">
+<h3 class="anchored" data-anchor-id="key-design-features">3.1.2 Key Design Features</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/design-principles-graph.png" class="small-image img-fluid figure-img"></p>
+<figcaption>Design Principles</figcaption>
+</figure>
+</div>
+<p>The data pipeline is built on several core design principles. Several were in place from the very beginning whilst others emerged in the development process; some opportunities were eschewed given the proof-of-concept nature of this project and the limitations of time and resource. That said, the goal was always to build a scalable, reusable, modular data processing pipeline. I wanted to create a mechanism which could conceivably be used in an operational setting, but exactly what this meant was discovered through iteration and countless - ‘<em>ah, it would be better if…</em>’ moments.</p>
+<ol type="1">
+<li><p>Secure, Controlled Access and Anonymised</p></li>
+<li><p>Modular, Scalable, Validation and Automated</p></li>
+<li><p>Robust Error Handling and Logging functionality</p></li>
+<li><p>User configurable</p></li>
+<li><p><strong>Modularity and Automation</strong>: The pipeline is composed of distinct, interoperable modules (extract, transform, load) that can be automated for efficiency.</p></li>
+<li><p><strong>Scalability and Configurability</strong>: The system is designed to handle varying data volumes and can be easily configured to adapt to different data scenarios.</p></li>
+<li><p><strong>Robust Error Handling and Logging</strong>: Comprehensive error handling and logging mechanisms are in place to ensure data integrity and facilitate troubleshooting.</p></li>
+<li><p><strong>Security and Access Control</strong>: Implementing secure data management practices and controlled access to sensitive information.</p></li>
+<li><p><strong>Data Validation and Integrity</strong>: Extensible data validation checks are incorporated to maintain data quality throughout the pipeline.</p></li>
+<li><p><strong>Dynamic Schema Handling</strong>: The system can adapt to changes in the Neo4j schema, providing flexibility for future data model adjustments.</p></li>
+<li><p><strong>Anonymization of Sensitive Data</strong>: A crucial feature that ensures compliance with data protection regulations and maintains individual privacy.</p></li>
+</ol>
+<p>These design principles not only guide the current implementation but also provide a foundation for future enhancements and scalability of the system.</p>
+</section>
+<section id="iterative-development-approach" class="level3">
+<h3 class="anchored" data-anchor-id="iterative-development-approach">3.2 Iterative Development Approach</h3>
+<ul>
+<li>Description of the iterative process</li>
+<li>Testing methodology</li>
+</ul>
+</section>
+<section id="configuration-and-logging" class="level3">
+<h3 class="anchored" data-anchor-id="configuration-and-logging">3.3 Configuration and Logging</h3>
+<ul>
+<li>Configuration Management</li>
+<li>Logging strategy and implementation</li>
+</ul>
+</section>
+<section id="extraction-process" class="level3">
+<h3 class="anchored" data-anchor-id="extraction-process">3.4 Extraction Process</h3>
+<ul>
+<li>Brief overview of SQL extraction techniques</li>
+<li>Data Sources</li>
+<li>Code snippet</li>
+</ul>
+</section>
+<section id="transformation-and-processing" class="level3">
+<h3 class="anchored" data-anchor-id="transformation-and-processing">3.5 Transformation and Processing</h3>
+<ul>
+<li>Data cleaning and preproessing</li>
+<li>Detailed discussion of the Python-based transformation process</li>
+<li>Highlight of the anonymisation function</li>
+<li>Discussion on safeguarding personal identifiable information</li>
+</ul>
+</section>
+<section id="loading-to-graph-database" class="level3">
+<h3 class="anchored" data-anchor-id="loading-to-graph-database">3.4 Loading to Graph Database</h3>
+<ul>
+<li>Database schema</li>
+<li>Loading process</li>
+<li>Challenges and solutions with Neo4j Aura</li>
+<li>Cloud vs.&nbsp;desktop considerations</li>
+</ul>
+</section>
+<section id="automation-and-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="automation-and-workflow">3.5 Automation and Workflow</h3>
+<ul>
+<li>End-to-end automated process for specific programme data</li>
+</ul>
+</section>
+<section id="refelction-and-lessons-learned" class="level3">
+<h3 class="anchored" data-anchor-id="refelction-and-lessons-learned">3.6 Refelction and Lessons Learned</h3>
+<ul>
+<li>Reflection on the agile approach and discoveries made during development</li>
+<li>Best practices discovered</li>
+<li>Challenges over come</li>
+<li>Potential future enhancements, developments</li>
+</ul>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -30,5 +30,12 @@
   "references.qmd": {
     "references.html": "b79a70d1",
     "references.tex": "02dce582"
+  },
+  "03-data-engineering.qmd": {
+    "03-data-engineering.html": "7201f978",
+    "03-data-engineering.tex": "9ed49c95"
+  },
+  "02-graph-data-model.qmd": {
+    "02-graph-data-model.html": "75f9bda4"
   }
 }

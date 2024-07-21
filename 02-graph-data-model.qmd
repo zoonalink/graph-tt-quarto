@@ -4,11 +4,11 @@ title: "Graph Data Model"
 
 ## Graph Data Model for Timetabling (1000 words)
 
-### 3.1 Comparison of Relational and Graph Models
+### 2.1 Comparison of Relational and Graph Models
 * Visual representation of both models - mermaid, or simmilar
 
-### 3.2 Advantages of the Graph Approach
+### 2.2 Advantages of the Graph Approach
 
-### 3.3 Data Augmentation Opportunities
+### 2.3 Data Augmentation Opportunities
 * Room properties example (lat, long)
 * Potential for additional data integration (curriculum, student outcomes, etc.)
