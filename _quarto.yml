@@ -12,8 +12,10 @@ project:
 website:
   title: " "
   page-navigation: true
+  
   navbar:
-    logo: "images/logo.png"
+    pinned: true
+    logo: "images/logo3.png"
     left:
       - href: index.qmd
         text: Home
@@ -23,6 +25,7 @@ website:
       - href: 02-graph-data-model.qmd
         text: Graph Data Model
       - text: "Data Pipeline"
+        #href: 03-01-overview.qmd
         menu:
           - href: 03-01-overview.qmd
             text: Overview
@@ -49,9 +52,14 @@ website:
         - href: 06-conclusion.qmd
           text: Conclusion
       - text: "Appendix & References"
+        href: appendix-random-graph.qmd
         menu:
-        - href: appendix.qmd
-          text: Appendix
+        - href: appendix-random-graph.qmd
+          text: Random Graph Generator
+        - href: appendix-tech-stack.qmd
+          text: Technology Stack
+        - href: appendix-config.qmd
+          text: Configuration
         - href: references.qmd
           text: References
     right:
@@ -71,16 +79,16 @@ website:
   sidebar: 
     style: "docked"
     search: true
-    contents: # Sidebar Contents Identical to Navbar
+    collapse-level: 1
+    contents: 
       - href: index.qmd
         text: Home
-        icon: home
       - href: 01-introduction.qmd
         text: Introduction
       - href: 02-graph-data-model.qmd
         text: Graph Data Model
-      - text: "Data Pipeline"
-        menu:
+      - section: "Data Pipeline"
+        contents:
           - href: 03-01-overview.qmd
             text: Overview
           - href: 03-02-approach.qmd
@@ -99,16 +107,21 @@ website:
             text: Reflection
       - href: 04-timetable-metrics.qmd
         text: Timetable Metrics
-      - text: "Conclusion"
-        menu:
+      - section: "Final Thoughts"
+        contents:
           - href: 05-future-opportunities.qmd
             text: Future Opportunities
           - href: 06-conclusion.qmd
             text: Conclusion
-      - text: "Appendix & References"
-        menu:
-          - href: appendix.qmd
-            text: Appendix
+      - section: "Appendix & References"
+        contents:
+          - href: appendix-random-graph.qmd
+          - href: appendix-random-graph.qmd
+            text: Random Graph Generator
+          - href: appendix-tech-stack.qmd
+            text: Technology Stack
+          - href: appendix-config.qmd
+            text: Configuration
           - href: references.qmd
             text: References
 

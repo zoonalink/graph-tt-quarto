@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Engineering Overview – Graph Time</title>
+<title>Data Engineering Overview –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,7 +24,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
@@ -73,15 +72,18 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/logo3.png" alt="" class="navbar-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Graph Time</span>
+    <span class="navbar-title"></span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -161,21 +163,10 @@ ul.task-list li input[type="checkbox"] {
   </li>  
     </ul>
   </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-appendix--references" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Appendix &amp; References</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-appendix--references">    
-        <li>
-    <a class="dropdown-item" href="./appendix.html">
- <span class="dropdown-text">Appendix</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./appendix-random-graph.html"> 
+<span class="menu-text">Appendix &amp; References</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./references.html">
- <span class="dropdown-text">References</span></a>
-  </li>  
-    </ul>
-  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
@@ -205,31 +196,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Data Engineering Overview</li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -238,8 +208,8 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#overview-of-the-data-pipeline" id="toc-overview-of-the-data-pipeline" class="nav-link active" data-scroll-target="#overview-of-the-data-pipeline">3.1 Overview of the Data Pipeline</a>
   <ul class="collapse">
-  <li><a href="#high-level-architecture" id="toc-high-level-architecture" class="nav-link" data-scroll-target="#high-level-architecture">3.1.1 High-level Architecture</a></li>
-  <li><a href="#key-design-principles" id="toc-key-design-principles" class="nav-link" data-scroll-target="#key-design-principles">3.1.2 Key Design Principles</a></li>
+  <li><a href="#high-level-architecture" id="toc-high-level-architecture" class="nav-link" data-scroll-target="#high-level-architecture">High-level Architecture</a></li>
+  <li><a href="#design-principles" id="toc-design-principles" class="nav-link" data-scroll-target="#design-principles">Design Principles</a></li>
   <li><a href="#implementation-approach" id="toc-implementation-approach" class="nav-link" data-scroll-target="#implementation-approach">3.1.3 Implementation Approach</a></li>
   <li><a href="#upcoming-sections" id="toc-upcoming-sections" class="nav-link" data-scroll-target="#upcoming-sections">3.1.4 Upcoming Sections</a></li>
   </ul></li>
@@ -247,7 +217,7 @@ ul.task-list li input[type="checkbox"] {
 </nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -256,7 +226,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta column-body">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -286,10 +256,10 @@ TODO
 <section id="overview-of-the-data-pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="overview-of-the-data-pipeline">3.1 Overview of the Data Pipeline</h2>
 <p>The data engineering pipeline is designed to efficiently and securely transfer selected university timetabling data from a relational database (<a href="https://www.microsoft.com/en-us/sql-server/sql-server-2019">MS SQL</a>) to a graph database (<a href="https://neo4j.com/">Neo4j</a>), enabling advanced analytics and insights.</p>
-<p>This section provides an overview of the pipeline architecture, key design principles, and implementation approach.</p>
+<p>This section provides an overview of the pipeline architecture, fundamental design principles, implementation approach and key learning takeaways.</p>
 <section id="high-level-architecture" class="level3">
-<h3 class="anchored" data-anchor-id="high-level-architecture">3.1.1 High-level Architecture</h3>
-<p>The data pipeline consists of several key stages:</p>
+<h3 class="anchored" data-anchor-id="high-level-architecture">High-level Architecture</h3>
+<p>The data pipeline consists of these core stages:</p>
 <ol type="1">
 <li><strong>Extraction</strong>: Data is extracted from the SQL database and saved into CSV files.</li>
 <li><strong>Transformation</strong>: The CSV files are processed, cleaned, transformed, merged, and anonymised using Python code.</li>
@@ -396,8 +366,8 @@ Figure&nbsp;1
 </figure>
 </div>
 </section>
-<section id="key-design-principles" class="level3">
-<h3 class="anchored" data-anchor-id="key-design-principles">3.1.2 Key Design Principles</h3>
+<section id="design-principles" class="level3">
+<h3 class="anchored" data-anchor-id="design-principles">Design Principles</h3>
 <p>This pipeline represents a comprehensive approach to data engineering, incorporating several best practices in data handling, processing, and database management.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -405,10 +375,11 @@ Figure&nbsp;1
 <figcaption>Design Principles</figcaption>
 </figure>
 </div>
-<p>The data pipeline is built on several core design principles. I started with a strong sense of what I wanted to achieve - a modular, scalable, secure and configurable design - however, what <em>exactly</em> this meant was discovered in the development process. Given that the project has several limitations including resources, technology and is also time-constrained, it was important to make the final result one which can be built upon and potentially be developed within operational contexts. However, the project is also a <em>proof-of-concept</em> and as such, some design opportunities were eschewed in favour of simplicity and progress.</p>
+<p>The data pipeline is built on several core design principles. I started with a strong sense of what I wanted to achieve - a modular, scalable, secure and configurable design - however, what <em>exactly</em> this meant was discovered during the development process.</p>
+<p>Given that my project bound by time and word-limits and has additional resource and technology constraints, it was important to make the final artefact one which can be built upon after submission, including potential further development within operational contexts.</p>
+<p>However, the project is also a <em>proof-of-concept</em> and as such, some design opportunities were eschewed in favour of simplicity and progress.</p>
 <section id="security-and-data-protection" class="level4">
-<h4 class="anchored" data-anchor-id="security-and-data-protection">Security and Data Protection</h4>
-<p><img src="./images/designSecure.png" class="smaller-image img-fluid" alt="Security, Access, Anonymisation"></p>
+<h4 class="anchored" data-anchor-id="security-and-data-protection"><img src="./images/designSecure.png" class="smaller-image img-fluid" alt="Security, Access, Anonymisation"> Security and Data Protection</h4>
 <ul>
 <li>Secure access controls</li>
 <li>Data anonymisation</li>
@@ -447,7 +418,7 @@ Figure&nbsp;1
 <p>The pipeline was developed using an iterative approach, allowing for continuous discovery, refinement and improvement.</p>
 <p>Key aspects of the implementation include:</p>
 <ul>
-<li><strong>Technology Stack</strong>: Python for data processing, MS SQL for source data, Neo4j for the target graph database. See <a href="./appendix.html">Appendix</a> for more details.</li>
+<li><strong>Technology Stack</strong>: Python for data processing, MS SQL for source data, Neo4j for the target graph database. See <a href="appendix.qmd">Appendix</a> for more details.</li>
 <li><strong>Cloud Integration</strong>: Utilisation of Google Drive for intermediate storage, compatible with Neo4j Aura.</li>
 <li><strong>Validation</strong>: Implemented at various stages to ensure data integrity and fitness for processing.</li>
 <li><strong>Testing</strong>: Continuous simulated unit testing to ensure that componentsare behaving as expected.</li>

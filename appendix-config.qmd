@@ -1,0 +1,162 @@
+---
+title: Configuration YAML
+---
+
+## Config 
+
+The below is an example of configuration options configured in more human readable YAML format.
+
+```yaml
+
+# ETL Pipeline Configuration
+
+general:
+  hostkeys: 
+    - INB112
+    # - N420
+  folder_name: '' # default to hostkey if empty
+
+file_paths:
+  root_dir: '.'  # default to current working directory
+  nodes_folder_url: # (Optional) override for dynamic lookup) eg "https://drive.google.com/drive/folders/1Rc3vQCF6CwxV3yNjfUTWXv61BgYD1j_3"
+  relationships_folder_url: # (Optional) override for dynamic lookup) eg."https://drive.google.com/drive/folders/1w_ea6ETzRcdYz71crLxL9khjLrEfcbuH"
+  gdrive_root_folder_url: "1iWkeTubJ0xZ6I728emoj9BkqZm7dL2fq"
+  gdrive_folder_name: # Leave commented out to use default (hostkey)
+  google_credentials_path: 'credentials/graph-diss-dbbdbb5e5d00.json'
+  department_source: 'node-dept-all.csv'
+  archibus_source: 'archibus.csv'
+
+data_processing:
+  chunk_size: 20000
+  temp_tables_sql_file: "create_temp_tables.sql"
+  node_output_filename_template: "node-{node}-processed.csv"
+  rel_output_filename_template: "rel-{relationship}-processed.csv"
+
+neo4j:
+  #max_connection_retries: 5
+  #max_transaction_retry_time: 30
+  schema:
+    apply: True
+    type: 'dynamic' # Options: 'dynamic', 'custom'
+    custom_path: ''
+  batch_size: 1000
+
+logging:
+  log_level: "INFO" # Options: DEBUG, INFO, WARNING, ERROR, CRITICAL 
+
+nodes:
+  department: 
+    filename_pattern: "node-dept-all*.csv"
+    dept_join_col: null 
+    node_suffix: 'dept'
+    node_id: "deptSplusID"
+  module: 
+    filename_pattern: "node-module-by-pos-temp*.csv"
+    dept_join_col: "modSplusDeptID"
+    node_suffix: "mod"
+    node_id: "modSplusID"             
+  room: 
+    filename_pattern: "node-room-by-pos-temp*.csv"
+    dept_join_col: null
+    node_suffix: 'room'
+    node_id: "roomSplusID"   
+  programme: 
+    filename_pattern: "node-pos-by-pos-temp*.csv"
+    dept_join_col: "posSplusDeptID"
+    node_suffix: "pos"
+    node_id: "posSplusID"
+  activityType: 
+    filename_pattern: "node-activitytype-by-pos-temp*.csv"
+    dept_join_col: 'actTypeDeptSplusID'
+    node_suffix: 'actType'
+    node_id: 'actTypeSplusID'
+  staff: 
+    filename_pattern: "node-staff-by-pos-temp*.csv"
+    dept_join_col: "staffDeptSplusID"
+    node_suffix: "staff"
+    dtype:
+      staffSplusID: str
+      staffID: str 
+    node_id: "staffSplusID"
+  student: 
+    filename_pattern: "node-student-by-pos-temp*.csv"
+    dept_join_col: "stuDeptSplusID"
+    node_suffix: "stu"
+    dtype: 
+      stuSplusID: str
+      studentID: str
+    node_id: "stuSplusID"
+  activity: 
+    filename_pattern: "node-activity-by-pos-temp*.csv"
+    dept_join_col: null
+    node_suffix: null
+    dtype:
+      actSplusID: str
+      actTypeSplusID: str 
+      actRoomSplusID: str
+      actStaffSplusID: str 
+      actStuSplusID: str 
+      actStartDateTime: str
+      actEndDateTime: str
+      actFirstActivityDate: str
+      actLastActivityDate: str
+      actWhenScheduled: str
+    node_id: "actGraphID" 
+
+relationships:
+  activity_module: 
+    filename_pattern: "rel-activity-module-by-pos-temp*.csv"
+    node1_col: "actSplusID"
+    node2_col: "modSplusID"
+    relationship: "BELONGS_TO"
+  activity_room: 
+    filename_pattern: "rel-activity-room-by-pos-temp*.csv"
+    node1_col: "actSplusID"
+    node2_col: "roomSplusID"
+    relationship: "OCCUPIES"
+  activity_staff: 
+    filename_pattern: "rel-activity-staff-by-pos-temp*.csv"
+    node1_col: "staffSplusID"
+    node2_col: "actSplusID"
+    relationship: "TEACHES"
+  activity_student: 
+    filename_pattern: "rel-activity-student-by-pos-temp*.csv"
+    node1_col: "stuSplusID"
+    node2_col: "actSplusID"
+    relationship: "ATTENDS"
+  activity_activityType: 
+    filename_pattern: "relActivityActType*.csv"
+    node1_col: "actSplusID"
+    node2_col: "actActivityTypeSplusID"
+    relationship: "HAS_TYPE"
+  module_programme: 
+    filename_pattern: "rel-mod-pos-by-pos-temp*.csv"
+    node1_col: "modSplusID"
+    node2_col: "posSplusID"
+    relationship: "BELONGS_TO"
+    properties: 
+      - "modType"
+
+data_type_mapping:
+  activity:
+    actStartDateTime: ['datetime', '%Y-%m-%d %H:%M:%S']
+    actEndDateTime: ['datetime', '%Y-%m-%d %H:%M:%S']
+    actFirstActivityDate: ['date2', '%Y-%m-%d']
+    actLastActivityDate: ['date2', '%Y-%m-%d']
+    actPlannedSize: 'int'
+    actRealSize: 'int'
+    actDuration: 'int'
+    actDurationInMinutes: 'int'
+    actNumberOfOccurrences: 'int'
+    actWhenScheduled: ['datetime', '%Y-%m-%d %H:%M:%S']
+    actStartDate: ['date', '%Y-%m-%d']
+    actEndDate: ['date', '%Y-%m-%d']
+    actStartTime: 'time'
+    actEndTime: 'time'
+    actScheduledDay: 'int'
+  room:
+    roomCapacity: 'int'
+
+display_name_mapping:
+  activity: "actName"
+```

@@ -324,4 +324,6 @@ digraph G {
 ```
 
 
-This is a randomly generated graph with clusters.  [See Appendix for graph generator code](appendix.qmd)
+This is a randomly generated graph for visual purposes only.  
+
+[See Appendix for graph generator code](appendix.qmd)

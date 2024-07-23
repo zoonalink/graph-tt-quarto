@@ -58,5 +58,14 @@
   },
   "03-01-overview.qmd": {
     "03-01-overview.html": "26502a46"
+  },
+  "appendix-config.qmd": {
+    "appendix-config.html": "57894bc0"
+  },
+  "appendix-tech-stack.qmd": {
+    "appendix-tech-stack.html": "d927d139"
+  },
+  "appendix-random-graph.qmd": {
+    "appendix-random-graph.html": "0eca96ea"
   }
 }

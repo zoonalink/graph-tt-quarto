@@ -5,18 +5,17 @@ title: "Data Engineering Overview"
 ## TODO
 
 * 
-
 :::
 
 ## 3.1 Overview of the Data Pipeline
 
 The data engineering pipeline is designed to efficiently and securely transfer selected university timetabling data from a relational database ([MS SQL](https://www.microsoft.com/en-us/sql-server/sql-server-2019)) to a graph database ([Neo4j](https://neo4j.com/)), enabling advanced analytics and insights. 
 
-This section provides an overview of the pipeline architecture, key design principles, and implementation approach.
+This section provides an overview of the pipeline architecture, fundamental design principles, implementation approach and key learning takeaways.
 
-### 3.1.1 High-level Architecture
+### High-level Architecture
 
-The data pipeline consists of several key stages:
+The data pipeline consists of these core stages:
 
 1. **Extraction**: Data is extracted from the SQL database and saved into CSV files.
 2. **Transformation**: The CSV files are processed, cleaned, transformed, merged, and anonymised using Python code.
@@ -40,7 +39,7 @@ digraph Overview {
   B [label="CSV Files"];
   C [label="Processed CSV Files"];
   
-  // Subgraph to enforce vertical positioning
+  // subgraph for vertical positioning
   subgraph cluster_D_E { 
       style=invis;  //  subgraph invisible
       D [label="Google Drive", shape=folder]; 
@@ -64,18 +63,22 @@ digraph Overview {
 :::
 
 
-### 3.1.2 Key Design Principles
+### Design Principles
 
 This pipeline represents a comprehensive approach to data engineering, incorporating several best practices in data handling, processing, and database management.
 
 ![Design Principles](./images/design-principles-graph.png){.small-image}
 
-The data pipeline is built on several core design principles.  I started with a strong sense of what I wanted to achieve - a modular, scalable, secure and configurable design - however, what *exactly* this meant was discovered in the development process.  Given that the project has several limitations including resources, technology and is also time-constrained, it was important to make the final result one which can be built upon and potentially be developed within operational contexts.  However, the project is also a *proof-of-concept* and as such, some design opportunities were eschewed in favour of simplicity and progress.
+The data pipeline is built on several core design principles.  I started with a strong sense of what I wanted to achieve - a modular, scalable, secure and configurable design - however, what *exactly* this meant was discovered during the development process.  
 
 
-#### Security and Data Protection
+Given that my project bound by time and word-limits and has additional resource and technology constraints, it was important to make the final artefact one which can be built upon after submission, including potential further development within operational contexts.  
 
-![](./images/designSecure.png){.smaller-image fig-alt="Security, Access, Anonymisation"}
+
+However, the project is also a *proof-of-concept* and as such, some design opportunities were eschewed in favour of simplicity and progress.
+
+
+#### ![](./images/designSecure.png){.smaller-image fig-alt="Security, Access, Anonymisation"} Security and Data Protection
 
 * Secure access controls
 * Data anonymisation
