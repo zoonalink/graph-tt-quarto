@@ -4,10 +4,10 @@ title: "Data Engineering Overview"
 :::{.callout-warning}
 ## TODO
 
-* 
+* add references - neo4j, graphviz
 :::
 
-## 3.1 Overview of the Data Pipeline
+## Overview of the Data Pipeline
 
 The data engineering pipeline is designed to efficiently and securely transfer selected university timetabling data from a relational database ([MS SQL](https://www.microsoft.com/en-us/sql-server/sql-server-2019)) to a graph database ([Neo4j](https://neo4j.com/)), enabling advanced analytics and insights. 
 
@@ -78,7 +78,9 @@ Given that my project bound by time and word-limits and has additional resource 
 However, the project is also a *proof-of-concept* and as such, some design opportunities were eschewed in favour of simplicity and progress.
 
 
-#### ![](./images/designSecure.png){.smaller-image fig-alt="Security, Access, Anonymisation"} Security and Data Protection
+#### Security and Data Protection
+
+![](./images/designSecure.png){.smaller-image fig-alt="Security, Access, Anonymisation"}
 
 * Secure access controls
 * Data anonymisation
@@ -94,12 +96,11 @@ However, the project is also a *proof-of-concept* and as such, some design oppor
 * Configurable data processing options (e.g., data chunking, row processing)
 * Optimised, where possible
 
-
 #### Error Handling and Logging
 
 ![](./images/designLog.png){.smaller-image fig-alt="Logging and Error Handling"}
 
-* Robust error handling mechanisms
+* Robust error handling
 * Comprehensive logging for troubleshooting and auditing
 
 #### User configurable
@@ -108,19 +109,21 @@ However, the project is also a *proof-of-concept* and as such, some design oppor
 
 * Flexible configuration options for data filtering, directory controls, and schema handling
 
-### 3.1.3 Implementation Approach
+### Implementation Approach
 
 The pipeline was developed using an iterative approach, allowing for continuous discovery, refinement and improvement. 
 
-Key aspects of the implementation include:
+Crucial aspects of the implementation include:
 
 * **Technology Stack**: Python for data processing, MS SQL for source data, Neo4j for the target graph database.  See [Appendix](appendix.qmd) for more details.
 * **Cloud Integration**: Utilisation of Google Drive for intermediate storage, compatible with Neo4j Aura.
 * **Validation**: Implemented at various stages to ensure data integrity and fitness for processing.
 * **Testing**: Continuous simulated unit testing to ensure that componentsare behaving as expected.
 
-### 3.1.4 Upcoming Sections
+### Upcoming Sections
 
 The following sections will delve into the specific implementation details of each stage in the pipeline, demonstrating how these principles are put into practice.
 
-I will explore the iterative development process, configuration management, extraction techniques, transformation processes, loading strategies, and automation workflows. Finally, I will reflect on lessons learned and potential future enhancements to the data engineering components.
+I will explore the iterative development process, configuration management, extraction techniques, transformation processes, loading strategies, and automation workflows. 
+
+Finally, I will reflect on lessons learned and potential future enhancements to the data engineering components.

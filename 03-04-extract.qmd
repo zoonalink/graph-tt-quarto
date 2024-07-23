@@ -1,23 +1,115 @@
 ---
 title: "Extraction"
+execute: 
+  enabled: false
 ---
 
 :::{.callout-warning}
 ## TODO
 
 * 
-
 :::
 
-## 3.4 Extraction Process
-* Brief overview of SQL extraction techniques
-* Data Sources
-* Code snippet
 
-- **Extract (from SQL Database)**: SQL queries are executed to extract both node and relationship data, which are saved into separate CSV files.
+```{dot}
+digraph extract {
+    //  top to bottom
+    rankdir = TD;
+    nodesep = 1.0;
+    splines = false;
+    
+    // node styles
+    node [shape=box, style="filled,rounded", fillcolor="#f0f0f0", fontname="Arial"];
+    edge [fontname="Arial"];
+    
+    // nnodes
+    A [label="SQL Database\n(students, staff, programmes,\nactivities, rooms, etc.)", shape=cylinder, fillcolor="#ffc0cb"];
+    B [label="CSV Files\n(./{hostkeys}/extract)"];
+    extract [label="𝗘𝗫𝗧𝗥𝗔𝗖𝗧", style="filled", fillcolor="#e0f0e0"];
+    keyring [label="Keyring\n(Credentials)", shape=component, fillcolor="#ffffcc"];
+    config [label="Configuration"];
+    
+    // edges and labels
+    A -> keyring [label="Requires"];
+    keyring -> extract;
+    extract -> B;
+    config -> keyring [label="Credentials"];
+    config -> extract [label="SQL Scripts"];
+    
+    // force keyring and config on the same level
+    { rank = same; keyring; config; }
+}
+```
+<figcaption>Extract</figcaption>
 
-**Extraction (from SQL Database):**
-- The extraction process uses the provided SQL queries and connection details to retrieve data.
-- Data Validation:
-  - Before Extraction: The configuration might include validation rules to check SQL query syntax or data source availability.
-  - After Extraction: The extracted data is validated against rules defined in the configuration (e.g., checking for missing values, data type validation).
+
+
+The extraction process starts by securely connecting to the specified SQL database using encrypted credentials stored with [keyring](https://pypi.org/project/keyring/).  The combination of `configuration` and `SQL scripts` determine which data will be extracted by filtering based on programme(s) of study and specifying which nodes, relationships and properties to extract.  Additional options include specifying `chunk size` if extracting signficicant amounts of data, for example.
+
+The process performs basic validation at every step ensuring secure connection before running SQL SELECT statements and storing extracted data as csv files locally.
+
+### SQL example
+
+```{python}
+SELECT DISTINCT a.[Id] AS actSplusID,
+     CONCAT(a.[Id], '-', adt.[Week], '-', adt.[Day]) AS actGraphID,
+     a.[Name] AS actName,
+     a.[Description] AS actDescription,
+     a.[DepartmentId] AS actDeptSPlusID,
+     adt.[StartDateTime] AS actStartDateTime,
+     adt.[EndDateTime] AS actEndDateTime,
+     adt.[Week] AS actWeekNum,
+     adt.[Occurrence] AS actOccurrence,
+     a.[ModuleId] AS actModSplusID,
+     a.[ScheduledDay] AS actScheduledDay,
+     a.[StartDate] AS actFirstActivityDate,
+     a.[EndDate] AS actLastActivityDate,
+     a.[PlannedSize] AS actPlannedSize,
+     a.[RealSize] AS actRealSize,
+     a.[Duration] AS actDuration,
+     a.[DurationInMinutes] AS actDurationInMinutes,
+     a.[NumberOfOccurrences] AS actNumberOfOccurrences,
+     a.[WeekPattern] AS actWeekPattern,
+     a.[ActivityTypeId] AS actActivityTypeSplusID,
+     a.[WhenScheduled] AS actWhenScheduled,
+     a.[IsJtaParent],
+     a.[IsJtaChild],
+     a.[IsVariantParent],
+     a.[IsVariantChild]
+FROM ##TempActivity a
+INNER JOIN ##TempActivityDateTime adt ON a.[Id] = adt.[ActivityID];
+```
+
+### extract_main.py snippet
+
+```{python}
+#| eval: false
+# extract_main.py
+from logger_config import extract_logger
+from extract_data import main as extract_main
+from config import EXTRACT_DIR, HOSTKEYS, CHUNK_SIZE
+from utils import execution_times
+
+def run_extraction():
+    extract_logger.info("Starting data extraction process")
+    extract_logger.info(f"Output Directory: {EXTRACT_DIR}")
+    extract_logger.info(f"Hostkeys: {HOSTKEYS}")
+    extract_logger.info(f"Chunksize: {CHUNK_SIZE}")
+
+    try:
+        extract_main()
+    except Exception as e:
+        extract_logger.exception("An error occurred during data extraction:")
+    finally:
+        extract_logger.info("Data extraction completed.")
+
+   
+    # Log the execution times
+    extract_logger.info("Extraction Time Summary:")
+    for func_name, exec_time in execution_times.items():
+        extract_logger.info(f"Function {func_name} took {exec_time:.2f} seconds")
+
+
+if __name__ == "__main__":
+    run_extraction()
+```

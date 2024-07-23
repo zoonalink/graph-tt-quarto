@@ -1,0 +1,93 @@
+---
+title: "Anonymisation"
+execute:
+  enabled: false
+---
+:::{.callout-warning}
+## TODO
+
+* wrtie a summary
+* show before and after
+
+* staff/student
+* columns
+* consistent changing - uses random seed to ensure
+
+:::
+
+
+```{python}
+import random
+import hashlib
+from faker import Faker
+import pandas as pd
+
+
+def anonymise_data(df):
+    """
+    Anonymises a DataFrame by generating fake names, emails, and IDs.
+    """
+    process_logger.info("Starting anonymisation")
+    process_logger.info(f"Columns in dataframe: {df.columns.tolist()}")
+    
+    # Determine if it's staff or student data
+    if 'staffSplusID' in df.columns:
+        process_logger.info("Processing staff data")
+        id_col = 'staffID'
+        prefix = 'staff'
+        columns_to_remove = ['staffFullName', 'staffLastName', 'staffForenames', 'staffID']
+    elif 'stuSplusID' in df.columns:
+        process_logger.info("Processing student data")
+        id_col = 'studentID'
+        prefix = 'stu'
+        columns_to_remove = ['stuFullName', 'stuLastName', 'stuForenames', 'studentID']
+    else:
+        process_logger.error("Neither 'staffSplusID' nor 'stuSplusID' found in columns.")
+        return df  # Return original dataframe if required columns are missing
+
+    # Create a dictionary to store anonymised data
+    anon_data = {}
+    
+    # Generate anonymised data for each unique ID
+    for unique_id in df[id_col].unique():
+        # Create a seed based on the unique_id
+        seed = int(hashlib.md5(str(unique_id).encode()).hexdigest(), 16) & 0xFFFFFFFF
+        fake = Faker()
+        fake.seed_instance(seed)
+        random.seed(seed)
+
+        first_name = fake.first_name()
+        last_name = fake.last_name()
+        full_name = f"{first_name} {last_name}"
+        email = f"{first_name.lower()}.{last_name.lower()}@fakemail.ac.uk"
+        anon_id = f"{prefix}-{random.randint(10000000, 99999999):08d}"
+        
+        anon_data[unique_id] = {
+            f'{prefix}FirstName_anon': first_name,
+            f'{prefix}LastName_anon': last_name,
+            f'{prefix}FullName_anon': full_name,
+            f'{prefix}Email_anon': email,
+            f'{prefix}ID_anon': anon_id
+        }
+    
+    # Create a new DataFrame with anonymised data
+    df_anon = pd.DataFrame.from_dict(anon_data, orient='index')
+    
+    # Reset the index and rename it to match the original ID column
+    df_anon = df_anon.reset_index().rename(columns={'index': id_col})
+    
+    try:
+        # Merge anonymised data with the original DataFrame
+        df_result = pd.merge(df, df_anon, on=id_col)
+        
+        # Remove columns that should be anonymised
+        columns_to_remove = [col for col in columns_to_remove if col in df_result.columns]
+        df_result = df_result.drop(columns=columns_to_remove)
+        
+        process_logger.info("Anonymisation completed successfully")
+        return df_result
+
+    except Exception as e:
+        process_logger.error(f"Error during anonymisation: {str(e)}")
+        return df  # Return original dataframe if an error occurs
+```

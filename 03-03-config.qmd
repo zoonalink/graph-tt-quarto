@@ -7,50 +7,172 @@ title: "Configuration and Logging"
 
 * rewrite detailed options into a summary format
 * update if YAML config implemented.
+- [ ] revisit approach doc in final script folder
 
 :::
 
-## 3.3 Configuration and Logging
 
-### 3.3.1 Approach
+The configuration and logging approach was to centralise configuration parameters into a python scripts in order to allow the user to manage different aspects of the ETL pipeline.  The configuration options are as a result of both initial design and discovery during development.  
 
-The configuration and logging approach has been based on centralising configuration parameters into a python script and it has been organised into sections to manage the different aspects of the ETL pipeline.
+When I set options during prototyping and testing, I considered whether these are worth parameterising in the ETL by weighing up cost versus value within a proof-of-concept scope.  In general, my design is set up to run *automatically* or *dynamically* with well structured data, but I included options to override these settings.
 
-### 3.3.2 Main Configuration options
 
-The configuration for the ETL pipeline is designed to be flexible and customizable through a YAML file (etl_config.yaml). This configuration file allows users to specify a range of options to tailor the pipeline to their specific needs.
+### Main Configuration options
 
-General settings include a list of program codes (hostkeys) used for filtering data and naming folders, as well as a customizable folder name for organization. File paths and directories can be configured to point to the locations of source data files, Google Drive folders for storing processed data, and Google service account credentials. Data processing parameters include the chunk size for SQL extraction and templates for output file names.
+An YAML file containing configuration options can be viewed in the [Appendix](appendix-config.qmd).
 
-The configuration also provides options for customizing the schema of the Neo4j database and setting the batch size for data loading. For each node and relationship type, detailed configuration options are available, such as file patterns, column mappings, and data types. Additionally, users can customize the handling and display of specific data types through mappings. Finally, separate loggers for different stages of the ETL process and a configurable log level provide detailed logging capabilities.
+General settings include being able to filter which data to extract by way of a list of award codes.  This is the default folder name for this ETL run, although default folder names, filepaths and directories can be overwritten and customised.  This includes source data files and Google Drive folders for processed data.  
 
-* **General**
-  * `hostkeys`: list of programme codes for filtering at extract and naming folders
-  * `folder_name`:name for organising directories; default = `hostkeys`
-* **Filepaths and Directories**
-  * `root_dir`: project root directory; default = current working directory
-  * `nodes_folder_url`, `relationships_folder_url`: Google Drive URLs to override dynamic data location, if needed
-  * `gdrive_root_folder_url`, `gdrive_folder_name`: Google Drive for storing processed data - shared root folder
-  * `google_credentials_path`: Path to the Google service account credentials file.
-  * `department_source`, `archibus_source`: Paths to source data files to augment extracted data.
-* **Data Processing**
-  * `chunk_size`: number of rows to process during SQL extraction
-  * `temp_table_sql_files`: SQL script files
-  * `node_output_filename_template`, `rel_output_filename_template`: Templates for output file names.
-* **neo4j**
-  * Schema configuration options (dynamic or custom).
-  * `batch_size`: Batch size for loading data into Neo4j.
-* **`nodes`, `relationships`**:
-  * Detailed configuration for each node and relationship type, including file patterns, column mappings, data types, and more.
-* **data_type_mapping, display_name_mapping**
-  * Mappings to customise how specific data types are handled and displayed.
-* **Logging**
-  * Separate loggers for:
-    * `extract`
-    * `process`
-    * `load`
-    * `gdrive`
-  * Log level configurable: Controls the verbosity of logging (DEBUG, INFO, WARNING, ERROR, CRITICAL)
-  * Custom `timeit` function to log time elapsed
+Credentials to SQL databases, Neo4j instances and Google drives are stored securely via environment variables or keyring secure storage. 
 
-See [Appendix](appendix.qmd) for Configuration YAML
+There is an option to specify additional data sources, that is data which does not originate in the timetable database.  This has been configured for optionally adding additional location data, e.g. latitude and longitude, square meterage, etc.
+
+### Logging
+
+I set up a mechanism which can create a separate loggers with ease.  This can be expanded or contracted, as required - for example, during development I had sepaparate loggers for each stage of the ETL to allow me to understand errors.  However, if the ETL was developed into a stable release, it can be configured to have one log.  
+
+Options include customising the log level (DEBUG, INFO, WARNING, ERROR, CRITICAL).  
+
+#### Example Extract Log
+
+<pre style="max-height: 200px; overflow-y: auto;">
+Setting up logger: extract
+Logger extract setup completed with 1 handlers.
+Setting up logger: process
+Logger process setup completed with 1 handlers.
+Setting up logger: load
+Logger load setup completed with 1 handlers.
+2024-07-04 11:26:01,124 - INFO - extract_main - Starting data extraction process
+2024-07-04 11:26:01,124 - INFO - extract_main - Output Directory: C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-project\code\pipe3\INB112\extract
+2024-07-04 11:26:01,124 - INFO - extract_main - Hostkeys: ['INB112']
+2024-07-04 11:26:01,124 - INFO - extract_main - Chunksize: 20000
+2024-07-04 11:26:01,124 - INFO - extract_data - Starting data extraction process...
+2024-07-04 11:26:01,284 - INFO - Connected to SQL Server database.
+2024-07-04 11:26:01,284 - INFO - temp_table_loader - Creating global temporary tables...
+2024-07-04 11:26:07,878 - INFO - extract_sql_file - Processing SQL file: node-activity-by-pos-temp.sql
+2024-07-04 11:26:07,878 - INFO - extract_sql_file - Extracting data for node-activity-by-pos-temp with hostkey: INB112
+C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-project\code\pipe3\extract_sql_file.py:44: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  for chunk in pd.read_sql_query(query, conn, chunksize=CHUNK_SIZE):
+2024-07-04 11:26:07,960 - INFO - extract_sql_file - Saved 631 rows to C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-project\code\pipe3\INB112\extract/node-activity-by-pos-temp_INB112_1.csv
+2024-07-04 11:26:07,966 - INFO - extract_sql_file - Query for node-activity-by-pos-temp, INB112 took 0.09 seconds
+2024-07-04 11:26:07,966 - INFO - extract_sql_file - Processing SQL file: node-activityType-by-pos-temp.sql
+2024-07-04 11:26:07,968 - INFO - extract_sql_file - Extracting data for node-activityType-by-pos-temp with hostkey: INB112
+2024-07-04 11:26:07,985 - INFO - extract_sql_file - Saved 16 rows to C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-project\code\pipe3\INB112\extract/node-activityType-by-pos-temp_INB112_1.csv
+2024-07-04 11:26:07,985 - INFO - extract_sql_file - Query for node-activityType-by-pos-temp, INB112 took 0.02 seconds
+2024-07-04 11:26:07,985 - INFO - extract_sql_file - Processing SQL file: node-dept-all.sql
+2024-07-04 11:26:07,987 - INFO - extract_sql_file - Extracting data for node-dept-all with hostkey: INB112
+2024-07-04 11:26:07,990 - INFO - extract_sql_file - Saved 24 rows to C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-project\code\pipe3\INB112\extract/node-dept-all_INB112_1.csv
+2024-07-04 11:26:07,995 - INFO - extract_sql_file - Query for node-dept-all, INB112 took 0.01 seconds
+2024-07-04 11:26:07,995 - INFO - extract_sql_file - Processing SQL file: node-module-by-pos-temp.sql
+2024-07-04 11:26:07,995 - INFO - extract_sql_file - Extracting data for node-module-by-pos-temp with hostkey: INB112
+2024-07-04 11:26:08,009 - INFO - extract_sql_file - Saved 42 rows to C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-project\code\pipe3\INB112\extract/node-module-by-pos-temp_INB112_1.csv
+2024-07-04 11:26:08,009 - INFO - extract_sql_file - Query for node-module-by-pos-temp, INB112 took 0.01 seconds
+2024-07-04 11:26:08,009 - INFO - extract_sql_file - Processing SQL file: node-pos-by-pos-temp.sql
+2024-07-04 11:26:08,009 - INFO - extract_sql_file - Extracting data for node-pos-by-pos-temp with hostkey: INB112
+2024-07-04 11:26:08,020 - INFO - extract_sql_file - Saved 8 rows to C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-project\code\pipe3\INB112\extract/node-pos-by-pos-temp_INB112_1.csv
+2024-07-04 11:26:08,020 - INFO - extract_sql_file - Query for node-pos-by-pos-temp, INB112 took 0.01 seconds
+2024-07-04 11:26:08,020 - INFO - extract_sql_file - Processing SQL file: node-room-by-pos-temp.sql
+2024-07-04 11:26:08,020 - INFO - extract_sql_file - Extracting data for node-room-by-pos-temp with hostkey: INB112
+2024-07-04 11:26:08,037 - INFO - extract_sql_file - Saved 44 rows to C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-project\code\pipe3\INB112\extract/node-room-by-pos-temp_INB112_1.csv
+2024-07-04 11:26:08,037 - INFO - extract_sql_file - Query for node-room-by-pos-temp, INB112 took 0.02 seconds
+2024-07-04 11:26:08,037 - INFO - extract_sql_file - Processing SQL file: node-staff-by-pos-temp.sql
+2024-07-04 11:26:08,037 - INFO - extract_sql_file - Extracting data for node-staff-by-pos-temp with hostkey: INB112
+2024-07-04 11:26:08,055 - INFO - extract_sql_file - Saved 33 rows to C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-project\code\pipe3\INB112\extract/node-staff-by-pos-temp_INB112_1.csv
+2024-07-04 11:26:08,055 - INFO - extract_sql_file - Query for node-staff-by-pos-temp, INB112 took 0.02 seconds
+2024-07-04 11:26:08,055 - INFO - extract_sql_file - Processing SQL file: node-student-by-pos-temp.sql
+2024-07-04 11:26:08,055 - INFO - extract_sql_file - Extracting data for node-student-by-pos-temp with hostkey: INB112
+2024-07-04 11:26:08,075 - INFO - extract_sql_file - Saved 206 rows to C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-project\code\pipe3\INB112\extract/node-student-by-pos-temp_INB112_1.csv
+2024-07-04 11:26:08,075 - INFO - extract_sql_file - Query for node-student-by-pos-temp, INB112 took 0.02 seconds
+2024-07-04 11:26:08,075 - INFO - extract_sql_file - Processing SQL file: rel-activity-module-by-pos-temp.sql
+2024-07-04 11:26:08,075 - INFO - extract_sql_file - Extracting data for rel-activity-module-by-pos-temp with hostkey: INB112
+2024-07-04 11:26:08,085 - INFO - extract_sql_file - Saved 168 rows to C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-project\code\pipe3\INB112\extract/rel-activity-module-by-pos-temp_INB112_1.csv
+2024-07-04 11:26:08,085 - INFO - extract_sql_file - Query for rel-activity-module-by-pos-temp, INB112 took 0.01 seconds
+2024-07-04 11:26:08,085 - INFO - extract_sql_file - Processing SQL file: rel-activity-room-by-pos-temp.sql
+2024-07-04 11:26:08,085 - INFO - extract_sql_file - Extracting data for rel-activity-room-by-pos-temp with hostkey: INB112
+2024-07-04 11:26:08,105 - INFO - extract_sql_file - Saved 611 rows to C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-project\code\pipe3\INB112\extract/rel-activity-room-by-pos-temp_INB112_1.csv
+2024-07-04 11:26:08,105 - INFO - extract_sql_file - Query for rel-activity-room-by-pos-temp, INB112 took 0.02 seconds
+2024-07-04 11:26:08,105 - INFO - extract_sql_file - Processing SQL file: rel-activity-staff-by-pos-temp.sql
+2024-07-04 11:26:08,105 - INFO - extract_sql_file - Extracting data for rel-activity-staff-by-pos-temp with hostkey: INB112
+2024-07-04 11:26:08,120 - INFO - extract_sql_file - Saved 868 rows to C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-project\code\pipe3\INB112\extract/rel-activity-staff-by-pos-temp_INB112_1.csv
+2024-07-04 11:26:08,120 - INFO - extract_sql_file - Query for rel-activity-staff-by-pos-temp, INB112 took 0.02 seconds
+2024-07-04 11:26:08,125 - INFO - extract_sql_file - Processing SQL file: rel-activity-student-by-pos-temp.sql
+2024-07-04 11:26:08,125 - INFO - extract_sql_file - Extracting data for rel-activity-student-by-pos-temp with hostkey: INB112
+2024-07-04 11:26:08,245 - INFO - extract_sql_file - Saved 13423 rows to C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-project\code\pipe3\INB112\extract/rel-activity-student-by-pos-temp_INB112_1.csv
+2024-07-04 11:26:08,245 - INFO - extract_sql_file - Query for rel-activity-student-by-pos-temp, INB112 took 0.12 seconds
+2024-07-04 11:26:08,255 - INFO - extract_sql_file - Processing SQL file: rel-mod-pos-by-pos-temp.sql
+2024-07-04 11:26:08,255 - INFO - extract_sql_file - Extracting data for rel-mod-pos-by-pos-temp with hostkey: INB112
+2024-07-04 11:26:08,255 - INFO - extract_sql_file - Saved 82 rows to C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-project\code\pipe3\INB112\extract/rel-mod-pos-by-pos-temp_INB112_1.csv
+2024-07-04 11:26:08,255 - INFO - extract_sql_file - Query for rel-mod-pos-by-pos-temp, INB112 took 0.00 seconds
+2024-07-04 11:26:08,265 - INFO - extract_data - Data extraction completed.
+2024-07-04 11:26:08,285 - INFO - extract_main - Data extraction completed.
+2024-07-04 11:26:08,285 - INFO - extract_main - Extraction Time Summary:
+2024-07-04 11:26:08,285 - INFO - extract_main - Function load_temp_tables took 6.59 seconds
+2024-07-04 11:26:08,285 - INFO - extract_main - Function main took 7.17 seconds
+</pre>
+
+#### Example Google Drive Log
+
+<pre style="max-height: 200px; overflow-y: auto;">
+2024-07-11 13:28:22,339 - INFO - gdrive_upload - Starting Google Drive upload process.
+2024-07-11 13:28:22,789 - INFO - gdrive_upload - Found existing folder: INB112
+2024-07-11 13:28:23,115 - INFO - gdrive_upload - Found existing folder: node
+2024-07-11 13:28:23,366 - INFO - gdrive_upload - Found existing folder: relationship
+2024-07-11 13:28:23,576 - INFO - gdrive_upload - Found existing folder: node
+2024-07-11 13:28:24,810 - INFO - gdrive_upload - File node-activity-processed.csv uploaded to Google Drive folder ID: 1Rc3vQCF6CwxV3yNjfUTWXv61BgYD1j_3
+2024-07-11 13:28:25,046 - INFO - gdrive_upload - Found existing folder: node
+2024-07-11 13:28:26,170 - INFO - gdrive_upload - File node-activityType-processed.csv uploaded to Google Drive folder ID: 1Rc3vQCF6CwxV3yNjfUTWXv61BgYD1j_3
+2024-07-11 13:28:26,394 - INFO - gdrive_upload - Found existing folder: node
+2024-07-11 13:28:27,495 - INFO - gdrive_upload - File node-department-processed.csv uploaded to Google Drive folder ID: 1Rc3vQCF6CwxV3yNjfUTWXv61BgYD1j_3
+2024-07-11 13:28:27,715 - INFO - gdrive_upload - Found existing folder: node
+2024-07-11 13:28:28,970 - INFO - gdrive_upload - File node-module-processed.csv uploaded to Google Drive folder ID: 1Rc3vQCF6CwxV3yNjfUTWXv61BgYD1j_3
+2024-07-11 13:28:29,206 - INFO - gdrive_upload - Found existing folder: node
+2024-07-11 13:28:30,294 - INFO - gdrive_upload - File node-programme-processed.csv uploaded to Google Drive folder ID: 1Rc3vQCF6CwxV3yNjfUTWXv61BgYD1j_3
+2024-07-11 13:28:30,515 - INFO - gdrive_upload - Found existing folder: node
+2024-07-11 13:28:31,595 - INFO - gdrive_upload - File node-room-processed.csv uploaded to Google Drive folder ID: 1Rc3vQCF6CwxV3yNjfUTWXv61BgYD1j_3
+2024-07-11 13:28:31,846 - INFO - gdrive_upload - Found existing folder: node
+2024-07-11 13:28:32,895 - INFO - gdrive_upload - File node-staff-processed.csv uploaded to Google Drive folder ID: 1Rc3vQCF6CwxV3yNjfUTWXv61BgYD1j_3
+2024-07-11 13:28:33,128 - INFO - gdrive_upload - Found existing folder: node
+2024-07-11 13:28:34,220 - INFO - gdrive_upload - File node-student-processed.csv uploaded to Google Drive folder ID: 1Rc3vQCF6CwxV3yNjfUTWXv61BgYD1j_3
+2024-07-11 13:28:34,220 - WARNING - gdrive_upload - Skipping file with unrecognized prefix: process.log
+2024-07-11 13:28:34,416 - INFO - gdrive_upload - Found existing folder: relationship
+2024-07-11 13:28:35,565 - INFO - gdrive_upload - File rel-activity_activityType-processed.csv uploaded to Google Drive folder ID: 1w_ea6ETzRcdYz71crLxL9khjLrEfcbuH
+</pre>
+
+
+As part of the logging functionality, I created a timing function which tracks and stores various execution and elapsed times with a view to optimising performance or identifying bottlenecks in future development. 
+
+
+#### Example Process Log
+
+<pre style="max-height: 200px; overflow-y: auto;">
+2024-07-11 13:31:24,284 - INFO - process_utils - Processing relationship data
+2024-07-11 13:31:24,284 - INFO - process_utils - Config: {'filename_pattern': 'rel-mod-pos-by-pos-temp_INB112*.csv', 'node1_col': 'modSplusID', 'node2_col': 'posSplusID', 'relationship': 'BELONGS_TO', 'properties': ['modType']}
+2024-07-11 13:31:24,285 - INFO - process_utils - Saving processed relationship file for: module_programme
+2024-07-11 13:31:24,289 - INFO - process_main - Function process_department took 0.01 seconds
+2024-07-11 13:31:24,292 - INFO - process_main - Function process_module took 0.01 seconds
+2024-07-11 13:31:24,292 - INFO - process_main - Function process_room took 0.02 seconds
+2024-07-11 13:31:24,294 - INFO - process_main - Function process_programme took 0.01 seconds
+2024-07-11 13:31:24,294 - INFO - process_main - Function process_activityType took 0.02 seconds
+2024-07-11 13:31:24,294 - INFO - process_main - Function process_staff took 1.82 seconds
+2024-07-11 13:31:24,294 - INFO - process_main - Function process_student took 8.76 seconds
+2024-07-11 13:31:24,294 - INFO - process_main - Function process_activity took 0.10 seconds
+</pre>
+
+Logging also summarises loading results as can be seen in the snippet below.
+
+#### Example Load Log
+
+<pre style="max-height: 200px; overflow-y: auto;">
+2024-07-11 16:28:45,220 - INFO - load_main - Neo4j driver closed.
+2024-07-11 16:28:45,220 - INFO - load_main - Total execution time: 0.51 seconds
+2024-07-11 16:33:31,166 - INFO - connect_to_neo4j_db - Connected to Neo4j database successfully! Driver: <neo4j._sync.driver.Neo4jDriver object at 0x0000023AAB4FA5D0>
+2024-07-11 16:33:31,601 - INFO - load_relationships - Found 1 relationship files in Google Drive.
+2024-07-11 16:33:31,604 - INFO - load_relationships - Processing file: rel-activity_room-processed.csv (ID: 1fwUicLoaJ5YJk9tZOpDwyNMFAFWh2Q5v)
+2024-07-11 16:33:31,605 - INFO - google_drive_utils - Downloading CSV file 1fwUicLoaJ5YJk9tZOpDwyNMFAFWh2Q5v from Google Drive.
+2024-07-11 16:33:35,665 - INFO - google_drive_utils - Downloaded CSV file 1fwUicLoaJ5YJk9tZOpDwyNMFAFWh2Q5v.
+2024-07-11 16:33:45,428 - INFO - load_relationships - Finished loading activity_room relationships:
+2024-07-11 16:33:45,430 - INFO - load_relationships -   Total rows processed: 611
+2024-07-11 16:33:45,430 - INFO - load_relationships -   Relationships created: 1
+2024-07-11 16:33:45,431 - INFO - load_main - Neo4j driver closed.
+2024-07-11 16:33:45,432 - INFO - load_main - Total execution time: 14.34 seconds
+</pre>

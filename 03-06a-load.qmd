@@ -1,0 +1,55 @@
+---
+title: "Google Load"
+---
+
+:::{.callout-warning}
+## TODO
+
+* add log files?
+* add screenshot?
+:::
+
+As I am using a free instance of Neo4j's graph database - called Neo4j Aura - I needed to overcome some limitations which are not relevant to desktop installations of Neo4j or paid-for cloud instances.  
+
+In order to load from csv files, Neo4j Aura requires that the csv files are stored in [public cloud storage](https://neo4j.com/docs/aura/aurads/importing-data/load-csv/) like Google Drive or Dropbox.  Therefore, my project requires this intermediary step.
+
+```{dot}
+digraph google_drive_storage {
+    //  top to bottom
+    rankdir = TD;
+    nodesep = 1.0;
+    splines = false;
+    
+    // node styles
+    node [shape=box, style="filled,rounded", fillcolor="#f0f0f0", fontname="Arial"];
+    edge [fontname="Arial"];
+    
+    // nodes
+    source_files [label="Local Files\n(./{hostkeys}/process)", shape=folder, fillcolor="#ffdead"];
+    gdrive_api [label="Google Drive API", shape=component, fillcolor="#ffffcc"];
+    get_folder [label="Get Folder Details"];
+    create_folder [label="Create Folder if Needed"];
+    upload_nodes [label="Upload Files\nMatching Node Pattern\nto './{hostkeys}/node'", shape=folder, fillcolor="#ffdead"];
+    upload_relationships [label="Upload Files\nMatching Relationship Pattern\nto './{hostkeys}/relationships'", shape=folder, fillcolor="#ffdead"];
+    process_done [label="Process Complete", shape=ellipse, fillcolor="#e0ffe0"];
+    
+    // edges and labels
+    source_files -> gdrive_api [label="Connect via API"];
+    gdrive_api -> get_folder;
+    get_folder -> create_folder;
+    create_folder -> upload_nodes;
+    create_folder -> upload_relationships;
+    upload_nodes -> process_done;
+    upload_relationships -> process_done;
+}
+
+```
+
+Configuration settings determine where processed node and relationship files are stored.  I have made one folder in my drive public and all ETL files are stored within this root as follows:
+
+- root Google Drive folder
+  - hostkeys (automatically created, unless override)
+    - nodes
+    - relationships
+
+![Screenshot of Google Drive](./images/google-drive-node.png)

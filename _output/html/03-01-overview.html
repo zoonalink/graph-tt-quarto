@@ -29,6 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./03-02-approach.html" rel="next">
+<link href="./02-graph-data-model.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -72,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-sidebar docked nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -93,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> <i class="bi bi-home" role="img">
+    <a class="nav-link active" href="./index.html" aria-current="page"> <i class="bi bi-home" role="img">
 </i> 
 <span class="menu-text">Home</span></a>
   </li>  
@@ -196,37 +198,209 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-01-overview.html">Data Pipeline</a></li><li class="breadcrumb-item"><a href="./03-01-overview.html">Overview</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-introduction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-graph-data-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph Data Model</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Data Pipeline</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-01-overview.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-02-approach.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Approach</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-03-config.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuration and Logging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-04-extract.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extract</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-05-transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Transform</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-06-load.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Load</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-07-automation.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Automation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-08-reflection.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reflection</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-timetable-metrics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Timetable Metrics</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Final Thoughts</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-future-opportunities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Future Opportunities</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conclusion</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Appendix &amp; References</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-random-graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Random Graph Generator</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-random-graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Random Graph Generator</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-tech-stack.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Technology Stack</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-config.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview-of-the-data-pipeline" id="toc-overview-of-the-data-pipeline" class="nav-link active" data-scroll-target="#overview-of-the-data-pipeline">3.1 Overview of the Data Pipeline</a>
+  <li><a href="#overview-of-the-data-pipeline" id="toc-overview-of-the-data-pipeline" class="nav-link active" data-scroll-target="#overview-of-the-data-pipeline">Overview of the Data Pipeline</a>
   <ul class="collapse">
   <li><a href="#high-level-architecture" id="toc-high-level-architecture" class="nav-link" data-scroll-target="#high-level-architecture">High-level Architecture</a></li>
   <li><a href="#design-principles" id="toc-design-principles" class="nav-link" data-scroll-target="#design-principles">Design Principles</a></li>
-  <li><a href="#implementation-approach" id="toc-implementation-approach" class="nav-link" data-scroll-target="#implementation-approach">3.1.3 Implementation Approach</a></li>
-  <li><a href="#upcoming-sections" id="toc-upcoming-sections" class="nav-link" data-scroll-target="#upcoming-sections">3.1.4 Upcoming Sections</a></li>
+  <li><a href="#implementation-approach" id="toc-implementation-approach" class="nav-link" data-scroll-target="#implementation-approach">Implementation Approach</a></li>
+  <li><a href="#upcoming-sections" id="toc-upcoming-sections" class="nav-link" data-scroll-target="#upcoming-sections">Upcoming Sections</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content column-page-left" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-01-overview.html">Data Pipeline</a></li><li class="breadcrumb-item"><a href="./03-01-overview.html">Overview</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Data Engineering Overview</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-left">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -249,12 +423,12 @@ TODO
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li></li>
+<li>add references - neo4j, graphviz</li>
 </ul>
 </div>
 </div>
 <section id="overview-of-the-data-pipeline" class="level2">
-<h2 class="anchored" data-anchor-id="overview-of-the-data-pipeline">3.1 Overview of the Data Pipeline</h2>
+<h2 class="anchored" data-anchor-id="overview-of-the-data-pipeline">Overview of the Data Pipeline</h2>
 <p>The data engineering pipeline is designed to efficiently and securely transfer selected university timetabling data from a relational database (<a href="https://www.microsoft.com/en-us/sql-server/sql-server-2019">MS SQL</a>) to a graph database (<a href="https://neo4j.com/">Neo4j</a>), enabling advanced analytics and insights.</p>
 <p>This section provides an overview of the pipeline architecture, fundamental design principles, implementation approach and key learning takeaways.</p>
 <section id="high-level-architecture" class="level3">
@@ -379,7 +553,8 @@ Figure&nbsp;1
 <p>Given that my project bound by time and word-limits and has additional resource and technology constraints, it was important to make the final artefact one which can be built upon after submission, including potential further development within operational contexts.</p>
 <p>However, the project is also a <em>proof-of-concept</em> and as such, some design opportunities were eschewed in favour of simplicity and progress.</p>
 <section id="security-and-data-protection" class="level4">
-<h4 class="anchored" data-anchor-id="security-and-data-protection"><img src="./images/designSecure.png" class="smaller-image img-fluid" alt="Security, Access, Anonymisation"> Security and Data Protection</h4>
+<h4 class="anchored" data-anchor-id="security-and-data-protection">Security and Data Protection</h4>
+<p><img src="./images/designSecure.png" class="smaller-image img-fluid" alt="Security, Access, Anonymisation"></p>
 <ul>
 <li>Secure access controls</li>
 <li>Data anonymisation</li>
@@ -401,7 +576,7 @@ Figure&nbsp;1
 <h4 class="anchored" data-anchor-id="error-handling-and-logging">Error Handling and Logging</h4>
 <p><img src="./images/designLog.png" class="smaller-image img-fluid" alt="Logging and Error Handling"></p>
 <ul>
-<li>Robust error handling mechanisms</li>
+<li>Robust error handling</li>
 <li>Comprehensive logging for troubleshooting and auditing</li>
 </ul>
 </section>
@@ -414,9 +589,9 @@ Figure&nbsp;1
 </section>
 </section>
 <section id="implementation-approach" class="level3">
-<h3 class="anchored" data-anchor-id="implementation-approach">3.1.3 Implementation Approach</h3>
+<h3 class="anchored" data-anchor-id="implementation-approach">Implementation Approach</h3>
 <p>The pipeline was developed using an iterative approach, allowing for continuous discovery, refinement and improvement.</p>
-<p>Key aspects of the implementation include:</p>
+<p>Crucial aspects of the implementation include:</p>
 <ul>
 <li><strong>Technology Stack</strong>: Python for data processing, MS SQL for source data, Neo4j for the target graph database. See <a href="appendix.qmd">Appendix</a> for more details.</li>
 <li><strong>Cloud Integration</strong>: Utilisation of Google Drive for intermediate storage, compatible with Neo4j Aura.</li>
@@ -425,9 +600,10 @@ Figure&nbsp;1
 </ul>
 </section>
 <section id="upcoming-sections" class="level3">
-<h3 class="anchored" data-anchor-id="upcoming-sections">3.1.4 Upcoming Sections</h3>
+<h3 class="anchored" data-anchor-id="upcoming-sections">Upcoming Sections</h3>
 <p>The following sections will delve into the specific implementation details of each stage in the pipeline, demonstrating how these principles are put into practice.</p>
-<p>I will explore the iterative development process, configuration management, extraction techniques, transformation processes, loading strategies, and automation workflows. Finally, I will reflect on lessons learned and potential future enhancements to the data engineering components.</p>
+<p>I will explore the iterative development process, configuration management, extraction techniques, transformation processes, loading strategies, and automation workflows.</p>
+<p>Finally, I will reflect on lessons learned and potential future enhancements to the data engineering components.</p>
 
 
 </section>
@@ -998,6 +1174,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="./02-graph-data-model.html" class="pagination-link" aria-label="Graph Data Model">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Graph Data Model</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./03-02-approach.html" class="pagination-link" aria-label="Approach">
+        <span class="nav-page-text">Approach</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

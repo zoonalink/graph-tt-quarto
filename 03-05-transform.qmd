@@ -8,3 +8,68 @@ title: "Transformation"
 * 
 
 :::
+
+The transformation section of the ETL pipeline picks up from where `extract` finished by using the extracted csv files as the source.
+
+```{dot}
+digraph transform {
+    // Graph layout - top to bottom
+    rankdir = TD;
+    nodesep = 1.0;
+    splines = false;
+    
+    // Node styles
+    node [shape=box, style="filled,rounded", fillcolor="#f0f0f0", fontname="Arial"];
+    edge [fontname="Arial"];
+    
+    // Nodes
+    source_files [label="CSV Files\n(./{hostkeys}/extract)", shape=folder, fillcolor="#ffdead"];
+    config [label="Configuration"];
+    validate_data [label="Validating Data"];
+    clean_data [label="Cleaning Data"];
+    add_department [label="Adding 'Department' to Nodes"];
+    anonymise_data [label="𝗔𝗡𝗢𝗡𝗬𝗠𝗜𝗦𝗜𝗡𝗚\nPersonal Data", style="filled,bold", fillcolor="#ffcccc"];
+    augment_rooms [label="Augmenting Rooms\nwith Archibus Data"];
+    create_relationships [label="Creating\nRelationship Tables"];
+    processed_files [label="Processed CSV Files", shape=folder, fillcolor="#ffdead"];
+    
+    // Edges and labels
+    source_files -> validate_data;
+    validate_data -> clean_data;
+    clean_data -> add_department;
+    add_department -> anonymise_data;
+    anonymise_data -> augment_rooms;
+    augment_rooms -> create_relationships;
+    create_relationships -> processed_files;
+    
+    // Configuration connections
+    config -> validate_data;
+    config -> clean_data;
+    config -> add_department;
+    config -> anonymise_data;
+    config -> augment_rooms;
+    config -> create_relationships;
+    
+    // Positioning config in a separate column
+    { rank = same; config; }
+}
+
+```
+
+
+The configuration files allows the user to specify which columns should be used as the unique identifier when determining uniqueness, creating relationships between nodes and linking to additional datasets.  It is also possible to specify datatypes - the load process will automatically load properties as `string` unless it is well formatted or the datatype is predetermined.  The config file allows the user to specify how to handle certain datatypes like dates, times, boolean, etc.
+
+## All data
+
+1. **Validation** - basic validation of the data is performed.  Validation is extensible and can be expanded, as requirements are identified.
+2. **Cleaned** - basic cleaning of all data is performed by stripping empty space and removing non-printable characters, etc. using regex.  The cleaning functionality can be expanded.
+
+
+With clean data, the transformation proper starts: 
+
+## Nodes and relationships
+
+1. **Add Organisational Unit** -  where appropriate, the University Organisational Unit (e.g. College, School, Department) is added to the node.  This will be picked up as a property during load.  
+2. **Data Augmentation** - Room data is augmented with additional properties from the location master database, including latitude, longitude, square meterage, etc.  Data augmentation is extensible. 
+3. **Anonymisation** - Personal data is anonymised.  An anonymisation function was developed to remove and replace any personally identifiable information (PII).  The pipeline extracts minimal PII but this is safely anonymised.  The functional also adds fake emails.  [See Appendix for Anonymisation](appendix-anonymise.qmd)
+4. **Relationships** - Based on requirements in the configuration, relationships are extracted including optional relationship properties.

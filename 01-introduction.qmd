@@ -7,3 +7,13 @@ title: "Introduction"
 * Background on university timetabling challenges
 * Motivation for exploring graph-based approaches
 * Project scope and objectives
+
+* my background - timetabling, giving back
+* challenges - operational
+* wanted to do something I have never done before...as it turns out, there was a lot to learn.
+
+* data engineering project
+* practical - not academic
+* resulting in a functional, viable, prototype which can be expanded upon
+* something which may add value
+* proof 

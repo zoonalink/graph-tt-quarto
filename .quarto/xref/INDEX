@@ -67,5 +67,14 @@
   },
   "appendix-random-graph.qmd": {
     "appendix-random-graph.html": "0eca96ea"
+  },
+  "appendix-anonymise.qmd": {
+    "appendix-anonymise.html": "df8347f9"
+  },
+  "03-06a-load.qmd": {
+    "03-06a-load.html": "34aaee26"
+  },
+  "03-06b-load.qmd": {
+    "03-06b-load.html": "7c9409c6"
   }
 }

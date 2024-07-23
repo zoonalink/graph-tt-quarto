@@ -37,11 +37,11 @@ website:
             text: Extract
           - href: 03-05-transform.qmd
             text: Transform
-          - href: 03-06-load.qmd
-            text: Load
-          - href: 03-07-automation.qmd
-            text: Automation
-          - href: 03-08-reflection.qmd
+          - href: 03-06a-load.qmd
+            text: Google Drive Load
+          - href: 03-06b-load.qmd
+            text: Neo4j Load
+          - href: 03-07-reflection.qmd
             text: Reflection
       - href: 04-timetable-metrics.qmd
         text: Timetable Metrics
@@ -60,6 +60,8 @@ website:
           text: Technology Stack
         - href: appendix-config.qmd
           text: Configuration
+        - href: appendix-anonymise.qmd
+          text: Anonymisation
         - href: references.qmd
           text: References
     right:
@@ -99,11 +101,11 @@ website:
             text: Extract
           - href: 03-05-transform.qmd
             text: Transform
-          - href: 03-06-load.qmd
-            text: Load
-          - href: 03-07-automation.qmd
-            text: Automation
-          - href: 03-08-reflection.qmd
+          - href: 03-06a-load.qmd
+            text: Google Drive Load
+          - href: 03-06b-load.qmd
+            text: Neo4j Load
+          - href: 03-07-reflection.qmd
             text: Reflection
       - href: 04-timetable-metrics.qmd
         text: Timetable Metrics
@@ -116,12 +118,13 @@ website:
       - section: "Appendix & References"
         contents:
           - href: appendix-random-graph.qmd
-          - href: appendix-random-graph.qmd
             text: Random Graph Generator
           - href: appendix-tech-stack.qmd
             text: Technology Stack
           - href: appendix-config.qmd
             text: Configuration
+          - href: appendix-anonymise.qmd
+            text: Anonymisation
           - href: references.qmd
             text: References
 

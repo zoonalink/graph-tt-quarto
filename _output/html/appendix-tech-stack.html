@@ -24,12 +24,13 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./appendix-config.html" rel="next">
+<link href="./appendix-random-graph.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -106,10 +107,45 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./02-graph-data-model.html"> 
 <span class="menu-text">Graph Data Model</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./03-01-overview.html"> 
-<span class="menu-text">Data Pipeline</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-pipeline" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Data Pipeline</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-data-pipeline">    
+        <li>
+    <a class="dropdown-item" href="./03-01-overview.html">
+ <span class="dropdown-text">Overview</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./03-02-approach.html">
+ <span class="dropdown-text">Approach</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03-03-config.html">
+ <span class="dropdown-text">Configuration and Logging</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03-04-extract.html">
+ <span class="dropdown-text">Extract</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03-05-transform.html">
+ <span class="dropdown-text">Transform</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03-06-load.html">
+ <span class="dropdown-text">Load</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03-07-automation.qmd">
+ <span class="dropdown-text">Automation</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./03-08-reflection.qmd">
+ <span class="dropdown-text">Reflection</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./04-timetable-metrics.html"> 
 <span class="menu-text">Timetable Metrics</span></a>
@@ -167,7 +203,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Technology Stack</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix-random-graph.html">Appendix &amp; References</a></li><li class="breadcrumb-item"><a href="./appendix-tech-stack.html">Technology Stack</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -189,8 +225,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><i class="bi bi-home" role="img">
-</i> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
@@ -206,30 +241,135 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Graph Data Model</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
- <span class="menu-text">Data Pipeline</span>
-  </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Data Pipeline</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-01-overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Data Engineering Overview</span></a>
+ <span class="menu-text">Overview</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-02-approach.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Approach</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-03-config.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuration and Logging</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-04-extract.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extract</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-05-transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Transform</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-06-load.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Load</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-07-automation.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Automation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-08-reflection.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reflection</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./04-timetable-metrics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Timetable Metrics</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
- <span class="menu-text">Conclusion</span>
-  </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Final Thoughts</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./appendix-random-graph.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Appendix &amp; References</span></a>
+  <a href="./05-future-opportunities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Future Opportunities</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-conclusion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Conclusion</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendix &amp; References</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-random-graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Random Graph Generator</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-random-graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Random Graph Generator</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-tech-stack.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Technology Stack</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-config.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Configuration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -247,7 +387,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix-random-graph.html">Appendix &amp; References</a></li><li class="breadcrumb-item"><a href="./appendix-tech-stack.html">Technology Stack</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Technology Stack</h1>
 </div>
@@ -280,6 +420,9 @@ ul.task-list li input[type="checkbox"] {
 <li>Quarto</li>
 <li>SQL</li>
 </ul></li>
+<li>graphviz</li>
+<li>arrows</li>
+<li>mermaid</li>
 </ul>
 
 
@@ -850,6 +993,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="./appendix-random-graph.html" class="pagination-link" aria-label="Random Graph Generator">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Random Graph Generator</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./appendix-config.html" class="pagination-link" aria-label="Configuration">
+        <span class="nav-page-text">Configuration</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

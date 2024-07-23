@@ -1,0 +1,82 @@
+---
+title: "Neo4j Load"
+---
+
+:::{.callout-warning}
+## TODO
+
+* add log files?
+* add screenshot?
+* add neo4j loaded data screenshot
+:::
+
+With accessible csv files, the final module of the ETL pipeline creates (or updates) nodes and relationships in the Neo4j instance.
+
+```{dot}
+digraph neo4j_load {
+    // Graph layout - top to bottom
+    rankdir = TD;
+    nodesep = 1.0;
+    splines = false;
+    
+    // Node styles
+    node [shape=box, style="filled,rounded", fillcolor="#f0f0f0", fontname="Arial"];
+    edge [fontname="Arial"];
+    
+    // Nodes
+    gdrive_files [label="Google Drive Files\n(nodes, relationships folders)", shape=folder, fillcolor="#ffdead"];
+    keyring [label="Keyring\n(Credentials)", shape=component, fillcolor="#ffffcc"];
+    gdrive_api [label="Connect to Google Drive API"];
+    list_files [label="List Files\n(from folders)"];
+    neo4j_connection [label="Connect to Neo4j\n(with credentials)"];
+    determine_nodes [label="Determine Nodes\n(to create)"];
+    determine_relationships [label="Determine Relationships\n(to create)"];
+    create_schema [label="Create Schema\n(dynamic or custom)"];
+    create_nodes [label="Create Nodes"];
+    create_relationships [label="Create Relationships"];
+    set_node_properties [label="Set Node Properties\n(with datatypes)"];
+    set_relationship_properties [label="Set Relationship Properties"];
+    process_done [label="Process Complete", shape=ellipse, fillcolor="#e0ffe0"];
+    
+    // Edges and labels
+    gdrive_files -> gdrive_api [label="Connect via API"];
+    gdrive_api -> list_files;
+    list_files -> determine_nodes;
+    list_files -> determine_relationships;
+    determine_nodes -> create_nodes;
+    determine_relationships -> create_relationships;
+    create_nodes -> set_node_properties;
+    create_relationships -> set_relationship_properties;
+    set_node_properties -> process_done;
+    set_relationship_properties -> process_done;
+    
+    // Keyring connection for Neo4j
+    keyring -> neo4j_connection;
+    neo4j_connection -> create_nodes;
+    neo4j_connection -> create_relationships;
+    
+    // Optional schema creation
+    list_files -> create_schema [label="Optionally Create"];
+    create_schema -> create_nodes;
+    create_schema -> create_relationships;
+}
+
+```
+
+There are two authentication requirements:
+
+1. **Google Drive** to get node and relationship files and data.  
+2. **Neo4j Aura instance** is connected to with Keyring encrypted credentials.
+
+The process automatically processes nodes and relationships based on files in the specified folders by using a file-pattern matching approach.  However, this can be overridden within configuration.
+
+Also in configuration is the option to create a database schema.  There are three options:
+
+1. **No schema**
+2. **Dynamic** (default) - creates unique constraints based on nodes
+3. **Custom** - allows the user to specify specific constraints prior to loading.
+
+At this point, the ETL loads data on a row-by-row basis, reading the public csv files.  Columns become properties with data types cross-referenced from a data-mapping dictionary in the configuration.  
+
+If there have been no errors - we should have data in our Neo4j Aura instance!
+
