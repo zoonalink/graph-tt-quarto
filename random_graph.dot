@@ -1,17 +1,3 @@
----
-title: "Exploring Graph Data Models for Timetabling Insights"
-subtitle: "A proof-of-concept data engineering project"
-author: "Petter Lovehagen"
-date: "29 August 2024"
----
-
-**Supervisor**: Xiaodong Li
-
-**Programme**: MSc Data Science
-
-
-
-```{dot}
 digraph G {
 	fontname="Helvetica,Arial,sans-serif"
 	layout=neato
@@ -320,8 +306,3 @@ digraph G {
 	xpzdirk1 -> gzxrlpod
 	sj35t4ss -> "53bgisfb"
 }
-
-```
-
-
-This is a randomly generated graph with clusters.  [See Appendix for graph generator code](appendix.qmd)

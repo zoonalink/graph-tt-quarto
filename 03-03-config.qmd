@@ -1,0 +1,56 @@
+---
+title: "Configuration and Logging"
+---
+
+:::{.callout-warning}
+## TODO
+
+* rewrite detailed options into a summary format
+* update if YAML config implemented.
+
+:::
+
+## 3.3 Configuration and Logging
+
+### 3.3.1 Approach
+
+The configuration and logging approach has been based on centralising configuration parameters into a python script and it has been organised into sections to manage the different aspects of the ETL pipeline.
+
+### 3.3.2 Main Configuration options
+
+The configuration for the ETL pipeline is designed to be flexible and customizable through a YAML file (etl_config.yaml). This configuration file allows users to specify a range of options to tailor the pipeline to their specific needs.
+
+General settings include a list of program codes (hostkeys) used for filtering data and naming folders, as well as a customizable folder name for organization. File paths and directories can be configured to point to the locations of source data files, Google Drive folders for storing processed data, and Google service account credentials. Data processing parameters include the chunk size for SQL extraction and templates for output file names.
+
+The configuration also provides options for customizing the schema of the Neo4j database and setting the batch size for data loading. For each node and relationship type, detailed configuration options are available, such as file patterns, column mappings, and data types. Additionally, users can customize the handling and display of specific data types through mappings. Finally, separate loggers for different stages of the ETL process and a configurable log level provide detailed logging capabilities.
+
+* **General**
+  * `hostkeys`: list of programme codes for filtering at extract and naming folders
+  * `folder_name`:name for organising directories; default = `hostkeys`
+* **Filepaths and Directories**
+  * `root_dir`: project root directory; default = current working directory
+  * `nodes_folder_url`, `relationships_folder_url`: Google Drive URLs to override dynamic data location, if needed
+  * `gdrive_root_folder_url`, `gdrive_folder_name`: Google Drive for storing processed data - shared root folder
+  * `google_credentials_path`: Path to the Google service account credentials file.
+  * `department_source`, `archibus_source`: Paths to source data files to augment extracted data.
+* **Data Processing**
+  * `chunk_size`: number of rows to process during SQL extraction
+  * `temp_table_sql_files`: SQL script files
+  * `node_output_filename_template`, `rel_output_filename_template`: Templates for output file names.
+* **neo4j**
+  * Schema configuration options (dynamic or custom).
+  * `batch_size`: Batch size for loading data into Neo4j.
+* **`nodes`, `relationships`**:
+  * Detailed configuration for each node and relationship type, including file patterns, column mappings, data types, and more.
+* **data_type_mapping, display_name_mapping**
+  * Mappings to customise how specific data types are handled and displayed.
+* **Logging**
+  * Separate loggers for:
+    * `extract`
+    * `process`
+    * `load`
+    * `gdrive`
+  * Log level configurable: Controls the verbosity of logging (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+  * Custom `timeit` function to log time elapsed
+
+See [Appendix](appendix.qmd) for Configuration YAML

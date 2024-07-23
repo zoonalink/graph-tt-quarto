@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Graph Data Model – Graph Time</title>
+<title>Configuration and Logging – Graph Time</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -91,8 +91,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> <i class="bi bi-home" role="img">
-</i> 
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -121,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Configuration and Logging</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./03-04-extract.html">
+    <a class="dropdown-item" href="./03-04-extact.qmd">
  <span class="dropdown-text">Extract</span></a>
   </li>  
         <li>
@@ -146,43 +145,24 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./04-timetable-metrics.html"> 
 <span class="menu-text">Timetable Metrics</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-conclusion" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Conclusion</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-conclusion">    
-        <li>
-    <a class="dropdown-item" href="./05-future-opportunities.html">
- <span class="dropdown-text">Future Opportunities</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./05-future-opportunities.html"> 
+<span class="menu-text">Future Opportunities</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./06-conclusion.html">
- <span class="dropdown-text">Conclusion</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./06-conclusion.html"> 
+<span class="menu-text">Conclusion</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-appendix--references" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Appendix &amp; References</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-appendix--references">    
-        <li>
-    <a class="dropdown-item" href="./appendix.html">
- <span class="dropdown-text">Appendix</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./appendix.html"> 
+<span class="menu-text">Appendix</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./references.html">
- <span class="dropdown-text">References</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./references.html"> 
+<span class="menu-text">References</span></a>
   </li>  
-    </ul>
-  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="././_output/pdf/Graph-Time.pdf"> <i class="bi bi-file-pdf" role="img">
-</i> 
-<span class="menu-text">PDF Version</span></a>
-  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/your-username/your-repo/issues/new"> <i class="bi bi-bug" role="img" aria-label="Report an issue">
 </i> 
@@ -210,7 +190,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Graph Data Model</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Configuration and Logging</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -227,6 +207,9 @@ ul.task-list li input[type="checkbox"] {
       <a href="./index.html" class="sidebar-logo-link">
       <img src="./images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
+      <div class="sidebar-tools-main">
+    <a href="./../pdf/Exploring-Graph-Data-Models-for-Timetabling-Insights.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -241,11 +224,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#graph-data-model-for-timetabling-1000-words" id="toc-graph-data-model-for-timetabling-1000-words" class="nav-link active" data-scroll-target="#graph-data-model-for-timetabling-1000-words">Graph Data Model for Timetabling (1000 words)</a>
+  <li><a href="#configuration-and-logging" id="toc-configuration-and-logging" class="nav-link active" data-scroll-target="#configuration-and-logging">3.3 Configuration and Logging</a>
   <ul class="collapse">
-  <li><a href="#comparison-of-relational-and-graph-models" id="toc-comparison-of-relational-and-graph-models" class="nav-link" data-scroll-target="#comparison-of-relational-and-graph-models">2.1 Comparison of Relational and Graph Models</a></li>
-  <li><a href="#advantages-of-the-graph-approach" id="toc-advantages-of-the-graph-approach" class="nav-link" data-scroll-target="#advantages-of-the-graph-approach">2.2 Advantages of the Graph Approach</a></li>
-  <li><a href="#data-augmentation-opportunities" id="toc-data-augmentation-opportunities" class="nav-link" data-scroll-target="#data-augmentation-opportunities">2.3 Data Augmentation Opportunities</a></li>
+  <li><a href="#approach" id="toc-approach" class="nav-link" data-scroll-target="#approach">3.3.1 Approach</a></li>
+  <li><a href="#main-configuration-options" id="toc-main-configuration-options" class="nav-link" data-scroll-target="#main-configuration-options">3.3.2 Main Configuration options</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -255,7 +237,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Graph Data Model</h1>
+<h1 class="title">Configuration and Logging</h1>
 </div>
 
 
@@ -272,23 +254,80 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="graph-data-model-for-timetabling-1000-words" class="level2">
-<h2 class="anchored" data-anchor-id="graph-data-model-for-timetabling-1000-words">Graph Data Model for Timetabling (1000 words)</h2>
-<section id="comparison-of-relational-and-graph-models" class="level3">
-<h3 class="anchored" data-anchor-id="comparison-of-relational-and-graph-models">2.1 Comparison of Relational and Graph Models</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+TODO
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li>Visual representation of both models - mermaid, or simmilar</li>
+<li>rewrite detailed options into a summary format</li>
+<li>update if YAML config implemented.</li>
 </ul>
+</div>
+</div>
+<section id="configuration-and-logging" class="level2">
+<h2 class="anchored" data-anchor-id="configuration-and-logging">3.3 Configuration and Logging</h2>
+<section id="approach" class="level3">
+<h3 class="anchored" data-anchor-id="approach">3.3.1 Approach</h3>
+<p>The configuration and logging approach has been based on centralising configuration parameters into a python script and it has been organised into sections to manage the different aspects of the ETL pipeline.</p>
 </section>
-<section id="advantages-of-the-graph-approach" class="level3">
-<h3 class="anchored" data-anchor-id="advantages-of-the-graph-approach">2.2 Advantages of the Graph Approach</h3>
-</section>
-<section id="data-augmentation-opportunities" class="level3">
-<h3 class="anchored" data-anchor-id="data-augmentation-opportunities">2.3 Data Augmentation Opportunities</h3>
+<section id="main-configuration-options" class="level3">
+<h3 class="anchored" data-anchor-id="main-configuration-options">3.3.2 Main Configuration options</h3>
+<p>The configuration for the ETL pipeline is designed to be flexible and customizable through a YAML file (etl_config.yaml). This configuration file allows users to specify a range of options to tailor the pipeline to their specific needs.</p>
+<p>General settings include a list of program codes (hostkeys) used for filtering data and naming folders, as well as a customizable folder name for organization. File paths and directories can be configured to point to the locations of source data files, Google Drive folders for storing processed data, and Google service account credentials. Data processing parameters include the chunk size for SQL extraction and templates for output file names.</p>
+<p>The configuration also provides options for customizing the schema of the Neo4j database and setting the batch size for data loading. For each node and relationship type, detailed configuration options are available, such as file patterns, column mappings, and data types. Additionally, users can customize the handling and display of specific data types through mappings. Finally, separate loggers for different stages of the ETL process and a configurable log level provide detailed logging capabilities.</p>
 <ul>
-<li>Room properties example (lat, long)</li>
-<li>Potential for additional data integration (curriculum, student outcomes, etc.)</li>
+<li><strong>General</strong>
+<ul>
+<li><code>hostkeys</code>: list of programme codes for filtering at extract and naming folders</li>
+<li><code>folder_name</code>:name for organising directories; default = <code>hostkeys</code></li>
+</ul></li>
+<li><strong>Filepaths and Directories</strong>
+<ul>
+<li><code>root_dir</code>: project root directory; default = current working directory</li>
+<li><code>nodes_folder_url</code>, <code>relationships_folder_url</code>: Google Drive URLs to override dynamic data location, if needed</li>
+<li><code>gdrive_root_folder_url</code>, <code>gdrive_folder_name</code>: Google Drive for storing processed data - shared root folder</li>
+<li><code>google_credentials_path</code>: Path to the Google service account credentials file.</li>
+<li><code>department_source</code>, <code>archibus_source</code>: Paths to source data files to augment extracted data.</li>
+</ul></li>
+<li><strong>Data Processing</strong>
+<ul>
+<li><code>chunk_size</code>: number of rows to process during SQL extraction</li>
+<li><code>temp_table_sql_files</code>: SQL script files</li>
+<li><code>node_output_filename_template</code>, <code>rel_output_filename_template</code>: Templates for output file names.</li>
+</ul></li>
+<li><strong>neo4j</strong>
+<ul>
+<li>Schema configuration options (dynamic or custom).</li>
+<li><code>batch_size</code>: Batch size for loading data into Neo4j.</li>
+</ul></li>
+<li><strong><code>nodes</code>, <code>relationships</code></strong>:
+<ul>
+<li>Detailed configuration for each node and relationship type, including file patterns, column mappings, data types, and more.</li>
+</ul></li>
+<li><strong>data_type_mapping, display_name_mapping</strong>
+<ul>
+<li>Mappings to customise how specific data types are handled and displayed.</li>
+</ul></li>
+<li><strong>Logging</strong>
+<ul>
+<li>Separate loggers for:
+<ul>
+<li><code>extract</code></li>
+<li><code>process</code></li>
+<li><code>load</code></li>
+<li><code>gdrive</code></li>
+</ul></li>
+<li>Log level configurable: Controls the verbosity of logging (DEBUG, INFO, WARNING, ERROR, CRITICAL)</li>
+<li>Custom <code>timeit</code> function to log time elapsed</li>
+</ul></li>
 </ul>
+<p>See <a href="./appendix.html">Appendix</a> for Configuration YAML</p>
 
 
 </section>
@@ -869,7 +908,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Built with Quarto</p>
+<p>Powered by Quarto</p>
 </div>
   </div>
 </footer>

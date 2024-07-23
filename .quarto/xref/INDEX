@@ -37,5 +37,26 @@
   },
   "02-graph-data-model.qmd": {
     "02-graph-data-model.html": "75f9bda4"
+  },
+  "03-02-approach.qmd": {
+    "03-02-approach.html": "c842910b"
+  },
+  "03-03-config.qmd": {
+    "03-03-config.html": "a0747755"
+  },
+  "03-04-extract.qmd": {
+    "03-04-extract.html": "8cc495b6"
+  },
+  "03-05-transform.qmd": {
+    "03-05-transform.html": "9a933e3f"
+  },
+  "03-06-load.qmd": {
+    "03-06-load.html": "7e994993"
+  },
+  "appendix.qmd": {
+    "appendix.html": "c87a3312"
+  },
+  "03-01-overview.qmd": {
+    "03-01-overview.html": "26502a46"
   }
 }

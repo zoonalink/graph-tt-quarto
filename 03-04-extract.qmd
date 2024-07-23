@@ -1,0 +1,23 @@
+---
+title: "Extraction"
+---
+
+:::{.callout-warning}
+## TODO
+
+* 
+
+:::
+
+## 3.4 Extraction Process
+* Brief overview of SQL extraction techniques
+* Data Sources
+* Code snippet
+
+- **Extract (from SQL Database)**: SQL queries are executed to extract both node and relationship data, which are saved into separate CSV files.
+
+**Extraction (from SQL Database):**
+- The extraction process uses the provided SQL queries and connection details to retrieve data.
+- Data Validation:
+  - Before Extraction: The configuration might include validation rules to check SQL query syntax or data source availability.
+  - After Extraction: The extracted data is validated against rules defined in the configuration (e.g., checking for missing values, data type validation).

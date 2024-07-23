@@ -1,0 +1,123 @@
+---
+title: "Data Engineering Overview"
+---
+:::{.callout-warning}
+## TODO
+
+* 
+
+:::
+
+## 3.1 Overview of the Data Pipeline
+
+The data engineering pipeline is designed to efficiently and securely transfer selected university timetabling data from a relational database ([MS SQL](https://www.microsoft.com/en-us/sql-server/sql-server-2019)) to a graph database ([Neo4j](https://neo4j.com/)), enabling advanced analytics and insights. 
+
+This section provides an overview of the pipeline architecture, key design principles, and implementation approach.
+
+### 3.1.1 High-level Architecture
+
+The data pipeline consists of several key stages:
+
+1. **Extraction**: Data is extracted from the SQL database and saved into CSV files.
+2. **Transformation**: The CSV files are processed, cleaned, transformed, merged, and anonymised using Python code.
+3. **Intermediate Storage**: Processed CSVs are saved locally and uploaded to Google Drive (required for [Neo4j Aura](https://neo4j.com/cloud/platform/aura-graph-database/) free instance).
+4. **Loading**: Clean data is processed and loaded into Neo4j.
+
+:::{.figure #fig-pipeline fig-align="center"}
+```{dot}
+#| fig-cap: "Data Pipeline Overview" 
+
+digraph Overview {
+
+  // graph layout - td
+  rankdir = TD;
+  nodesep = 1.0; 
+  node [shape=box, style="filled,rounded", fillcolor="#f0f0f0", fontname="Arial"]; 
+  edge [fontname="Arial"]; 
+
+  // Nodes 
+  A [label="SQL Database", shape=cylinder, fillcolor="#ffc0cb"];  //  pink 
+  B [label="CSV Files"];
+  C [label="Processed CSV Files"];
+  
+  // Subgraph to enforce vertical positioning
+  subgraph cluster_D_E { 
+      style=invis;  //  subgraph invisible
+      D [label="Google Drive", shape=folder]; 
+      E [label="Neo4j Aura DB", style="filled", fillcolor="#e0f0e0", shape=cylinder];
+      
+      // invisible edge to force positioning
+      D -> E [style=invis]; 
+  }
+
+  // Edges and Labels 
+  A -> B [label=" 1. 𝗘𝗫𝗧𝗥𝗔𝗖𝗧: filter"];
+  B -> C [label=" 2. 𝗧𝗥𝗔𝗡𝗦𝗙𝗢𝗥𝗠: Validate, Process & Anonymise"];
+  C -> D [label=" 3. 𝐔𝐏𝐋𝐎𝐀𝐃"];
+  
+  // Arrows from Google Drive (left and right)
+  D:w -> E [label=" 4. Load Schema", style=dashed];   
+  D:e-> E [label=" 5. 𝗟𝗢𝗔𝗗: Load & Validate Data"]; 
+}
+```
+<figcaption>Data Pipeline Overview</figcaption>
+:::
+
+
+### 3.1.2 Key Design Principles
+
+This pipeline represents a comprehensive approach to data engineering, incorporating several best practices in data handling, processing, and database management.
+
+![Design Principles](./images/design-principles-graph.png){.small-image}
+
+The data pipeline is built on several core design principles.  I started with a strong sense of what I wanted to achieve - a modular, scalable, secure and configurable design - however, what *exactly* this meant was discovered in the development process.  Given that the project has several limitations including resources, technology and is also time-constrained, it was important to make the final result one which can be built upon and potentially be developed within operational contexts.  However, the project is also a *proof-of-concept* and as such, some design opportunities were eschewed in favour of simplicity and progress.
+
+
+#### Security and Data Protection
+
+![](./images/designSecure.png){.smaller-image fig-alt="Security, Access, Anonymisation"}
+
+* Secure access controls
+* Data anonymisation
+* Controlled handling of personally identifiable information
+
+#### Modularity, Scalability and Automation
+
+![](./images/designModular.png){.smaller-image fig-alt="Modularity, Scalability, Validity, Automation"}
+
+* Distinct, interoperable modules (extract, transform, load)
+* Ability to handle increased data volume and complexity
+* Automation, where possible
+* Configurable data processing options (e.g., data chunking, row processing)
+* Optimised, where possible
+
+
+#### Error Handling and Logging
+
+![](./images/designLog.png){.smaller-image fig-alt="Logging and Error Handling"}
+
+* Robust error handling mechanisms
+* Comprehensive logging for troubleshooting and auditing
+
+#### User configurable
+
+![](./images/designConfig.png){.smaller-image fig-alt="Configurability"}
+
+* Flexible configuration options for data filtering, directory controls, and schema handling
+
+### 3.1.3 Implementation Approach
+
+The pipeline was developed using an iterative approach, allowing for continuous discovery, refinement and improvement. 
+
+Key aspects of the implementation include:
+
+* **Technology Stack**: Python for data processing, MS SQL for source data, Neo4j for the target graph database.  See [Appendix](appendix.qmd) for more details.
+* **Cloud Integration**: Utilisation of Google Drive for intermediate storage, compatible with Neo4j Aura.
+* **Validation**: Implemented at various stages to ensure data integrity and fitness for processing.
+* **Testing**: Continuous simulated unit testing to ensure that componentsare behaving as expected.
+
+### 3.1.4 Upcoming Sections
+
+The following sections will delve into the specific implementation details of each stage in the pipeline, demonstrating how these principles are put into practice.
+
+I will explore the iterative development process, configuration management, extraction techniques, transformation processes, loading strategies, and automation workflows. Finally, I will reflect on lessons learned and potential future enhancements to the data engineering components.

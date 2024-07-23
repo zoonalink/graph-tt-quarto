@@ -8,31 +8,56 @@ project:
     - "!data/"
     - "!images/"
     - "!ignore/"
-  
 
 website:
-  title: "Graph Time"
+  title: " "
+  page-navigation: true
   navbar:
+    logo: "images/logo.png"
     left:
       - href: index.qmd
         text: Home
+        icon: home
       - href: 01-introduction.qmd
         text: Introduction
       - href: 02-graph-data-model.qmd
         text: Graph Data Model
-      - href: 03-data-engineering.qmd
-        text: Data Engineering
+      - text: "Data Pipeline"
+        menu:
+          - href: 03-01-overview.qmd
+            text: Overview
+          - href: 03-02-approach.qmd
+            text: Approach
+          - href: 03-03-config.qmd
+            text: Configuration and Logging
+          - href: 03-04-extract.qmd
+            text: Extract
+          - href: 03-05-transform.qmd
+            text: Transform
+          - href: 03-06-load.qmd
+            text: Load
+          - href: 03-07-automation.qmd
+            text: Automation
+          - href: 03-08-reflection.qmd
+            text: Reflection
       - href: 04-timetable-metrics.qmd
         text: Timetable Metrics
-      - href: 05-future-opportunities.qmd
-        text: Future Opportunities
-      - href: 06-conclusion.qmd
-        text: Conclusion
-      - href: appendix.qmd
-        text: Appendix
-      - href: references.qmd
-        text: References
+      - text: "Conclusion"
+        menu:
+        - href: 05-future-opportunities.qmd
+          text: Future Opportunities
+        - href: 06-conclusion.qmd
+          text: Conclusion
+      - text: "Appendix & References"
+        menu:
+        - href: appendix.qmd
+          text: Appendix
+        - href: references.qmd
+          text: References
     right:
+      - href: ./_output/pdf/Graph-Time.pdf
+        text: PDF Version
+        icon: file-pdf
       - icon: bug
         href: "https://github.com/your-username/your-repo/issues/new"
         aria-label: Report an issue
@@ -42,17 +67,55 @@ website:
       - icon: envelope
         href: "mailto:zoonalink@gmail.com"
         aria-label: Email me
-  sidebar:
+  
+  sidebar: 
     style: "docked"
     search: true
-    logo: "images/logo.png"
-    tools:
-      - icon: file-pdf
-        href: ../pdf/Exploring-Graph-Data-Models-for-Timetabling-Insights.pdf
-        text: "Download PDF"
+    contents: # Sidebar Contents Identical to Navbar
+      - href: index.qmd
+        text: Home
+        icon: home
+      - href: 01-introduction.qmd
+        text: Introduction
+      - href: 02-graph-data-model.qmd
+        text: Graph Data Model
+      - text: "Data Pipeline"
+        menu:
+          - href: 03-01-overview.qmd
+            text: Overview
+          - href: 03-02-approach.qmd
+            text: Approach
+          - href: 03-03-config.qmd
+            text: Configuration and Logging
+          - href: 03-04-extract.qmd
+            text: Extract
+          - href: 03-05-transform.qmd
+            text: Transform
+          - href: 03-06-load.qmd
+            text: Load
+          - href: 03-07-automation.qmd
+            text: Automation
+          - href: 03-08-reflection.qmd
+            text: Reflection
+      - href: 04-timetable-metrics.qmd
+        text: Timetable Metrics
+      - text: "Conclusion"
+        menu:
+          - href: 05-future-opportunities.qmd
+            text: Future Opportunities
+          - href: 06-conclusion.qmd
+            text: Conclusion
+      - text: "Appendix & References"
+        menu:
+          - href: appendix.qmd
+            text: Appendix
+          - href: references.qmd
+            text: References
+
+
   page-footer:
     left: "Copyright 2024, Petter Lövehagen"
-    right: "Powered by Quarto"
+    right: "Built with Quarto"
 
 format:
   

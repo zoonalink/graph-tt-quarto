@@ -18,6 +18,73 @@ TO ADD:
   * Quarto
   * SQL
 
+## Random Graph Generator
+
+The function below generates a random graph (dot file) using [Graphviz](https://graphviz.org/).
+
+To render, ensure that graphviz is installed or save to file and render within documents using Quarto or similar.
+
+```{python echo=TRUE, eval=FALSE}
+
+import graphviz
+import random
+import string
+from collections import defaultdict
+
+def generate_random_graph(num_nodes=50, num_edges=100, num_clusters=5, colors=None):
+    """Generates a random Graphviz graph with clusters and random colours.
+
+    Args:
+        num_nodes: Number of nodes in the graph.
+        num_edges: Number of edges in the graph.
+        num_clusters: Number of clusters to create.
+        colors: List of colours to use for clusters (optional). If not provided, random colours will be used.
+    """
+
+    dot = graphviz.Digraph("G")
+    dot.attr(fontname="Helvetica,Arial,sans-serif")
+    dot.attr(layout="neato")
+    dot.attr(start="random")
+    dot.attr(overlap="false")
+    dot.attr(splines="true")
+    dot.attr(size="8,8")
+    #dot.attr(dpi="300")
+
+    # nodes to clusters, random colours if not provided
+    cluster_assignments = {}
+    if colors is None:
+        colors = ["#%06x" % random.randint(0, 0xFFFFFF) for _ in range(num_clusters)] 
+
+    for i in range(num_nodes):
+        cluster_assignments[i] = random.randint(0, num_clusters - 1)
+
+    # random node names, colouur assignment
+    nodes = []
+    for i in range(num_nodes):
+        node_name = ''.join(random.choices(string.ascii_lowercase + string.digits, k=8))
+        nodes.append(node_name)
+        cluster_id = cluster_assignments[i]
+        color = colors[cluster_id]
+        dot.node(node_name, label="", shape="circle", height="0.12", width="0.12", fontsize="1", fillcolor=color, style="filled")
+        
+
+    # random edges (with a higher probability of staying within clusters)
+    edges = []
+    for _ in range(num_edges):
+        src_cluster = random.randint(0, num_clusters - 1)
+        dst_cluster = src_cluster if random.random() < 0.8 else random.randint(0, num_clusters - 1)  # 80% chance of staying in cluster
+        src_node = random.choice([node for i, node in enumerate(nodes) if cluster_assignments[i] == src_cluster])
+        dst_node = random.choice([node for i, node in enumerate(nodes) if cluster_assignments[i] == dst_cluster])
+        edges.append((src_node, dst_node))
+
+    #  edges to the graph
+    for edge in edges:
+        dot.edge(*edge)
+
+    return dot
+
+```
+
 ## Config 
 
 ```yaml

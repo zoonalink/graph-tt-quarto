@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Graph Data Model – Graph Time</title>
+<title>Data Engineering Approach – Graph Time</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -91,8 +91,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> <i class="bi bi-home" role="img">
-</i> 
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
@@ -121,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Configuration and Logging</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./03-04-extract.html">
+    <a class="dropdown-item" href="./03-04-extact.qmd">
  <span class="dropdown-text">Extract</span></a>
   </li>  
         <li>
@@ -146,43 +145,24 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./04-timetable-metrics.html"> 
 <span class="menu-text">Timetable Metrics</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-conclusion" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Conclusion</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-conclusion">    
-        <li>
-    <a class="dropdown-item" href="./05-future-opportunities.html">
- <span class="dropdown-text">Future Opportunities</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./05-future-opportunities.html"> 
+<span class="menu-text">Future Opportunities</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./06-conclusion.html">
- <span class="dropdown-text">Conclusion</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./06-conclusion.html"> 
+<span class="menu-text">Conclusion</span></a>
   </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-appendix--references" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Appendix &amp; References</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-appendix--references">    
-        <li>
-    <a class="dropdown-item" href="./appendix.html">
- <span class="dropdown-text">Appendix</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./appendix.html"> 
+<span class="menu-text">Appendix</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="./references.html">
- <span class="dropdown-text">References</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./references.html"> 
+<span class="menu-text">References</span></a>
   </li>  
-    </ul>
-  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="././_output/pdf/Graph-Time.pdf"> <i class="bi bi-file-pdf" role="img">
-</i> 
-<span class="menu-text">PDF Version</span></a>
-  </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/your-username/your-repo/issues/new"> <i class="bi bi-bug" role="img" aria-label="Report an issue">
 </i> 
@@ -210,7 +190,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Graph Data Model</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Data Engineering Approach</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -227,6 +207,9 @@ ul.task-list li input[type="checkbox"] {
       <a href="./index.html" class="sidebar-logo-link">
       <img src="./images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
+      <div class="sidebar-tools-main">
+    <a href="./../pdf/Exploring-Graph-Data-Models-for-Timetabling-Insights.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
@@ -241,11 +224,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#graph-data-model-for-timetabling-1000-words" id="toc-graph-data-model-for-timetabling-1000-words" class="nav-link active" data-scroll-target="#graph-data-model-for-timetabling-1000-words">Graph Data Model for Timetabling (1000 words)</a>
+  <li><a href="#iterative-development-approach" id="toc-iterative-development-approach" class="nav-link active" data-scroll-target="#iterative-development-approach">3.2 Iterative Development Approach</a>
   <ul class="collapse">
-  <li><a href="#comparison-of-relational-and-graph-models" id="toc-comparison-of-relational-and-graph-models" class="nav-link" data-scroll-target="#comparison-of-relational-and-graph-models">2.1 Comparison of Relational and Graph Models</a></li>
-  <li><a href="#advantages-of-the-graph-approach" id="toc-advantages-of-the-graph-approach" class="nav-link" data-scroll-target="#advantages-of-the-graph-approach">2.2 Advantages of the Graph Approach</a></li>
-  <li><a href="#data-augmentation-opportunities" id="toc-data-augmentation-opportunities" class="nav-link" data-scroll-target="#data-augmentation-opportunities">2.3 Data Augmentation Opportunities</a></li>
+  <li><a href="#initial-planning-and-requirements-gathering" id="toc-initial-planning-and-requirements-gathering" class="nav-link" data-scroll-target="#initial-planning-and-requirements-gathering">3.2.1 Initial Planning and Requirements Gathering</a></li>
+  <li><a href="#prototyping" id="toc-prototyping" class="nav-link" data-scroll-target="#prototyping">3.2.2 Prototyping</a></li>
+  <li><a href="#component-based-development-and-testing" id="toc-component-based-development-and-testing" class="nav-link" data-scroll-target="#component-based-development-and-testing">3.2.3 Component-Based Development and Testing</a></li>
+  <li><a href="#integration-and-review" id="toc-integration-and-review" class="nav-link" data-scroll-target="#integration-and-review">3.2.4 Integration and Review</a></li>
+  <li><a href="#feedback-integration-and-iteration" id="toc-feedback-integration-and-iteration" class="nav-link" data-scroll-target="#feedback-integration-and-iteration">3.2.5 Feedback Integration and Iteration</a></li>
+  <li><a href="#version-validation-and-documentation" id="toc-version-validation-and-documentation" class="nav-link" data-scroll-target="#version-validation-and-documentation">3.2.6 Version Validation and Documentation</a></li>
+  <li><a href="#continuous-learning-and-adaptation" id="toc-continuous-learning-and-adaptation" class="nav-link" data-scroll-target="#continuous-learning-and-adaptation">3.2.7 Continuous Learning and Adaptation</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -255,7 +242,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Graph Data Model</h1>
+<h1 class="title">Data Engineering Approach</h1>
 </div>
 
 
@@ -272,23 +259,90 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="graph-data-model-for-timetabling-1000-words" class="level2">
-<h2 class="anchored" data-anchor-id="graph-data-model-for-timetabling-1000-words">Graph Data Model for Timetabling (1000 words)</h2>
-<section id="comparison-of-relational-and-graph-models" class="level3">
-<h3 class="anchored" data-anchor-id="comparison-of-relational-and-graph-models">2.1 Comparison of Relational and Graph Models</h3>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+TODO
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li>Visual representation of both models - mermaid, or simmilar</li>
+<li></li>
+</ul>
+</div>
+</div>
+<section id="iterative-development-approach" class="level2">
+<h2 class="anchored" data-anchor-id="iterative-development-approach">3.2 Iterative Development Approach</h2>
+<p>I followed an interative, agile-inspired approach when developing the data pipeline, despite being a team of one. This allowed for flexibility, continuous improvement and the opportunity to adapt to new insights during the process. The bulk of my effort was spent <em>prototyping</em>, <em>testing</em> and <em>reviewing</em> with each iteration resulting in a new challenge, issue, opportunity or occasionally, success.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/iteration.png" class="img-fluid figure-img"></p>
+<figcaption>Iterative Development Approach</figcaption>
+</figure>
+</div>
+<section id="initial-planning-and-requirements-gathering" class="level3">
+<h3 class="anchored" data-anchor-id="initial-planning-and-requirements-gathering">3.2.1 Initial Planning and Requirements Gathering</h3>
+<p>The development cycle began with initial high-level planning and requirements gathering, where I imagined how each stage should work, trying to bear in mind future-proofing and repeatability principles.</p>
+<p>I defined core functionality for each module (extraction, transformation, loading) adn outlined initial technical requirements and constraints. The planning documentation was maintained in Quarto and markdown files in a centralised repository for project information.</p>
+</section>
+<section id="prototyping" class="level3">
+<h3 class="anchored" data-anchor-id="prototyping">3.2.2 Prototyping</h3>
+<p>Following the initial planning, rapid prototyping was undertaken for each module:</p>
+<ul>
+<li>SQL prototyping for data extraction queries</li>
+<li>Python prototyping for data transformation and processing logic</li>
+<li>Neo4j prototyping for graph database schema and loading procedures</li>
+</ul>
+<p>This stage allowed for quick exploration of different approaches and early identification of potential challenges as well as giving me the confidence to continue with my exploration.</p>
+</section>
+<section id="component-based-development-and-testing" class="level3">
+<h3 class="anchored" data-anchor-id="component-based-development-and-testing">3.2.3 Component-Based Development and Testing</h3>
+<p>Development proceeded with a focus on individual components:</p>
+<ul>
+<li>Each module (extraction, transformation, loading) was developed separately</li>
+<li>An iterative, component-based testing approach was employed</li>
+<li>While formal unit tests were not always created, each component was thoroughly tested for functionality</li>
+</ul>
+<p>This approach allowed for rapid progress while maintaining a focus on component-level quality. It was during this phase that I started expanding configuration, logging and error-handling options.</p>
+</section>
+<section id="integration-and-review" class="level3">
+<h3 class="anchored" data-anchor-id="integration-and-review">3.2.4 Integration and Review</h3>
+<p>As components reached a stable state, they were integrated and reviewed:</p>
+<ul>
+<li>Components were combined to form larger functional units</li>
+<li>Integrated functionality was occasioanlly demonstrated to subject matter experts (operational timetablers)</li>
+<li>Feedback was gathered on functionality, usability, and alignment with requirements</li>
 </ul>
 </section>
-<section id="advantages-of-the-graph-approach" class="level3">
-<h3 class="anchored" data-anchor-id="advantages-of-the-graph-approach">2.2 Advantages of the Graph Approach</h3>
-</section>
-<section id="data-augmentation-opportunities" class="level3">
-<h3 class="anchored" data-anchor-id="data-augmentation-opportunities">2.3 Data Augmentation Opportunities</h3>
+<section id="feedback-integration-and-iteration" class="level3">
+<h3 class="anchored" data-anchor-id="feedback-integration-and-iteration">3.2.5 Feedback Integration and Iteration</h3>
+<p>Insights gained from reviews and ongoing development were fed back into the process:</p>
 <ul>
-<li>Room properties example (lat, long)</li>
-<li>Potential for additional data integration (curriculum, student outcomes, etc.)</li>
+<li>New requirements or modifications were documented, for example updates to SQL SELECT statements and data model interpretations.</li>
+<li>The planning stage was revisited to incorporate new information.</li>
+<li>The development cycle was repeated, focusing on areas needing improvement or new functionality.</li>
+<li>Decisions were made to park some development opportunities for the future.</li>
 </ul>
+</section>
+<section id="version-validation-and-documentation" class="level3">
+<h3 class="anchored" data-anchor-id="version-validation-and-documentation">3.2.6 Version Validation and Documentation</h3>
+<p>At key milestones, when a stable version was achieved:</p>
+<ul>
+<li>End-to-end validation of the entire pipeline was performed.</li>
+<li>Results were documented in notebooks, including opportunities for improvement.</li>
+<li>Any issues identified were logged for the next iteration.</li>
+</ul>
+</section>
+<section id="continuous-learning-and-adaptation" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-learning-and-adaptation">3.2.7 Continuous Learning and Adaptation</h3>
+<p>Throughout the development process, learning and adaptation became central to the project’s evolution. Each iteration brought new insights, often through trial and error. Early challenges included the need to modularise components before they became unmanageable, resisting the temptation to make overly ambitious changes, and recognising when refactoring was necessary. These experiences underscored the importance of incremental progress and consistent testing in maintaining project stability and direction.</p>
+<p>This iterative journey was far from linear. There were many moments of frustration, periods of painstaking troubleshooting, and the constant urge to overdeliver, sometimes exceeding the original proof-of-concept scope. Yet, with each stumble and course correction, the process itself became more refined, transforming into a powerful tool for identifying and resolving issues.</p>
+<p>While the core MVP (minimum viable product) requirements remained relatively stable (I set them after all), the iterative approach empowered me to seize opportunities for enhancement. Each chance to modularise, parameterise, or fine-tune sparked an almost compulsive drive for improvement, pushing the pipeline beyond its initial scope. This dedication to continuous refinement, while time-consuming, ultimately fostered a robust, flexible solution that could adapt gracefully to unforeseen challenges and embrace future opportunities.</p>
+<p>It also meant the the proportion of overall emphasis shifted slightly from exploring Neo4j insights towards the development of a comprenhensive data engineering solution - entirely by virtue of where I spent my time.</p>
+<p>The iterative approach proved to be more than just a development methodology. It facilitated personal growth, enhanced technical skills, and improved project management capabilities. This process emphasized the importance of persistence, learning from mistakes, and continual improvement in creating an effective data engineering solution. While challenging at times, this approach ultimately led to a more robust and flexible final product.</p>
 
 
 </section>
@@ -869,7 +923,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Built with Quarto</p>
+<p>Powered by Quarto</p>
 </div>
   </div>
 </footer>
