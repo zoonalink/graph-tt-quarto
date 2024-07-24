@@ -2,7 +2,49 @@
 title: "Introduction" 
 ---
 
-## Intro 500 words
+TODO
+
+Add todo box.
+Write draft intro page from proposal: 
+
+* university timetable
+  * waht it is and why it is hard
+  * no one is happy (refer, seed for quality)
+* add references / quote about timetabl
+  * update references
+* add image of a university timetable
+
+Write background and context - personal motivation
+
+
+University timetabling is a complex, multifaceted problem that has been the subject of extensive research and practical implementations for decades. At its core, timetabling involves the allocation of limited resources, such as rooms, lecturers, and time slots, to a set of events or activities, such as lectures, tutorials, and examinations. The goal is to create a timetable that satisfies a multitude of constraints and objectives, ranging from avoiding scheduling conflicts and ensuring equitable resource distribution to delivering excellent pedagogy,  accommodating student preferences and optimising space utilisation.
+
+The challenges inherent in university timetabling stem from the intricate interplay of numerous factors. The availability of resources is often constrained, with limited classrooms and instructors needing to be shared across a wide array of courses and programs. Student enrollment patterns and preferences introduce additional complexity, as timetables must cater to diverse needs and avoid scheduling conflicts for individual students. Furthermore, institutional constraints, such as departmental requirements, accreditation standards, and regulatory frameworks, impose additional restrictions on the timetabling process.
+
+To address these challenges, researchers and practitioners have developed a variety of approaches and algorithms for university timetabling. These approaches often involve optimisation techniques, such as integer programming, constraint programming, and metaheuristics, to find feasible and efficient solutions. However, the real-world complexities of university timetabling often necessitate compromises and trade-offs, as it is rarely possible to satisfy all constraints and objectives simultaneously.
+
+In recent years, there has been a growing interest in exploring novel approaches to university timetabling, leveraging advancements in data science, machine learning, and graph theory. These approaches aim to enhance the efficiency, effectiveness, and adaptability of timetabling processes, ultimately leading to improved outcomes for students, instructors, and institutions.
+
+
+* find timetabling summary quote and reference
+* image of a timetable - mine? 
+* rewrite introduction:  
+  * 1. what it is - confluence of limited resources, problem to solve, optimisation
+  * 2. never win - no one is every happy - there is no perfect timetable - it is a myth, no news is good news
+  * 3. quote about timetabling - university timetabling
+
+section2: - background and context adn motivation
+
+* what is my background
+* what is my motivation
+* what is the project context
+
+section 3: aim and scope of project
+
+
+
+
+
 
 * Background on university timetabling challenges
 * Motivation for exploring graph-based approaches
@@ -16,4 +58,25 @@ title: "Introduction"
 * practical - not academic
 * resulting in a functional, viable, prototype which can be expanded upon
 * something which may add value
-* proof 
+* proof of concept
+
+
+
+
+
+
+1.1 Project Context and Motivation
+This project is motivated by the recognition that traditional timetabling approaches, while valuable, may not fully capture the nuances and complexities of the modern university environment. In particular, the increasing emphasis on student-centered learning and the need to provide a positive student experience have highlighted the limitations of conventional timetabling methods.
+
+Anecdotal evidence suggests that the relational database structures commonly employed in timetabling systems may hinder the ability to effectively measure and report on the "quality" of a timetable. This limitation can impede efforts to understand the impact of timetables on student experiences and to make data-driven improvements.
+
+Given the highly relational nature of timetables, where courses, instructors, rooms, and time slots are interconnected in intricate ways, it is hypothesized that a graph-based approach could offer a more natural and insightful way to represent and analyze timetable data. Graph databases, designed to handle complex relationships and interconnected data, have the potential to unlock new avenues for understanding and optimizing university timetables.
+
+1.2 Aim and Scope
+This project aims to investigate the viability of using graph data structures for university timetables and to explore the potential for enhanced reporting capabilities, including the establishment of measures of "timetable quality." The project will focus on the following key areas:
+
+Foundational Research: The project will contribute to the foundational research in the field of graph-based timetabling analytics, exploring new ways to leverage graph data structures to gain deeper insights into timetabling data.
+Proof-of-Concept Analytics: A focused graph-based timetabling prototype will be developed to address specific analytical use cases relevant to university timetabling. This prototype will demonstrate the potential of graph-based analytics to go beyond traditional scheduling and optimization benchmarks.
+Comparative Evaluation: A comparative assessment between graph and relational databases will be conducted to evaluate the effectiveness of graph approaches for focused analytical tasks. This evaluation will highlight the potential advantages of graph-based methods over traditional relational approaches.
+Metrics for Timetable Quality: The project will develop and expand metrics to measure timetable "quality," moving beyond conventional scheduling and optimization benchmarks. These metrics will enable robust comparisons of different timetable instances or versions, taking into account factors that contribute to a positive student experience.
+By addressing these key areas, this project aims to lay the groundwork for a new paradigm in university timetabling, one that leverages the power of graph data structures to enhance reporting capabilities, improve decision-making, and ultimately create timetables that better serve the needs of students, instructors, and institutions.
