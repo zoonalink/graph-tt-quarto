@@ -2,6 +2,75 @@
 title: "Introduction" 
 ---
 
+
+University timetabling is the complex process of scheduling courses, rooms, and resources within an academic institution. At its simplest, it involves collecting and combining time slots, rooms, students and other resources while satisfying a multitude of constraints and preferences to achieve a *viable* outcome.
+
+
+## What is University Timetabling? 
+
+But it is never as simple as that...
+
+University timetabling is a critical administrative task that involves creating a learning and teaching schedule for students and staff, respectively.  It is undertaken by *schedulers* who are multi-skilled professionals needing to incorporate various skills including data analysis, change management, negotiating, complaint management and optimisation.  (Dowland, 2018)
+
+Timetabling complexity can vary from *simple* room bookings on one end of the scale to bespoke, individual schedules.  Institutional goals can range from maximising room utilisation to delivering a great student experience.  More often than not, university will attempt to deliver **everything** and only realise a fraction of the objectives.  There are several reasons for this and they will vary with each institution, but fundamentally, certain objectives are contradictory - if you maximise room utilisation, experience is likely to worsen.  The other major reason is that there is no such thing as a *universally* good timetable - what is good for one student will almost certainly not be good for another.  
+
+So timetabling and timetablers always find themselves in the firing line of criticism - they cannot win and the old adage 'no news is good news' could not be truer. 
+
+## Why is University Timetabling Challenging?
+
+The complexity of university timetabling stems from several factors:
+
+**Scale**: Universities often have tens of thousands of students, hundreds of programmes (courses), thousands of modules, and limited resources.
+**Constraints**: There are numerous hard constraints (e.g., room capacity) and soft constraints (e.g., preferences) to consider.
+**Interdependencies**: Changes in one part of the schedule have cascading effects on other parts.
+**Diversity of Needs**: Different organisational units (colleges, faculties, schools, departments) have varying requirements and preferences.
+**Optimisation Goals**: Balancing efficiency, fairness, and quality of education.
+
+## Operational Challenges
+
+Some of the keyy operational challenges in university timetabling include:
+
+* **Resource Utilisation**: Maximising the use of available rooms and equipment.
+* **Conflict Resolution**: Avoiding scheduling conflicts for students and staff.
+* **Adaptability**: Accommodating last-minute changes or unforeseen circumstances.
+* **Equity**: Ensuring fair distribution of desirable time slots and resources.
+* **Data Quality and Interoperability**: Ensuring clean, accurate data flows between interconnected systems.
+* **Curriculum Complexity**: Managing the intricacies of programme deliveries including excluded combinations, elective choices.
+* **Balancing Flexibility and Structure**: Accommodating diverse teaching styles while maintaining a consistent schedule.
+* **Stakeholder Communication**: Effectively conveying timetable information and changes to all parties involved.
+
+
+## The Elusive "Good Timetable"
+
+Despite best efforts, it's impossible to find universal satisfaction with a university timetable. What constitutes a "good" timetable is often subjective and can vary among stakeholders. 
+
+Based on surveys across various institutions, students typically prioritise (Dowland, 2018) (Norman, 2022):
+
+* A clash-free timetable
+* Early release of timetables
+* Clear and accurate information
+* Full-year timetable availability
+* Minimal changes after publication
+* Effective communication of any changes
+* Balanced distribution of classes (e.g., no single-hour events on a day, some free days, consecutive hours)
+
+Meanwhile, other stakeholders have different priorities:
+
+* Individual students may prefer learning times that align with their personal commitments such as part-time employment or travel arrangements. 
+* Individual academic staff may prefer teaching times that align with their research or personal commitments.
+* Administrators might focus on efficient resource utilisation and institutional sustainability.
+* Departments may have specific needs for specialised rooms or equipment such as laboratories, etc.
+
+This divergence in preferences and the complex interplay of constraints make it challenging to define and achieve a universally "good" timetable, setting the stage for ongoing research and improvement in this field.  In the private sector, there are companies which will offer analysis and solutions to address some challenges but these are often blunt and focus on efficiencies (e.g. utilisation) as opposed to pedagogical and experience motivation.
+
+
+
+
+https://www.sciencedirect.com/science/article/pii/S2667305323000789?via%3Dihub
+
+
+
+
 TODO
 
 Add todo box.

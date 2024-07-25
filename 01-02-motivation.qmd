@@ -1,0 +1,24 @@
+---
+title: Background and Motivation
+---
+
+## Background
+
+Several years ago I was a timetabler (scheduler) and then moved into a different role - a data manager.  As such, I became intimate with the data, systems and processes used to support an advanced timetabling unit.  I was also very familiar with the challenges and demands that the team faces, as well as the criticisms and complaints.  The experiences have left scars and as such, timetabling will always form a part of my professional career.  The intense experiences of producing a timetable and shoring up the aftermath will always leave me feeling a little protective of timetablers.  
+
+## Motivation
+
+Recognising the many challenges inherent to the process of producing and discussing a timetable, my motivation in this project is to explore ways of adding insight to the conversation rather than relying on anecdotal evidence or samples of n=1.  This project is not about timetable production or timetable optimisation or timetabling strategies.  It is not about adding to the University Course Timetabling Problem (UTCP) discourse. (Abdipoor et al., 2023)  It is about contributing to how we assess, quantify, quality and rate a university timetable.  It is about laying the foundations towards data-evenidenced timetabling metrics which can be applied objectively to a collection of individual timetables.   
+
+Some of the challenges experienced in timetable are very simple on the face of it.  It can be difficult to answer simple questions around timetable 'quality' - the project aims to explore this but from the angle of graph data structures.  It is very much a practical project which aims to contribute to the timetabler's toolkit.
+
+
+## Project Context
+This project is positioned as a proof of concept and exploratory study. The key aspects of this context include:
+
+* **Proof of Concept**: The project aims to demonstrate the feasibility of using graph databases for timetabling analysis.
+* **Exploration**: I will be exploring new methodologies and technologies that have the potential to enhance university timetabling insight and reporting.
+* **Learning Opportunity**: This project serves as a platform to xxx
+* **Foundation for Future Work**: While the scope is limited to a proof of concept, the findings from this project could lay the groundwork for more comprehensive solutions in the future.
+
+
