@@ -115,7 +115,7 @@ The pipeline was developed using an iterative approach, allowing for continuous 
 
 Crucial aspects of the implementation include:
 
-* **Technology Stack**: Python for data processing, MS SQL for source data, Neo4j for the target graph database.  See [Appendix](appendix.qmd) for more details.
+* **Technology Stack**: Python for data processing, MS SQL for source data, Neo4j for the target graph database.  See [Appendix](appendix-tech-stack.qmd) for more details.
 * **Cloud Integration**: Utilisation of Google Drive for intermediate storage, compatible with Neo4j Aura.
 * **Validation**: Implemented at various stages to ensure data integrity and fitness for processing.
 * **Testing**: Continuous simulated unit testing to ensure that componentsare behaving as expected.

@@ -2,6 +2,7 @@
 title: "Introduction" 
 ---
 
+I NEED TO UPDATE THIs
 
 University timetabling is the complex process of scheduling courses, rooms, and resources within an academic institution. At its simplest, it involves collecting and combining time slots, rooms, students and other resources while satisfying a multitude of constraints and preferences to achieve a *viable* outcome.
 

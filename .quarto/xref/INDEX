@@ -36,19 +36,24 @@
     "03-data-engineering.tex": "9ed49c95"
   },
   "02-graph-data-model.qmd": {
-    "02-graph-data-model.html": "75f9bda4"
+    "02-graph-data-model.html": "75f9bda4",
+    "02-graph-data-model.tex": "0b118539"
   },
   "03-02-approach.qmd": {
-    "03-02-approach.html": "c842910b"
+    "03-02-approach.html": "c842910b",
+    "03-02-approach.tex": "3221f01a"
   },
   "03-03-config.qmd": {
-    "03-03-config.html": "a0747755"
+    "03-03-config.html": "a0747755",
+    "03-03-config.tex": "9b90ce0a"
   },
   "03-04-extract.qmd": {
-    "03-04-extract.html": "8cc495b6"
+    "03-04-extract.html": "8cc495b6",
+    "03-04-extract.tex": "3416c8fb"
   },
   "03-05-transform.qmd": {
-    "03-05-transform.html": "9a933e3f"
+    "03-05-transform.html": "9a933e3f",
+    "03-05-transform.tex": "c9cf78af"
   },
   "03-06-load.qmd": {
     "03-06-load.html": "7e994993"
@@ -57,24 +62,47 @@
     "appendix.html": "c87a3312"
   },
   "03-01-overview.qmd": {
-    "03-01-overview.html": "26502a46"
+    "03-01-overview.html": "26502a46",
+    "03-01-overview.tex": "082c9ed9"
   },
   "appendix-config.qmd": {
-    "appendix-config.html": "57894bc0"
+    "appendix-config.html": "57894bc0",
+    "appendix-config.tex": "2c31868a"
   },
   "appendix-tech-stack.qmd": {
-    "appendix-tech-stack.html": "d927d139"
+    "appendix-tech-stack.html": "d927d139",
+    "appendix-tech-stack.tex": "272896bf"
   },
   "appendix-random-graph.qmd": {
-    "appendix-random-graph.html": "0eca96ea"
+    "appendix-random-graph.html": "0eca96ea",
+    "appendix-random-graph.tex": "e9b17a2c"
   },
   "appendix-anonymise.qmd": {
-    "appendix-anonymise.html": "df8347f9"
+    "appendix-anonymise.html": "df8347f9",
+    "appendix-anonymise.tex": "bbc00c1d"
   },
   "03-06a-load.qmd": {
-    "03-06a-load.html": "34aaee26"
+    "03-06a-load.html": "34aaee26",
+    "03-06a-load.tex": "9bd420da"
   },
   "03-06b-load.qmd": {
-    "03-06b-load.html": "7c9409c6"
+    "03-06b-load.html": "7c9409c6",
+    "03-06b-load.tex": "acb3bf48"
+  },
+  "01-01-introduction.qmd": {
+    "01-01-introduction.html": "70f39c3a",
+    "01-01-introduction.tex": "cf89fd24"
+  },
+  "01-02-motivation.qmd": {
+    "01-02-motivation.html": "86680abd",
+    "01-02-motivation.tex": "a3abc7f9"
+  },
+  "01-03-project.qmd": {
+    "01-03-project.html": "fe7b4c38",
+    "01-03-project.tex": "0839c639"
+  },
+  "03-07-reflection.qmd": {
+    "03-07-reflection.html": "c357d397",
+    "03-07-reflection.tex": "e8819f4e"
   }
 }

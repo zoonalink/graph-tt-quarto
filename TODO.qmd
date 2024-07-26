@@ -1,0 +1,18 @@
+
+
+* fix references page not rendering from bib
+* review learning outcomes on mod page 
+* plan 2 min elevator pitch video:
+  * timetables - a necessary evil
+  * tell us where to go, why
+  * but they are the source of complaints, they are never write, they cause issues, they're wrong.
+  * they are complex to produce, difficult to collect data for, difficult to optimise
+  * you can never please everyone, if you please anyone you are probably winning
+  * but how do we know what is going on - what is good, what is the case
+  * reporting in timetabling is challenging - you can count hard/soft constraint violations - examples
+  * you can visually inspect a timetable - that looks good - that looks better than that - but why?
+  * can it be quantified, can it be scored, can we move away from anecdotal conversations/evidence and individual views and into a more evidence based approach.
+  * this project isn't about solving this problem - it's a big one - but it is about taking steps towards that possibility.
+  * Timetabling - it is complex - it is relational - it has people (studnets, staff, instructors), resources (rooms, equipment), times (dates, hours, durations), it has curriculum requirements, it has rules and various outcomes to optimise.
+  * currently timetables are structured and scheduled using relational databases - that is data organised into tables with relationship tables, primary keys, ids, etc. 
+  * 
