@@ -28,3 +28,14 @@ The key objectives of this project are:
 Investigate how graph-based approaches might contribute to measuring and improving timetable 'quality' from various stakeholder perspectives.
 
 Through these objectives, we aim to explore the potential of graph-based approaches in enhancing our understanding and analysis of university timetables, potentially opening new avenues for timetable quality assessment and optimization. This work aligns with the growing recognition of timetabling as a critical factor in institutional sustainability, student satisfaction, and overall university operations.
+
+
+
+1.2 Aim and Scope
+This project aims to investigate the viability of using graph data structures for university timetables and to explore the potential for enhanced reporting capabilities, including the establishment of measures of "timetable quality." The project will focus on the following key areas:
+
+Foundational Research: The project will contribute to the foundational research in the field of graph-based timetabling analytics, exploring new ways to leverage graph data structures to gain deeper insights into timetabling data.
+Proof-of-Concept Analytics: A focused graph-based timetabling prototype will be developed to address specific analytical use cases relevant to university timetabling. This prototype will demonstrate the potential of graph-based analytics to go beyond traditional scheduling and optimization benchmarks.
+Comparative Evaluation: A comparative assessment between graph and relational databases will be conducted to evaluate the effectiveness of graph approaches for focused analytical tasks. This evaluation will highlight the potential advantages of graph-based methods over traditional relational approaches.
+Metrics for Timetable Quality: The project will develop and expand metrics to measure timetable "quality," moving beyond conventional scheduling and optimization benchmarks. These metrics will enable robust comparisons of different timetable instances or versions, taking into account factors that contribute to a positive student experience.
+By addressing these key areas, this project aims to lay the groundwork for a new paradigm in university timetabling, one that leverages the power of graph data structures to enhance reporting capabilities, improve decision-making, and ultimately create timetables that better serve the needs of students, instructors, and institutions.

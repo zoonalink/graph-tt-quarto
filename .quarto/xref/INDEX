@@ -104,5 +104,14 @@
   "03-07-reflection.qmd": {
     "03-07-reflection.html": "c357d397",
     "03-07-reflection.tex": "e8819f4e"
+  },
+  "01-01a-introduction.qmd": {
+    "01-01a-introduction.html": "22cc1964"
+  },
+  "01-01b-good-timetable.qmd": {
+    "01-01b-good-timetable.html": "c6346010"
+  },
+  "test.qmd": {
+    "test.html": "f722f194"
   }
 }

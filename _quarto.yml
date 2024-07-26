@@ -1,42 +1,176 @@
 project:
-  type: book
-  output-dir: _output/pdf
+  type: website
+  output-dir: _output/html
   render:
     - "*.qmd"
     - "!ignored.qmd"
     - "!code/"
     - "!data/"
     - "!images/"
+    - "!ignore/"
     - "!TODO.qmd"
+  
 
-book:
-  title: "Graph Time"
-  chapters:
-    - index.qmd
-    - 01-01-introduction.qmd
-    - 01-02-motivation.qmd
-    - 01-03-project.qmd
-    - 02-graph-data-model.qmd
-    - 03-01-overview.qmd
-    - 03-02-approach.qmd
-    - 03-03-config.qmd
-    - 03-04-extract.qmd
-    - 03-05-transform.qmd
-    - 03-06a-load.qmd
-    - 03-06b-load.qmd
-    - 03-07-reflection.qmd
-    - 04-timetable-metrics.qmd
-    - 05-future-opportunities.qmd
-    - 06-conclusion.qmd
-    - appendix-random-graph.qmd
-    - appendix-tech-stack.qmd
-    - appendix-config.qmd
-    - appendix-anonymise.qmd
-    - references.qmd
+website:
+  
+  title: " "
+  page-navigation: true
+  
+  navbar:
+    pinned: true
+    logo: "images/logo3.png"
+    left:
+      - href: index.qmd
+        text: Home
+        icon: home
+      #- href: 01-introduction.qmd
+      - text: Introduction
+        menu:
+          - href: 01-01a-introduction.qmd
+            text: Introduction
+          - href: 01-01b-good-timetable.qmd
+            text: What is a Good Timetable?
+          - href: 01-02-motivation.qmd
+            text: Background and Motivation
+          - href: 01-03-project.qmd
+            text: Project Aims and Scope
+
+      - href: 02-graph-data-model.qmd
+        text: Graph Data Model
+      - text: "Data Pipeline"
+        #href: 03-01-overview.qmd
+        menu:
+          - href: 03-01-overview.qmd
+            text: Overview
+          - href: 03-02-approach.qmd
+            text: Approach
+          - href: 03-03-config.qmd
+            text: Configuration and Logging
+          - href: 03-04-extract.qmd
+            text: Extract
+          - href: 03-05-transform.qmd
+            text: Transform
+          - href: 03-06a-load.qmd
+            text: Google Drive Load
+          - href: 03-06b-load.qmd
+            text: Neo4j Load
+          - href: 03-07-reflection.qmd
+            text: Reflection
+      - href: 04-timetable-metrics.qmd
+        text: Timetable Metrics
+      - text: "Conclusion"
+        menu:
+        - href: 05-future-opportunities.qmd
+          text: Future Opportunities
+        - href: 06-conclusion.qmd
+          text: Conclusion
+      - text: "Appendix & References"
+        href: appendix-random-graph.qmd
+        menu:
+        - href: appendix-random-graph.qmd
+          text: Random Graph Generator
+        - href: appendix-tech-stack.qmd
+          text: Technology Stack
+        - href: appendix-config.qmd
+          text: Configuration
+        - href: appendix-anonymise.qmd
+          text: Anonymisation
+        - href: references.qmd
+          text: References
+    right:
+      - href: ./_output/pdf/Graph-Time.pdf
+        text: PDF Version
+        icon: file-pdf
+      - icon: bug
+        href: "https://github.com/your-username/your-repo/issues/new"
+        aria-label: Report an issue
+      - icon: github
+        href: https://github.com/
+        aria-label: GitHub
+      - icon: envelope
+        href: "mailto:zoonalink@gmail.com"
+        aria-label: Email me
+  
+  sidebar: 
+    style: "docked"
+    search: true
+    collapse-level: 1
+    contents: 
+      - href: index.qmd
+        text: Home
+      - section: "Introduction"
+        contents:
+          - href: 01-01a-introduction.qmd
+            text: Introduction
+          - href: 01-01b-good-timetable.qmd
+            text: What is a Good Timetable?
+          - href: 01-02-motivation.qmd
+            text: Background and Motivation
+          - href: 01-03-project.qmd
+            text: Project Aims and Scope
+      - href: 02-graph-data-model.qmd
+        text: Graph Data Model
+      - section: "Data Pipeline"
+        contents:
+          - href: 03-01-overview.qmd
+            text: Overview
+          - href: 03-02-approach.qmd
+            text: Approach
+          - href: 03-03-config.qmd
+            text: Configuration and Logging
+          - href: 03-04-extract.qmd
+            text: Extract
+          - href: 03-05-transform.qmd
+            text: Transform
+          - href: 03-06a-load.qmd
+            text: Google Drive Load
+          - href: 03-06b-load.qmd
+            text: Neo4j Load
+          - href: 03-07-reflection.qmd
+            text: Reflection
+      - href: 04-timetable-metrics.qmd
+        text: Timetable Metrics
+      - section: "Final Thoughts"
+        contents:
+          - href: 05-future-opportunities.qmd
+            text: Future Opportunities
+          - href: 06-conclusion.qmd
+            text: Conclusion
+      - section: "Appendix & References"
+        contents:
+          - href: appendix-random-graph.qmd
+            text: Random Graph Generator
+          - href: appendix-tech-stack.qmd
+            text: Technology Stack
+          - href: appendix-config.qmd
+            text: Configuration
+          - href: appendix-anonymise.qmd
+            text: Anonymisation
+          - href: references.qmd
+            text: References
+
+
+  page-footer:
+    left: "Copyright 2024, Petter Lövehagen"
+    right: "Built with Quarto"
 
 format:
-  pdf: 
-    documentclass: scrreprt
+  
+  html: # see https://github.com/andrewheiss/quarto-wordcount#readme
+    #output-dir: _output/html
+    theme:
+      light: lightly
+      dark: cyborg
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    code-overflow: wrap
+    code-summary: "Click to show code"
+    page-layout: full
+    
+    
+
 
 execute:
-  freeze: auto
+  freeze: auto  #keep website up-to-date

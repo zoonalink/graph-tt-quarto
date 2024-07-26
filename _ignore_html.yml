@@ -9,8 +9,10 @@ project:
     - "!images/"
     - "!ignore/"
     - "!TODO.qmd"
+  
 
 website:
+  
   title: " "
   page-navigation: true
   
@@ -24,8 +26,10 @@ website:
       #- href: 01-introduction.qmd
       - text: Introduction
         menu:
-          - href: 01-01-introduction.qmd
+          - href: 01-01a-introduction.qmd
             text: Introduction
+          - href: 01-01b-good-timetable.qmd
+            text: What is a Good Timetable?
           - href: 01-02-motivation.qmd
             text: Background and Motivation
           - href: 01-03-project.qmd
@@ -96,8 +100,10 @@ website:
         text: Home
       - section: "Introduction"
         contents:
-          - href: 01-01-introduction.qmd
+          - href: 01-01a-introduction.qmd
             text: Introduction
+          - href: 01-01b-good-timetable.qmd
+            text: What is a Good Timetable?
           - href: 01-02-motivation.qmd
             text: Background and Motivation
           - href: 01-03-project.qmd
@@ -150,7 +156,7 @@ website:
 
 format:
   
-  html:
+  html: # see https://github.com/andrewheiss/quarto-wordcount#readme
     #output-dir: _output/html
     theme:
       light: lightly
@@ -162,7 +168,8 @@ format:
     code-overflow: wrap
     code-summary: "Click to show code"
     page-layout: full
-
+    
+    
 
 
 execute:

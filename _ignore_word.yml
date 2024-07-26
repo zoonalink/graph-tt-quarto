@@ -1,0 +1,37 @@
+project:
+  type: book
+  output-dir: _output/word  # Output directory for Word files
+
+book:
+  title: "Graph Time"
+  chapters:
+    - index.qmd
+    - 01-01a-introduction.qmd
+    - 01-01b-good-timetable.qmd
+    - 01-02-motivation.qmd
+    - 01-03-project.qmd
+    - 02-graph-data-model.qmd
+    - 03-01-overview.qmd
+    - 03-02-approach.qmd
+    - 03-03-config.qmd
+    - 03-04-extract.qmd
+    - 03-05-transform.qmd
+    - 03-06a-load.qmd
+    - 03-06b-load.qmd
+    - 03-07-reflection.qmd
+    - 04-timetable-metrics.qmd
+    - 05-future-opportunities.qmd
+    - 06-conclusion.qmd
+    - appendix-random-graph.qmd
+    - appendix-tech-stack.qmd
+    - appendix-config.qmd
+    - appendix-anonymise.qmd
+    - references.qmd
+
+format:
+  wordcount-docx:
+    reference-doc: styles.docx
+    number-sections: true # or false, depending on your preference
+
+execute:
+  freeze: auto  # Or 'false' if you want to re-run code chunks each time

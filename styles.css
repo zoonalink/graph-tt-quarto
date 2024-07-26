@@ -32,6 +32,10 @@
   padding: 5px;               /* Add padding */
 }
 
+.medium-image {
+  width: 75%;  /* Or set a specific width in pixels */
+  height: auto; /* Maintain aspect ratio */
+}
 
 .small-image {
   width: 50%;  /* Or set a specific width in pixels */
@@ -47,3 +51,14 @@
   text-align: left;  /* Align the image to the left */
   caption-side: bottom;
 }
+
+
+.gallery-image {
+  width: 30%; /* Adjust the width percentage as needed */
+  margin: 10px;
+  /* display: inline-block; /* Allow images to sit next to each other */
+  vertical-align: middle; /* Align images to the middle */
+  cursor: pointer; /* Change cursor to pointer to indicate clickability */
+  float: left;
+}
+

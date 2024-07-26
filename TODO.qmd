@@ -1,4 +1,22 @@
 
+## yaml
+
+* word
+  * title page
+  * other options
+
+## introduction
+
+* timetabling summary quote and reference
+* image of timetable
+* rewrite
+
+
+https://www.sciencedirect.com/science/article/pii/S2667305323000789?via%3Dihub
+
+
+
+
 
 * fix references page not rendering from bib
 * review learning outcomes on mod page 

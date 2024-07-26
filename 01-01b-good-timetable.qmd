@@ -1,0 +1,43 @@
+---
+title: "What is a good timetable?"
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: right
+  loop: true
+---
+
+Consider these timetables for a single week (w/c 13 November 2013) for three different coures: 
+
+  
+![](./images/timetable-week-full.png){.gallery-image group="gallery"}
+
+![](./images/timetable-week-mixed.png){.gallery-image group="gallery"}
+
+![](./images/timetable-week-ns.png){.gallery-image group="gallery"}
+
+
+
+
+## The Elusive "Good Timetable"
+
+Despite best efforts, it's impossible to find universal satisfaction with a university timetable. What constitutes a "good" timetable is subjective and will vary among stakeholders depending on their preferences and other activity vying for their time. 
+
+Based on surveys across various institutions, students typically prioritise (Dowland, 2018) (Norman, 2022):
+
+* A clash-free timetable
+* Early release of timetables
+* Clear and accurate information
+* Full-year timetable availability
+* Minimal changes after publication
+* Effective communication of any changes
+* Balanced distribution of classes (e.g., no single-hour events on a day, some free days, consecutive hours)
+
+Meanwhile, individual stakeholders have different priorities:
+
+* Individual students may prefer learning times that align with their personal commitments such as part-time employment or travel arrangements. 
+* Individual academic staff may prefer teaching times that align with their research or personal commitments.
+* Administrators might focus on efficient resource utilisation and institutional sustainability.
+* Organisatonal units may have specific needs for specialised rooms or equipment such as laboratories, etc.
+
+This divergence in preferences and the complex interplay of constraints make it challenging to define and achieve a universally "good" timetable, setting the stage for ongoing research and improvement in this field.  In the private sector, there are companies which will offer analysis and solutions to address some challenges but these are often blunt and focus on efficiencies (e.g. utilisation) as opposed to pedagogical and experience motivation.

@@ -13,6 +13,15 @@ Recognising the many challenges inherent to the process of producing and discuss
 Some of the challenges experienced in timetable are very simple on the face of it.  It can be difficult to answer simple questions around timetable 'quality' - the project aims to explore this but from the angle of graph data structures.  It is very much a practical project which aims to contribute to the timetabler's toolkit.
 
 
+
+
+1.1 Project Context and Motivation
+This project is motivated by the recognition that traditional timetabling approaches, while valuable, may not fully capture the nuances and complexities of the modern university environment. In particular, the increasing emphasis on student-centered learning and the need to provide a positive student experience have highlighted the limitations of conventional timetabling methods.
+
+Anecdotal evidence suggests that the relational database structures commonly employed in timetabling systems may hinder the ability to effectively measure and report on the "quality" of a timetable. This limitation can impede efforts to understand the impact of timetables on student experiences and to make data-driven improvements.
+
+Given the highly relational nature of timetables, where courses, instructors, rooms, and time slots are interconnected in intricate ways, it is hypothesized that a graph-based approach could offer a more natural and insightful way to represent and analyze timetable data. Graph databases, designed to handle complex relationships and interconnected data, have the potential to unlock new avenues for understanding and optimizing university timetables.
+
 ## Project Context
 This project is positioned as a proof of concept and exploratory study. The key aspects of this context include:
 

@@ -13,7 +13,8 @@ book:
   title: "Graph Time"
   chapters:
     - index.qmd
-    - 01-01-introduction.qmd
+    - 01-01a-introduction.qmd
+    - 01-01b-good-timetable.qmd
     - 01-02-motivation.qmd
     - 01-03-project.qmd
     - 02-graph-data-model.qmd
