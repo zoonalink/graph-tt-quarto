@@ -8,14 +8,13 @@
 ## introduction
 
 * timetabling summary quote and reference
-* image of timetable
-* rewrite
+* rewrite - collate all and condense, personalise
 
 
 https://www.sciencedirect.com/science/article/pii/S2667305323000789?via%3Dihub
 
 
-
+## graph data & model
 
 
 * fix references page not rendering from bib

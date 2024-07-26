@@ -62,3 +62,7 @@
   float: left;
 }
 
+ul {
+  text-align: left; /* Force left alignment for unordered lists */
+}
+
