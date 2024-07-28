@@ -23,22 +23,29 @@ website:
       - href: index.qmd
         text: Home
         icon: home
-      #- href: 01-introduction.qmd
       - text: Introduction
         menu:
           - href: 01-01a-introduction.qmd
             text: Introduction
-          - href: 01-01b-good-timetable.qmd
-            text: What is a Good Timetable?
-          - href: 01-02-motivation.qmd
+        #  - href: 01-01b-timetable.qmd
+        #    text: University Timetabling
+          - href: 01-02-background.qmd
             text: Background and Motivation
-          - href: 01-03-project.qmd
+          - href: 01-03-good-timetable.qmd
+            text: What is a Good Timetable?
+          - href: 01-04-project.qmd
             text: Project Aims and Scope
-
-      - href: 02-graph-data-model.qmd
-        text: Graph Data Model
+      - text: Graph Data Model
+        menu: 
+          - href: 02-00-graph-model.qmd
+            text: Graph Data
+          - href: 02-01-comparison.qmd
+            text: Graph vs Relational Data Models
+          - href: 02-02-graph-timetable.qmd
+            text: Graph Data Model for Timetabling
+          - href: 02-03-challenge-oppos.qmd
+            text: Opportunities and Challenges
       - text: "Data Pipeline"
-        #href: 03-01-overview.qmd
         menu:
           - href: 03-01-overview.qmd
             text: Overview
@@ -102,14 +109,24 @@ website:
         contents:
           - href: 01-01a-introduction.qmd
             text: Introduction
-          - href: 01-01b-good-timetable.qmd
-            text: What is a Good Timetable?
-          - href: 01-02-motivation.qmd
+        #  - href: 01-01b-timetable.qmd
+        #    text: University Timetabling
+          - href: 01-02-background.qmd
             text: Background and Motivation
-          - href: 01-03-project.qmd
+          - href: 01-03-good-timetable.qmd
+            text: What is a Good Timetable?
+          - href: 01-04-project.qmd
             text: Project Aims and Scope
-      - href: 02-graph-data-model.qmd
-        text: Graph Data Model
+      - section: "Graph Data Model" 
+        contents:
+          - href: 02-00-graph-model.qmd
+            text: Graph Data
+          - href: 02-01-comparison.qmd
+            text: Graph vs Relational Data Models
+          - href: 02-02-graph-timetable.qmd
+            text: Graph Data Model for Timetabling
+          - href: 02-03-challenge-oppos.qmd
+            text: Opportunities and Challenges
       - section: "Data Pipeline"
         contents:
           - href: 03-01-overview.qmd

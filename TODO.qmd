@@ -17,6 +17,13 @@ https://www.sciencedirect.com/science/article/pii/S2667305323000789?via%3Dihub
 ## graph data & model
 
 
+## references
+
+* norman, williams
+* dowland
+* packages/libraries
+
+
 * fix references page not rendering from bib
 * review learning outcomes on mod page 
 * plan 2 min elevator pitch video:
@@ -32,4 +39,37 @@ https://www.sciencedirect.com/science/article/pii/S2667305323000789?via%3Dihub
   * this project isn't about solving this problem - it's a big one - but it is about taking steps towards that possibility.
   * Timetabling - it is complex - it is relational - it has people (studnets, staff, instructors), resources (rooms, equipment), times (dates, hours, durations), it has curriculum requirements, it has rules and various outcomes to optimise.
   * currently timetables are structured and scheduled using relational databases - that is data organised into tables with relationship tables, primary keys, ids, etc. 
-  * 
+
+
+Introduction
+Briefly introduce university timetabling (keep existing content)
+Highlight the complexity and challenges (scale, constraints, interdependencies, etc.)
+Transition sentence: "While traditional approaches focus on generating feasible timetables, this project explores how analyzing those timetables can lead to deeper insights..."
+Background and Motivation
+Your Experience: Expand slightly on the challenges you faced (intense criticism, stakeholder demands) to really emphasize the need for better analysis. This makes your motivation stronger.
+Limitations of Current Methods:
+Clearly state that most research is on optimization algorithms (cite examples from "article notes.txt").
+Explain the gap: Post-generation analysis is underdeveloped, both in tools and in clearly defining "good."
+The Need for "Quality" Metrics:
+Use student survey data (Dowland, Norman) to show desired qualities.
+Use your timetable examples to show how subjective "good" is (no single best exists).
+Graph Data: A New Perspective
+Recap: "Defining and achieving a universally 'good' timetable is difficult... This project explores graph data structures as a way to gain new insights into timetable analysis, potentially leading to more informed quality assessments."
+Briefly Introduce Graph Concepts: Nodes, edges, relationships. Keep it high-level, as the deep dive comes later.
+Why Graphs for Timetabling?
+Timetables are inherently relational (your point about interconnectedness).
+Graph databases are designed for complex relationships, making them a natural fit.
+Graph vs. Relational Data Models
+Relational Models in Timetabling
+Explain how they're traditionally used (your existing content is good).
+Find a quote highlighting limitations (e.g., difficulty with complex queries, rigidity).
+Graph Models in Timetabling
+Explain how they represent data (nodes & edges, your existing content is good)
+Find a quote highlighting their suitability for this domain (e.g., natural representation of relationships).
+Visual Comparison: Your Mermaid diagram is excellent. Place it here for clear contrast.
+Key Differences and Implications Table: This is VERY effective! Call out the advantages of graph databases for your specific goals (flexibility, relationship handling, potentially better performance for your kind of analysis).
+Data Engineering and ETL (Your next section)
+Now that you've established why graphs are promising, this section naturally flows into how you'll transform relational data into a graph.
+
+
+

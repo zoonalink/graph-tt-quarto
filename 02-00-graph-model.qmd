@@ -1,0 +1,12 @@
+---
+title: Graph Data
+---
+
+:::{.callout-warning}
+## TODO
+* consider changing scope section
+:::
+
+
+Having established the context and motivation for this project, let us now focus on the core of the proposed solution: the graph data model for university timetabling. As outlined in the [project aims](01-04-project.qmd), my hypothesis is that graph-based approaches have the *potential* to offer new insights and efficiencies in timetable analysis and optimisation. This section will explore the theoretical underpinnings of graph data structures and their application to the complex domain of university timetabling.
+

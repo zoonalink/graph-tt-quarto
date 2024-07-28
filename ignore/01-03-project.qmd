@@ -1,0 +1,33 @@
+---
+title: Aim and Scope of Project
+---
+
+
+The primary aim of this project is to investigate the viability of using graph data structures for enhanced timetabling analytics and reporting.
+
+
+## Scope
+
+This project will focus on:
+
+* Developing a graph-based data model for university timetables
+* Building a configurable, extensible data-engineering solution to move data from relational database to graph database
+* Implementing a prototype, proof-of-concept system for timetable analysis using graph databases
+* Discuss future development opportunities
+
+The project will **not** include:
+
+* Implementation of a full-scale timetabling system
+* Real-time timetable genation or optimisation
+
+## Objectives
+
+The key objectives of this project are:
+
+* Design an extensible, system-agnostic graph data model for university timetables
+* Develop a mapping pipeline to transition from relational to graph database representations of timetables
+* Implement and evaluate a set of proof-of-concept analytical metrics leveraging the graph data model
+* Discuss the performance and capabilities of graph-based analytics against traditional relational database approaches
+* Discuss how graph-based approaches might contribute to measuring and improving timetable 'quality' from various stakeholder perspectives.
+
+Through these objectives, I aim to explore the potential of graph-based approaches in enhancing our understanding and analysis of university timetables, potentially opening new avenues for timetable quality assessment. This work aligns with the growing recognition of timetabling as a critical factor in institutional sustainability, student satisfaction, and overall university operations.

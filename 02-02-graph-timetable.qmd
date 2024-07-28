@@ -1,0 +1,17 @@
+---
+title: Graph Data Model for Timebling
+---
+
+::: callout-warning
+## TODO
+
+- write up section   
+:::
+
+2.3 Graph Data Model for Timetabling
+
+Detailed description of proposed graph model
+Node types (e.g., courses, instructors, rooms, time slots)
+Edge types (e.g., "scheduled_in", "taught_by")
+Properties for nodes and edges
+

@@ -9,6 +9,8 @@ date: "29 August 2024"
 
 **Programme**: MSc Data Science
 
+**Word Count**: [add when finished]
+
 
 
 ```{dot}

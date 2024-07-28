@@ -1,0 +1,41 @@
+---
+title: Opportunities and Challenges
+---
+
+## Opportunities
+
+1. Unlocking Hidden Patterns:
+* Example: "By analyzing student enrollment patterns in relation to course times and locations, we might uncover commuting difficulties that impact attendance, informing future scheduling."
+* General Point: Graphs excel at revealing patterns across relationships, not just within isolated data points.
+2. Stakeholder-Centric Analysis:
+* Example: "We can query the graph to assess how well a timetable meets faculty preferences for teaching times while also considering student travel burdens, revealing potential areas for improvement."
+* General Point: Graphs can model multiple perspectives simultaneously, unlike traditional approaches that often focus on one optimization goal at a time.
+3. What-If Scenarios and Simulations:
+* Example: "Adding hypothetical courses or adjusting room capacities in the graph allows us to simulate the impact on existing timetables before implementation, aiding decision-making."
+* General Point: Graphs' flexibility makes them well-suited for modeling change, not just representing static data.
+4. Visual Exploration and Communication:
+* Example: "Presenting graph visualizations to stakeholders (even non-technical ones) can foster shared understanding of timetable complexities and potential trade-offs, leading to better buy-in."
+* General Point: While not unique to graphs, they lend themselves well to visual tools, which can be powerful for communication beyond raw numbers.
+
+## Challenges
+1. Data Migration and Integration:
+* Point: Moving from an existing relational system to a graph database requires careful planning and potential data transformation. This can be a significant upfront effort, especially for large universities.
+2. Tooling and Expertise:
+* Point: While maturing, the graph database ecosystem might have a steeper learning curve than traditional SQL-based tools. Finding staff with the right expertise could be a consideration.
+3. Performance at Scale:
+* Point: While generally efficient, graph database performance depends on query complexity and dataset size. For extremely large universities, careful optimization and potentially specialized graph database solutions might be needed.
+4. "Soft" Constraint Modeling:
+* Point: While graphs excel at representing relationships, quantifying subjective preferences (e.g., how much a student dislikes a late evening class) can still be challenging and might require combining graph analysis with other techniques.
+
+2.4 Data Augmentation Opportunities
+
+Room properties example (latitude, longitude)
+Potential for additional data integration (curriculum, student outcomes, etc.)
+Discussion on how graph model facilitates data enrichment
+
+2.5 Challenges and Considerations
+
+Potential limitations of the graph approach
+Data migration considerations
+Performance considerations for large-scale timetabling systems
+

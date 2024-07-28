@@ -7,9 +7,10 @@ book:
   chapters:
     - index.qmd
     - 01-01a-introduction.qmd
-    - 01-01b-good-timetable.qmd
-    - 01-02-motivation.qmd
-    - 01-03-project.qmd
+    #- 01-01b-timetable.qmd
+    - 01-02-background.qmd
+    - 01-03-good-timetable.qmd
+    - 01-04-project.qmd
     - 02-graph-data-model.qmd
     - 03-01-overview.qmd
     - 03-02-approach.qmd
