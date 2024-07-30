@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Background and Motivation –  </title>
+<title>Graph Data –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01-03-project.html" rel="next">
-<link href="./01-01b-good-timetable.html" rel="prev">
+<link href="./02-01-comparison.html" rel="next">
+<link href="./01-04-project.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -109,23 +109,42 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./01-01b-good-timetable.html">
- <span class="dropdown-text">What is a Good Timetable?</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./01-02-motivation.html">
+    <a class="dropdown-item" href="./01-02-background.html">
  <span class="dropdown-text">Background and Motivation</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./01-03-project.html">
+    <a class="dropdown-item" href="./01-03-good-timetable.html">
+ <span class="dropdown-text">What is a Good Timetable?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./01-04-project.html">
  <span class="dropdown-text">Project Aims and Scope</span></a>
   </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./02-graph-data-model.html"> 
-<span class="menu-text">Graph Data Model</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-graph-data-model" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Graph Data Model</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-graph-data-model">    
+        <li>
+    <a class="dropdown-item" href="./02-00-graph-model.html">
+ <span class="dropdown-text">Graph Data</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./02-01-comparison.html">
+ <span class="dropdown-text">Graph vs Relational Data Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-02-graph-timetable.html">
+ <span class="dropdown-text">Graph Data Model for Timetabling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-03-challenge-oppos.html">
+ <span class="dropdown-text">Opportunities and Challenges</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-pipeline" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Data Pipeline</span>
@@ -222,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-01a-introduction.html">Introduction</a></li><li class="breadcrumb-item"><a href="./01-02-motivation.html">Background and Motivation</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-graph-model.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-00-graph-model.html">Graph Data</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -250,13 +269,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Introduction</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-01a-introduction.html" class="sidebar-item-text sidebar-link">
@@ -265,39 +284,68 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-01b-good-timetable.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">What is a Good Timetable?</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./01-02-motivation.html" class="sidebar-item-text sidebar-link active">
+  <a href="./01-02-background.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Background and Motivation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-03-project.html" class="sidebar-item-text sidebar-link">
+  <a href="./01-03-good-timetable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is a Good Timetable?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-04-project.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project Aims and Scope</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./02-graph-data-model.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Graph Data Model</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Data Pipeline</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Graph Data Model</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-00-graph-model.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Graph Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-01-comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph vs Relational Data Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-02-graph-timetable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph Data Model for Timetabling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-03-challenge-oppos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Opportunities and Challenges</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Data Pipeline</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-01-overview.html" class="sidebar-item-text sidebar-link">
@@ -356,13 +404,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Final Thoughts</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-future-opportunities.html" class="sidebar-item-text sidebar-link">
@@ -379,13 +427,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Appendix &amp; References</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-random-graph.html" class="sidebar-item-text sidebar-link">
@@ -423,28 +471,20 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#background" id="toc-background" class="nav-link active" data-scroll-target="#background">Background</a></li>
-  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
-  <li><a href="#project-context" id="toc-project-context" class="nav-link" data-scroll-target="#project-context">Project Context</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-01a-introduction.html">Introduction</a></li><li class="breadcrumb-item"><a href="./01-02-motivation.html">Background and Motivation</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-graph-model.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-00-graph-model.html">Graph Data</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Background and Motivation</h1>
+<h1 class="title">Graph Data</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-body">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -456,30 +496,24 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="background" class="level2">
-<h2 class="anchored" data-anchor-id="background">Background</h2>
-<p>Several years ago I was a timetabler (scheduler) and then moved into a different role - a data manager. As such, I became intimate with the data, systems and processes used to support an advanced timetabling unit. I was also very familiar with the challenges and demands that the team faces, as well as the criticisms and complaints. The experiences have left scars and as such, timetabling will always form a part of my professional career. The intense experiences of producing a timetable and shoring up the aftermath will always leave me feeling a little protective of timetablers.</p>
-</section>
-<section id="motivation" class="level2">
-<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
-<p>Recognising the many challenges inherent to the process of producing and discussing a timetable, my motivation in this project is to explore ways of adding insight to the conversation rather than relying on anecdotal evidence or samples of n=1. This project is not about timetable production or timetable optimisation or timetabling strategies. It is not about adding to the University Course Timetabling Problem (UTCP) discourse. (Abdipoor et al., 2023) It is about contributing to how we assess, quantify, quality and rate a university timetable. It is about laying the foundations towards data-evenidenced timetabling metrics which can be applied objectively to a collection of individual timetables.</p>
-<p>Some of the challenges experienced in timetable are very simple on the face of it. It can be difficult to answer simple questions around timetable ‘quality’ - the project aims to explore this but from the angle of graph data structures. It is very much a practical project which aims to contribute to the timetabler’s toolkit.</p>
-<p>1.1 Project Context and Motivation This project is motivated by the recognition that traditional timetabling approaches, while valuable, may not fully capture the nuances and complexities of the modern university environment. In particular, the increasing emphasis on student-centered learning and the need to provide a positive student experience have highlighted the limitations of conventional timetabling methods.</p>
-<p>Anecdotal evidence suggests that the relational database structures commonly employed in timetabling systems may hinder the ability to effectively measure and report on the “quality” of a timetable. This limitation can impede efforts to understand the impact of timetables on student experiences and to make data-driven improvements.</p>
-<p>Given the highly relational nature of timetables, where courses, instructors, rooms, and time slots are interconnected in intricate ways, it is hypothesized that a graph-based approach could offer a more natural and insightful way to represent and analyze timetable data. Graph databases, designed to handle complex relationships and interconnected data, have the potential to unlock new avenues for understanding and optimizing university timetables.</p>
-</section>
-<section id="project-context" class="level2">
-<h2 class="anchored" data-anchor-id="project-context">Project Context</h2>
-<p>This project is positioned as a proof of concept and exploratory study. The key aspects of this context include:</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+TODO
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <ul>
-<li><strong>Proof of Concept</strong>: The project aims to demonstrate the feasibility of using graph databases for timetabling analysis.</li>
-<li><strong>Exploration</strong>: I will be exploring new methodologies and technologies that have the potential to enhance university timetabling insight and reporting.</li>
-<li><strong>Learning Opportunity</strong>: This project serves as a platform to xxx</li>
-<li><strong>Foundation for Future Work</strong>: While the scope is limited to a proof of concept, the findings from this project could lay the groundwork for more comprehensive solutions in the future.</li>
+<li>consider changing scope section</li>
 </ul>
+</div>
+</div>
+<p>Having established the context and motivation for this project, let us now focus on the core of the proposed solution: the graph data model for university timetabling. As outlined in the <a href="./01-04-project.html">project aims</a>, my hypothesis is that graph-based approaches have the <em>potential</em> to offer new insights and efficiencies in timetable analysis and optimisation. This section will explore the theoretical underpinnings of graph data structures and their application to the complex domain of university timetabling.</p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1046,15 +1080,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-body">
+<nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="./01-01b-good-timetable.html" class="pagination-link" aria-label="What is a Good Timetable?">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">What is a Good Timetable?</span>
+      <a href="./01-04-project.html" class="pagination-link" aria-label="Project Aims and Scope">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Project Aims and Scope</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-03-project.html" class="pagination-link" aria-label="Project Aims and Scope">
-        <span class="nav-page-text">Project Aims and Scope</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./02-01-comparison.html" class="pagination-link" aria-label="Graph vs Relational Data Models">
+        <span class="nav-page-text">Graph vs Relational Data Models</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

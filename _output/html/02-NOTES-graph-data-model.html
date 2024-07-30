@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Google Load –  </title>
+<title>Graph Data Model –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./03-06b-load.html" rel="next">
-<link href="./03-05-transform.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -241,7 +239,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-01-overview.html">Data Pipeline</a></li><li class="breadcrumb-item"><a href="./03-06a-load.html">Google Drive Load</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Graph Data Model</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -339,13 +337,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Data Pipeline</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-01-overview.html" class="sidebar-item-text sidebar-link">
@@ -378,7 +376,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-06a-load.html" class="sidebar-item-text sidebar-link active">
+  <a href="./03-06a-load.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Google Drive Load</span></a>
   </div>
 </li>
@@ -471,20 +469,31 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#graph-data-model-for-timetabling-1000-words" id="toc-graph-data-model-for-timetabling-1000-words" class="nav-link active" data-scroll-target="#graph-data-model-for-timetabling-1000-words">Graph Data Model for Timetabling (1000 words)</a>
+  <ul class="collapse">
+  <li><a href="#comparison-of-relational-and-graph-models" id="toc-comparison-of-relational-and-graph-models" class="nav-link" data-scroll-target="#comparison-of-relational-and-graph-models">2.1 Comparison of Relational and Graph Models</a></li>
+  <li><a href="#advantages-of-the-graph-approach" id="toc-advantages-of-the-graph-approach" class="nav-link" data-scroll-target="#advantages-of-the-graph-approach">2.2 Advantages of the Graph Approach</a></li>
+  <li><a href="#data-augmentation-opportunities" id="toc-data-augmentation-opportunities" class="nav-link" data-scroll-target="#data-augmentation-opportunities">2.3 Data Augmentation Opportunities</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-01-overview.html">Data Pipeline</a></li><li class="breadcrumb-item"><a href="./03-06a-load.html">Google Drive Load</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Google Load</h1>
+<h1 class="title">Graph Data Model</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -496,151 +505,36 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-TODO
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="graph-data-model-for-timetabling-1000-words" class="level2">
+<h2 class="anchored" data-anchor-id="graph-data-model-for-timetabling-1000-words">Graph Data Model for Timetabling (1000 words)</h2>
+<section id="comparison-of-relational-and-graph-models" class="level3">
+<h3 class="anchored" data-anchor-id="comparison-of-relational-and-graph-models">2.1 Comparison of Relational and Graph Models</h3>
 <ul>
-<li>add log files?</li>
-<li>add screenshot?</li>
+<li>Visual representation of both models - mermaid, or simmilar</li>
 </ul>
-</div>
-</div>
-<p>As I am using a free instance of Neo4j’s graph database - called Neo4j Aura - I needed to overcome some limitations which are not relevant to desktop installations of Neo4j or paid-for cloud instances.</p>
-<p>In order to load from csv files, Neo4j Aura requires that the csv files are stored in <a href="https://neo4j.com/docs/aura/aurads/importing-data/load-csv/">public cloud storage</a> like Google Drive or Dropbox. Therefore, my project requires this intermediary step.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<svg width="672" height="480" viewbox="0.00 0.00 441.98 452.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 448.8)">
-<title>google_drive_storage</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-448.8 437.98,-448.8 437.98,4 -4,4"></polygon>
-<!-- source_files -->
-<g id="node1" class="node">
-<title>source_files</title>
-<polygon fill="#ffdead" stroke="black" points="280.71,-444.6 277.71,-448.6 256.71,-448.6 253.71,-444.6 130.48,-444.6 130.48,-403.4 280.71,-403.4 280.71,-444.6"></polygon>
-<text text-anchor="middle" x="205.6" y="-428.2" font-family="Arial" font-size="14.00">Local Files</text>
-<text text-anchor="middle" x="205.6" y="-411.4" font-family="Arial" font-size="14.00">(./{hostkeys}/process)</text>
-</g>
-<!-- gdrive_api -->
-<g id="node2" class="node">
-<title>gdrive_api</title>
-<polygon fill="#ffffcc" stroke="black" points="267.75,-350.4 143.44,-350.4 143.44,-346.4 139.44,-346.4 139.44,-342.4 143.44,-342.4 143.44,-322.4 139.44,-322.4 139.44,-318.4 143.44,-318.4 143.44,-314.4 267.75,-314.4 267.75,-350.4"></polygon>
-<polyline fill="none" stroke="black" points="143.44,-346.4 147.44,-346.4 147.44,-342.4 143.44,-342.4 "></polyline>
-<polyline fill="none" stroke="black" points="143.44,-322.4 147.44,-322.4 147.44,-318.4 143.44,-318.4 "></polyline>
-<text text-anchor="middle" x="205.6" y="-328.2" font-family="Arial" font-size="14.00">Google Drive API</text>
-</g>
-<!-- source_files&#45;&gt;gdrive_api -->
-<g id="edge1" class="edge">
-<title>source_files-&gt;gdrive_api</title>
-<path fill="none" stroke="black" d="M205.6,-403.11C205.6,-390.67 205.6,-374.45 205.6,-360.8"></path>
-<polygon fill="black" stroke="black" points="209.1,-360.51 205.6,-350.51 202.1,-360.51 209.1,-360.51"></polygon>
-<text text-anchor="middle" x="255.79" y="-372.6" font-family="Arial" font-size="14.00">Connect via API</text>
-</g>
-<!-- get_folder -->
-<g id="node3" class="node">
-<title>get_folder</title>
-<path fill="#f0f0f0" stroke="black" d="M257.92,-277.4C257.92,-277.4 153.28,-277.4 153.28,-277.4 147.28,-277.4 141.28,-271.4 141.28,-265.4 141.28,-265.4 141.28,-253.4 141.28,-253.4 141.28,-247.4 147.28,-241.4 153.28,-241.4 153.28,-241.4 257.92,-241.4 257.92,-241.4 263.92,-241.4 269.92,-247.4 269.92,-253.4 269.92,-253.4 269.92,-265.4 269.92,-265.4 269.92,-271.4 263.92,-277.4 257.92,-277.4"></path>
-<text text-anchor="middle" x="205.6" y="-255.2" font-family="Arial" font-size="14.00">Get Folder Details</text>
-</g>
-<!-- gdrive_api&#45;&gt;get_folder -->
-<g id="edge2" class="edge">
-<title>gdrive_api-&gt;get_folder</title>
-<path fill="none" stroke="black" d="M205.6,-314.21C205.6,-306.19 205.6,-296.45 205.6,-287.47"></path>
-<polygon fill="black" stroke="black" points="209.1,-287.43 205.6,-277.43 202.1,-287.43 209.1,-287.43"></polygon>
-</g>
-<!-- create_folder -->
-<g id="node4" class="node">
-<title>create_folder</title>
-<path fill="#f0f0f0" stroke="black" d="M276.51,-204.4C276.51,-204.4 134.68,-204.4 134.68,-204.4 128.68,-204.4 122.68,-198.4 122.68,-192.4 122.68,-192.4 122.68,-180.4 122.68,-180.4 122.68,-174.4 128.68,-168.4 134.68,-168.4 134.68,-168.4 276.51,-168.4 276.51,-168.4 282.51,-168.4 288.51,-174.4 288.51,-180.4 288.51,-180.4 288.51,-192.4 288.51,-192.4 288.51,-198.4 282.51,-204.4 276.51,-204.4"></path>
-<text text-anchor="middle" x="205.6" y="-182.2" font-family="Arial" font-size="14.00">Create Folder if Needed</text>
-</g>
-<!-- get_folder&#45;&gt;create_folder -->
-<g id="edge3" class="edge">
-<title>get_folder-&gt;create_folder</title>
-<path fill="none" stroke="black" d="M205.6,-241.21C205.6,-233.19 205.6,-223.45 205.6,-214.47"></path>
-<polygon fill="black" stroke="black" points="209.1,-214.43 205.6,-204.43 202.1,-214.43 209.1,-214.43"></polygon>
-</g>
-<!-- upload_nodes -->
-<g id="node5" class="node">
-<title>upload_nodes</title>
-<polygon fill="#ffdead" stroke="black" points="159.29,-131.6 156.29,-135.6 135.29,-135.6 132.29,-131.6 -0.1,-131.6 -0.1,-72.8 159.29,-72.8 159.29,-131.6"></polygon>
-<text text-anchor="middle" x="79.6" y="-114.8" font-family="Arial" font-size="14.00">Upload Files</text>
-<text text-anchor="middle" x="79.6" y="-98" font-family="Arial" font-size="14.00">Matching Node Pattern</text>
-<text text-anchor="middle" x="79.6" y="-81.2" font-family="Arial" font-size="14.00">to './{hostkeys}/node'</text>
-</g>
-<!-- create_folder&#45;&gt;upload_nodes -->
-<g id="edge4" class="edge">
-<title>create_folder-&gt;upload_nodes</title>
-<path fill="none" stroke="black" d="M179.49,-168.37C165.62,-159.32 148.06,-147.86 131.55,-137.09"></path>
-<polygon fill="black" stroke="black" points="133.32,-134.07 123.03,-131.54 129.5,-139.93 133.32,-134.07"></polygon>
-</g>
-<!-- upload_relationships -->
-<g id="node6" class="node">
-<title>upload_relationships</title>
-<polygon fill="#ffdead" stroke="black" points="433.87,-131.6 430.87,-135.6 409.87,-135.6 406.87,-131.6 231.32,-131.6 231.32,-72.8 433.87,-72.8 433.87,-131.6"></polygon>
-<text text-anchor="middle" x="332.6" y="-114.8" font-family="Arial" font-size="14.00">Upload Files</text>
-<text text-anchor="middle" x="332.6" y="-98" font-family="Arial" font-size="14.00">Matching Relationship Pattern</text>
-<text text-anchor="middle" x="332.6" y="-81.2" font-family="Arial" font-size="14.00">to './{hostkeys}/relationships'</text>
-</g>
-<!-- create_folder&#45;&gt;upload_relationships -->
-<g id="edge5" class="edge">
-<title>create_folder-&gt;upload_relationships</title>
-<path fill="none" stroke="black" d="M231.91,-168.37C245.89,-159.32 263.59,-147.86 280.23,-137.09"></path>
-<polygon fill="black" stroke="black" points="282.32,-139.91 288.81,-131.54 278.52,-134.03 282.32,-139.91"></polygon>
-</g>
-<!-- process_done -->
-<g id="node7" class="node">
-<title>process_done</title>
-<ellipse fill="#e0ffe0" stroke="black" cx="205.6" cy="-18" rx="89.87" ry="18"></ellipse>
-<text text-anchor="middle" x="205.6" y="-13.8" font-family="Arial" font-size="14.00">Process Complete</text>
-</g>
-<!-- upload_nodes&#45;&gt;process_done -->
-<g id="edge6" class="edge">
-<title>upload_nodes-&gt;process_done</title>
-<path fill="none" stroke="black" d="M122.96,-72.91C139.03,-62.43 156.99,-50.71 172.05,-40.89"></path>
-<polygon fill="black" stroke="black" points="174.08,-43.74 180.54,-35.34 170.26,-37.88 174.08,-43.74"></polygon>
-</g>
-<!-- upload_relationships&#45;&gt;process_done -->
-<g id="edge7" class="edge">
-<title>upload_relationships-&gt;process_done</title>
-<path fill="none" stroke="black" d="M288.89,-72.91C272.7,-62.43 254.59,-50.71 239.41,-40.89"></path>
-<polygon fill="black" stroke="black" points="241.14,-37.84 230.85,-35.34 237.34,-43.71 241.14,-37.84"></polygon>
-</g>
-</g>
-</svg>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>Configuration settings determine where processed node and relationship files are stored. I have made one folder in my drive public and all ETL files are stored within this root as follows:</p>
+</section>
+<section id="advantages-of-the-graph-approach" class="level3">
+<h3 class="anchored" data-anchor-id="advantages-of-the-graph-approach">2.2 Advantages of the Graph Approach</h3>
+</section>
+<section id="data-augmentation-opportunities" class="level3">
+<h3 class="anchored" data-anchor-id="data-augmentation-opportunities">2.3 Data Augmentation Opportunities</h3>
 <ul>
-<li>root Google Drive folder
-<ul>
-<li>hostkeys (automatically created, unless override)
-<ul>
-<li>nodes</li>
-<li>relationships</li>
-</ul></li>
-</ul></li>
+<li>Room properties example (lat, long)</li>
+<li>Potential for additional data integration (curriculum, student outcomes, etc.)</li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/google-drive-node.png" class="img-fluid figure-img"></p>
-<figcaption>Screenshot of Google Drive</figcaption>
-</figure>
-</div>
+<p>2 Graph Data Model Given the highly relational nature of timetables, where courses, instructors, rooms, and time slots are interconnected in intricate ways, it is hypothesized that a graph-based approach could offer a more natural and insightful way to represent and analyze timetable data. Graph databases, designed to handle complex relationships and interconnected data, have the potential to unlock new avenues for understanding and optimizing university timetables.</p>
+<p>2.1 Graph vs.&nbsp;Relational Data Structures (General) In the realm of data management, two prominent paradigms exist: the relational model and the graph model. The relational model, exemplified by relational databases like SQL Server, MySQL, and PostgreSQL, organizes data into tables with rows and columns. Each row represents an entity, and columns store the attributes of that entity. Relationships between entities are established through foreign keys, creating a structured and rigid schema.</p>
+<p>In contrast, the graph model, employed by graph databases like Neo4j, Amazon Neptune, and Microsoft Azure Cosmos DB, represents data as nodes and edges. Nodes are the fundamental entities, and edges define the relationships between them. Both nodes and edges can have properties, allowing for flexible and dynamic schemas.</p>
+<p>The choice between relational and graph databases depends on the nature of the data and the types of queries that need to be executed. Relational databases excel at structured data with well-defined relationships, making them suitable for transactional systems and reporting. However, they can become cumbersome when dealing with complex, interconnected data, as queries often involve multiple joins across tables, leading to performance bottlenecks.</p>
+<p>Graph databases, on the other hand, are designed to handle complex relationships and interconnected data naturally. They shine in scenarios where the focus is on exploring relationships, traversing networks, and uncovering patterns in interconnected data. Graph databases offer superior performance for queries that involve traversing multiple relationships, as the relationships are explicitly represented as edges in the graph.</p>
+<p>2.2 Pros and Cons of Graph Databases Graph databases offer several advantages over relational databases, particularly when dealing with highly connected data:</p>
+<p>Flexibility: Graph databases allow for flexible and dynamic schemas, making it easy to add new types of nodes and edges as the data evolves. This flexibility is crucial in domains like university timetabling, where the relationships between entities can be complex and subject to change. Scalability: Graph databases are designed to scale horizontally, distributing data across multiple machines to handle large datasets and high query volumes. This scalability is essential for university timetabling, as the number of courses, students, and instructors can be substantial. Performance: Graph databases excel at traversing relationships, making them ideal for queries that involve exploring connections between entities. In the context of university timetabling, this translates to faster and more efficient queries for tasks like finding all courses taught by a particular instructor or identifying scheduling conflicts. Expressiveness: Graph query languages, such as Cypher, are designed to express complex relationship-based queries concisely. This expressiveness simplifies the formulation of queries that would be cumbersome in SQL, the query language for relational databases. However, graph databases also have some limitations:</p>
+<p>Maturity: Graph database technology is relatively young compared to relational databases, and the ecosystem of tools and libraries is still evolving. Learning Curve: Graph query languages, while expressive, require a learning curve for those familiar with SQL. Limited Support for Aggregation: Graph databases are not optimized for aggregation queries, such as calculating averages or sums, which are common in relational databases. 2.3 Comparison of Timetable Data in Relational and Graph Structures In a relational database, timetable data is typically organized into tables, with each table representing an entity like courses, rooms, instructors, and time slots. Relationships between entities are established through foreign keys, creating a structured schema. For example, a “course” table might have columns for course code, name, and credits, while an “instructor” table might have columns for instructor ID, name, and department. A “schedule” table would then link courses, instructors, rooms, and time slots using foreign keys.</p>
+<p>In contrast, a graph database represents timetable data as nodes and edges. Nodes represent entities like courses, rooms, instructors, and time slots, while edges represent relationships between them. For instance, an edge labeled “scheduled_in” could connect a course node to a room node, indicating that the course is scheduled in that room. Similarly, an edge labeled “taught_by” could connect a course node to an instructor node, signifying that the course is taught by that instructor.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1207,18 +1101,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-page-right">
-  <div class="nav-page nav-page-previous">
-      <a href="./03-05-transform.html" class="pagination-link" aria-label="Transform">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Transform</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./03-06b-load.html" class="pagination-link" aria-label="Neo4j Load">
-        <span class="nav-page-text">Neo4j Load</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

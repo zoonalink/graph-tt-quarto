@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Google Load –  </title>
+<title>Graph Data Model for Timebling –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./03-06b-load.html" rel="next">
-<link href="./03-05-transform.html" rel="prev">
+<link href="./02-03-challenge-oppos.html" rel="next">
+<link href="./02-01-comparison.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -241,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-01-overview.html">Data Pipeline</a></li><li class="breadcrumb-item"><a href="./03-06a-load.html">Google Drive Load</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-graph-model.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-02-graph-timetable.html">Graph Data Model for Timetabling</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -304,13 +304,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Graph Data Model</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-00-graph-model.html" class="sidebar-item-text sidebar-link">
@@ -325,7 +325,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-02-graph-timetable.html" class="sidebar-item-text sidebar-link">
+  <a href="./02-02-graph-timetable.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Graph Data Model for Timetabling</span></a>
   </div>
 </li>
@@ -339,13 +339,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Data Pipeline</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-01-overview.html" class="sidebar-item-text sidebar-link">
@@ -378,7 +378,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-06a-load.html" class="sidebar-item-text sidebar-link active">
+  <a href="./03-06a-load.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Google Drive Load</span></a>
   </div>
 </li>
@@ -477,9 +477,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-01-overview.html">Data Pipeline</a></li><li class="breadcrumb-item"><a href="./03-06a-load.html">Google Drive Load</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-graph-model.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-02-graph-timetable.html">Graph Data Model for Timetabling</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Google Load</h1>
+<h1 class="title">Graph Data Model for Timebling</h1>
 </div>
 
 
@@ -507,138 +507,13 @@ TODO
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>add log files?</li>
-<li>add screenshot?</li>
+<li>write up section<br>
+</li>
 </ul>
 </div>
 </div>
-<p>As I am using a free instance of Neo4j’s graph database - called Neo4j Aura - I needed to overcome some limitations which are not relevant to desktop installations of Neo4j or paid-for cloud instances.</p>
-<p>In order to load from csv files, Neo4j Aura requires that the csv files are stored in <a href="https://neo4j.com/docs/aura/aurads/importing-data/load-csv/">public cloud storage</a> like Google Drive or Dropbox. Therefore, my project requires this intermediary step.</p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<svg width="672" height="480" viewbox="0.00 0.00 441.98 452.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 448.8)">
-<title>google_drive_storage</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-448.8 437.98,-448.8 437.98,4 -4,4"></polygon>
-<!-- source_files -->
-<g id="node1" class="node">
-<title>source_files</title>
-<polygon fill="#ffdead" stroke="black" points="280.71,-444.6 277.71,-448.6 256.71,-448.6 253.71,-444.6 130.48,-444.6 130.48,-403.4 280.71,-403.4 280.71,-444.6"></polygon>
-<text text-anchor="middle" x="205.6" y="-428.2" font-family="Arial" font-size="14.00">Local Files</text>
-<text text-anchor="middle" x="205.6" y="-411.4" font-family="Arial" font-size="14.00">(./{hostkeys}/process)</text>
-</g>
-<!-- gdrive_api -->
-<g id="node2" class="node">
-<title>gdrive_api</title>
-<polygon fill="#ffffcc" stroke="black" points="267.75,-350.4 143.44,-350.4 143.44,-346.4 139.44,-346.4 139.44,-342.4 143.44,-342.4 143.44,-322.4 139.44,-322.4 139.44,-318.4 143.44,-318.4 143.44,-314.4 267.75,-314.4 267.75,-350.4"></polygon>
-<polyline fill="none" stroke="black" points="143.44,-346.4 147.44,-346.4 147.44,-342.4 143.44,-342.4 "></polyline>
-<polyline fill="none" stroke="black" points="143.44,-322.4 147.44,-322.4 147.44,-318.4 143.44,-318.4 "></polyline>
-<text text-anchor="middle" x="205.6" y="-328.2" font-family="Arial" font-size="14.00">Google Drive API</text>
-</g>
-<!-- source_files&#45;&gt;gdrive_api -->
-<g id="edge1" class="edge">
-<title>source_files-&gt;gdrive_api</title>
-<path fill="none" stroke="black" d="M205.6,-403.11C205.6,-390.67 205.6,-374.45 205.6,-360.8"></path>
-<polygon fill="black" stroke="black" points="209.1,-360.51 205.6,-350.51 202.1,-360.51 209.1,-360.51"></polygon>
-<text text-anchor="middle" x="255.79" y="-372.6" font-family="Arial" font-size="14.00">Connect via API</text>
-</g>
-<!-- get_folder -->
-<g id="node3" class="node">
-<title>get_folder</title>
-<path fill="#f0f0f0" stroke="black" d="M257.92,-277.4C257.92,-277.4 153.28,-277.4 153.28,-277.4 147.28,-277.4 141.28,-271.4 141.28,-265.4 141.28,-265.4 141.28,-253.4 141.28,-253.4 141.28,-247.4 147.28,-241.4 153.28,-241.4 153.28,-241.4 257.92,-241.4 257.92,-241.4 263.92,-241.4 269.92,-247.4 269.92,-253.4 269.92,-253.4 269.92,-265.4 269.92,-265.4 269.92,-271.4 263.92,-277.4 257.92,-277.4"></path>
-<text text-anchor="middle" x="205.6" y="-255.2" font-family="Arial" font-size="14.00">Get Folder Details</text>
-</g>
-<!-- gdrive_api&#45;&gt;get_folder -->
-<g id="edge2" class="edge">
-<title>gdrive_api-&gt;get_folder</title>
-<path fill="none" stroke="black" d="M205.6,-314.21C205.6,-306.19 205.6,-296.45 205.6,-287.47"></path>
-<polygon fill="black" stroke="black" points="209.1,-287.43 205.6,-277.43 202.1,-287.43 209.1,-287.43"></polygon>
-</g>
-<!-- create_folder -->
-<g id="node4" class="node">
-<title>create_folder</title>
-<path fill="#f0f0f0" stroke="black" d="M276.51,-204.4C276.51,-204.4 134.68,-204.4 134.68,-204.4 128.68,-204.4 122.68,-198.4 122.68,-192.4 122.68,-192.4 122.68,-180.4 122.68,-180.4 122.68,-174.4 128.68,-168.4 134.68,-168.4 134.68,-168.4 276.51,-168.4 276.51,-168.4 282.51,-168.4 288.51,-174.4 288.51,-180.4 288.51,-180.4 288.51,-192.4 288.51,-192.4 288.51,-198.4 282.51,-204.4 276.51,-204.4"></path>
-<text text-anchor="middle" x="205.6" y="-182.2" font-family="Arial" font-size="14.00">Create Folder if Needed</text>
-</g>
-<!-- get_folder&#45;&gt;create_folder -->
-<g id="edge3" class="edge">
-<title>get_folder-&gt;create_folder</title>
-<path fill="none" stroke="black" d="M205.6,-241.21C205.6,-233.19 205.6,-223.45 205.6,-214.47"></path>
-<polygon fill="black" stroke="black" points="209.1,-214.43 205.6,-204.43 202.1,-214.43 209.1,-214.43"></polygon>
-</g>
-<!-- upload_nodes -->
-<g id="node5" class="node">
-<title>upload_nodes</title>
-<polygon fill="#ffdead" stroke="black" points="159.29,-131.6 156.29,-135.6 135.29,-135.6 132.29,-131.6 -0.1,-131.6 -0.1,-72.8 159.29,-72.8 159.29,-131.6"></polygon>
-<text text-anchor="middle" x="79.6" y="-114.8" font-family="Arial" font-size="14.00">Upload Files</text>
-<text text-anchor="middle" x="79.6" y="-98" font-family="Arial" font-size="14.00">Matching Node Pattern</text>
-<text text-anchor="middle" x="79.6" y="-81.2" font-family="Arial" font-size="14.00">to './{hostkeys}/node'</text>
-</g>
-<!-- create_folder&#45;&gt;upload_nodes -->
-<g id="edge4" class="edge">
-<title>create_folder-&gt;upload_nodes</title>
-<path fill="none" stroke="black" d="M179.49,-168.37C165.62,-159.32 148.06,-147.86 131.55,-137.09"></path>
-<polygon fill="black" stroke="black" points="133.32,-134.07 123.03,-131.54 129.5,-139.93 133.32,-134.07"></polygon>
-</g>
-<!-- upload_relationships -->
-<g id="node6" class="node">
-<title>upload_relationships</title>
-<polygon fill="#ffdead" stroke="black" points="433.87,-131.6 430.87,-135.6 409.87,-135.6 406.87,-131.6 231.32,-131.6 231.32,-72.8 433.87,-72.8 433.87,-131.6"></polygon>
-<text text-anchor="middle" x="332.6" y="-114.8" font-family="Arial" font-size="14.00">Upload Files</text>
-<text text-anchor="middle" x="332.6" y="-98" font-family="Arial" font-size="14.00">Matching Relationship Pattern</text>
-<text text-anchor="middle" x="332.6" y="-81.2" font-family="Arial" font-size="14.00">to './{hostkeys}/relationships'</text>
-</g>
-<!-- create_folder&#45;&gt;upload_relationships -->
-<g id="edge5" class="edge">
-<title>create_folder-&gt;upload_relationships</title>
-<path fill="none" stroke="black" d="M231.91,-168.37C245.89,-159.32 263.59,-147.86 280.23,-137.09"></path>
-<polygon fill="black" stroke="black" points="282.32,-139.91 288.81,-131.54 278.52,-134.03 282.32,-139.91"></polygon>
-</g>
-<!-- process_done -->
-<g id="node7" class="node">
-<title>process_done</title>
-<ellipse fill="#e0ffe0" stroke="black" cx="205.6" cy="-18" rx="89.87" ry="18"></ellipse>
-<text text-anchor="middle" x="205.6" y="-13.8" font-family="Arial" font-size="14.00">Process Complete</text>
-</g>
-<!-- upload_nodes&#45;&gt;process_done -->
-<g id="edge6" class="edge">
-<title>upload_nodes-&gt;process_done</title>
-<path fill="none" stroke="black" d="M122.96,-72.91C139.03,-62.43 156.99,-50.71 172.05,-40.89"></path>
-<polygon fill="black" stroke="black" points="174.08,-43.74 180.54,-35.34 170.26,-37.88 174.08,-43.74"></polygon>
-</g>
-<!-- upload_relationships&#45;&gt;process_done -->
-<g id="edge7" class="edge">
-<title>upload_relationships-&gt;process_done</title>
-<path fill="none" stroke="black" d="M288.89,-72.91C272.7,-62.43 254.59,-50.71 239.41,-40.89"></path>
-<polygon fill="black" stroke="black" points="241.14,-37.84 230.85,-35.34 237.34,-43.71 241.14,-37.84"></polygon>
-</g>
-</g>
-</svg>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<p>Configuration settings determine where processed node and relationship files are stored. I have made one folder in my drive public and all ETL files are stored within this root as follows:</p>
-<ul>
-<li>root Google Drive folder
-<ul>
-<li>hostkeys (automatically created, unless override)
-<ul>
-<li>nodes</li>
-<li>relationships</li>
-</ul></li>
-</ul></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/google-drive-node.png" class="img-fluid figure-img"></p>
-<figcaption>Screenshot of Google Drive</figcaption>
-</figure>
-</div>
+<p>2.3 Graph Data Model for Timetabling</p>
+<p>Detailed description of proposed graph model Node types (e.g., courses, instructors, rooms, time slots) Edge types (e.g., “scheduled_in”, “taught_by”) Properties for nodes and edges</p>
 
 
 
@@ -1209,13 +1084,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="./03-05-transform.html" class="pagination-link" aria-label="Transform">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Transform</span>
+      <a href="./02-01-comparison.html" class="pagination-link" aria-label="Graph vs Relational Data Models">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Graph vs Relational Data Models</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./03-06b-load.html" class="pagination-link" aria-label="Neo4j Load">
-        <span class="nav-page-text">Neo4j Load</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./02-03-challenge-oppos.html" class="pagination-link" aria-label="Opportunities and Challenges">
+        <span class="nav-page-text">Opportunities and Challenges</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Google Load –  </title>
+<title>Graph vs Relational Data Models –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./03-06b-load.html" rel="next">
-<link href="./03-05-transform.html" rel="prev">
+<link href="./02-02-graph-timetable.html" rel="next">
+<link href="./02-00-graph-model.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -241,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-01-overview.html">Data Pipeline</a></li><li class="breadcrumb-item"><a href="./03-06a-load.html">Google Drive Load</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-graph-model.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-01-comparison.html">Graph vs Relational Data Models</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -304,13 +304,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Graph Data Model</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-00-graph-model.html" class="sidebar-item-text sidebar-link">
@@ -319,7 +319,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-01-comparison.html" class="sidebar-item-text sidebar-link">
+  <a href="./02-01-comparison.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Graph vs Relational Data Models</span></a>
   </div>
 </li>
@@ -339,13 +339,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text">Data Pipeline</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-01-overview.html" class="sidebar-item-text sidebar-link">
@@ -378,7 +378,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-06a-load.html" class="sidebar-item-text sidebar-link active">
+  <a href="./03-06a-load.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Google Drive Load</span></a>
   </div>
 </li>
@@ -471,20 +471,28 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#relational-models-tables-joins-and-the-limits-of-interconnectedness" id="toc-relational-models-tables-joins-and-the-limits-of-interconnectedness" class="nav-link active" data-scroll-target="#relational-models-tables-joins-and-the-limits-of-interconnectedness">Relational Models: Tables, Joins and the Limits of Interconnectedness</a></li>
+  <li><a href="#graph-models-embracing-interconnectedness" id="toc-graph-models-embracing-interconnectedness" class="nav-link" data-scroll-target="#graph-models-embracing-interconnectedness">Graph Models: Embracing interconnectedness</a></li>
+  <li><a href="#key-differences-and-implications" id="toc-key-differences-and-implications" class="nav-link" data-scroll-target="#key-differences-and-implications">Key Differences and Implications</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-01-overview.html">Data Pipeline</a></li><li class="breadcrumb-item"><a href="./03-06a-load.html">Google Drive Load</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-graph-model.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-01-comparison.html">Graph vs Relational Data Models</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Google Load</h1>
+<h1 class="title">Graph vs Relational Data Models</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -507,113 +515,160 @@ TODO
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>add log files?</li>
-<li>add screenshot?</li>
+<li>find graph, rel quotes</li>
+<li>add refernces</li>
+<li>update images and text</li>
+<li></li>
 </ul>
 </div>
 </div>
-<p>As I am using a free instance of Neo4j’s graph database - called Neo4j Aura - I needed to overcome some limitations which are not relevant to desktop installations of Neo4j or paid-for cloud instances.</p>
-<p>In order to load from csv files, Neo4j Aura requires that the csv files are stored in <a href="https://neo4j.com/docs/aura/aurads/importing-data/load-csv/">public cloud storage</a> like Google Drive or Dropbox. Therefore, my project requires this intermediary step.</p>
+<section id="relational-models-tables-joins-and-the-limits-of-interconnectedness" class="level2">
+<h2 class="anchored" data-anchor-id="relational-models-tables-joins-and-the-limits-of-interconnectedness">Relational Models: Tables, Joins and the Limits of Interconnectedness</h2>
+<p>Relational databases, using SQL as their query language, have long been the go-to for managing data, including timetabling information. They structure data into tables, where rows represent entities (like rooms, staff, or students) and columns represent their attributes (name, capacity, email, etc.). Relationships between these entities are established through foreign keys, forming links between tables. This often involves intermediary “relationship” tables to handle the many-to-many nature of timetabling data (e.g., a student attends many activities, and an activity has many students).</p>
+<p>While robust and well-understood, relational databases start to show their limitations when dealing with the highly interconnected nature of timetables:</p>
+<ul>
+<li><p><strong>Join Complexity</strong>: Even seemingly simple queries, like “find students attending a specific lecturer’s class in a particular building,” require joining multiple tables. As queries become more nuanced, the number of joins increases, often impacting performance, especially with large datasets.</p></li>
+<li><p><strong>Rigidity</strong>: Relational databases rely on a predefined schema, making them less adaptable to evolving needs. Adding new entities or relationships, a common occurrence in dynamic timetabling environments, often requires schema modifications, potentially disrupting existing queries and applications.</p></li>
+<li><div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/RDB-2024-07-30T14_42_38.png" class="img-fluid figure-img"></p>
+<figcaption>Example Simple Entity Relationship Diagram</figcaption>
+</figure>
+</div></li>
+</ul>
+<p><img src="./images/RDB-edit.png" class="img-fluid"></p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
 <div>
-<svg width="672" height="480" viewbox="0.00 0.00 441.98 452.80" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 448.8)">
-<title>google_drive_storage</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-448.8 437.98,-448.8 437.98,4 -4,4"></polygon>
-<!-- source_files -->
+<svg width="672" height="480" viewbox="0.00 0.00 404.19 263.60" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 259.6)">
+<title>timetable</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-259.6 400.19,-259.6 400.19,4 -4,4"></polygon>
+<!-- ACTIVITY -->
 <g id="node1" class="node">
-<title>source_files</title>
-<polygon fill="#ffdead" stroke="black" points="280.71,-444.6 277.71,-448.6 256.71,-448.6 253.71,-444.6 130.48,-444.6 130.48,-403.4 280.71,-403.4 280.71,-444.6"></polygon>
-<text text-anchor="middle" x="205.6" y="-428.2" font-family="Arial" font-size="14.00">Local Files</text>
-<text text-anchor="middle" x="205.6" y="-411.4" font-family="Arial" font-size="14.00">(./{hostkeys}/process)</text>
+<title>ACTIVITY</title>
+<polygon fill="none" stroke="black" points="96.26,-81.5 96.26,-255.1 178.35,-255.1 178.35,-81.5 96.26,-81.5"></polygon>
+<text text-anchor="middle" x="137.31" y="-238.5" font-family="Times,serif" font-size="14.00">ACTIVITY</text>
+<polyline fill="none" stroke="black" points="96.26,-230.3 178.35,-230.3 "></polyline>
+<text text-anchor="start" x="104.26" y="-213.7" font-family="Times,serif" font-size="14.00">db_id (PK)</text>
+<polyline fill="none" stroke="black" points="96.26,-205.5 178.35,-205.5 "></polyline>
+<text text-anchor="start" x="104.26" y="-188.9" font-family="Times,serif" font-size="14.00">name </text>
+<polyline fill="none" stroke="black" points="96.26,-180.7 178.35,-180.7 "></polyline>
+<text text-anchor="start" x="104.26" y="-164.1" font-family="Times,serif" font-size="14.00">start_time</text>
+<polyline fill="none" stroke="black" points="96.26,-155.9 178.35,-155.9 "></polyline>
+<text text-anchor="start" x="104.26" y="-139.3" font-family="Times,serif" font-size="14.00">end_time</text>
+<polyline fill="none" stroke="black" points="96.26,-131.1 178.35,-131.1 "></polyline>
+<text text-anchor="start" x="104.26" y="-114.5" font-family="Times,serif" font-size="14.00">duration</text>
+<polyline fill="none" stroke="black" points="96.26,-106.3 178.35,-106.3 "></polyline>
+<text text-anchor="middle" x="137.31" y="-89.7" font-family="Times,serif" font-size="14.00">...</text>
 </g>
-<!-- gdrive_api -->
-<g id="node2" class="node">
-<title>gdrive_api</title>
-<polygon fill="#ffffcc" stroke="black" points="267.75,-350.4 143.44,-350.4 143.44,-346.4 139.44,-346.4 139.44,-342.4 143.44,-342.4 143.44,-322.4 139.44,-322.4 139.44,-318.4 143.44,-318.4 143.44,-314.4 267.75,-314.4 267.75,-350.4"></polygon>
-<polyline fill="none" stroke="black" points="143.44,-346.4 147.44,-346.4 147.44,-342.4 143.44,-342.4 "></polyline>
-<polyline fill="none" stroke="black" points="143.44,-322.4 147.44,-322.4 147.44,-318.4 143.44,-318.4 "></polyline>
-<text text-anchor="middle" x="205.6" y="-328.2" font-family="Arial" font-size="14.00">Google Drive API</text>
-</g>
-<!-- source_files&#45;&gt;gdrive_api -->
-<g id="edge1" class="edge">
-<title>source_files-&gt;gdrive_api</title>
-<path fill="none" stroke="black" d="M205.6,-403.11C205.6,-390.67 205.6,-374.45 205.6,-360.8"></path>
-<polygon fill="black" stroke="black" points="209.1,-360.51 205.6,-350.51 202.1,-360.51 209.1,-360.51"></polygon>
-<text text-anchor="middle" x="255.79" y="-372.6" font-family="Arial" font-size="14.00">Connect via API</text>
-</g>
-<!-- get_folder -->
-<g id="node3" class="node">
-<title>get_folder</title>
-<path fill="#f0f0f0" stroke="black" d="M257.92,-277.4C257.92,-277.4 153.28,-277.4 153.28,-277.4 147.28,-277.4 141.28,-271.4 141.28,-265.4 141.28,-265.4 141.28,-253.4 141.28,-253.4 141.28,-247.4 147.28,-241.4 153.28,-241.4 153.28,-241.4 257.92,-241.4 257.92,-241.4 263.92,-241.4 269.92,-247.4 269.92,-253.4 269.92,-253.4 269.92,-265.4 269.92,-265.4 269.92,-271.4 263.92,-277.4 257.92,-277.4"></path>
-<text text-anchor="middle" x="205.6" y="-255.2" font-family="Arial" font-size="14.00">Get Folder Details</text>
-</g>
-<!-- gdrive_api&#45;&gt;get_folder -->
-<g id="edge2" class="edge">
-<title>gdrive_api-&gt;get_folder</title>
-<path fill="none" stroke="black" d="M205.6,-314.21C205.6,-306.19 205.6,-296.45 205.6,-287.47"></path>
-<polygon fill="black" stroke="black" points="209.1,-287.43 205.6,-277.43 202.1,-287.43 209.1,-287.43"></polygon>
-</g>
-<!-- create_folder -->
-<g id="node4" class="node">
-<title>create_folder</title>
-<path fill="#f0f0f0" stroke="black" d="M276.51,-204.4C276.51,-204.4 134.68,-204.4 134.68,-204.4 128.68,-204.4 122.68,-198.4 122.68,-192.4 122.68,-192.4 122.68,-180.4 122.68,-180.4 122.68,-174.4 128.68,-168.4 134.68,-168.4 134.68,-168.4 276.51,-168.4 276.51,-168.4 282.51,-168.4 288.51,-174.4 288.51,-180.4 288.51,-180.4 288.51,-192.4 288.51,-192.4 288.51,-198.4 282.51,-204.4 276.51,-204.4"></path>
-<text text-anchor="middle" x="205.6" y="-182.2" font-family="Arial" font-size="14.00">Create Folder if Needed</text>
-</g>
-<!-- get_folder&#45;&gt;create_folder -->
-<g id="edge3" class="edge">
-<title>get_folder-&gt;create_folder</title>
-<path fill="none" stroke="black" d="M205.6,-241.21C205.6,-233.19 205.6,-223.45 205.6,-214.47"></path>
-<polygon fill="black" stroke="black" points="209.1,-214.43 205.6,-204.43 202.1,-214.43 209.1,-214.43"></polygon>
-</g>
-<!-- upload_nodes -->
+<!-- STAFF_ACTIVITY -->
 <g id="node5" class="node">
-<title>upload_nodes</title>
-<polygon fill="#ffdead" stroke="black" points="159.29,-131.6 156.29,-135.6 135.29,-135.6 132.29,-131.6 -0.1,-131.6 -0.1,-72.8 159.29,-72.8 159.29,-131.6"></polygon>
-<text text-anchor="middle" x="79.6" y="-114.8" font-family="Arial" font-size="14.00">Upload Files</text>
-<text text-anchor="middle" x="79.6" y="-98" font-family="Arial" font-size="14.00">Matching Node Pattern</text>
-<text text-anchor="middle" x="79.6" y="-81.2" font-family="Arial" font-size="14.00">to './{hostkeys}/node'</text>
+<title>STAFF_ACTIVITY</title>
+<polygon fill="none" stroke="black" points="24.19,-0.5 24.19,-44.5 122.42,-44.5 122.42,-0.5 24.19,-0.5"></polygon>
+<text text-anchor="middle" x="73.31" y="-31.5" font-family="Times,serif" font-size="10.00">STAFF_ACTIVITY</text>
+<text text-anchor="middle" x="73.31" y="-19.5" font-family="Times,serif" font-size="10.00">staff_db_id (FK)</text>
+<text text-anchor="middle" x="73.31" y="-7.5" font-family="Times,serif" font-size="10.00">activity_db_id (FK)</text>
 </g>
-<!-- create_folder&#45;&gt;upload_nodes -->
-<g id="edge4" class="edge">
-<title>create_folder-&gt;upload_nodes</title>
-<path fill="none" stroke="black" d="M179.49,-168.37C165.62,-159.32 148.06,-147.86 131.55,-137.09"></path>
-<polygon fill="black" stroke="black" points="133.32,-134.07 123.03,-131.54 129.5,-139.93 133.32,-134.07"></polygon>
+<!-- ACTIVITY&#45;&#45;STAFF_ACTIVITY -->
+<g id="edge1" class="edge">
+<title>ACTIVITY--STAFF_ACTIVITY</title>
+<path fill="none" stroke="black" d="M98.97,-81.16C92.95,-67.64 87.25,-54.82 82.75,-44.72"></path>
 </g>
-<!-- upload_relationships -->
+<!-- ROOM_ACTIVITY -->
 <g id="node6" class="node">
-<title>upload_relationships</title>
-<polygon fill="#ffdead" stroke="black" points="433.87,-131.6 430.87,-135.6 409.87,-135.6 406.87,-131.6 231.32,-131.6 231.32,-72.8 433.87,-72.8 433.87,-131.6"></polygon>
-<text text-anchor="middle" x="332.6" y="-114.8" font-family="Arial" font-size="14.00">Upload Files</text>
-<text text-anchor="middle" x="332.6" y="-98" font-family="Arial" font-size="14.00">Matching Relationship Pattern</text>
-<text text-anchor="middle" x="332.6" y="-81.2" font-family="Arial" font-size="14.00">to './{hostkeys}/relationships'</text>
+<title>ROOM_ACTIVITY</title>
+<polygon fill="none" stroke="black" points="157.2,-0.5 157.2,-44.5 255.41,-44.5 255.41,-0.5 157.2,-0.5"></polygon>
+<text text-anchor="middle" x="206.31" y="-31.5" font-family="Times,serif" font-size="10.00">ROOM_ACTIVITY</text>
+<text text-anchor="middle" x="206.31" y="-19.5" font-family="Times,serif" font-size="10.00">room_id (FK)</text>
+<text text-anchor="middle" x="206.31" y="-7.5" font-family="Times,serif" font-size="10.00">activity_db_id (FK)</text>
 </g>
-<!-- create_folder&#45;&gt;upload_relationships -->
-<g id="edge5" class="edge">
-<title>create_folder-&gt;upload_relationships</title>
-<path fill="none" stroke="black" d="M231.91,-168.37C245.89,-159.32 263.59,-147.86 280.23,-137.09"></path>
-<polygon fill="black" stroke="black" points="282.32,-139.91 288.81,-131.54 278.52,-134.03 282.32,-139.91"></polygon>
+<!-- ACTIVITY&#45;&#45;ROOM_ACTIVITY -->
+<g id="edge3" class="edge">
+<title>ACTIVITY--ROOM_ACTIVITY</title>
+<path fill="none" stroke="black" d="M178.44,-81.57C185.02,-67.86 191.27,-54.84 196.17,-44.62"></path>
 </g>
-<!-- process_done -->
+<!-- STUDENT_ACTIVITY -->
 <g id="node7" class="node">
-<title>process_done</title>
-<ellipse fill="#e0ffe0" stroke="black" cx="205.6" cy="-18" rx="89.87" ry="18"></ellipse>
-<text text-anchor="middle" x="205.6" y="-13.8" font-family="Arial" font-size="14.00">Process Complete</text>
+<title>STUDENT_ACTIVITY</title>
+<polygon fill="none" stroke="black" points="282.42,-0.5 282.42,-44.5 396.19,-44.5 396.19,-0.5 282.42,-0.5"></polygon>
+<text text-anchor="middle" x="339.31" y="-31.5" font-family="Times,serif" font-size="10.00">STUDENT_ACTIVITY</text>
+<text text-anchor="middle" x="339.31" y="-19.5" font-family="Times,serif" font-size="10.00">student_db_id (FK)</text>
+<text text-anchor="middle" x="339.31" y="-7.5" font-family="Times,serif" font-size="10.00">activity_db_id (FK)</text>
 </g>
-<!-- upload_nodes&#45;&gt;process_done -->
+<!-- ACTIVITY&#45;&#45;STUDENT_ACTIVITY -->
+<g id="edge5" class="edge">
+<title>ACTIVITY--STUDENT_ACTIVITY</title>
+<path fill="none" stroke="black" d="M178.62,-89.37C181.37,-86.39 184.27,-83.58 187.31,-81 202.2,-68.36 245.47,-52.57 282.05,-40.73"></path>
+</g>
+<!-- STAFF -->
+<g id="node2" class="node">
+<title>STAFF</title>
+<polygon fill="none" stroke="black" points="0,-81.5 0,-255.1 78.61,-255.1 78.61,-81.5 0,-81.5"></polygon>
+<text text-anchor="middle" x="39.31" y="-238.5" font-family="Times,serif" font-size="14.00">STAFF</text>
+<polyline fill="none" stroke="black" points="0,-230.3 78.61,-230.3 "></polyline>
+<text text-anchor="start" x="8" y="-213.7" font-family="Times,serif" font-size="14.00">db_id (PK)</text>
+<polyline fill="none" stroke="black" points="0,-205.5 78.61,-205.5 "></polyline>
+<text text-anchor="start" x="8" y="-188.9" font-family="Times,serif" font-size="14.00">first_name</text>
+<polyline fill="none" stroke="black" points="0,-180.7 78.61,-180.7 "></polyline>
+<text text-anchor="start" x="8" y="-164.1" font-family="Times,serif" font-size="14.00">last_name</text>
+<polyline fill="none" stroke="black" points="0,-155.9 78.61,-155.9 "></polyline>
+<text text-anchor="start" x="8" y="-139.3" font-family="Times,serif" font-size="14.00">title</text>
+<polyline fill="none" stroke="black" points="0,-131.1 78.61,-131.1 "></polyline>
+<text text-anchor="start" x="8" y="-114.5" font-family="Times,serif" font-size="14.00">email</text>
+<polyline fill="none" stroke="black" points="0,-106.3 78.61,-106.3 "></polyline>
+<text text-anchor="middle" x="39.31" y="-89.7" font-family="Times,serif" font-size="14.00">...</text>
+</g>
+<!-- STAFF&#45;&#45;STAFF_ACTIVITY -->
+<g id="edge2" class="edge">
+<title>STAFF--STAFF_ACTIVITY</title>
+<path fill="none" stroke="black" d="M59.67,-81.16C62.87,-67.64 65.9,-54.82 68.29,-44.72"></path>
+</g>
+<!-- STUDENT -->
+<g id="node3" class="node">
+<title>STUDENT</title>
+<polygon fill="none" stroke="black" points="308.42,-81.5 308.42,-255.1 388.19,-255.1 388.19,-81.5 308.42,-81.5"></polygon>
+<text text-anchor="middle" x="348.31" y="-238.5" font-family="Times,serif" font-size="14.00">STUDENT</text>
+<polyline fill="none" stroke="black" points="308.42,-230.3 388.19,-230.3 "></polyline>
+<text text-anchor="start" x="316.42" y="-213.7" font-family="Times,serif" font-size="14.00">db_id (PK)</text>
+<polyline fill="none" stroke="black" points="308.42,-205.5 388.19,-205.5 "></polyline>
+<text text-anchor="start" x="316.42" y="-188.9" font-family="Times,serif" font-size="14.00">first_name</text>
+<polyline fill="none" stroke="black" points="308.42,-180.7 388.19,-180.7 "></polyline>
+<text text-anchor="start" x="316.42" y="-164.1" font-family="Times,serif" font-size="14.00">last_name</text>
+<polyline fill="none" stroke="black" points="308.42,-155.9 388.19,-155.9 "></polyline>
+<text text-anchor="start" x="316.42" y="-139.3" font-family="Times,serif" font-size="14.00">email</text>
+<polyline fill="none" stroke="black" points="308.42,-131.1 388.19,-131.1 "></polyline>
+<text text-anchor="start" x="316.42" y="-114.5" font-family="Times,serif" font-size="14.00">dob</text>
+<polyline fill="none" stroke="black" points="308.42,-106.3 388.19,-106.3 "></polyline>
+<text text-anchor="middle" x="348.31" y="-89.7" font-family="Times,serif" font-size="14.00">...</text>
+</g>
+<!-- STUDENT&#45;&#45;STUDENT_ACTIVITY -->
 <g id="edge6" class="edge">
-<title>upload_nodes-&gt;process_done</title>
-<path fill="none" stroke="black" d="M122.96,-72.91C139.03,-62.43 156.99,-50.71 172.05,-40.89"></path>
-<polygon fill="black" stroke="black" points="174.08,-43.74 180.54,-35.34 170.26,-37.88 174.08,-43.74"></polygon>
+<title>STUDENT--STUDENT_ACTIVITY</title>
+<path fill="none" stroke="black" d="M342.91,-81.16C342.07,-67.64 341.27,-54.82 340.63,-44.72"></path>
 </g>
-<!-- upload_relationships&#45;&gt;process_done -->
-<g id="edge7" class="edge">
-<title>upload_relationships-&gt;process_done</title>
-<path fill="none" stroke="black" d="M288.89,-72.91C272.7,-62.43 254.59,-50.71 239.41,-40.89"></path>
-<polygon fill="black" stroke="black" points="241.14,-37.84 230.85,-35.34 237.34,-43.71 241.14,-37.84"></polygon>
+<!-- ROOM -->
+<g id="node4" class="node">
+<title>ROOM</title>
+<polygon fill="none" stroke="black" points="196.22,-93.9 196.22,-242.7 290.39,-242.7 290.39,-93.9 196.22,-93.9"></polygon>
+<text text-anchor="middle" x="243.31" y="-226.1" font-family="Times,serif" font-size="14.00">ROOM</text>
+<polyline fill="none" stroke="black" points="196.22,-217.9 290.39,-217.9 "></polyline>
+<text text-anchor="start" x="204.22" y="-201.3" font-family="Times,serif" font-size="14.00">room_id (PK)</text>
+<polyline fill="none" stroke="black" points="196.22,-193.1 290.39,-193.1 "></polyline>
+<text text-anchor="start" x="204.22" y="-176.5" font-family="Times,serif" font-size="14.00">name</text>
+<polyline fill="none" stroke="black" points="196.22,-168.3 290.39,-168.3 "></polyline>
+<text text-anchor="start" x="204.22" y="-151.7" font-family="Times,serif" font-size="14.00">building</text>
+<polyline fill="none" stroke="black" points="196.22,-143.5 290.39,-143.5 "></polyline>
+<text text-anchor="start" x="204.22" y="-126.9" font-family="Times,serif" font-size="14.00">capacity</text>
+<polyline fill="none" stroke="black" points="196.22,-118.7 290.39,-118.7 "></polyline>
+<text text-anchor="middle" x="243.31" y="-102.1" font-family="Times,serif" font-size="14.00">...</text>
+</g>
+<!-- ROOM&#45;&#45;ROOM_ACTIVITY -->
+<g id="edge4" class="edge">
+<title>ROOM--ROOM_ACTIVITY</title>
+<path fill="none" stroke="black" d="M224.37,-93.71C219.75,-75.75 215.16,-57.92 211.77,-44.73"></path>
 </g>
 </g>
 </svg>
@@ -622,25 +677,106 @@ TODO
 </div>
 </div>
 </div>
-<p>Configuration settings determine where processed node and relationship files are stored. I have made one folder in my drive public and all ETL files are stored within this root as follows:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/SQL-erd.png" class="img-fluid figure-img"></p>
+<figcaption>Simple Relational Data Model</figcaption>
+</figure>
+</div>
+<pre class="{sql}"><code>-- Assuming "BuildingName" is in V_BUILDING and linked to V_LOCATION
+
+
+SELECT DISTINCT 
+    ss.[FirstName], 
+    ss.[LastName],
+    ss.[Email]
+FROM [RDB_MAIN2223].[rdowner].[V_STUDENTSET] ss
+INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_STUDENTSET] acts ON ss.[Id] = acts.[StudentSetId]
+INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY] a ON acts.[ActivityId] = a.[Id]
+INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_LOCATION] al ON a.[Id] = al.[ActivityId]
+INNER JOIN [RDB_MAIN2223].[rdowner].[V_LOCATION] l ON al.[LocationId] = l.[Id]
+INNER JOIN [RDB_MAIN2223].[rdowner].[V_BUILDING] b ON l.[BuildingId] = b.[Id] -- Assuming a BuildingId column in V_LOCATION
+INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_STAFF] ast ON a.[Id] = ast.[ActivityId]
+WHERE ast.[StaffId] = 'StaffID'  
+  AND b.[Name] = 'BuildingName'; </code></pre>
+</section>
+<section id="graph-models-embracing-interconnectedness" class="level2">
+<h2 class="anchored" data-anchor-id="graph-models-embracing-interconnectedness">Graph Models: Embracing interconnectedness</h2>
+<p>In contrast to the rigid table structure of relational databases, graph databases offer a more intuitive and flexible approach for representing interconnected data like timetables. They utilise:</p>
 <ul>
-<li>root Google Drive folder
+<li><strong>Nodes</strong>: Represent entities (e.g., activity, room, lecturer, student).</li>
+<li><strong>Edges</strong>: Represent relationships between nodes (e.g., “taught by,” “enrolled in,” “scheduled at”).</li>
+</ul>
+<p>This node-and-edge structure inherently reflects how timetabling elements connect. Instead of relying on cumbersome joins, relationships are directly encoded in the data model itself. This results in several advantages:</p>
 <ul>
-<li>hostkeys (automatically created, unless override)
-<ul>
-<li>nodes</li>
-<li>relationships</li>
-</ul></li>
-</ul></li>
+<li><strong>Natural Representation</strong>: Graph databases visually and conceptually mirror the relationships inherent in timetables, making them easier to understand and query.</li>
+<li><strong>Relationship-Centric Queries</strong>: Graph databases are optimised for traversing and analysing relationships. Queries that would require multiple joins in a relational database often become significantly simpler and faster in a graph database.</li>
+<li><strong>Flexibility</strong>: The schema-less or schema-optional nature of most graph databases allows for greater flexibility in data modeling. New entities or relationships can be added effortlessly without impacting existing structures or queries.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/google-drive-node.png" class="img-fluid figure-img"></p>
-<figcaption>Screenshot of Google Drive</figcaption>
+<p><img src="./images/v1-core-nodes-rels.png" class="img-fluid figure-img"></p>
+<figcaption>Simple Graph Data Model</figcaption>
 </figure>
 </div>
+<pre class="{cypher}"><code>// Assuming properties on nodes
+MATCH (s:Student)-[:ATTENDS]-&gt;(a:Activity)&lt;-[:TEACHES]-(st:Staff), 
+      (a:Activity)-[:TAKES_PLACE_IN]-&gt;(r:Room)
+WHERE st.last_name = "LecturerLastName" AND r.building = "BuildingName"
+RETURN s.first_name, s.last_name, s.email </code></pre>
+</section>
+<section id="key-differences-and-implications" class="level2">
+<h2 class="anchored" data-anchor-id="key-differences-and-implications">Key Differences and Implications</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 33%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Relational Model</th>
+<th>Graph Model</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Data Structure</td>
+<td>Tables with rows and columns</td>
+<td>Nodes and edges</td>
+</tr>
+<tr class="even">
+<td>Schema</td>
+<td>Rigid, predefined</td>
+<td>Flexible, schema-less or schema-optional</td>
+</tr>
+<tr class="odd">
+<td>Relationship Handling</td>
+<td>Foreign keys, joins</td>
+<td>Direct connections (edges)</td>
+</tr>
+<tr class="even">
+<td>Query Performance</td>
+<td>Can be slow for relationship-heavy queries</td>
+<td>Optimised for traversing relationships, potentially faster</td>
+</tr>
+<tr class="odd">
+<td>Data Modeling</td>
+<td>Less intuitive for interconnected data</td>
+<td>Naturally represents complex relationships</td>
+</tr>
+<tr class="even">
+<td>Adaptability</td>
+<td>Less adaptable to schema changes</td>
+<td>More flexible, accommodates evolving data needs</td>
+</tr>
+</tbody>
+</table>
+<p>These advantages position graph databases as a powerful tool for uncovering insights hidden within complex, interconnected datasets like university timetables. The following section will detail a graph data model specifically designed to leverage these strengths for enhanced timetable analysis.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1207,15 +1343,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="./03-05-transform.html" class="pagination-link" aria-label="Transform">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Transform</span>
+      <a href="./02-00-graph-model.html" class="pagination-link" aria-label="Graph Data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Graph Data</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./03-06b-load.html" class="pagination-link" aria-label="Neo4j Load">
-        <span class="nav-page-text">Neo4j Load</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./02-02-graph-timetable.html" class="pagination-link" aria-label="Graph Data Model for Timetabling">
+        <span class="nav-page-text">Graph Data Model for Timetabling</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

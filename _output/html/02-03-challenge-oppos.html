@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Graph Data Model –  </title>
+<title>Opportunities and Challenges –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./03-01-overview.html" rel="next">
-<link href="./01-03-project.html" rel="prev">
+<link href="./02-02-graph-timetable.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -109,23 +109,42 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Introduction</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./01-01b-good-timetable.html">
- <span class="dropdown-text">What is a Good Timetable?</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="./01-02-motivation.html">
+    <a class="dropdown-item" href="./01-02-background.html">
  <span class="dropdown-text">Background and Motivation</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./01-03-project.html">
+    <a class="dropdown-item" href="./01-03-good-timetable.html">
+ <span class="dropdown-text">What is a Good Timetable?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./01-04-project.html">
  <span class="dropdown-text">Project Aims and Scope</span></a>
   </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./02-graph-data-model.html"> 
-<span class="menu-text">Graph Data Model</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-graph-data-model" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Graph Data Model</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-graph-data-model">    
+        <li>
+    <a class="dropdown-item" href="./02-00-graph-model.html">
+ <span class="dropdown-text">Graph Data</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./02-01-comparison.html">
+ <span class="dropdown-text">Graph vs Relational Data Models</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-02-graph-timetable.html">
+ <span class="dropdown-text">Graph Data Model for Timetabling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-03-challenge-oppos.html">
+ <span class="dropdown-text">Opportunities and Challenges</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-data-pipeline" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Data Pipeline</span>
@@ -222,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-graph-data-model.html">Graph Data Model</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-graph-model.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-03-challenge-oppos.html">Opportunities and Challenges</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -265,39 +284,68 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-01b-good-timetable.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">What is a Good Timetable?</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./01-02-motivation.html" class="sidebar-item-text sidebar-link">
+  <a href="./01-02-background.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Background and Motivation</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-03-project.html" class="sidebar-item-text sidebar-link">
+  <a href="./01-03-good-timetable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">What is a Good Timetable?</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-04-project.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project Aims and Scope</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./02-graph-data-model.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Graph Data Model</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Data Pipeline</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Graph Data Model</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-00-graph-model.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-01-comparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph vs Relational Data Models</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-02-graph-timetable.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graph Data Model for Timetabling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-03-challenge-oppos.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Opportunities and Challenges</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Data Pipeline</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03-01-overview.html" class="sidebar-item-text sidebar-link">
@@ -356,13 +404,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Final Thoughts</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-future-opportunities.html" class="sidebar-item-text sidebar-link">
@@ -379,13 +427,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
  <span class="menu-text">Appendix &amp; References</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-random-graph.html" class="sidebar-item-text sidebar-link">
@@ -428,21 +476,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#graph-data-model-for-timetabling-1000-words" id="toc-graph-data-model-for-timetabling-1000-words" class="nav-link active" data-scroll-target="#graph-data-model-for-timetabling-1000-words">Graph Data Model for Timetabling (1000 words)</a>
-  <ul class="collapse">
-  <li><a href="#comparison-of-relational-and-graph-models" id="toc-comparison-of-relational-and-graph-models" class="nav-link" data-scroll-target="#comparison-of-relational-and-graph-models">2.1 Comparison of Relational and Graph Models</a></li>
-  <li><a href="#advantages-of-the-graph-approach" id="toc-advantages-of-the-graph-approach" class="nav-link" data-scroll-target="#advantages-of-the-graph-approach">2.2 Advantages of the Graph Approach</a></li>
-  <li><a href="#data-augmentation-opportunities" id="toc-data-augmentation-opportunities" class="nav-link" data-scroll-target="#data-augmentation-opportunities">2.3 Data Augmentation Opportunities</a></li>
-  </ul></li>
+  <li><a href="#opportunities" id="toc-opportunities" class="nav-link active" data-scroll-target="#opportunities">Opportunities</a></li>
+  <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges">Challenges</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-graph-model.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-03-challenge-oppos.html">Opportunities and Challenges</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Graph Data Model</h1>
+<h1 class="title">Opportunities and Challenges</h1>
 </div>
 
 
@@ -459,35 +503,69 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="graph-data-model-for-timetabling-1000-words" class="level2">
-<h2 class="anchored" data-anchor-id="graph-data-model-for-timetabling-1000-words">Graph Data Model for Timetabling (1000 words)</h2>
-<section id="comparison-of-relational-and-graph-models" class="level3">
-<h3 class="anchored" data-anchor-id="comparison-of-relational-and-graph-models">2.1 Comparison of Relational and Graph Models</h3>
+<section id="opportunities" class="level2">
+<h2 class="anchored" data-anchor-id="opportunities">Opportunities</h2>
+<ol type="1">
+<li>Unlocking Hidden Patterns:</li>
+</ol>
 <ul>
-<li>Visual representation of both models - mermaid, or simmilar</li>
+<li>Example: “By analyzing student enrollment patterns in relation to course times and locations, we might uncover commuting difficulties that impact attendance, informing future scheduling.”</li>
+<li>General Point: Graphs excel at revealing patterns across relationships, not just within isolated data points.</li>
+</ul>
+<ol start="2" type="1">
+<li>Stakeholder-Centric Analysis:</li>
+</ol>
+<ul>
+<li>Example: “We can query the graph to assess how well a timetable meets faculty preferences for teaching times while also considering student travel burdens, revealing potential areas for improvement.”</li>
+<li>General Point: Graphs can model multiple perspectives simultaneously, unlike traditional approaches that often focus on one optimization goal at a time.</li>
+</ul>
+<ol start="3" type="1">
+<li>What-If Scenarios and Simulations:</li>
+</ol>
+<ul>
+<li>Example: “Adding hypothetical courses or adjusting room capacities in the graph allows us to simulate the impact on existing timetables before implementation, aiding decision-making.”</li>
+<li>General Point: Graphs’ flexibility makes them well-suited for modeling change, not just representing static data.</li>
+</ul>
+<ol start="4" type="1">
+<li>Visual Exploration and Communication:</li>
+</ol>
+<ul>
+<li>Example: “Presenting graph visualizations to stakeholders (even non-technical ones) can foster shared understanding of timetable complexities and potential trade-offs, leading to better buy-in.”</li>
+<li>General Point: While not unique to graphs, they lend themselves well to visual tools, which can be powerful for communication beyond raw numbers.</li>
 </ul>
 </section>
-<section id="advantages-of-the-graph-approach" class="level3">
-<h3 class="anchored" data-anchor-id="advantages-of-the-graph-approach">2.2 Advantages of the Graph Approach</h3>
-</section>
-<section id="data-augmentation-opportunities" class="level3">
-<h3 class="anchored" data-anchor-id="data-augmentation-opportunities">2.3 Data Augmentation Opportunities</h3>
+<section id="challenges" class="level2">
+<h2 class="anchored" data-anchor-id="challenges">Challenges</h2>
+<ol type="1">
+<li>Data Migration and Integration:</li>
+</ol>
 <ul>
-<li>Room properties example (lat, long)</li>
-<li>Potential for additional data integration (curriculum, student outcomes, etc.)</li>
+<li>Point: Moving from an existing relational system to a graph database requires careful planning and potential data transformation. This can be a significant upfront effort, especially for large universities.</li>
 </ul>
-<p>2 Graph Data Model Given the highly relational nature of timetables, where courses, instructors, rooms, and time slots are interconnected in intricate ways, it is hypothesized that a graph-based approach could offer a more natural and insightful way to represent and analyze timetable data. Graph databases, designed to handle complex relationships and interconnected data, have the potential to unlock new avenues for understanding and optimizing university timetables.</p>
-<p>2.1 Graph vs.&nbsp;Relational Data Structures (General) In the realm of data management, two prominent paradigms exist: the relational model and the graph model. The relational model, exemplified by relational databases like SQL Server, MySQL, and PostgreSQL, organizes data into tables with rows and columns. Each row represents an entity, and columns store the attributes of that entity. Relationships between entities are established through foreign keys, creating a structured and rigid schema.</p>
-<p>In contrast, the graph model, employed by graph databases like Neo4j, Amazon Neptune, and Microsoft Azure Cosmos DB, represents data as nodes and edges. Nodes are the fundamental entities, and edges define the relationships between them. Both nodes and edges can have properties, allowing for flexible and dynamic schemas.</p>
-<p>The choice between relational and graph databases depends on the nature of the data and the types of queries that need to be executed. Relational databases excel at structured data with well-defined relationships, making them suitable for transactional systems and reporting. However, they can become cumbersome when dealing with complex, interconnected data, as queries often involve multiple joins across tables, leading to performance bottlenecks.</p>
-<p>Graph databases, on the other hand, are designed to handle complex relationships and interconnected data naturally. They shine in scenarios where the focus is on exploring relationships, traversing networks, and uncovering patterns in interconnected data. Graph databases offer superior performance for queries that involve traversing multiple relationships, as the relationships are explicitly represented as edges in the graph.</p>
-<p>2.2 Pros and Cons of Graph Databases Graph databases offer several advantages over relational databases, particularly when dealing with highly connected data:</p>
-<p>Flexibility: Graph databases allow for flexible and dynamic schemas, making it easy to add new types of nodes and edges as the data evolves. This flexibility is crucial in domains like university timetabling, where the relationships between entities can be complex and subject to change. Scalability: Graph databases are designed to scale horizontally, distributing data across multiple machines to handle large datasets and high query volumes. This scalability is essential for university timetabling, as the number of courses, students, and instructors can be substantial. Performance: Graph databases excel at traversing relationships, making them ideal for queries that involve exploring connections between entities. In the context of university timetabling, this translates to faster and more efficient queries for tasks like finding all courses taught by a particular instructor or identifying scheduling conflicts. Expressiveness: Graph query languages, such as Cypher, are designed to express complex relationship-based queries concisely. This expressiveness simplifies the formulation of queries that would be cumbersome in SQL, the query language for relational databases. However, graph databases also have some limitations:</p>
-<p>Maturity: Graph database technology is relatively young compared to relational databases, and the ecosystem of tools and libraries is still evolving. Learning Curve: Graph query languages, while expressive, require a learning curve for those familiar with SQL. Limited Support for Aggregation: Graph databases are not optimized for aggregation queries, such as calculating averages or sums, which are common in relational databases. 2.3 Comparison of Timetable Data in Relational and Graph Structures In a relational database, timetable data is typically organized into tables, with each table representing an entity like courses, rooms, instructors, and time slots. Relationships between entities are established through foreign keys, creating a structured schema. For example, a “course” table might have columns for course code, name, and credits, while an “instructor” table might have columns for instructor ID, name, and department. A “schedule” table would then link courses, instructors, rooms, and time slots using foreign keys.</p>
-<p>In contrast, a graph database represents timetable data as nodes and edges. Nodes represent entities like courses, rooms, instructors, and time slots, while edges represent relationships between them. For instance, an edge labeled “scheduled_in” could connect a course node to a room node, indicating that the course is scheduled in that room. Similarly, an edge labeled “taught_by” could connect a course node to an instructor node, signifying that the course is taught by that instructor.</p>
+<ol start="2" type="1">
+<li>Tooling and Expertise:</li>
+</ol>
+<ul>
+<li>Point: While maturing, the graph database ecosystem might have a steeper learning curve than traditional SQL-based tools. Finding staff with the right expertise could be a consideration.</li>
+</ul>
+<ol start="3" type="1">
+<li>Performance at Scale:</li>
+</ol>
+<ul>
+<li>Point: While generally efficient, graph database performance depends on query complexity and dataset size. For extremely large universities, careful optimization and potentially specialized graph database solutions might be needed.</li>
+</ul>
+<ol start="4" type="1">
+<li>“Soft” Constraint Modeling:</li>
+</ol>
+<ul>
+<li>Point: While graphs excel at representing relationships, quantifying subjective preferences (e.g., how much a student dislikes a late evening class) can still be challenging and might require combining graph analysis with other techniques.</li>
+</ul>
+<p>2.4 Data Augmentation Opportunities</p>
+<p>Room properties example (latitude, longitude) Potential for additional data integration (curriculum, student outcomes, etc.) Discussion on how graph model facilitates data enrichment</p>
+<p>2.5 Challenges and Considerations</p>
+<p>Potential limitations of the graph approach Data migration considerations Performance considerations for large-scale timetabling systems</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1057,8 +1135,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="./01-03-project.html" class="pagination-link" aria-label="Project Aims and Scope">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Project Aims and Scope</span>
+      <a href="./02-02-graph-timetable.html" class="pagination-link" aria-label="Graph Data Model for Timetabling">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Graph Data Model for Timetabling</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

@@ -22,37 +22,12 @@ While robust and well-understood, relational databases start to show their limit
 -   **Join Complexity**: Even seemingly simple queries, like "find students attending a specific lecturer's class in a particular building," require joining multiple tables. As queries become more nuanced, the number of joins increases, often impacting performance, especially with large datasets.
 
 -   **Rigidity**: Relational databases rely on a predefined schema, making them less adaptable to evolving needs. Adding new entities or relationships, a common occurrence in dynamic timetabling environments, often requires schema modifications, potentially disrupting existing queries and applications.
+-   
+![Example Simple Entity Relationship Diagram](./images/RDB-small.png)
 
-```{dot}
-graph timetable {
-  node [shape=record];
 
-  // Tables as nodes
-  ACTIVITY [label="{ACTIVITY | db_id (PK)\l| name \l| start_time\l| end_time\l| duration\l| ...}"];
-  STAFF [label="{STAFF | db_id (PK)\l| first_name\l| last_name\l| title\l| email\l| ...}"];
-  STUDENT [label="{STUDENT | db_id (PK)\l| first_name\l| last_name\l| email\l| dob\l| ...}"];
-  ROOM [label="{ROOM | room_id (PK)\l| name\l| building\l| capacity\l| ...}"];
-
-  // Relationship tables - less emphasis
-  STAFF_ACTIVITY [label="STAFF_ACTIVITY\nstaff_db_id (FK)\nactivity_db_id (FK)", fontsize=10];
-  ROOM_ACTIVITY [label="ROOM_ACTIVITY\nroom_id (FK)\nactivity_db_id (FK)", fontsize=10];
-  STUDENT_ACTIVITY [label="STUDENT_ACTIVITY\nstudent_db_id (FK)\nactivity_db_id (FK)", fontsize=10];
-
-  // Relationships
-  ACTIVITY -- STAFF_ACTIVITY;
-  STAFF -- STAFF_ACTIVITY;
-  ACTIVITY -- ROOM_ACTIVITY;
-  ROOM -- ROOM_ACTIVITY;
-  ACTIVITY -- STUDENT_ACTIVITY;
-  STUDENT -- STUDENT_ACTIVITY;
-}
-
-```
-
-![Simple Relational Data Model](./images/SQL-erd.png)
-
-```{sql}
--- Assuming "BuildingName" is in V_BUILDING and linked to V_LOCATION
+```{python}
+# Assuming "BuildingName" is in V_BUILDING and linked to V_LOCATION
 
 
 SELECT DISTINCT 
@@ -64,7 +39,7 @@ INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_STUDENTSET] acts ON ss.[Id] = ac
 INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY] a ON acts.[ActivityId] = a.[Id]
 INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_LOCATION] al ON a.[Id] = al.[ActivityId]
 INNER JOIN [RDB_MAIN2223].[rdowner].[V_LOCATION] l ON al.[LocationId] = l.[Id]
-INNER JOIN [RDB_MAIN2223].[rdowner].[V_BUILDING] b ON l.[BuildingId] = b.[Id] -- Assuming a BuildingId column in V_LOCATION
+INNER JOIN [RDB_MAIN2223].[rdowner].[V_BUILDING] b ON l.[BuildingId] = b.[Id] # Assuming a BuildingId column in V_LOCATION
 INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_STAFF] ast ON a.[Id] = ast.[ActivityId]
 WHERE ast.[StaffId] = 'StaffID'  
   AND b.[Name] = 'BuildingName'; 

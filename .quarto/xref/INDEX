@@ -113,5 +113,32 @@
   },
   "test.qmd": {
     "test.html": "f722f194"
+  },
+  "0015-overview.qmd": {
+    "0015-overview.html": "382d8dc5"
+  },
+  "01-02-background.qmd": {
+    "01-02-background.html": "ffe50e01"
+  },
+  "01-03-good-timetable.qmd": {
+    "01-03-good-timetable.html": "24042837"
+  },
+  "01-04-project.qmd": {
+    "01-04-project.html": "9858fefc"
+  },
+  "02-00-graph-model.qmd": {
+    "02-00-graph-model.html": "9c7aff89"
+  },
+  "02-02-graph-timetable.qmd": {
+    "02-02-graph-timetable.html": "acdb2ecd"
+  },
+  "02-03-challenge-oppos.qmd": {
+    "02-03-challenge-oppos.html": "b1406c5f"
+  },
+  "02-NOTES-graph-data-model.qmd": {
+    "02-NOTES-graph-data-model.html": "3c919346"
+  },
+  "02-01-comparison.qmd": {
+    "02-01-comparison.html": "07135a79"
   }
 }
