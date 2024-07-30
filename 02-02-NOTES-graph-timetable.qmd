@@ -1,131 +1,19 @@
 ---
 title: Graph Data Model for Timebling
-execute: 
-  enabled: false
 ---
 
 ::: callout-warning
 ## TODO
 
-- write up section - review notes
-- new page of difficulties with time - see poc2 time
-- appendix with queries (queries.ipynb (graph-project\docs\notes\queries.ipynb)) - copy all queries onto one appendix see graph-tt
+DELETE
 :::
 
-Having discussed some advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling. This model serves as the foundation for our exploration of graph-based analysis and its potential to unlock valuable insights.
+2.3 Graph Data Model for Timetabling
 
-## An Iterative Approach
-
-The design of this graph data model follows an iterative process: design, build, test, review, and revise. Using Neo4j Desktop and an Aura cloud instance, the model began with a small scope, incorporating minimal nodes and properties. This iterative approach allows for flexibility and refinement based on real-world data and evolving requirements.
-
-## Core Nodes: The Building Blocks
-
-At its core, the timetable model revolves around four key entities represented as nodes:
-
-
-| Node     | Property    | Description           | Data Type |
-|----------|-------------|-----------------------|-----------|
-| Student  | firstName   | Legal first name      | string    |
-|          | lastName    | Legal last name       | string    |
-|          | studentID   | University identifier | integer   |
-|          | splusID     | Timetable URN         | string    |
-| Lecturer | firstName   | First name            | string    |
-|          | lastName    | Last name             | string    |
-|          | staffID     | University identifier | integer   |
-|          | splusID     | Timetable URN         | string    |
-| Room     | name        | Room name             | string    |
-|          | splusID     | Timetable URN         | integer   |
-| Activity | name        | Activity name         | string    |
-|          | description | Activity description  | string    |
-|          | startTime   | Scheduled start time  | datetime  |
-|          | endTime     | Scheduled end time    | datetime  |
-|          | date        | Date of activity      | date      |
-
-![Neo4j Interface showing basic nodes nad properties](./images/poc1-import-interface.png)
-
-## Defining Relationships: Connecting the Dots
-
-These core nodes are interconnected through relationships that reflect the dynamics of a timetable:
-
-* **Student-[IS_ALLOCATED_TO]->Activity**: Represents a student's allocation to a specific activity.
-* **Staff-[TEACHES_ON]->Activity**:  Indicates the staff member responsible for teaching an activity. 
-* **Activity-[TAKES_PLACE_IN]->Room**:  Connects an activity to the room where it is scheduled.
-
-
-![Core Nodes and Properties](./images/v1-core-nodes-rels-prop.png)
-
-
-
-## Early Insights: Unveiling Basic Patterns
-
-Even with this basic model, we can easily extract valuable insights:
-
-* **Activity Load**: Identify staff with the highest number of teaching activities or total teaching hours.
-* **Student Timetable Profiles**: Calculate average hours per student or per programme to understand workload distribution.  
-* **Resource utilisation**: Determine the busiest locations or times on campus based on activity scheduling.
-* **Anomaly detection**: Identify students who have unexpected profiles or unusual combinations
-
-### Examples
-
-#### Busiest location overall
-```{cypher}
-MATCH (r:Room)<-[:TAKES_PLACE_IN]-(a:Activity)
-WITH r, sum(a.duration) AS totalDuration
-RETURN r.name AS Room, totalDuration
-ORDER BY totalDuration DESC
-LIMIT 1
-```
-#### Busiest location for a specific time
-
-```{cypher}
-MATCH (r:Room)<-[:TAKES_PLACE_IN]-(a:Activity)
-WHERE a.startTime = "1100" 
-WITH r, count(a) AS activityCount
-RETURN r.name AS Room, activityCount
-ORDER BY activityCount DESC
-LIMIT 1 
-```
-
-#### Students with below/above average hours 
-```{cypher}
-// Calculate program averages and standard deviations
-MATCH (s:Student)-[:IS_ALLOCATED_TO]->(a:Activity)
-WITH s.prog AS program, AVG(a.duration) AS avgDuration, STDEV(a.duration) AS stdDev
-GROUP BY program
-
-// Identify students outside the 10% margin 
-MATCH (s:Student)-[:IS_ALLOCATED_TO]->(a:Activity)
-WITH s.studentID AS studentID, s.prog AS program, SUM(a.duration) AS totalDuration
-MATCH (avgData)
-WHERE avgData.program = program
-WITH studentID, program, totalDuration, avgData.avgDuration AS avgDuration, avgData.stdDev AS stdDev
-WHERE totalDuration < avgDuration - (0.1 * avgDuration) OR totalDuration > avgDuration + (0.1 * avgDuration)
-RETURN studentID, program, totalDuration, avgDuration, stdDev 
-ORDER BY program, totalDuration DESC
-```
-
-
-## Expanding the Model: Towards Richer Insights
-The true power of the graph model lies in its extensibility. Introducing additional nodes and properties allows for a more comprehensive representation and enables more sophisticated analysis.
-
-### Potential Expansions:
-* Organizational Units: Include departments, colleges, or schools to analyze timetabling within organizational structures.
-* Curriculum Data: Incorporate modules and programs to understand the interconnectedness of courses and student enrollment patterns.
-* Activity Types: Differentiate between lectures, seminars, labs, etc., for a more granular analysis of teaching and learning activities.
-* Student Attributes: Add properties like "international student" or "first-year student" to explore potential disparities in timetabling.
-
-[Image Suggestion: Use your "v2.0-expanded-tt.png" to visualize the expanded graph model and its potential for deeper insights.]
-
-## The Challenge of Time: Finding the Optimal Representation
-
-Modeling time within a graph database presents a unique challenge. While your initial approach of representing time as properties on the Activity node works for basic analysis, it limits the ability to answer more nuanced questions related to time patterns and potential scheduling conflicts.
-
-Your exploration of alternative approaches highlights the flexibility of graph databases but also the need for careful consideration based on the desired analytical outcomes. Future work exploring dynamic node creation for start times, end times, and dates with direct performance comparisons against specific use cases will be valuable.
-
-This section has established the foundation for a graph-based approach to university timetabling. The next section will delve into the data engineering pipeline required to populate and maintain this model, bridging the gap between raw data and insightful analysis.
-
-
-
+Detailed description of proposed graph model
+Node types (e.g., courses, instructors, rooms, time slots)
+Edge types (e.g., "scheduled_in", "taught_by")
+Properties for nodes and edges
 
 
 # approach

@@ -29,8 +29,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./02-03-challenge-oppos.html" rel="next">
-<link href="./02-01-comparison.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -241,7 +239,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-graph-model.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-02-graph-timetable.html">Graph Data Model for Timetabling</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Graph Data Model for Timebling</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -304,13 +302,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Graph Data Model</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-00-graph-model.html" class="sidebar-item-text sidebar-link">
@@ -325,7 +323,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-02-graph-timetable.html" class="sidebar-item-text sidebar-link active">
+  <a href="./02-02-graph-timetable.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graph Data Model for Timetabling</span></a>
   </div>
 </li>
@@ -476,10 +474,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#an-iterative-approach" id="toc-an-iterative-approach" class="nav-link active" data-scroll-target="#an-iterative-approach">An Iterative Approach</a></li>
-  <li><a href="#core-nodes-the-building-blocks" id="toc-core-nodes-the-building-blocks" class="nav-link" data-scroll-target="#core-nodes-the-building-blocks">Core Nodes: The Building Blocks</a></li>
-  <li><a href="#defining-relationships-connecting-the-dots" id="toc-defining-relationships-connecting-the-dots" class="nav-link" data-scroll-target="#defining-relationships-connecting-the-dots">Defining Relationships: Connecting the Dots</a></li>
-  <li><a href="#approach" id="toc-approach" class="nav-link" data-scroll-target="#approach">approach</a></li>
+  <li><a href="#approach" id="toc-approach" class="nav-link active" data-scroll-target="#approach">approach</a></li>
   <li><a href="#nodes" id="toc-nodes" class="nav-link" data-scroll-target="#nodes">nodes</a></li>
   <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">properties</a></li>
   <li><a href="#expansions" id="toc-expansions" class="nav-link" data-scroll-target="#expansions">expansions</a>
@@ -497,7 +492,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-graph-model.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-02-graph-timetable.html">Graph Data Model for Timetabling</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Graph Data Model for Timebling</h1>
 </div>
@@ -526,144 +521,11 @@ TODO
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li>write up section<br>
-</li>
-</ul>
+<p>DELETE</p>
 </div>
 </div>
-<p>Having discussed some advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling. This model serves as the foundation for our exploration of graph-based analysis and its potential to unlock valuable insights.</p>
-<section id="an-iterative-approach" class="level2">
-<h2 class="anchored" data-anchor-id="an-iterative-approach">An Iterative Approach</h2>
-<p>The design of this graph data model follows an iterative process: design, build, test, review, and revise. Using Neo4j Desktop and an Aura cloud instance, the model began with a small scope, incorporating minimal nodes and properties. This iterative approach allows for flexibility and refinement based on real-world data and evolving requirements.</p>
-</section>
-<section id="core-nodes-the-building-blocks" class="level2">
-<h2 class="anchored" data-anchor-id="core-nodes-the-building-blocks">Core Nodes: The Building Blocks</h2>
-<p>At its core, the timetable model revolves around four key entities represented as nodes:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Node</th>
-<th>Property</th>
-<th>Description</th>
-<th>Data Type</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Student</td>
-<td>firstName</td>
-<td>Legal first name</td>
-<td>string</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>lastName</td>
-<td>Legal last name</td>
-<td>string</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>studentID</td>
-<td>University identifier</td>
-<td>integer</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>splusID</td>
-<td>Timetable URN</td>
-<td>string</td>
-</tr>
-<tr class="odd">
-<td>Lecturer</td>
-<td>firstName</td>
-<td>First name</td>
-<td>string</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>lastName</td>
-<td>Last name</td>
-<td>string</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>staffID</td>
-<td>University identifier</td>
-<td>integer</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>splusID</td>
-<td>Timetable URN</td>
-<td>string</td>
-</tr>
-<tr class="odd">
-<td>Room</td>
-<td>name</td>
-<td>Room name</td>
-<td>string</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>splusID</td>
-<td>Timetable URN</td>
-<td>integer</td>
-</tr>
-<tr class="odd">
-<td>Activity</td>
-<td>name</td>
-<td>Activity name</td>
-<td>string</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>description</td>
-<td>Activity description</td>
-<td>string</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>startTime</td>
-<td>Scheduled start time</td>
-<td>datetime</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>endTime</td>
-<td>Scheduled end time</td>
-<td>datetime</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>date</td>
-<td>Date of activity</td>
-<td>date</td>
-</tr>
-</tbody>
-</table>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/v1-core-nodes-rels-prop.png" class="img-fluid figure-img"></p>
-<figcaption>Core Nodes and Properties</figcaption>
-</figure>
-</div>
-</section>
-<section id="defining-relationships-connecting-the-dots" class="level2">
-<h2 class="anchored" data-anchor-id="defining-relationships-connecting-the-dots">Defining Relationships: Connecting the Dots</h2>
-<p>These core nodes are interconnected through relationships that reflect the dynamics of a timetable:</p>
-<ul>
-<li><p><strong><code>Student</code>-[IS_ALLOCATED_TO]-&gt;<code>Activity</code></strong>: Represents a student’s enrollment in a specific activity. Consider alternative relationships like “ATTENDS.”</p></li>
-<li><p><code>Staff</code> <em>teaches on</em> <code>Activity</code></p>
-<ul>
-<li>alternatives include <em>lectures</em>, <em>leads</em>, etc.</li>
-</ul></li>
-<li><p><code>Activity</code> <em>takes place in</em> <code>Room</code></p>
-<ul>
-<li>alternatives include <em>scheduled in</em></li>
-</ul></li>
-</ul>
-</section>
+<p>2.3 Graph Data Model for Timetabling</p>
+<p>Detailed description of proposed graph model Node types (e.g., courses, instructors, rooms, time slots) Edge types (e.g., “scheduled_in”, “taught_by”) Properties for nodes and edges</p>
 <section id="approach" class="level1">
 <h1>approach</h1>
 <p>iterative: design, build, test, review, revise and back to design Used: neo4j desktop and cloud instance started small (data wise -&gt; me and complexity (minimal nodes, minimal properties) things went wrong - many examples of wrong nodes, multiple relationships or more frustratingly - failure and error codes</p>
@@ -1519,18 +1381,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-body">
-  <div class="nav-page nav-page-previous">
-      <a href="./02-01-comparison.html" class="pagination-link" aria-label="Graph vs Relational Data Models">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Graph vs Relational Data Models</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./02-03-challenge-oppos.html" class="pagination-link" aria-label="Opportunities and Challenges">
-        <span class="nav-page-text">Opportunities and Challenges</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

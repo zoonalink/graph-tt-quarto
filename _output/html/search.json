@@ -170,7 +170,7 @@
     "href": "02-02-graph-timetable.html",
     "title": "Graph Data Model for Timebling",
     "section": "",
-    "text": "TODO\n\n\n\n\nwrite up section\n\n\n\n\n2.3 Graph Data Model for Timetabling\nDetailed description of proposed graph model Node types (e.g., courses, instructors, rooms, time slots) Edge types (e.g., “scheduled_in”, “taught_by”) Properties for nodes and edges",
+    "text": "TODO\n\n\n\n\nwrite up section\nHaving discussed some advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling. This model serves as the foundation for our exploration of graph-based analysis and its potential to unlock valuable insights.",
     "crumbs": [
       "Home",
       "Graph Data Model",
@@ -530,6 +530,123 @@
       "Home",
       "Graph Data Model",
       "Graph vs Relational Data Models"
+    ]
+  },
+  {
+    "objectID": "02-02-graph-timetable.html#time",
+    "href": "02-02-graph-timetable.html#time",
+    "title": "Graph Data Model for Timebling",
+    "section": "time",
+    "text": "time\nmodelling time in graph was challenging. my simple model above does take time into account other than to have startTime, endTime, date. In reality, an activity can take have the same start time, end time but be scheduled over several weeks - sometimes consecutive, sometimes non-consecutive weeks. How should this be represented? week patterns? date ranges? or separate activities? what happens when an activity is scheduled over several days but the same time over several weeks for example, Mondays and Wednesdays between 09:00-11:00 for ten weeks?\nthis is where normalisation (footnote) and different designs come into play. In a relational database, it is fairly easy to normalise the data into activities where start and end time and day(s) of week, staff, locations, students are the same for the week pattern. Any deviation will require a new ‘activity’ to accommodate the difference. Therefore there is an inevitable repetition of data.\nIn graph these scenarios can be handled in different ways. My initial model simply ported data as string data to an activity - that is, I literally created an activity as it existed in database and added start time, end time, weeks, etc. as properties of the activity.\nThis worked to an extent but it was not optimised for calculating on time.\nI anticipated being able to answer questions and identify patterns like:\n\nstudents on programmes who do not have a lunch break (12:00-14:00)\nstudents who have X hours consecutive teaching without a break\nstudents who have X hours between teaching activities on any given date (e.g. early activity (09:00-10:00) and late finish (18:00-19:00))\n\nBeing able to answer these types of queries easily will help pinpoint where there may be timetable quality concerns.\nI considered and explored differnet options including:\n\nactivities with 52 week patterns (0000011101 etc.), start and end times\nactivities which are unique combinations of date, start, end, name\nactivities with date ranges, start and end times\nactivities linked to start time, end time and date nodes\n\nAt this point, I did remember the project’s scope and reminded myself that it is a proof of concept. I settled for option 2 - where each activity is a unique combination of start, end, date and name. This required transforming from sql - there is some loss of redundancy but calculations on times are more manageable (although not uncomplicated). Also being restricted by Neo4j’s free aura instance, there is a limit to nodes (200K) and relationships (400K) which I would hit quickly.\nMy suspicion is that creating separate nodes for start and end times and dates dynamically from the activity data would be the better model - but this will need to be future work with direct comparisons aganst specific use cases and insights.",
+    "crumbs": [
+      "Home",
+      "Graph Data Model",
+      "Graph Data Model for Timetabling"
+    ]
+  },
+  {
+    "objectID": "02-02-graph-timetable.html#appendix--",
+    "href": "02-02-graph-timetable.html#appendix--",
+    "title": "Graph Data Model for Timebling",
+    "section": "appendix -",
+    "text": "appendix -\n\nexample load\n\nAttempt 2 - load separately\n// remove all relationships\nMATCH ()-[r]-() \nDELETE r\nactivity-room\n// Activity-Room\nLOAD CSV WITH HEADERS FROM \"file:///phl-rel-room-activity.csv\" AS row3\nMATCH (r:Room {roomSplusID: row3.roomSplusID}) \nMATCH (a:Activity {activitySplusID: row3.activitySplusID})\nCREATE (a)-[:TAKES_PLACE_IN]-&gt;(r)\nactivity-staff\n// Staff-activity \nLOAD CSV WITH HEADERS FROM \"file:///phl-rel-staff-activity.csv\" AS row2\nMATCH (s:Staff {staffSplusID: row2.staffSplusID}) \nMATCH (a:Activity {activitySplusID: row2.activitySplusID})\nCREATE (s)-[:TEACHES_ON]-&gt;(a)\nactivity-student\n// Student-Activity\nLOAD CSV WITH HEADERS FROM \"file:///phl-rel-student-activity.csv\" AS row\nMATCH (s:Student {studentSplusID: row.studentSplusID}) \nMATCH (a:Activity {activitySplusID: row.activitySplusID})\nCREATE (s)-[:IS_ALLOCATED_TO]-&gt;(a)",
+    "crumbs": [
+      "Home",
+      "Graph Data Model",
+      "Graph Data Model for Timetabling"
+    ]
+  },
+  {
+    "objectID": "02-02-graph-timetable.html#an-iterative-approach",
+    "href": "02-02-graph-timetable.html#an-iterative-approach",
+    "title": "Graph Data Model for Timebling",
+    "section": "An Iterative Approach",
+    "text": "An Iterative Approach\nThe design of this graph data model follows an iterative process: design, build, test, review, and revise. Using Neo4j Desktop and an Aura cloud instance, the model began with a small scope, incorporating minimal nodes and properties. This iterative approach allows for flexibility and refinement based on real-world data and evolving requirements.",
+    "crumbs": [
+      "Home",
+      "Graph Data Model",
+      "Graph Data Model for Timetabling"
+    ]
+  },
+  {
+    "objectID": "02-02-graph-timetable.html#core-nodes-the-building-blocks",
+    "href": "02-02-graph-timetable.html#core-nodes-the-building-blocks",
+    "title": "Graph Data Model for Timebling",
+    "section": "Core Nodes: The Building Blocks",
+    "text": "Core Nodes: The Building Blocks\nAt its core, the timetable model revolves around four key entities represented as nodes:\n\n\n\nNode\nProperty\nDescription\nData Type\n\n\n\n\nStudent\nfirstName\nLegal first name\nstring\n\n\n\nlastName\nLegal last name\nstring\n\n\n\nstudentID\nUniversity identifier\ninteger\n\n\n\nsplusID\nTimetable URN\nstring\n\n\nLecturer\nfirstName\nFirst name\nstring\n\n\n\nlastName\nLast name\nstring\n\n\n\nstaffID\nUniversity identifier\ninteger\n\n\n\nsplusID\nTimetable URN\nstring\n\n\nRoom\nname\nRoom name\nstring\n\n\n\nsplusID\nTimetable URN\ninteger\n\n\nActivity\nname\nActivity name\nstring\n\n\n\ndescription\nActivity description\nstring\n\n\n\nstartTime\nScheduled start time\ndatetime\n\n\n\nendTime\nScheduled end time\ndatetime\n\n\n\ndate\nDate of activity\ndate\n\n\n\n\n\n\nCore Nodes and Properties",
+    "crumbs": [
+      "Home",
+      "Graph Data Model",
+      "Graph Data Model for Timetabling"
+    ]
+  },
+  {
+    "objectID": "02-02-graph-timetable.html#defining-relationships-connecting-the-dots",
+    "href": "02-02-graph-timetable.html#defining-relationships-connecting-the-dots",
+    "title": "Graph Data Model for Timebling",
+    "section": "Defining Relationships: Connecting the Dots",
+    "text": "Defining Relationships: Connecting the Dots\nThese core nodes are interconnected through relationships that reflect the dynamics of a timetable:\n\nStudent-[IS_ALLOCATED_TO]-&gt;Activity: Represents a student’s enrollment in a specific activity. Consider alternative relationships like “ATTENDS.”\nStaff teaches on Activity\n\nalternatives include lectures, leads, etc.\n\nActivity takes place in Room\n\nalternatives include scheduled in",
+    "crumbs": [
+      "Home",
+      "Graph Data Model",
+      "Graph Data Model for Timetabling"
+    ]
+  },
+  {
+    "objectID": "02-02-NOTES-graph-timetable.html",
+    "href": "02-02-NOTES-graph-timetable.html",
+    "title": "Graph Data Model for Timebling",
+    "section": "",
+    "text": "TODO\n\n\n\nDELETE\n2.3 Graph Data Model for Timetabling\nDetailed description of proposed graph model Node types (e.g., courses, instructors, rooms, time slots) Edge types (e.g., “scheduled_in”, “taught_by”) Properties for nodes and edges"
+  },
+  {
+    "objectID": "02-02-NOTES-graph-timetable.html#time",
+    "href": "02-02-NOTES-graph-timetable.html#time",
+    "title": "Graph Data Model for Timebling",
+    "section": "time",
+    "text": "time\nmodelling time in graph was challenging. my simple model above does take time into account other than to have startTime, endTime, date. In reality, an activity can take have the same start time, end time but be scheduled over several weeks - sometimes consecutive, sometimes non-consecutive weeks. How should this be represented? week patterns? date ranges? or separate activities? what happens when an activity is scheduled over several days but the same time over several weeks for example, Mondays and Wednesdays between 09:00-11:00 for ten weeks?\nthis is where normalisation (footnote) and different designs come into play. In a relational database, it is fairly easy to normalise the data into activities where start and end time and day(s) of week, staff, locations, students are the same for the week pattern. Any deviation will require a new ‘activity’ to accommodate the difference. Therefore there is an inevitable repetition of data.\nIn graph these scenarios can be handled in different ways. My initial model simply ported data as string data to an activity - that is, I literally created an activity as it existed in database and added start time, end time, weeks, etc. as properties of the activity.\nThis worked to an extent but it was not optimised for calculating on time.\nI anticipated being able to answer questions and identify patterns like:\n\nstudents on programmes who do not have a lunch break (12:00-14:00)\nstudents who have X hours consecutive teaching without a break\nstudents who have X hours between teaching activities on any given date (e.g. early activity (09:00-10:00) and late finish (18:00-19:00))\n\nBeing able to answer these types of queries easily will help pinpoint where there may be timetable quality concerns.\nI considered and explored differnet options including:\n\nactivities with 52 week patterns (0000011101 etc.), start and end times\nactivities which are unique combinations of date, start, end, name\nactivities with date ranges, start and end times\nactivities linked to start time, end time and date nodes\n\nAt this point, I did remember the project’s scope and reminded myself that it is a proof of concept. I settled for option 2 - where each activity is a unique combination of start, end, date and name. This required transforming from sql - there is some loss of redundancy but calculations on times are more manageable (although not uncomplicated). Also being restricted by Neo4j’s free aura instance, there is a limit to nodes (200K) and relationships (400K) which I would hit quickly.\nMy suspicion is that creating separate nodes for start and end times and dates dynamically from the activity data would be the better model - but this will need to be future work with direct comparisons aganst specific use cases and insights."
+  },
+  {
+    "objectID": "02-02-NOTES-graph-timetable.html#appendix--",
+    "href": "02-02-NOTES-graph-timetable.html#appendix--",
+    "title": "Graph Data Model for Timebling",
+    "section": "appendix -",
+    "text": "appendix -\n\nexample load\n\nAttempt 2 - load separately\n// remove all relationships\nMATCH ()-[r]-() \nDELETE r\nactivity-room\n// Activity-Room\nLOAD CSV WITH HEADERS FROM \"file:///phl-rel-room-activity.csv\" AS row3\nMATCH (r:Room {roomSplusID: row3.roomSplusID}) \nMATCH (a:Activity {activitySplusID: row3.activitySplusID})\nCREATE (a)-[:TAKES_PLACE_IN]-&gt;(r)\nactivity-staff\n// Staff-activity \nLOAD CSV WITH HEADERS FROM \"file:///phl-rel-staff-activity.csv\" AS row2\nMATCH (s:Staff {staffSplusID: row2.staffSplusID}) \nMATCH (a:Activity {activitySplusID: row2.activitySplusID})\nCREATE (s)-[:TEACHES_ON]-&gt;(a)\nactivity-student\n// Student-Activity\nLOAD CSV WITH HEADERS FROM \"file:///phl-rel-student-activity.csv\" AS row\nMATCH (s:Student {studentSplusID: row.studentSplusID}) \nMATCH (a:Activity {activitySplusID: row.activitySplusID})\nCREATE (s)-[:IS_ALLOCATED_TO]-&gt;(a)"
+  },
+  {
+    "objectID": "02-02-graph-timetable.html#early-insights-unveiling-basic-patterns",
+    "href": "02-02-graph-timetable.html#early-insights-unveiling-basic-patterns",
+    "title": "Graph Data Model for Timebling",
+    "section": "Early Insights: Unveiling Basic Patterns",
+    "text": "Early Insights: Unveiling Basic Patterns\nEven with this basic model, we can easily extract valuable insights:\n\nActivity Load: Identify staff with the highest number of teaching activities or total teaching hours.\nStudent Timetable Profiles: Calculate average hours per student or per programme to understand workload distribution.\n\nResource utilisation: Determine the busiest locations or times on campus based on activity scheduling.\nAnomaly detection: Identify students who have unexpected profiles or unusual combinations\n\n\nExamples\n\nBusiest location overall\nMATCH (r:Room)&lt;-[:TAKES_PLACE_IN]-(a:Activity)\nWITH r, sum(a.duration) AS totalDuration\nRETURN r.name AS Room, totalDuration\nORDER BY totalDuration DESC\nLIMIT 1\n\n\nBusiest location for a specific time\nMATCH (r:Room)&lt;-[:TAKES_PLACE_IN]-(a:Activity)\nWHERE a.startTime = \"1100\" \nWITH r, count(a) AS activityCount\nRETURN r.name AS Room, activityCount\nORDER BY activityCount DESC\nLIMIT 1 \n\n\nStudents with below/above average hours\n// Calculate program averages and standard deviations\nMATCH (s:Student)-[:IS_ALLOCATED_TO]-&gt;(a:Activity)\nWITH s.prog AS program, AVG(a.duration) AS avgDuration, STDEV(a.duration) AS stdDev\nGROUP BY program\n\n// Identify students outside the 10% margin \nMATCH (s:Student)-[:IS_ALLOCATED_TO]-&gt;(a:Activity)\nWITH s.studentID AS studentID, s.prog AS program, SUM(a.duration) AS totalDuration\nMATCH (avgData)\nWHERE avgData.program = program\nWITH studentID, program, totalDuration, avgData.avgDuration AS avgDuration, avgData.stdDev AS stdDev\nWHERE totalDuration &lt; avgDuration - (0.1 * avgDuration) OR totalDuration &gt; avgDuration + (0.1 * avgDuration)\nRETURN studentID, program, totalDuration, avgDuration, stdDev \nORDER BY program, totalDuration DESC",
+    "crumbs": [
+      "Home",
+      "Graph Data Model",
+      "Graph Data Model for Timetabling"
+    ]
+  },
+  {
+    "objectID": "02-02-graph-timetable.html#expanding-the-model-towards-richer-insights",
+    "href": "02-02-graph-timetable.html#expanding-the-model-towards-richer-insights",
+    "title": "Graph Data Model for Timebling",
+    "section": "Expanding the Model: Towards Richer Insights",
+    "text": "Expanding the Model: Towards Richer Insights\nThe true power of the graph model lies in its extensibility. Introducing additional nodes and properties allows for a more comprehensive representation and enables more sophisticated analysis.\n\nPotential Expansions:\n\nOrganizational Units: Include departments, colleges, or schools to analyze timetabling within organizational structures.\nCurriculum Data: Incorporate modules and programs to understand the interconnectedness of courses and student enrollment patterns.\nActivity Types: Differentiate between lectures, seminars, labs, etc., for a more granular analysis of teaching and learning activities.\nStudent Attributes: Add properties like “international student” or “first-year student” to explore potential disparities in timetabling.\n\n[Image Suggestion: Use your “v2.0-expanded-tt.png” to visualize the expanded graph model and its potential for deeper insights.]",
+    "crumbs": [
+      "Home",
+      "Graph Data Model",
+      "Graph Data Model for Timetabling"
+    ]
+  },
+  {
+    "objectID": "02-02-graph-timetable.html#the-challenge-of-time-finding-the-optimal-representation",
+    "href": "02-02-graph-timetable.html#the-challenge-of-time-finding-the-optimal-representation",
+    "title": "Graph Data Model for Timebling",
+    "section": "The Challenge of Time: Finding the Optimal Representation",
+    "text": "The Challenge of Time: Finding the Optimal Representation\nModeling time within a graph database presents a unique challenge. While your initial approach of representing time as properties on the Activity node works for basic analysis, it limits the ability to answer more nuanced questions related to time patterns and potential scheduling conflicts.\nYour exploration of alternative approaches highlights the flexibility of graph databases but also the need for careful consideration based on the desired analytical outcomes. Future work exploring dynamic node creation for start times, end times, and dates with direct performance comparisons against specific use cases will be valuable.\nThis section has established the foundation for a graph-based approach to university timetabling. The next section will delve into the data engineering pipeline required to populate and maintain this model, bridging the gap between raw data and insightful analysis.",
+    "crumbs": [
+      "Home",
+      "Graph Data Model",
+      "Graph Data Model for Timetabling"
     ]
   }
 ]
