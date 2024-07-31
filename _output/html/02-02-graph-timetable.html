@@ -29,7 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./02-03-challenge-oppos.html" rel="next">
+<link href="./02-03-graph-time.html" rel="next">
 <link href="./02-01-comparison.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -128,10 +128,6 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-graph-data-model">    
         <li>
-    <a class="dropdown-item" href="./02-00-graph-model.html">
- <span class="dropdown-text">Graph Data</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./02-01-comparison.html">
  <span class="dropdown-text">Graph vs Relational Data Models</span></a>
   </li>  
@@ -140,7 +136,11 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Graph Data Model for Timetabling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02-03-challenge-oppos.html">
+    <a class="dropdown-item" href="./02-03-graph-time.html">
+ <span class="dropdown-text">Graphing Time</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-04-challenge-oppos.html">
  <span class="dropdown-text">Opportunities and Challenges</span></a>
   </li>  
     </ul>
@@ -241,7 +241,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-graph-model.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-02-graph-timetable.html">Graph Data Model for Timetabling</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-01-comparison.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-02-graph-timetable.html">Graph Data Model for Timetabling</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -313,12 +313,6 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-00-graph-model.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Graph Data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./02-01-comparison.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graph vs Relational Data Models</span></a>
   </div>
@@ -331,7 +325,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-03-challenge-oppos.html" class="sidebar-item-text sidebar-link">
+  <a href="./02-03-graph-time.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graphing Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-04-challenge-oppos.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Opportunities and Challenges</span></a>
   </div>
 </li>
@@ -477,11 +477,17 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#an-iterative-approach" id="toc-an-iterative-approach" class="nav-link active" data-scroll-target="#an-iterative-approach">An Iterative Approach</a></li>
-  <li><a href="#core-nodes-the-building-blocks" id="toc-core-nodes-the-building-blocks" class="nav-link" data-scroll-target="#core-nodes-the-building-blocks">Core Nodes: The Building Blocks</a></li>
-  <li><a href="#defining-relationships-connecting-the-dots" id="toc-defining-relationships-connecting-the-dots" class="nav-link" data-scroll-target="#defining-relationships-connecting-the-dots">Defining Relationships: Connecting the Dots</a></li>
+  <li><a href="#core-nodes" id="toc-core-nodes" class="nav-link" data-scroll-target="#core-nodes">Core Nodes</a>
+  <ul class="collapse">
+  <li><a href="#the-building-blocks" id="toc-the-building-blocks" class="nav-link" data-scroll-target="#the-building-blocks">The Building Blocks</a></li>
+  </ul></li>
+  <li><a href="#defining-relationships" id="toc-defining-relationships" class="nav-link" data-scroll-target="#defining-relationships">Defining Relationships</a>
+  <ul class="collapse">
+  <li><a href="#connecting-the-dots" id="toc-connecting-the-dots" class="nav-link" data-scroll-target="#connecting-the-dots">Connecting the Dots</a></li>
+  </ul></li>
   <li><a href="#early-insights-unveiling-basic-patterns" id="toc-early-insights-unveiling-basic-patterns" class="nav-link" data-scroll-target="#early-insights-unveiling-basic-patterns">Early Insights: Unveiling Basic Patterns</a>
   <ul class="collapse">
-  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#example-code" id="toc-example-code" class="nav-link" data-scroll-target="#example-code">Example code</a></li>
   </ul></li>
   <li><a href="#expanding-the-model-towards-richer-insights" id="toc-expanding-the-model-towards-richer-insights" class="nav-link" data-scroll-target="#expanding-the-model-towards-richer-insights">Expanding the Model: Towards Richer Insights</a>
   <ul class="collapse">
@@ -506,7 +512,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-graph-model.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-02-graph-timetable.html">Graph Data Model for Timetabling</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-01-comparison.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-02-graph-timetable.html">Graph Data Model for Timetabling</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Graph Data Model for Timebling</h1>
 </div>
@@ -545,10 +551,12 @@ TODO
 <p>Having discussed some advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling. This model serves as the foundation for exploring graph-based analysis and its potential to unlock valuable insights.</p>
 <section id="an-iterative-approach" class="level2">
 <h2 class="anchored" data-anchor-id="an-iterative-approach">An Iterative Approach</h2>
-<p>The design of this graph data model was iterative: design, build, test, review, and revise -&gt; and repeat. Using Neo4j Desktop and an Aura cloud instance, the first model was small scope in scope, incorporating minimal nodes and properties. This iterative approach allows for flexibility and refinement based on real-world data and evolving requirements.</p>
+<p>The design of this graph data model was iterative: design, build, test, review, and revise -&gt; …and repeat. Using Neo4j Desktop and an Aura cloud instance, the first model was small scope in scope, incorporating minimal nodes and properties. This iterative approach allows for flexibility and refinement based on real-world data and evolving requirements.</p>
 </section>
-<section id="core-nodes-the-building-blocks" class="level2">
-<h2 class="anchored" data-anchor-id="core-nodes-the-building-blocks">Core Nodes: The Building Blocks</h2>
+<section id="core-nodes" class="level2">
+<h2 class="anchored" data-anchor-id="core-nodes">Core Nodes</h2>
+<section id="the-building-blocks" class="level3">
+<h3 class="anchored" data-anchor-id="the-building-blocks">The Building Blocks</h3>
 <p>At its core, the timetable model revolves around four key entities represented as nodes:</p>
 <div class="table">
 <table class="caption-top table">
@@ -656,38 +664,41 @@ TODO
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/poc1-import-interface.png" class="img-fluid figure-img"></p>
-<figcaption>Neo4j Interface showing basic nodes nad properties</figcaption>
+<p><img src="./images/poc1-import-interface.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>Neo4j Interface showing basic nodes and properties</figcaption>
 </figure>
 </div>
 </section>
-<section id="defining-relationships-connecting-the-dots" class="level2">
-<h2 class="anchored" data-anchor-id="defining-relationships-connecting-the-dots">Defining Relationships: Connecting the Dots</h2>
+</section>
+<section id="defining-relationships" class="level2">
+<h2 class="anchored" data-anchor-id="defining-relationships">Defining Relationships</h2>
+<section id="connecting-the-dots" class="level3">
+<h3 class="anchored" data-anchor-id="connecting-the-dots">Connecting the Dots</h3>
 <p>These core nodes are interconnected through relationships that reflect the dynamics of a timetable:</p>
 <ul>
-<li><strong>Student-[IS_ALLOCATED_TO]-&gt;Activity</strong>: Represents a student’s allocation to a specific activity.</li>
-<li><strong>Staff-[TEACHES_ON]-&gt;Activity</strong>: Indicates the staff member responsible for teaching an activity.</li>
-<li><strong>Activity-[TAKES_PLACE_IN]-&gt;Room</strong>: Connects an activity to the room where it is scheduled.</li>
+<li>Student-<strong>[IS_ALLOCATED_TO]</strong>-&gt;Activity: Represents a student’s allocation to a specific activity.</li>
+<li>Staff-<strong>[TEACHES_ON]</strong>-&gt;Activity: Indicates the staff member responsible for teaching an activity.</li>
+<li>Activity-<strong>[TAKES_PLACE_IN]</strong>-&gt;Room: Connects an activity to the room where it is scheduled.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/v1-core-nodes-rels-prop.png" class="img-fluid figure-img"></p>
+<p><img src="./images/v1-core-nodes-rels-prop.png" class="img-fluid figure-img" style="width:75.0%"></p>
 <figcaption>Core Nodes and Properties</figcaption>
 </figure>
 </div>
 </section>
+</section>
 <section id="early-insights-unveiling-basic-patterns" class="level2">
 <h2 class="anchored" data-anchor-id="early-insights-unveiling-basic-patterns">Early Insights: Unveiling Basic Patterns</h2>
-<p>Even with this basic model, we can easily extract valuable insights:</p>
+<p>Even with this basic model, we can easily extract valuable insights, for example:</p>
 <ul>
 <li><strong>Activity Load</strong>: Identify staff with the highest number of teaching activities or total teaching hours.</li>
-<li><strong>Student Timetable Profiles</strong>: Calculate average hours per student or per programme to understand workload distribution.<br>
-</li>
+<li><strong>Student Timetable Profiles</strong>: Calculate average hours per student or per programme to understand workload distribution.</li>
 <li><strong>Resource utilisation</strong>: Determine the busiest locations or times on campus based on activity scheduling.</li>
 <li><strong>Anomaly detection</strong>: Identify students who have unexpected profiles or unusual combinations</li>
 </ul>
-<section id="examples" class="level3">
-<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<section id="example-code" class="level3">
+<h3 class="anchored" data-anchor-id="example-code">Example code</h3>
 <section id="busiest-location-overall" class="level4">
 <h4 class="anchored" data-anchor-id="busiest-location-overall">Busiest location overall</h4>
 <pre class="{cypher}"><code>MATCH (r:Room)&lt;-[:TAKES_PLACE_IN]-(a:Activity)
@@ -699,7 +710,7 @@ LIMIT 1</code></pre>
 <section id="busiest-location-for-a-specific-time" class="level4">
 <h4 class="anchored" data-anchor-id="busiest-location-for-a-specific-time">Busiest location for a specific time</h4>
 <pre class="{cypher}"><code>MATCH (r:Room)&lt;-[:TAKES_PLACE_IN]-(a:Activity)
-WHERE a.startTime = "1100" 
+WHERE a.startTime = "11:00" 
 WITH r, count(a) AS activityCount
 RETURN r.name AS Room, activityCount
 ORDER BY activityCount DESC
@@ -709,18 +720,18 @@ LIMIT 1 </code></pre>
 <h4 class="anchored" data-anchor-id="students-with-belowabove-average-hours">Students with below/above average hours</h4>
 <pre class="{cypher}"><code>// Calculate program averages and standard deviations
 MATCH (s:Student)-[:IS_ALLOCATED_TO]-&gt;(a:Activity)
-WITH s.prog AS program, AVG(a.duration) AS avgDuration, STDEV(a.duration) AS stdDev
-GROUP BY program
+WITH s.prog AS programme, AVG(a.duration) AS avgDuration, STDEV(a.duration) AS stdDev
+GROUP BY programme
 
 // Identify students outside the 10% margin 
 MATCH (s:Student)-[:IS_ALLOCATED_TO]-&gt;(a:Activity)
 WITH s.studentID AS studentID, s.prog AS program, SUM(a.duration) AS totalDuration
 MATCH (avgData)
-WHERE avgData.program = program
-WITH studentID, program, totalDuration, avgData.avgDuration AS avgDuration, avgData.stdDev AS stdDev
+WHERE avgData.programme = programme
+WITH studentID, programme, totalDuration, avgData.avgDuration AS avgDuration, avgData.stdDev AS stdDev
 WHERE totalDuration &lt; avgDuration - (0.1 * avgDuration) OR totalDuration &gt; avgDuration + (0.1 * avgDuration)
-RETURN studentID, program, totalDuration, avgDuration, stdDev 
-ORDER BY program, totalDuration DESC</code></pre>
+RETURN studentID, programme, totalDuration, avgDuration, stdDev 
+ORDER BY programme, totalDuration DESC</code></pre>
 </section>
 </section>
 </section>
@@ -730,12 +741,18 @@ ORDER BY program, totalDuration DESC</code></pre>
 <section id="potential-expansions" class="level3">
 <h3 class="anchored" data-anchor-id="potential-expansions">Potential Expansions:</h3>
 <ul>
-<li>Organizational Units: Include departments, colleges, or schools to analyze timetabling within organizational structures.</li>
-<li>Curriculum Data: Incorporate modules and programs to understand the interconnectedness of courses and student enrollment patterns.</li>
-<li>Activity Types: Differentiate between lectures, seminars, labs, etc., for a more granular analysis of teaching and learning activities.</li>
-<li>Student Attributes: Add properties like “international student” or “first-year student” to explore potential disparities in timetabling.</li>
+<li><strong>Organisational Units</strong>: Include departments, colleges, or schools to analyse timetabling within organizational structures.</li>
+<li><strong>Curriculum Data</strong>: Incorporate modules and programmes to understand the interconnectedness of courses and student enrolment patterns.</li>
+<li><strong>Activity Types</strong>: Differentiate between lectures, seminars, labs, etc., for a more granular analysis of teaching and learning activities.</li>
+<li><strong>Activity Delivery</strong>: Understand how teaching delivery (virtual, in-person, hybrid, drop-in) is factored.</li>
+<li><strong>Student Attributes</strong>: Add properties like “international student” or “first-year student” to explore potential student clusters.</li>
 </ul>
-<p>[Image Suggestion: Use your “v2.0-expanded-tt.png” to visualize the expanded graph model and its potential for deeper insights.]</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/v2-expanded-tt-2.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>Example of Expanded Timetable Graph Model</figcaption>
+</figure>
+</div>
 </section>
 </section>
 <section id="the-challenge-of-time-finding-the-optimal-representation" class="level2">
@@ -1606,8 +1623,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-03-challenge-oppos.html" class="pagination-link" aria-label="Opportunities and Challenges">
-        <span class="nav-page-text">Opportunities and Challenges</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./02-03-graph-time.html" class="pagination-link" aria-label="Graphing Time">
+        <span class="nav-page-text">Graphing Time</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -123,14 +123,11 @@ The true power of the graph model lies in its extensibility. Introducing additio
 
 ![Example of Expanded Timetable Graph Model](./images/v2-expanded-tt-2.png){width=75%}
 
-## The Challenge of Time: Finding the Optimal Representation
 
-Modeling time within a graph database presents a unique challenge. While your initial approach of representing time as properties on the Activity node works for basic analysis, it limits the ability to answer more nuanced questions related to time patterns and potential scheduling conflicts.
 
-Your exploration of alternative approaches highlights the flexibility of graph databases but also the need for careful consideration based on the desired analytical outcomes. Future work exploring dynamic node creation for start times, end times, and dates with direct performance comparisons against specific use cases will be valuable.
 
-This section has established the foundation for a graph-based approach to university timetabling. The next section will delve into the data engineering pipeline required to populate and maintain this model, bridging the gap between raw data and insightful analysis.
 
+## NOTES TO BE DELETED
 # approach
 
 iterative: design, build, test, review, revise and back to design Used: neo4j desktop and cloud instance started small (data wise -\> me and complexity (minimal nodes, minimal properties) things went wrong - many examples of wrong nodes, multiple relationships or more frustratingly - failure and error codes
