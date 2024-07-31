@@ -67,6 +67,8 @@ Sanchez, C.A. (2015) An analytics based architecture and methodology for collabo
 
 Scifo, E. (2023) Graph Data Science with Neo4j [online]. [Accessed 4 November 2023].
 
+Sokolova, Marina V., Francisco J. Gómez, and Larisa N. Borisoglebskaya. ‘Migration from an SQL to a Hybrid SQL/NoSQL Data Model’. Journal of Management Analytics 7, no. 1 (March 2020): 1–11. https://doi.org/10.1080/23270012.2019.1700401.
+
 Thomas, J.J., Khader, A.T. and Belaton, B. (2009) Visualization Techniques on the Examination Timetabling Pre-processing Data. In: Imaging and Visualization 2009 Sixth International Conference on Computer Graphics [online]Imaging and Visualization 2009 Sixth International Conference on Computer Graphics. pp. 454–458. Available from: https://ieeexplore.ieee.org/document/5298764 [Accessed 25 January 2024].
 
 Webber, J., Eifrem, E. and Robinson, I. (2013) Graph Databases [online]. [Accessed 4 November 2023].

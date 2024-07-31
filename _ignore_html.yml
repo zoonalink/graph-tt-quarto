@@ -37,13 +37,15 @@ website:
             text: Project Aims and Scope
       - text: Graph Data Model
         menu: 
-          - href: 02-00-graph-model.qmd
-            text: Graph Data
+          #- href: 02-00-graph-model.qmd
+          #  text: Graph Data
           - href: 02-01-comparison.qmd
             text: Graph vs Relational Data Models
           - href: 02-02-graph-timetable.qmd
             text: Graph Data Model for Timetabling
-          - href: 02-03-challenge-oppos.qmd
+          - href: 02-03-graph-time.qmd
+            text: Graphing Time
+          - href: 02-04-challenge-oppos.qmd
             text: Opportunities and Challenges
       - text: "Data Pipeline"
         menu:
@@ -119,13 +121,15 @@ website:
             text: Project Aims and Scope
       - section: "Graph Data Model" 
         contents:
-          - href: 02-00-graph-model.qmd
-            text: Graph Data
+          #- href: 02-00-graph-model.qmd
+          #  text: Graph Data
           - href: 02-01-comparison.qmd
             text: Graph vs Relational Data Models
           - href: 02-02-graph-timetable.qmd
             text: Graph Data Model for Timetabling
-          - href: 02-03-challenge-oppos.qmd
+          - href: 02-03-graph-time.qmd
+            text: Graphing Time
+          - href: 02-04-challenge-oppos.qmd
             text: Opportunities and Challenges
       - section: "Data Pipeline"
         contents:

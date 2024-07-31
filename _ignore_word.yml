@@ -11,10 +11,11 @@ book:
     - 01-02-background.qmd
     - 01-03-good-timetable.qmd
     - 01-04-project.qmd
-    - 02-00-graph-model.qmd
+    #- 02-00-graph-model.qmd
     - 02-01-comparison.qmd
     - 02-02-graph-timetable.qmd
-    - 02-03-challenge-oppos.qmd
+    - 02-03-graph-time.qmd
+    - 02-04-challenge-oppos.qmd
     - 03-01-overview.qmd
     - 03-02-approach.qmd
     - 03-03-config.qmd

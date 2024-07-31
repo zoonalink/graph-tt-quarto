@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>What is a “good” timetable? –  </title>
+<title>Opportunities and Challenges –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01-04-project.html" rel="next">
-<link href="./01-02-background.html" rel="prev">
+<link href="./03-01-overview.html" rel="next">
+<link href="./02-03-graph-time.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -42,9 +42,6 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -143,7 +140,11 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Graph Data Model for Timetabling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02-03-challenge-oppos.html">
+    <a class="dropdown-item" href="./02-03-graph-time.html">
+ <span class="dropdown-text">Graphing Time</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-04-challenge-oppos.html">
  <span class="dropdown-text">Opportunities and Challenges</span></a>
   </li>  
     </ul>
@@ -244,7 +245,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-01a-introduction.html">Introduction</a></li><li class="breadcrumb-item"><a href="./01-03-good-timetable.html">What is a Good Timetable?</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-graph-model.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-04-challenge-oppos.html">Opportunities and Challenges</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -272,13 +273,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text">Introduction</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01-01a-introduction.html" class="sidebar-item-text sidebar-link">
@@ -293,7 +294,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-03-good-timetable.html" class="sidebar-item-text sidebar-link active">
+  <a href="./01-03-good-timetable.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">What is a Good Timetable?</span></a>
   </div>
 </li>
@@ -307,13 +308,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Graph Data Model</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-00-graph-model.html" class="sidebar-item-text sidebar-link">
@@ -334,7 +335,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-03-challenge-oppos.html" class="sidebar-item-text sidebar-link">
+  <a href="./02-03-graph-time.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graphing Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-04-challenge-oppos.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Opportunities and Challenges</span></a>
   </div>
 </li>
@@ -479,16 +486,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#examples" id="toc-examples" class="nav-link active" data-scroll-target="#examples">Examples</a></li>
+  <li><a href="#opportunities" id="toc-opportunities" class="nav-link active" data-scroll-target="#opportunities">Opportunities</a></li>
+  <li><a href="#challenges" id="toc-challenges" class="nav-link" data-scroll-target="#challenges">Challenges</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-01a-introduction.html">Introduction</a></li><li class="breadcrumb-item"><a href="./01-03-good-timetable.html">What is a Good Timetable?</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-graph-model.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-04-challenge-oppos.html">Opportunities and Challenges</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">What is a “good” timetable?</h1>
+<h1 class="title">Opportunities and Challenges</h1>
 </div>
 
 
@@ -505,66 +513,69 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-TODO
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="opportunities" class="level2">
+<h2 class="anchored" data-anchor-id="opportunities">Opportunities</h2>
+<ol type="1">
+<li>Unlocking Hidden Patterns:</li>
+</ol>
 <ul>
-<li>add dowland, norman to references</li>
+<li>Example: “By analyzing student enrollment patterns in relation to course times and locations, we might uncover commuting difficulties that impact attendance, informing future scheduling.”</li>
+<li>General Point: Graphs excel at revealing patterns across relationships, not just within isolated data points.</li>
 </ul>
-</div>
-</div>
-<p>One of the most challenging aspects of university timetabling is defining what constitutes a “good” timetable. Despite best efforts, it is virtually impossible to find universal satisfaction with a university timetable. The quality of a timetable is inherently subjective and varies among stakeholders depending on their preferences and competing demands on their time.</p>
-<p>Based on surveys across various institutions, students typically prioritise (Dowland, 2018; Norman, 2022):</p>
+<ol start="2" type="1">
+<li>Stakeholder-Centric Analysis:</li>
+</ol>
 <ul>
-<li>A clash-free timetable</li>
-<li>Early release of timetables</li>
-<li>Clear and accurate information</li>
-<li>Full-year timetable availability</li>
-<li>Minimal changes after publication</li>
-<li>Effective communication of any changes</li>
-<li>Balanced distribution of classes</li>
+<li>Example: “We can query the graph to assess how well a timetable meets faculty preferences for teaching times while also considering student travel burdens, revealing potential areas for improvement.”</li>
+<li>General Point: Graphs can model multiple perspectives simultaneously, unlike traditional approaches that often focus on one optimization goal at a time.</li>
 </ul>
-<p>However, individual stakeholders often have conflicting priorities:</p>
+<ol start="3" type="1">
+<li>What-If Scenarios and Simulations:</li>
+</ol>
 <ul>
-<li>Students may prefer learning times that align with their personal commitments such as part-time employment or travel arrangements.</li>
-<li>Academic staff may prefer teaching times that align with their research or personal commitments.</li>
-<li>Administrators might focus on efficient resource utilisation and institutional sustainability.</li>
-<li>Organisational units may have specific needs for specialised rooms or equipment.</li>
+<li>Example: “Adding hypothetical courses or adjusting room capacities in the graph allows us to simulate the impact on existing timetables before implementation, aiding decision-making.”</li>
+<li>General Point: Graphs’ flexibility makes them well-suited for modeling change, not just representing static data.</li>
 </ul>
-<p>This divergence in preferences and the complex interplay of constraints make it challenging to define and achieve a universally “good” timetable (Lindahl et al., 2018). It is this complexity that sets the stage for ongoing research and improvement in the field of university timetabling.</p>
-<section id="examples" class="level2">
-<h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<p><a href="./images/timetable-week-full.png" class="lightbox" data-glightbox="description: .lightbox-desc-1;" data-gallery="gallery"><img src="./images/timetable-week-full.png" class="gallery-image img-fluid"></a></p>
-<p><a href="./images/timetable-week-mixed.png" class="lightbox" data-glightbox="description: .lightbox-desc-2;" data-gallery="gallery"><img src="./images/timetable-week-mixed.png" class="gallery-image img-fluid"></a></p>
-<p><a href="./images/timetable-week-ns.png" class="lightbox" data-glightbox="description: .lightbox-desc-3;" data-gallery="gallery"><img src="./images/timetable-week-ns.png" class="gallery-image img-fluid"></a></p>
-<p><br> <br></p>
-<p><strong>Consider the above timetables:</strong></p>
+<ol start="4" type="1">
+<li>Visual Exploration and Communication:</li>
+</ol>
 <ul>
-<li>The first timetable is evenly spread over five days. Tuesday afternoons are heavily scheduled; Fridays have one two-hour activity over lunch.</li>
-<li>The second timetable has two days free of activities (Wednesday and Thursday). Monday has a single activity at 18:00-19:00.</li>
-<li>The third timetable has activities on five days. There are large gaps between activities on Tuesday and Wednesday.</li>
+<li>Example: “Presenting graph visualizations to stakeholders (even non-technical ones) can foster shared understanding of timetable complexities and potential trade-offs, leading to better buy-in.”</li>
+<li>General Point: While not unique to graphs, they lend themselves well to visual tools, which can be powerful for communication beyond raw numbers.</li>
 </ul>
-<p>Which timetable is better? Is any of them a ‘good’ timetable? The answer is <em>it depends!</em> or <em>none of them!</em></p>
+</section>
+<section id="challenges" class="level2">
+<h2 class="anchored" data-anchor-id="challenges">Challenges</h2>
+<ol type="1">
+<li>Data Migration and Integration:</li>
+</ol>
+<ul>
+<li>Point: Moving from an existing relational system to a graph database requires careful planning and potential data transformation. This can be a significant upfront effort, especially for large universities.</li>
+</ul>
+<ol start="2" type="1">
+<li>Tooling and Expertise:</li>
+</ol>
+<ul>
+<li>Point: While maturing, the graph database ecosystem might have a steeper learning curve than traditional SQL-based tools. Finding staff with the right expertise could be a consideration.</li>
+</ul>
+<ol start="3" type="1">
+<li>Performance at Scale:</li>
+</ol>
+<ul>
+<li>Point: While generally efficient, graph database performance depends on query complexity and dataset size. For extremely large universities, careful optimization and potentially specialized graph database solutions might be needed.</li>
+</ul>
+<ol start="4" type="1">
+<li>“Soft” Constraint Modeling:</li>
+</ol>
+<ul>
+<li>Point: While graphs excel at representing relationships, quantifying subjective preferences (e.g., how much a student dislikes a late evening class) can still be challenging and might require combining graph analysis with other techniques.</li>
+</ul>
+<p>2.4 Data Augmentation Opportunities</p>
+<p>Room properties example (latitude, longitude) Potential for additional data integration (curriculum, student outcomes, etc.) Discussion on how graph model facilitates data enrichment</p>
+<p>2.5 Challenges and Considerations</p>
+<p>Potential limitations of the graph approach Data migration considerations Performance considerations for large-scale timetabling systems</p>
 
 
-<div class="hidden" aria-hidden="true">
-<div class="glightbox-desc lightbox-desc-1">
-<p>Evenly spread over 5 days. &nbsp;Tuesday afternoons are heavily scheduled; Fridays have one two-hour activity over lunch.</p>
-</div>
-<div class="glightbox-desc lightbox-desc-2">
-<p>Two days free of activity (Wednesday and Thursday). &nbsp;Monday has a single activity at 18:00-19:00</p>
-</div>
-<div class="glightbox-desc lightbox-desc-3">
-<p>Activities on five days. &nbsp;There are large gaps between activities on Tuesday and Wednesday.</p>
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->
@@ -1134,13 +1145,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="./01-02-background.html" class="pagination-link" aria-label="Background and Motivation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Background and Motivation</span>
+      <a href="./02-03-graph-time.html" class="pagination-link" aria-label="Graphing Time">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Graphing Time</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-04-project.html" class="pagination-link" aria-label="Project Aims and Scope">
-        <span class="nav-page-text">Project Aims and Scope</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./03-01-overview.html" class="pagination-link" aria-label="Overview">
+        <span class="nav-page-text">Overview</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1158,38 +1169,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","loop":false,"openEffect":"fade","selector":".lightbox","closeEffect":"fade"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 

@@ -479,6 +479,15 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#an-iterative-approach" id="toc-an-iterative-approach" class="nav-link active" data-scroll-target="#an-iterative-approach">An Iterative Approach</a></li>
   <li><a href="#core-nodes-the-building-blocks" id="toc-core-nodes-the-building-blocks" class="nav-link" data-scroll-target="#core-nodes-the-building-blocks">Core Nodes: The Building Blocks</a></li>
   <li><a href="#defining-relationships-connecting-the-dots" id="toc-defining-relationships-connecting-the-dots" class="nav-link" data-scroll-target="#defining-relationships-connecting-the-dots">Defining Relationships: Connecting the Dots</a></li>
+  <li><a href="#early-insights-unveiling-basic-patterns" id="toc-early-insights-unveiling-basic-patterns" class="nav-link" data-scroll-target="#early-insights-unveiling-basic-patterns">Early Insights: Unveiling Basic Patterns</a>
+  <ul class="collapse">
+  <li><a href="#examples" id="toc-examples" class="nav-link" data-scroll-target="#examples">Examples</a></li>
+  </ul></li>
+  <li><a href="#expanding-the-model-towards-richer-insights" id="toc-expanding-the-model-towards-richer-insights" class="nav-link" data-scroll-target="#expanding-the-model-towards-richer-insights">Expanding the Model: Towards Richer Insights</a>
+  <ul class="collapse">
+  <li><a href="#potential-expansions" id="toc-potential-expansions" class="nav-link" data-scroll-target="#potential-expansions">Potential Expansions:</a></li>
+  </ul></li>
+  <li><a href="#the-challenge-of-time-finding-the-optimal-representation" id="toc-the-challenge-of-time-finding-the-optimal-representation" class="nav-link" data-scroll-target="#the-challenge-of-time-finding-the-optimal-representation">The Challenge of Time: Finding the Optimal Representation</a></li>
   <li><a href="#approach" id="toc-approach" class="nav-link" data-scroll-target="#approach">approach</a></li>
   <li><a href="#nodes" id="toc-nodes" class="nav-link" data-scroll-target="#nodes">nodes</a></li>
   <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">properties</a></li>
@@ -527,19 +536,21 @@ TODO
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>write up section<br>
-</li>
+<li>write up section - review notes</li>
+<li>new page of difficulties with time - see poc2 time</li>
+<li>appendix with queries (queries.ipynb (graph-project.ipynb)) - copy all queries onto one appendix see graph-tt</li>
 </ul>
 </div>
 </div>
-<p>Having discussed some advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling. This model serves as the foundation for our exploration of graph-based analysis and its potential to unlock valuable insights.</p>
+<p>Having discussed some advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling. This model serves as the foundation for exploring graph-based analysis and its potential to unlock valuable insights.</p>
 <section id="an-iterative-approach" class="level2">
 <h2 class="anchored" data-anchor-id="an-iterative-approach">An Iterative Approach</h2>
-<p>The design of this graph data model follows an iterative process: design, build, test, review, and revise. Using Neo4j Desktop and an Aura cloud instance, the model began with a small scope, incorporating minimal nodes and properties. This iterative approach allows for flexibility and refinement based on real-world data and evolving requirements.</p>
+<p>The design of this graph data model was iterative: design, build, test, review, and revise -&gt; and repeat. Using Neo4j Desktop and an Aura cloud instance, the first model was small scope in scope, incorporating minimal nodes and properties. This iterative approach allows for flexibility and refinement based on real-world data and evolving requirements.</p>
 </section>
 <section id="core-nodes-the-building-blocks" class="level2">
 <h2 class="anchored" data-anchor-id="core-nodes-the-building-blocks">Core Nodes: The Building Blocks</h2>
 <p>At its core, the timetable model revolves around four key entities represented as nodes:</p>
+<div class="table">
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -642,10 +653,11 @@ TODO
 </tr>
 </tbody>
 </table>
+</div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/v1-core-nodes-rels-prop.png" class="img-fluid figure-img"></p>
-<figcaption>Core Nodes and Properties</figcaption>
+<p><img src="./images/poc1-import-interface.png" class="img-fluid figure-img"></p>
+<figcaption>Neo4j Interface showing basic nodes nad properties</figcaption>
 </figure>
 </div>
 </section>
@@ -653,16 +665,84 @@ TODO
 <h2 class="anchored" data-anchor-id="defining-relationships-connecting-the-dots">Defining Relationships: Connecting the Dots</h2>
 <p>These core nodes are interconnected through relationships that reflect the dynamics of a timetable:</p>
 <ul>
-<li><p><strong><code>Student</code>-[IS_ALLOCATED_TO]-&gt;<code>Activity</code></strong>: Represents a student’s enrollment in a specific activity. Consider alternative relationships like “ATTENDS.”</p></li>
-<li><p><code>Staff</code> <em>teaches on</em> <code>Activity</code></p>
-<ul>
-<li>alternatives include <em>lectures</em>, <em>leads</em>, etc.</li>
-</ul></li>
-<li><p><code>Activity</code> <em>takes place in</em> <code>Room</code></p>
-<ul>
-<li>alternatives include <em>scheduled in</em></li>
-</ul></li>
+<li><strong>Student-[IS_ALLOCATED_TO]-&gt;Activity</strong>: Represents a student’s allocation to a specific activity.</li>
+<li><strong>Staff-[TEACHES_ON]-&gt;Activity</strong>: Indicates the staff member responsible for teaching an activity.</li>
+<li><strong>Activity-[TAKES_PLACE_IN]-&gt;Room</strong>: Connects an activity to the room where it is scheduled.</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/v1-core-nodes-rels-prop.png" class="img-fluid figure-img"></p>
+<figcaption>Core Nodes and Properties</figcaption>
+</figure>
+</div>
+</section>
+<section id="early-insights-unveiling-basic-patterns" class="level2">
+<h2 class="anchored" data-anchor-id="early-insights-unveiling-basic-patterns">Early Insights: Unveiling Basic Patterns</h2>
+<p>Even with this basic model, we can easily extract valuable insights:</p>
+<ul>
+<li><strong>Activity Load</strong>: Identify staff with the highest number of teaching activities or total teaching hours.</li>
+<li><strong>Student Timetable Profiles</strong>: Calculate average hours per student or per programme to understand workload distribution.<br>
+</li>
+<li><strong>Resource utilisation</strong>: Determine the busiest locations or times on campus based on activity scheduling.</li>
+<li><strong>Anomaly detection</strong>: Identify students who have unexpected profiles or unusual combinations</li>
+</ul>
+<section id="examples" class="level3">
+<h3 class="anchored" data-anchor-id="examples">Examples</h3>
+<section id="busiest-location-overall" class="level4">
+<h4 class="anchored" data-anchor-id="busiest-location-overall">Busiest location overall</h4>
+<pre class="{cypher}"><code>MATCH (r:Room)&lt;-[:TAKES_PLACE_IN]-(a:Activity)
+WITH r, sum(a.duration) AS totalDuration
+RETURN r.name AS Room, totalDuration
+ORDER BY totalDuration DESC
+LIMIT 1</code></pre>
+</section>
+<section id="busiest-location-for-a-specific-time" class="level4">
+<h4 class="anchored" data-anchor-id="busiest-location-for-a-specific-time">Busiest location for a specific time</h4>
+<pre class="{cypher}"><code>MATCH (r:Room)&lt;-[:TAKES_PLACE_IN]-(a:Activity)
+WHERE a.startTime = "1100" 
+WITH r, count(a) AS activityCount
+RETURN r.name AS Room, activityCount
+ORDER BY activityCount DESC
+LIMIT 1 </code></pre>
+</section>
+<section id="students-with-belowabove-average-hours" class="level4">
+<h4 class="anchored" data-anchor-id="students-with-belowabove-average-hours">Students with below/above average hours</h4>
+<pre class="{cypher}"><code>// Calculate program averages and standard deviations
+MATCH (s:Student)-[:IS_ALLOCATED_TO]-&gt;(a:Activity)
+WITH s.prog AS program, AVG(a.duration) AS avgDuration, STDEV(a.duration) AS stdDev
+GROUP BY program
+
+// Identify students outside the 10% margin 
+MATCH (s:Student)-[:IS_ALLOCATED_TO]-&gt;(a:Activity)
+WITH s.studentID AS studentID, s.prog AS program, SUM(a.duration) AS totalDuration
+MATCH (avgData)
+WHERE avgData.program = program
+WITH studentID, program, totalDuration, avgData.avgDuration AS avgDuration, avgData.stdDev AS stdDev
+WHERE totalDuration &lt; avgDuration - (0.1 * avgDuration) OR totalDuration &gt; avgDuration + (0.1 * avgDuration)
+RETURN studentID, program, totalDuration, avgDuration, stdDev 
+ORDER BY program, totalDuration DESC</code></pre>
+</section>
+</section>
+</section>
+<section id="expanding-the-model-towards-richer-insights" class="level2">
+<h2 class="anchored" data-anchor-id="expanding-the-model-towards-richer-insights">Expanding the Model: Towards Richer Insights</h2>
+<p>The true power of the graph model lies in its extensibility. Introducing additional nodes and properties allows for a more comprehensive representation and enables more sophisticated analysis.</p>
+<section id="potential-expansions" class="level3">
+<h3 class="anchored" data-anchor-id="potential-expansions">Potential Expansions:</h3>
+<ul>
+<li>Organizational Units: Include departments, colleges, or schools to analyze timetabling within organizational structures.</li>
+<li>Curriculum Data: Incorporate modules and programs to understand the interconnectedness of courses and student enrollment patterns.</li>
+<li>Activity Types: Differentiate between lectures, seminars, labs, etc., for a more granular analysis of teaching and learning activities.</li>
+<li>Student Attributes: Add properties like “international student” or “first-year student” to explore potential disparities in timetabling.</li>
+</ul>
+<p>[Image Suggestion: Use your “v2.0-expanded-tt.png” to visualize the expanded graph model and its potential for deeper insights.]</p>
+</section>
+</section>
+<section id="the-challenge-of-time-finding-the-optimal-representation" class="level2">
+<h2 class="anchored" data-anchor-id="the-challenge-of-time-finding-the-optimal-representation">The Challenge of Time: Finding the Optimal Representation</h2>
+<p>Modeling time within a graph database presents a unique challenge. While your initial approach of representing time as properties on the Activity node works for basic analysis, it limits the ability to answer more nuanced questions related to time patterns and potential scheduling conflicts.</p>
+<p>Your exploration of alternative approaches highlights the flexibility of graph databases but also the need for careful consideration based on the desired analytical outcomes. Future work exploring dynamic node creation for start times, end times, and dates with direct performance comparisons against specific use cases will be valuable.</p>
+<p>This section has established the foundation for a graph-based approach to university timetabling. The next section will delve into the data engineering pipeline required to populate and maintain this model, bridging the gap between raw data and insightful analysis.</p>
 </section>
 <section id="approach" class="level1">
 <h1>approach</h1>

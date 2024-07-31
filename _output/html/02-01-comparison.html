@@ -140,7 +140,11 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Graph Data Model for Timetabling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02-03-challenge-oppos.html">
+    <a class="dropdown-item" href="./02-03-graph-time.html">
+ <span class="dropdown-text">Graphing Time</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-04-challenge-oppos.html">
  <span class="dropdown-text">Opportunities and Challenges</span></a>
   </li>  
     </ul>
@@ -331,7 +335,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-03-challenge-oppos.html" class="sidebar-item-text sidebar-link">
+  <a href="./02-03-graph-time.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graphing Time</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-04-challenge-oppos.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Opportunities and Challenges</span></a>
   </div>
 </li>
@@ -476,8 +486,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#relational-models-tables-joins-and-the-limits-of-interconnectedness" id="toc-relational-models-tables-joins-and-the-limits-of-interconnectedness" class="nav-link active" data-scroll-target="#relational-models-tables-joins-and-the-limits-of-interconnectedness">Relational Models: Tables, Joins and the Limits of Interconnectedness</a></li>
-  <li><a href="#graph-models-embracing-interconnectedness" id="toc-graph-models-embracing-interconnectedness" class="nav-link" data-scroll-target="#graph-models-embracing-interconnectedness">Graph Models: Embracing interconnectedness</a></li>
+  <li><a href="#relational-models" id="toc-relational-models" class="nav-link active" data-scroll-target="#relational-models">Relational Models</a>
+  <ul class="collapse">
+  <li><a href="#tables-joins-and-the-limits-of-interconnectedness" id="toc-tables-joins-and-the-limits-of-interconnectedness" class="nav-link" data-scroll-target="#tables-joins-and-the-limits-of-interconnectedness">Tables, Joins and the Limits of Interconnectedness</a></li>
+  </ul></li>
+  <li><a href="#graph-models" id="toc-graph-models" class="nav-link" data-scroll-target="#graph-models">Graph Models</a>
+  <ul class="collapse">
+  <li><a href="#embracing-interconnectedness" id="toc-embracing-interconnectedness" class="nav-link" data-scroll-target="#embracing-interconnectedness">Embracing interconnectedness</a></li>
+  </ul></li>
   <li><a href="#key-differences-and-implications" id="toc-key-differences-and-implications" class="nav-link" data-scroll-target="#key-differences-and-implications">Key Differences and Implications</a></li>
   </ul>
 </nav>
@@ -522,168 +538,26 @@ TODO
 </ul>
 </div>
 </div>
-<section id="relational-models-tables-joins-and-the-limits-of-interconnectedness" class="level2">
-<h2 class="anchored" data-anchor-id="relational-models-tables-joins-and-the-limits-of-interconnectedness">Relational Models: Tables, Joins and the Limits of Interconnectedness</h2>
-<p>Relational databases, using SQL as their query language, have long been the go-to for managing data, including timetabling information. They structure data into tables, where rows represent entities (like rooms, staff, or students) and columns represent their attributes (name, capacity, email, etc.). Relationships between these entities are established through foreign keys, forming links between tables. This often involves intermediary “relationship” tables to handle the many-to-many nature of timetabling data (e.g., a student attends many activities, and an activity has many students).</p>
+<section id="relational-models" class="level2">
+<h2 class="anchored" data-anchor-id="relational-models">Relational Models</h2>
+<section id="tables-joins-and-the-limits-of-interconnectedness" class="level3">
+<h3 class="anchored" data-anchor-id="tables-joins-and-the-limits-of-interconnectedness">Tables, Joins and the Limits of Interconnectedness</h3>
+<p>Relational databases, using SQL as their query language, have long been the go-to for managing data, including timetabling information. They structure data into tables, where rows represent entities (like rooms, staff, or students) and columns represent their attributes (name, capacity, email, etc.). Relationships between these entities are established through foreign keys, forming links between tables. This often involves intermediary “relationship” tables to handle the many-to-many nature of timetabling data (e.g., a student attends many activities, and an activity has many students). (Khan et al., 2023;Sokolova, Gómez and Borisoglebskaya, 2020)</p>
 <p>While robust and well-understood, relational databases start to show their limitations when dealing with the highly interconnected nature of timetables:</p>
 <ul>
 <li><p><strong>Join Complexity</strong>: Even seemingly simple queries, like “find students attending a specific lecturer’s class in a particular building,” require joining multiple tables. As queries become more nuanced, the number of joins increases, often impacting performance, especially with large datasets.</p></li>
 <li><p><strong>Rigidity</strong>: Relational databases rely on a predefined schema, making them less adaptable to evolving needs. Adding new entities or relationships, a common occurrence in dynamic timetabling environments, often requires schema modifications, potentially disrupting existing queries and applications.</p></li>
 <li><div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/RDB-2024-07-30T14_42_38.png" class="img-fluid figure-img"></p>
+<p><img src="./images/RDB-small-light.png" class="img-fluid figure-img"></p>
 <figcaption>Example Simple Entity Relationship Diagram</figcaption>
 </figure>
 </div></li>
 </ul>
-<p><img src="./images/RDB-edit.png" class="img-fluid"></p>
-<div class="cell" data-layout-align="default">
-<div class="cell-output-display">
-<div>
-<p></p><figure class="figure"><p></p>
-<div>
-<svg width="672" height="480" viewbox="0.00 0.00 404.19 263.60" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
-<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 259.6)">
-<title>timetable</title>
-<polygon fill="white" stroke="transparent" points="-4,4 -4,-259.6 400.19,-259.6 400.19,4 -4,4"></polygon>
-<!-- ACTIVITY -->
-<g id="node1" class="node">
-<title>ACTIVITY</title>
-<polygon fill="none" stroke="black" points="96.26,-81.5 96.26,-255.1 178.35,-255.1 178.35,-81.5 96.26,-81.5"></polygon>
-<text text-anchor="middle" x="137.31" y="-238.5" font-family="Times,serif" font-size="14.00">ACTIVITY</text>
-<polyline fill="none" stroke="black" points="96.26,-230.3 178.35,-230.3 "></polyline>
-<text text-anchor="start" x="104.26" y="-213.7" font-family="Times,serif" font-size="14.00">db_id (PK)</text>
-<polyline fill="none" stroke="black" points="96.26,-205.5 178.35,-205.5 "></polyline>
-<text text-anchor="start" x="104.26" y="-188.9" font-family="Times,serif" font-size="14.00">name </text>
-<polyline fill="none" stroke="black" points="96.26,-180.7 178.35,-180.7 "></polyline>
-<text text-anchor="start" x="104.26" y="-164.1" font-family="Times,serif" font-size="14.00">start_time</text>
-<polyline fill="none" stroke="black" points="96.26,-155.9 178.35,-155.9 "></polyline>
-<text text-anchor="start" x="104.26" y="-139.3" font-family="Times,serif" font-size="14.00">end_time</text>
-<polyline fill="none" stroke="black" points="96.26,-131.1 178.35,-131.1 "></polyline>
-<text text-anchor="start" x="104.26" y="-114.5" font-family="Times,serif" font-size="14.00">duration</text>
-<polyline fill="none" stroke="black" points="96.26,-106.3 178.35,-106.3 "></polyline>
-<text text-anchor="middle" x="137.31" y="-89.7" font-family="Times,serif" font-size="14.00">...</text>
-</g>
-<!-- STAFF_ACTIVITY -->
-<g id="node5" class="node">
-<title>STAFF_ACTIVITY</title>
-<polygon fill="none" stroke="black" points="24.19,-0.5 24.19,-44.5 122.42,-44.5 122.42,-0.5 24.19,-0.5"></polygon>
-<text text-anchor="middle" x="73.31" y="-31.5" font-family="Times,serif" font-size="10.00">STAFF_ACTIVITY</text>
-<text text-anchor="middle" x="73.31" y="-19.5" font-family="Times,serif" font-size="10.00">staff_db_id (FK)</text>
-<text text-anchor="middle" x="73.31" y="-7.5" font-family="Times,serif" font-size="10.00">activity_db_id (FK)</text>
-</g>
-<!-- ACTIVITY&#45;&#45;STAFF_ACTIVITY -->
-<g id="edge1" class="edge">
-<title>ACTIVITY--STAFF_ACTIVITY</title>
-<path fill="none" stroke="black" d="M98.97,-81.16C92.95,-67.64 87.25,-54.82 82.75,-44.72"></path>
-</g>
-<!-- ROOM_ACTIVITY -->
-<g id="node6" class="node">
-<title>ROOM_ACTIVITY</title>
-<polygon fill="none" stroke="black" points="157.2,-0.5 157.2,-44.5 255.41,-44.5 255.41,-0.5 157.2,-0.5"></polygon>
-<text text-anchor="middle" x="206.31" y="-31.5" font-family="Times,serif" font-size="10.00">ROOM_ACTIVITY</text>
-<text text-anchor="middle" x="206.31" y="-19.5" font-family="Times,serif" font-size="10.00">room_id (FK)</text>
-<text text-anchor="middle" x="206.31" y="-7.5" font-family="Times,serif" font-size="10.00">activity_db_id (FK)</text>
-</g>
-<!-- ACTIVITY&#45;&#45;ROOM_ACTIVITY -->
-<g id="edge3" class="edge">
-<title>ACTIVITY--ROOM_ACTIVITY</title>
-<path fill="none" stroke="black" d="M178.44,-81.57C185.02,-67.86 191.27,-54.84 196.17,-44.62"></path>
-</g>
-<!-- STUDENT_ACTIVITY -->
-<g id="node7" class="node">
-<title>STUDENT_ACTIVITY</title>
-<polygon fill="none" stroke="black" points="282.42,-0.5 282.42,-44.5 396.19,-44.5 396.19,-0.5 282.42,-0.5"></polygon>
-<text text-anchor="middle" x="339.31" y="-31.5" font-family="Times,serif" font-size="10.00">STUDENT_ACTIVITY</text>
-<text text-anchor="middle" x="339.31" y="-19.5" font-family="Times,serif" font-size="10.00">student_db_id (FK)</text>
-<text text-anchor="middle" x="339.31" y="-7.5" font-family="Times,serif" font-size="10.00">activity_db_id (FK)</text>
-</g>
-<!-- ACTIVITY&#45;&#45;STUDENT_ACTIVITY -->
-<g id="edge5" class="edge">
-<title>ACTIVITY--STUDENT_ACTIVITY</title>
-<path fill="none" stroke="black" d="M178.62,-89.37C181.37,-86.39 184.27,-83.58 187.31,-81 202.2,-68.36 245.47,-52.57 282.05,-40.73"></path>
-</g>
-<!-- STAFF -->
-<g id="node2" class="node">
-<title>STAFF</title>
-<polygon fill="none" stroke="black" points="0,-81.5 0,-255.1 78.61,-255.1 78.61,-81.5 0,-81.5"></polygon>
-<text text-anchor="middle" x="39.31" y="-238.5" font-family="Times,serif" font-size="14.00">STAFF</text>
-<polyline fill="none" stroke="black" points="0,-230.3 78.61,-230.3 "></polyline>
-<text text-anchor="start" x="8" y="-213.7" font-family="Times,serif" font-size="14.00">db_id (PK)</text>
-<polyline fill="none" stroke="black" points="0,-205.5 78.61,-205.5 "></polyline>
-<text text-anchor="start" x="8" y="-188.9" font-family="Times,serif" font-size="14.00">first_name</text>
-<polyline fill="none" stroke="black" points="0,-180.7 78.61,-180.7 "></polyline>
-<text text-anchor="start" x="8" y="-164.1" font-family="Times,serif" font-size="14.00">last_name</text>
-<polyline fill="none" stroke="black" points="0,-155.9 78.61,-155.9 "></polyline>
-<text text-anchor="start" x="8" y="-139.3" font-family="Times,serif" font-size="14.00">title</text>
-<polyline fill="none" stroke="black" points="0,-131.1 78.61,-131.1 "></polyline>
-<text text-anchor="start" x="8" y="-114.5" font-family="Times,serif" font-size="14.00">email</text>
-<polyline fill="none" stroke="black" points="0,-106.3 78.61,-106.3 "></polyline>
-<text text-anchor="middle" x="39.31" y="-89.7" font-family="Times,serif" font-size="14.00">...</text>
-</g>
-<!-- STAFF&#45;&#45;STAFF_ACTIVITY -->
-<g id="edge2" class="edge">
-<title>STAFF--STAFF_ACTIVITY</title>
-<path fill="none" stroke="black" d="M59.67,-81.16C62.87,-67.64 65.9,-54.82 68.29,-44.72"></path>
-</g>
-<!-- STUDENT -->
-<g id="node3" class="node">
-<title>STUDENT</title>
-<polygon fill="none" stroke="black" points="308.42,-81.5 308.42,-255.1 388.19,-255.1 388.19,-81.5 308.42,-81.5"></polygon>
-<text text-anchor="middle" x="348.31" y="-238.5" font-family="Times,serif" font-size="14.00">STUDENT</text>
-<polyline fill="none" stroke="black" points="308.42,-230.3 388.19,-230.3 "></polyline>
-<text text-anchor="start" x="316.42" y="-213.7" font-family="Times,serif" font-size="14.00">db_id (PK)</text>
-<polyline fill="none" stroke="black" points="308.42,-205.5 388.19,-205.5 "></polyline>
-<text text-anchor="start" x="316.42" y="-188.9" font-family="Times,serif" font-size="14.00">first_name</text>
-<polyline fill="none" stroke="black" points="308.42,-180.7 388.19,-180.7 "></polyline>
-<text text-anchor="start" x="316.42" y="-164.1" font-family="Times,serif" font-size="14.00">last_name</text>
-<polyline fill="none" stroke="black" points="308.42,-155.9 388.19,-155.9 "></polyline>
-<text text-anchor="start" x="316.42" y="-139.3" font-family="Times,serif" font-size="14.00">email</text>
-<polyline fill="none" stroke="black" points="308.42,-131.1 388.19,-131.1 "></polyline>
-<text text-anchor="start" x="316.42" y="-114.5" font-family="Times,serif" font-size="14.00">dob</text>
-<polyline fill="none" stroke="black" points="308.42,-106.3 388.19,-106.3 "></polyline>
-<text text-anchor="middle" x="348.31" y="-89.7" font-family="Times,serif" font-size="14.00">...</text>
-</g>
-<!-- STUDENT&#45;&#45;STUDENT_ACTIVITY -->
-<g id="edge6" class="edge">
-<title>STUDENT--STUDENT_ACTIVITY</title>
-<path fill="none" stroke="black" d="M342.91,-81.16C342.07,-67.64 341.27,-54.82 340.63,-44.72"></path>
-</g>
-<!-- ROOM -->
-<g id="node4" class="node">
-<title>ROOM</title>
-<polygon fill="none" stroke="black" points="196.22,-93.9 196.22,-242.7 290.39,-242.7 290.39,-93.9 196.22,-93.9"></polygon>
-<text text-anchor="middle" x="243.31" y="-226.1" font-family="Times,serif" font-size="14.00">ROOM</text>
-<polyline fill="none" stroke="black" points="196.22,-217.9 290.39,-217.9 "></polyline>
-<text text-anchor="start" x="204.22" y="-201.3" font-family="Times,serif" font-size="14.00">room_id (PK)</text>
-<polyline fill="none" stroke="black" points="196.22,-193.1 290.39,-193.1 "></polyline>
-<text text-anchor="start" x="204.22" y="-176.5" font-family="Times,serif" font-size="14.00">name</text>
-<polyline fill="none" stroke="black" points="196.22,-168.3 290.39,-168.3 "></polyline>
-<text text-anchor="start" x="204.22" y="-151.7" font-family="Times,serif" font-size="14.00">building</text>
-<polyline fill="none" stroke="black" points="196.22,-143.5 290.39,-143.5 "></polyline>
-<text text-anchor="start" x="204.22" y="-126.9" font-family="Times,serif" font-size="14.00">capacity</text>
-<polyline fill="none" stroke="black" points="196.22,-118.7 290.39,-118.7 "></polyline>
-<text text-anchor="middle" x="243.31" y="-102.1" font-family="Times,serif" font-size="14.00">...</text>
-</g>
-<!-- ROOM&#45;&#45;ROOM_ACTIVITY -->
-<g id="edge4" class="edge">
-<title>ROOM--ROOM_ACTIVITY</title>
-<path fill="none" stroke="black" d="M224.37,-93.71C219.75,-75.75 215.16,-57.92 211.77,-44.73"></path>
-</g>
-</g>
-</svg>
-</div>
-<p></p></figure><p></p>
-</div>
-</div>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/SQL-erd.png" class="img-fluid figure-img"></p>
-<figcaption>Simple Relational Data Model</figcaption>
-</figure>
-</div>
+<p><strong>Example Query in SQL</strong></p>
 <pre class="{sql}"><code>-- Assuming "BuildingName" is in V_BUILDING and linked to V_LOCATION
+-- find students attending a specific lecturer's class in a particular building
+-- requires 6 JOINS
 
 
 SELECT DISTINCT 
@@ -695,38 +569,46 @@ INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_STUDENTSET] acts ON ss.[Id] = ac
 INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY] a ON acts.[ActivityId] = a.[Id]
 INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_LOCATION] al ON a.[Id] = al.[ActivityId]
 INNER JOIN [RDB_MAIN2223].[rdowner].[V_LOCATION] l ON al.[LocationId] = l.[Id]
-INNER JOIN [RDB_MAIN2223].[rdowner].[V_BUILDING] b ON l.[BuildingId] = b.[Id] -- Assuming a BuildingId column in V_LOCATION
+INNER JOIN [RDB_MAIN2223].[rdowner].[V_BUILDING] b ON l.[BuildingId] = b.[Id] # Assuming a BuildingId column in V_LOCATION
 INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_STAFF] ast ON a.[Id] = ast.[ActivityId]
 WHERE ast.[StaffId] = 'StaffID'  
   AND b.[Name] = 'BuildingName'; </code></pre>
 </section>
-<section id="graph-models-embracing-interconnectedness" class="level2">
-<h2 class="anchored" data-anchor-id="graph-models-embracing-interconnectedness">Graph Models: Embracing interconnectedness</h2>
+</section>
+<section id="graph-models" class="level2">
+<h2 class="anchored" data-anchor-id="graph-models">Graph Models</h2>
+<section id="embracing-interconnectedness" class="level3">
+<h3 class="anchored" data-anchor-id="embracing-interconnectedness">Embracing interconnectedness</h3>
 <p>In contrast to the rigid table structure of relational databases, graph databases offer a more intuitive and flexible approach for representing interconnected data like timetables. They utilise:</p>
 <ul>
 <li><strong>Nodes</strong>: Represent entities (e.g., activity, room, lecturer, student).</li>
 <li><strong>Edges</strong>: Represent relationships between nodes (e.g., “taught by,” “enrolled in,” “scheduled at”).</li>
 </ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/v1-core-nodes-rels.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>Simple Graph Data Model</figcaption>
+</figure>
+</div>
 <p>This node-and-edge structure inherently reflects how timetabling elements connect. Instead of relying on cumbersome joins, relationships are directly encoded in the data model itself. This results in several advantages:</p>
 <ul>
 <li><strong>Natural Representation</strong>: Graph databases visually and conceptually mirror the relationships inherent in timetables, making them easier to understand and query.</li>
 <li><strong>Relationship-Centric Queries</strong>: Graph databases are optimised for traversing and analysing relationships. Queries that would require multiple joins in a relational database often become significantly simpler and faster in a graph database.</li>
-<li><strong>Flexibility</strong>: The schema-less or schema-optional nature of most graph databases allows for greater flexibility in data modeling. New entities or relationships can be added effortlessly without impacting existing structures or queries.</li>
+<li><strong>Flexibility</strong>: The schema-less or schema-optional nature of most graph databases allows for greater flexibility in data modeling. New entities or relationships can be added effortlessly without impacting existing structures or queries (Nan and Bai, 2019;Webber, Eifrem and Robinson, 2013).</li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./images/v1-core-nodes-rels.png" class="img-fluid figure-img"></p>
-<figcaption>Simple Graph Data Model</figcaption>
-</figure>
-</div>
+<p><strong>Example Query in Cypher</strong></p>
 <pre class="{cypher}"><code>// Assuming properties on nodes
+// Much simpler query pattern
+
 MATCH (s:Student)-[:ATTENDS]-&gt;(a:Activity)&lt;-[:TEACHES]-(st:Staff), 
       (a:Activity)-[:TAKES_PLACE_IN]-&gt;(r:Room)
 WHERE st.last_name = "LecturerLastName" AND r.building = "BuildingName"
 RETURN s.first_name, s.last_name, s.email </code></pre>
 </section>
+</section>
 <section id="key-differences-and-implications" class="level2">
 <h2 class="anchored" data-anchor-id="key-differences-and-implications">Key Differences and Implications</h2>
+<div class="table">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 25%">
@@ -773,6 +655,7 @@ RETURN s.first_name, s.last_name, s.email </code></pre>
 </tr>
 </tbody>
 </table>
+</div>
 <p>These advantages position graph databases as a powerful tool for uncovering insights hidden within complex, interconnected datasets like university timetables. The following section will detail a graph data model specifically designed to leverage these strengths for enhanced timetable analysis.</p>
 
 

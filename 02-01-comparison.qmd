@@ -13,9 +13,14 @@ execute:
 -   
 :::
 
-## Relational Models: Tables, Joins and the Limits of Interconnectedness
+Having established the context and motivation for this project, let us now focus on the core of the proposed solution: the graph data model for university timetabling. As outlined in the [project aims](01-04-project.qmd), my hypothesis is that graph-based approaches have the *potential* to offer new insights and efficiencies in timetable analysis and optimisation. This section will explore the theoretical underpinnings of graph data structures and their application to the complex domain of university timetabling.
 
-Relational databases, using SQL as their query language, have long been the go-to for managing data, including timetabling information. They structure data into tables, where rows represent entities (like rooms, staff, or students) and columns represent their attributes (name, capacity, email, etc.). Relationships between these entities are established through foreign keys, forming links between tables. This often involves intermediary "relationship" tables to handle the many-to-many nature of timetabling data (e.g., a student attends many activities, and an activity has many students).
+
+
+## Relational Models
+### Tables, Joins and the Limits of Interconnectedness
+
+Relational databases, using SQL as their query language, have long been the go-to for managing data, including timetabling information. They structure data into tables, where rows represent entities (like rooms, staff, or students) and columns represent their attributes (name, capacity, email, etc.). Relationships between these entities are established through foreign keys, forming links between tables. This often involves intermediary "relationship" tables to handle the many-to-many nature of timetabling data (e.g., a student attends many activities, and an activity has many students). (Khan et al., 2023;Sokolova, Gómez and Borisoglebskaya, 2020)
 
 While robust and well-understood, relational databases start to show their limitations when dealing with the highly interconnected nature of timetables:
 
@@ -23,11 +28,13 @@ While robust and well-understood, relational databases start to show their limit
 
 -   **Rigidity**: Relational databases rely on a predefined schema, making them less adaptable to evolving needs. Adding new entities or relationships, a common occurrence in dynamic timetabling environments, often requires schema modifications, potentially disrupting existing queries and applications.
 -   
-![Example Simple Entity Relationship Diagram](./images/RDB-small.png)
+![Example Simple Entity Relationship Diagram](./images/RDB-small-light.png)
 
-
-```{python}
-# Assuming "BuildingName" is in V_BUILDING and linked to V_LOCATION
+**Example Query in SQL**
+```{sql}
+-- Assuming "BuildingName" is in V_BUILDING and linked to V_LOCATION
+-- find students attending a specific lecturer's class in a particular building
+-- requires 6 JOINS
 
 
 SELECT DISTINCT 
@@ -45,23 +52,27 @@ WHERE ast.[StaffId] = 'StaffID'
   AND b.[Name] = 'BuildingName'; 
 ```
 
-## Graph Models: Embracing interconnectedness
+## Graph Models
+### Embracing interconnectedness
 
 In contrast to the rigid table structure of relational databases, graph databases offer a more intuitive and flexible approach for representing interconnected data like timetables. They utilise:
 
 -   **Nodes**: Represent entities (e.g., activity, room, lecturer, student).
 -   **Edges**: Represent relationships between nodes (e.g., "taught by," "enrolled in," "scheduled at").
 
+![Simple Graph Data Model](./images/v1-core-nodes-rels.png){width=75%}
+
 This node-and-edge structure inherently reflects how timetabling elements connect. Instead of relying on cumbersome joins, relationships are directly encoded in the data model itself. This results in several advantages:
 
 -   **Natural Representation**: Graph databases visually and conceptually mirror the relationships inherent in timetables, making them easier to understand and query.
 -   **Relationship-Centric Queries**: Graph databases are optimised for traversing and analysing relationships. Queries that would require multiple joins in a relational database often become significantly simpler and faster in a graph database.
--   **Flexibility**: The schema-less or schema-optional nature of most graph databases allows for greater flexibility in data modeling. New entities or relationships can be added effortlessly without impacting existing structures or queries.
+-   **Flexibility**: The schema-less or schema-optional nature of most graph databases allows for greater flexibility in data modeling. New entities or relationships can be added effortlessly without impacting existing structures or queries (Nan and Bai, 2019;Webber, Eifrem and Robinson, 2013).
 
-![Simple Graph Data Model](./images/v1-core-nodes-rels.png)
-
+**Example Query in Cypher**
 ```{cypher}
 // Assuming properties on nodes
+// Much simpler query pattern
+
 MATCH (s:Student)-[:ATTENDS]->(a:Activity)<-[:TEACHES]-(st:Staff), 
       (a:Activity)-[:TAKES_PLACE_IN]->(r:Room)
 WHERE st.last_name = "LecturerLastName" AND r.building = "BuildingName"
@@ -69,6 +80,8 @@ RETURN s.first_name, s.last_name, s.email
 ```
 
 ## Key Differences and Implications
+
+:::{.table}
 
 | Feature               | Relational Model                           | Graph Model                                                |
 |------------------|------------------------|------------------------------|
@@ -78,5 +91,7 @@ RETURN s.first_name, s.last_name, s.email
 | Query Performance     | Can be slow for relationship-heavy queries | Optimised for traversing relationships, potentially faster |
 | Data Modeling         | Less intuitive for interconnected data     | Naturally represents complex relationships                 |
 | Adaptability          | Less adaptable to schema changes           | More flexible, accommodates evolving data needs            |
+
+:::
 
 These advantages position graph databases as a powerful tool for uncovering insights hidden within complex, interconnected datasets like university timetables. The following section will detail a graph data model specifically designed to leverage these strengths for enhanced timetable analysis.

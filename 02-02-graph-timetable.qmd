@@ -7,22 +7,24 @@ execute:
 ::: callout-warning
 ## TODO
 
-- write up section - review notes
-- new page of difficulties with time - see poc2 time
-- appendix with queries (queries.ipynb (graph-project\docs\notes\queries.ipynb)) - copy all queries onto one appendix see graph-tt
+-   write up section - review notes
+-   new page of difficulties with time - see poc2 time
+-   appendix with queries (queries.ipynb (graph-project\docs\notes\queries.ipynb)) - copy all queries onto one appendix see graph-tt
 :::
 
-Having discussed some advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling. This model serves as the foundation for our exploration of graph-based analysis and its potential to unlock valuable insights.
+Having discussed some advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling. This model serves as the foundation for exploring graph-based analysis and its potential to unlock valuable insights.
 
 ## An Iterative Approach
 
-The design of this graph data model follows an iterative process: design, build, test, review, and revise. Using Neo4j Desktop and an Aura cloud instance, the model began with a small scope, incorporating minimal nodes and properties. This iterative approach allows for flexibility and refinement based on real-world data and evolving requirements.
+The design of this graph data model was iterative: design, build, test, review, and revise -\> ...and repeat. Using Neo4j Desktop and an Aura cloud instance, the first model was small scope in scope, incorporating minimal nodes and properties. This iterative approach allows for flexibility and refinement based on real-world data and evolving requirements.
 
-## Core Nodes: The Building Blocks
+## Core Nodes
+### The Building Blocks
 
 At its core, the timetable model revolves around four key entities represented as nodes:
 
 
+:::{.table}
 | Node     | Property    | Description           | Data Type |
 |----------|-------------|-----------------------|-----------|
 | Student  | firstName   | Legal first name      | string    |
@@ -41,33 +43,34 @@ At its core, the timetable model revolves around four key entities represented a
 |          | endTime     | Scheduled end time    | datetime  |
 |          | date        | Date of activity      | date      |
 
-![Neo4j Interface showing basic nodes nad properties](./images/poc1-import-interface.png)
+:::
 
-## Defining Relationships: Connecting the Dots
+![Neo4j Interface showing basic nodes and properties](./images/poc1-import-interface.png){width=75%}
+
+## Defining Relationships
+### Connecting the Dots
 
 These core nodes are interconnected through relationships that reflect the dynamics of a timetable:
 
-* **Student-[IS_ALLOCATED_TO]->Activity**: Represents a student's allocation to a specific activity.
-* **Staff-[TEACHES_ON]->Activity**:  Indicates the staff member responsible for teaching an activity. 
-* **Activity-[TAKES_PLACE_IN]->Room**:  Connects an activity to the room where it is scheduled.
+-   Student-**\[IS_ALLOCATED_TO\]**-\>Activity: Represents a student's allocation to a specific activity.
+-   Staff-**\[TEACHES_ON\]**-\>Activity: Indicates the staff member responsible for teaching an activity.
+-   Activity-**\[TAKES_PLACE_IN\]**-\>Room: Connects an activity to the room where it is scheduled.
 
-
-![Core Nodes and Properties](./images/v1-core-nodes-rels-prop.png)
-
-
+![Core Nodes and Properties](./images/v1-core-nodes-rels-prop.png){width=75%}
 
 ## Early Insights: Unveiling Basic Patterns
 
-Even with this basic model, we can easily extract valuable insights:
+Even with this basic model, we can easily extract valuable insights, for example:
 
-* **Activity Load**: Identify staff with the highest number of teaching activities or total teaching hours.
-* **Student Timetable Profiles**: Calculate average hours per student or per programme to understand workload distribution.  
-* **Resource utilisation**: Determine the busiest locations or times on campus based on activity scheduling.
-* **Anomaly detection**: Identify students who have unexpected profiles or unusual combinations
+-   **Activity Load**: Identify staff with the highest number of teaching activities or total teaching hours.
+-   **Student Timetable Profiles**: Calculate average hours per student or per programme to understand workload distribution.
+-   **Resource utilisation**: Determine the busiest locations or times on campus based on activity scheduling.
+-   **Anomaly detection**: Identify students who have unexpected profiles or unusual combinations
 
-### Examples
+### Example code
 
 #### Busiest location overall
+
 ```{cypher}
 MATCH (r:Room)<-[:TAKES_PLACE_IN]-(a:Activity)
 WITH r, sum(a.duration) AS totalDuration
@@ -75,46 +78,50 @@ RETURN r.name AS Room, totalDuration
 ORDER BY totalDuration DESC
 LIMIT 1
 ```
+
 #### Busiest location for a specific time
 
 ```{cypher}
 MATCH (r:Room)<-[:TAKES_PLACE_IN]-(a:Activity)
-WHERE a.startTime = "1100" 
+WHERE a.startTime = "11:00" 
 WITH r, count(a) AS activityCount
 RETURN r.name AS Room, activityCount
 ORDER BY activityCount DESC
 LIMIT 1 
 ```
 
-#### Students with below/above average hours 
+#### Students with below/above average hours
+
 ```{cypher}
 // Calculate program averages and standard deviations
 MATCH (s:Student)-[:IS_ALLOCATED_TO]->(a:Activity)
-WITH s.prog AS program, AVG(a.duration) AS avgDuration, STDEV(a.duration) AS stdDev
-GROUP BY program
+WITH s.prog AS programme, AVG(a.duration) AS avgDuration, STDEV(a.duration) AS stdDev
+GROUP BY programme
 
 // Identify students outside the 10% margin 
 MATCH (s:Student)-[:IS_ALLOCATED_TO]->(a:Activity)
 WITH s.studentID AS studentID, s.prog AS program, SUM(a.duration) AS totalDuration
 MATCH (avgData)
-WHERE avgData.program = program
-WITH studentID, program, totalDuration, avgData.avgDuration AS avgDuration, avgData.stdDev AS stdDev
+WHERE avgData.programme = programme
+WITH studentID, programme, totalDuration, avgData.avgDuration AS avgDuration, avgData.stdDev AS stdDev
 WHERE totalDuration < avgDuration - (0.1 * avgDuration) OR totalDuration > avgDuration + (0.1 * avgDuration)
-RETURN studentID, program, totalDuration, avgDuration, stdDev 
-ORDER BY program, totalDuration DESC
+RETURN studentID, programme, totalDuration, avgDuration, stdDev 
+ORDER BY programme, totalDuration DESC
 ```
 
-
 ## Expanding the Model: Towards Richer Insights
+
 The true power of the graph model lies in its extensibility. Introducing additional nodes and properties allows for a more comprehensive representation and enables more sophisticated analysis.
 
 ### Potential Expansions:
-* Organizational Units: Include departments, colleges, or schools to analyze timetabling within organizational structures.
-* Curriculum Data: Incorporate modules and programs to understand the interconnectedness of courses and student enrollment patterns.
-* Activity Types: Differentiate between lectures, seminars, labs, etc., for a more granular analysis of teaching and learning activities.
-* Student Attributes: Add properties like "international student" or "first-year student" to explore potential disparities in timetabling.
 
-[Image Suggestion: Use your "v2.0-expanded-tt.png" to visualize the expanded graph model and its potential for deeper insights.]
+-   **Organisational Units**: Include departments, colleges, or schools to analyse timetabling within organizational structures.
+-   **Curriculum Data**: Incorporate modules and programmes to understand the interconnectedness of courses and student enrolment patterns.
+-   **Activity Types**: Differentiate between lectures, seminars, labs, etc., for a more granular analysis of teaching and learning activities.
+-   **Activity Delivery**: Understand how teaching delivery (virtual, in-person, hybrid, drop-in) is factored.
+-   **Student Attributes**: Add properties like "international student" or "first-year student" to explore potential student clusters.
+
+![Example of Expanded Timetable Graph Model](./images/v2-expanded-tt-2.png){width=75%}
 
 ## The Challenge of Time: Finding the Optimal Representation
 
@@ -124,26 +131,18 @@ Your exploration of alternative approaches highlights the flexibility of graph d
 
 This section has established the foundation for a graph-based approach to university timetabling. The next section will delve into the data engineering pipeline required to populate and maintain this model, bridging the gap between raw data and insightful analysis.
 
-
-
-
-
 # approach
 
-iterative: design, build, test, review, revise and back to design
-Used: neo4j desktop and cloud instance
-started small (data wise -> me and complexity (minimal nodes, minimal properties)
-things went wrong - many examples of wrong nodes, multiple relationships or more frustratingly - failure and error codes
-
+iterative: design, build, test, review, revise and back to design Used: neo4j desktop and cloud instance started small (data wise -\> me and complexity (minimal nodes, minimal properties) things went wrong - many examples of wrong nodes, multiple relationships or more frustratingly - failure and error codes
 
 # nodes
 
-The key nodes (nouns) in a timetable are: 
+The key nodes (nouns) in a timetable are:
 
-* Student (Person)
-* Staff (Person)
-* Activity (Event)
-* Room (Location) 
+-   Student (Person)
+-   Staff (Person)
+-   Activity (Event)
+-   Room (Location)
 
 The key nodes (nouns) are:
 
@@ -165,161 +164,159 @@ The key nodes (nouns) are:
 |          | endTime     | Scheduled end time    | datetime  |
 |          | date        | Date of activity      | date      |
 
-* sample cypher of loading self (v1-core-load-student-node.png)
-* results v1-core-load-all-nodes.png
+-   sample cypher of loading self (v1-core-load-student-node.png)
 
+-   results v1-core-load-all-nodes.png
 
-* example of a student node (me) ![student detail](../images/v1.1-core-student-phl.png)
-* all nodes loaded for MSc Data Science 2022-23 students: 
-  * ![all-nodes-for-posi](../images/v1.1-load-all-nodes.png)
-  * no relationships
-# relationships
+-   example of a student node (me) ![student detail](../images/v1.1-core-student-phl.png)
 
-The nodes are related as follows: 
+-   all nodes loaded for MSc Data Science 2022-23 students:
 
-* `Student` *allocated to* `Activity`
-    * alternatives include *attends*
-* `Staff` *teaches on* `Activity`
-    * alternatives include *lectures*, *leads*, etc.
-* `Activity` *takes place in* `Room`
-    * alternatives include *scheduled in*
+    -   
+
+        ![all-nodes-for-posi](../images/v1.1-load-all-nodes.png)
+
+    -   no relationships \# relationships
+
+The nodes are related as follows:
+
+-   `Student` *allocated to* `Activity`
+    -   alternatives include *attends*
+-   `Staff` *teaches on* `Activity`
+    -   alternatives include *lectures*, *leads*, etc.
+-   `Activity` *takes place in* `Room`
+    -   alternatives include *scheduled in*
 
 It is clear that `Activity` is the central node in the basic model.
 
 ![core nodes with relationships](attachment:v1-core-nodes-rels.png)
 
-* loaded into neo4j ![v1.1 full model](../images/v1.1-core-full-model.png)
-  * two clusters?  waht are they
-  * some orphans?  who/waht are they?
-
-* basic query examples - probably not worth 
-  * staff with most activities, hours
-  * average hours per student, per programme
-  * most popular activities
-  * most popular tutors (attendance)
-  * days with most activities
-  * times with most activities / scheduled hours/start times
-  * histogram of activities by day
-  * most popular combinations (modules, pairs of modules, triplets)
-    * most attended 
-  * most attendance percentage
-  * relationship between attendance and time/day of activity
-  * anomalies, combinations
+-   loaded into neo4j ![v1.1 full model](../images/v1.1-core-full-model.png)
+    -   two clusters? waht are they
+    -   some orphans? who/waht are they?
+-   basic query examples - probably not worth
+    -   staff with most activities, hours
+    -   average hours per student, per programme
+    -   most popular activities
+    -   most popular tutors (attendance)
+    -   days with most activities
+    -   times with most activities / scheduled hours/start times
+    -   histogram of activities by day
+    -   most popular combinations (modules, pairs of modules, triplets)
+        -   most attended
+    -   most attendance percentage
+    -   relationship between attendance and time/day of activity
+    -   anomalies, combinations
 
 # properties
 
-* dependent on use cases - which questions are to be answered
-* some may be better as nodes, others as properties on node or properties on relationship
-* no right or wrong - highly experimental, needs to be tested, optimised
-* flexbility of graph to accommodate
+-   dependent on use cases - which questions are to be answered
 
-* each node person/student, person/staff, activity, room needs some properties
-  * name, id, description
-  * activity needs date, times, (although modelling time has many varieties)
+-   some may be better as nodes, others as properties on node or properties on relationship
+
+-   no right or wrong - highly experimental, needs to be tested, optimised
+
+-   flexbility of graph to accommodate
+
+-   each node person/student, person/staff, activity, room needs some properties
+
+    -   name, id, description
+    -   activity needs date, times, (although modelling time has many varieties)
 
 image of final proof of concept simple model: v1-core-nodes-rels-prop.png
-
 
 # expansions
 
 more nodes from timetable db could include:
 
-* organisational unit (department, college, school)
-* curriculum data (module, programme) - activity is part of module, programme made of modules (compulsory, optional)
-* students who are pal leaders (as a mentoring relationship)
-* activity type (property or node) - lecture, seminar, workshop, lab
-* delivery type (property or node) - online, on-campus, recorded, optional, drop-in
-* technician staff facilitating workshops
-* equipment requirements in rooms
+-   organisational unit (department, college, school)
+-   curriculum data (module, programme) - activity is part of module, programme made of modules (compulsory, optional)
+-   students who are pal leaders (as a mentoring relationship)
+-   activity type (property or node) - lecture, seminar, workshop, lab
+-   delivery type (property or node) - online, on-campus, recorded, optional, drop-in
+-   technician staff facilitating workshops
+-   equipment requirements in rooms
 
-
-
-more student properties could include:
-* reasonable adjustments
-* international student
-* first year student
-* pal leader
+more student properties could include: \* reasonable adjustments \* international student \* first year student \* pal leader
 
 example of expanded model: ![Title](../images/v2.0-expanded-tt.png)
 
-this would allow for quickly getting insights such as: 
+this would allow for quickly getting insights such as:
 
-* Identify students with anomalous timetables - e.g. timetables that have gaps of more than 2 hours between activities, or that violate a policy of no more than X hours per day. 
-* Find the **busiest locations** on campus - analyse room nodes to identify those with the most connected activity nodes on a given day. Useful for improving room bookings.
-* Identify **outlier teaching loads** - find staff with significantly more or fewer allocated teaching hours compared to their peers. Analyse each staff node's connected activity nodes and sum the durations
-* Analyse **room utilisation** - calculate the percentage of available hours that rooms are booked based on their connected activities. Help optimise room usage.
-* Identify **module co-dependencies** - find modules that are often taken together by analysing frequent appearing :CONTRIBUTES_TOWARDS relationships between modules taken by the same students.
-* **Cluster students** based on their curriculum/programs using community detection algorithms on the connections between student nodes, program nodes and module nodes. Identify common trajectories.
-* **Predict student results** - build a model based on relationships between student attributes, their enrollment relationships to modules, module difficulties and prerequisites, and historical grade data
-* Make **course recommendations** - suggest new modules to students based on their existing modules and other similar students' module relationships.
+-   Identify students with anomalous timetables - e.g. timetables that have gaps of more than 2 hours between activities, or that violate a policy of no more than X hours per day.
+-   Find the **busiest locations** on campus - analyse room nodes to identify those with the most connected activity nodes on a given day. Useful for improving room bookings.
+-   Identify **outlier teaching loads** - find staff with significantly more or fewer allocated teaching hours compared to their peers. Analyse each staff node's connected activity nodes and sum the durations
+-   Analyse **room utilisation** - calculate the percentage of available hours that rooms are booked based on their connected activities. Help optimise room usage.
+-   Identify **module co-dependencies** - find modules that are often taken together by analysing frequent appearing :CONTRIBUTES_TOWARDS relationships between modules taken by the same students.
+-   **Cluster students** based on their curriculum/programs using community detection algorithms on the connections between student nodes, program nodes and module nodes. Identify common trajectories.
+-   **Predict student results** - build a model based on relationships between student attributes, their enrollment relationships to modules, module difficulties and prerequisites, and historical grade data
+-   Make **course recommendations** - suggest new modules to students based on their existing modules and other similar students' module relationships.
 
 then the possible:
 
-* adding more location data - buildings, latitude, longitude
-* student details - home postcode (travel distance), 
-* student outcomes - module marks, award outcomes, graduate outcomes
-* admissions data - (free lunch scheme, social economic data, a-level results, inclusivity insights)
-* curriculum data - from master curriculum data
-* engagement data - attendance, engagement
-* space use data - wifi locators, how busy areas are, correlations
-* 
-
+-   adding more location data - buildings, latitude, longitude
+-   student details - home postcode (travel distance),
+-   student outcomes - module marks, award outcomes, graduate outcomes
+-   admissions data - (free lunch scheme, social economic data, a-level results, inclusivity insights)
+-   curriculum data - from master curriculum data
+-   engagement data - attendance, engagement
+-   space use data - wifi locators, how busy areas are, correlations
+-   
 
 ## time
 
-modelling time in graph was challenging.  my simple model above does take time into account other than to have startTime, endTime, date.  In reality, an activity can take have the same start time, end time but be scheduled over several weeks - sometimes consecutive, sometimes non-consecutive weeks.  How should this be represented?  week patterns?  date ranges?  or separate activities?  what happens when an activity is scheduled over several days but the same time over several weeks for example, Mondays and Wednesdays between 09:00-11:00 for ten weeks?
+modelling time in graph was challenging. my simple model above does take time into account other than to have startTime, endTime, date. In reality, an activity can take have the same start time, end time but be scheduled over several weeks - sometimes consecutive, sometimes non-consecutive weeks. How should this be represented? week patterns? date ranges? or separate activities? what happens when an activity is scheduled over several days but the same time over several weeks for example, Mondays and Wednesdays between 09:00-11:00 for ten weeks?
 
-this is where normalisation (footnote) and different designs come into play.  In a relational database, it is fairly easy to normalise the data into activities where start and end time and day(s) of week, staff, locations, students are the same for the week pattern.  Any deviation will require a new 'activity' to accommodate the difference.  Therefore there is an inevitable repetition of data.
+this is where normalisation (footnote) and different designs come into play. In a relational database, it is fairly easy to normalise the data into activities where start and end time and day(s) of week, staff, locations, students are the same for the week pattern. Any deviation will require a new 'activity' to accommodate the difference. Therefore there is an inevitable repetition of data.
 
-In graph these scenarios can be handled in different ways.  My initial model simply ported data as string data to an activity - that is, I literally created an activity as it existed in database and added start time, end time, weeks, etc. as properties of the activity.  
+In graph these scenarios can be handled in different ways. My initial model simply ported data as string data to an activity - that is, I literally created an activity as it existed in database and added start time, end time, weeks, etc. as properties of the activity.
 
-This worked to an extent but it was not optimised for calculating on time.  
+This worked to an extent but it was not optimised for calculating on time.
 
 I anticipated being able to answer questions and identify patterns like:
 
-* students on programmes who do not have a lunch break (12:00-14:00)
-* students who have X hours consecutive teaching without a break
-* students who have X hours between teaching activities on any given date (e.g. early activity (09:00-10:00) and late finish (18:00-19:00))
+-   students on programmes who do not have a lunch break (12:00-14:00)
+-   students who have X hours consecutive teaching without a break
+-   students who have X hours between teaching activities on any given date (e.g. early activity (09:00-10:00) and late finish (18:00-19:00))
 
 Being able to answer these types of queries easily will help pinpoint where there may be timetable quality concerns.
 
 I considered and explored differnet options including:
 
-1. activities with 52 week patterns (0000011101 etc.), start and end times
-2. activities which are unique combinations of date, start, end, name
-3. activities with date ranges, start and end times
-4. activities linked to start time, end time and date nodes
+1.  activities with 52 week patterns (0000011101 etc.), start and end times
+2.  activities which are unique combinations of date, start, end, name
+3.  activities with date ranges, start and end times
+4.  activities linked to start time, end time and date nodes
 
-At this point, I did remember the project's scope and reminded myself that it is a proof of concept.  I settled for option 2 - where each activity is a unique combination of start, end, date and name.  This required transforming from sql - there is some loss of redundancy but calculations on times are more manageable (although not uncomplicated).  Also being restricted by Neo4j's free aura instance, there is a limit to nodes (200K) and relationships (400K) which I would hit quickly.
+At this point, I did remember the project's scope and reminded myself that it is a proof of concept. I settled for option 2 - where each activity is a unique combination of start, end, date and name. This required transforming from sql - there is some loss of redundancy but calculations on times are more manageable (although not uncomplicated). Also being restricted by Neo4j's free aura instance, there is a limit to nodes (200K) and relationships (400K) which I would hit quickly.
 
-My suspicion is that creating separate nodes for start and end times and dates dynamically from the activity data would be the better model - but this will need to be future work with direct comparisons aganst specific use cases and insights. 
+My suspicion is that creating separate nodes for start and end times and dates dynamically from the activity data would be the better model - but this will need to be future work with direct comparisons aganst specific use cases and insights.
 
-
-## appendix - 
+## appendix -
 
 ### example load
 
 #### Attempt 2 - load separately
 
-```cypher
+``` cypher
 // remove all relationships
 MATCH ()-[r]-() 
 DELETE r
 ```
 
-
 **activity-room**
 
-```cypher
+``` cypher
 // Activity-Room
 LOAD CSV WITH HEADERS FROM "file:///phl-rel-room-activity.csv" AS row3
 MATCH (r:Room {roomSplusID: row3.roomSplusID}) 
 MATCH (a:Activity {activitySplusID: row3.activitySplusID})
 CREATE (a)-[:TAKES_PLACE_IN]->(r)
 ```
+
 **activity-staff**
 
-```cypher
+``` cypher
 // Staff-activity 
 LOAD CSV WITH HEADERS FROM "file:///phl-rel-staff-activity.csv" AS row2
 MATCH (s:Staff {staffSplusID: row2.staffSplusID}) 
@@ -329,7 +326,7 @@ CREATE (s)-[:TEACHES_ON]->(a)
 
 **activity-student**
 
-```cypher
+``` cypher
 // Student-Activity
 LOAD CSV WITH HEADERS FROM "file:///phl-rel-student-activity.csv" AS row
 MATCH (s:Student {studentSplusID: row.studentSplusID}) 
@@ -340,4 +337,3 @@ CREATE (s)-[:IS_ALLOCATED_TO]->(a)
 # results
 
 v1-core-poc.png
-
