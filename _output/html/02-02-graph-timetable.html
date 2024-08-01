@@ -143,12 +143,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Early Insights and Model Expansion</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02-03-graph-time.html">
- <span class="dropdown-text">Graphing Time</span></a>
+    <a class="dropdown-item" href="./02-02c-challenge-oppos.qmd">
+ <span class="dropdown-text">Opportunities and Challenges</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02-04-challenge-oppos.html">
- <span class="dropdown-text">Opportunities and Challenges</span></a>
+    <a class="dropdown-item" href="./02-03-graph-time.html">
+ <span class="dropdown-text">Graphing Time</span></a>
   </li>  
     </ul>
   </li>
@@ -338,14 +338,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-03-graph-time.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Graphing Time</span></a>
+  <a href="./02-02c-challenge-oppos.qmd" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Opportunities and Challenges</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-04-challenge-oppos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Opportunities and Challenges</span></a>
+  <a href="./02-03-graph-time.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Graphing Time</span></a>
   </div>
 </li>
       </ul>
@@ -490,22 +490,8 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#an-iterative-approach" id="toc-an-iterative-approach" class="nav-link active" data-scroll-target="#an-iterative-approach">An Iterative Approach</a></li>
-  <li><a href="#core-nodes" id="toc-core-nodes" class="nav-link" data-scroll-target="#core-nodes">Core Nodes</a>
-  <ul class="collapse">
-  <li><a href="#the-building-blocks" id="toc-the-building-blocks" class="nav-link" data-scroll-target="#the-building-blocks">The Building Blocks</a></li>
-  </ul></li>
-  <li><a href="#defining-relationships" id="toc-defining-relationships" class="nav-link" data-scroll-target="#defining-relationships">Defining Relationships</a>
-  <ul class="collapse">
-  <li><a href="#connecting-the-dots" id="toc-connecting-the-dots" class="nav-link" data-scroll-target="#connecting-the-dots">Connecting the Dots</a></li>
-  </ul></li>
-  <li><a href="#early-insights-unveiling-basic-patterns" id="toc-early-insights-unveiling-basic-patterns" class="nav-link" data-scroll-target="#early-insights-unveiling-basic-patterns">Early Insights: Unveiling Basic Patterns</a>
-  <ul class="collapse">
-  <li><a href="#example-code" id="toc-example-code" class="nav-link" data-scroll-target="#example-code">Example code</a></li>
-  </ul></li>
-  <li><a href="#expanding-the-model-towards-richer-insights" id="toc-expanding-the-model-towards-richer-insights" class="nav-link" data-scroll-target="#expanding-the-model-towards-richer-insights">Expanding the Model: Towards Richer Insights</a>
-  <ul class="collapse">
-  <li><a href="#potential-expansions" id="toc-potential-expansions" class="nav-link" data-scroll-target="#potential-expansions">Potential Expansions:</a></li>
-  </ul></li>
+  <li><a href="#core-nodes---building-blocks" id="toc-core-nodes---building-blocks" class="nav-link" data-scroll-target="#core-nodes---building-blocks">Core Nodes - Building Blocks</a></li>
+  <li><a href="#relationships---connecting-the-dots" id="toc-relationships---connecting-the-dots" class="nav-link" data-scroll-target="#relationships---connecting-the-dots">Relationships - Connecting the Dots</a></li>
   <li><a href="#notes-to-be-deleted" id="toc-notes-to-be-deleted" class="nav-link" data-scroll-target="#notes-to-be-deleted">NOTES TO BE DELETED</a></li>
   <li><a href="#approach" id="toc-approach" class="nav-link" data-scroll-target="#approach">approach</a></li>
   <li><a href="#nodes" id="toc-nodes" class="nav-link" data-scroll-target="#nodes">nodes</a></li>
@@ -566,10 +552,8 @@ TODO
 <h2 class="anchored" data-anchor-id="an-iterative-approach">An Iterative Approach</h2>
 <p>The design of this graph data model was iterative: design, build, test, review, and revise -&gt; …and repeat. Using Neo4j Desktop and an Aura cloud instance, the first model was small scope in scope, incorporating minimal nodes and properties. This iterative approach allows for flexibility and refinement based on real-world data and evolving requirements.</p>
 </section>
-<section id="core-nodes" class="level2">
-<h2 class="anchored" data-anchor-id="core-nodes">Core Nodes</h2>
-<section id="the-building-blocks" class="level3">
-<h3 class="anchored" data-anchor-id="the-building-blocks">The Building Blocks</h3>
+<section id="core-nodes---building-blocks" class="level2">
+<h2 class="anchored" data-anchor-id="core-nodes---building-blocks">Core Nodes - Building Blocks</h2>
 <p>At its core, the timetable model revolves around four key entities represented as nodes:</p>
 <div class="table">
 <table class="caption-top table">
@@ -682,16 +666,13 @@ TODO
 </figure>
 </div>
 </section>
-</section>
-<section id="defining-relationships" class="level2">
-<h2 class="anchored" data-anchor-id="defining-relationships">Defining Relationships</h2>
-<section id="connecting-the-dots" class="level3">
-<h3 class="anchored" data-anchor-id="connecting-the-dots">Connecting the Dots</h3>
+<section id="relationships---connecting-the-dots" class="level2">
+<h2 class="anchored" data-anchor-id="relationships---connecting-the-dots">Relationships - Connecting the Dots</h2>
 <p>These core nodes are interconnected through relationships that reflect the dynamics of a timetable:</p>
 <ul>
-<li>Student-<strong>[IS_ALLOCATED_TO]</strong>-&gt;Activity: Represents a student’s allocation to a specific activity.</li>
-<li>Staff-<strong>[TEACHES_ON]</strong>-&gt;Activity: Indicates the staff member responsible for teaching an activity.</li>
-<li>Activity-<strong>[TAKES_PLACE_IN]</strong>-&gt;Room: Connects an activity to the room where it is scheduled.</li>
+<li>Student-<strong>[IS_ALLOCATED_TO]</strong>-&gt;Activity</li>
+<li>Staff-<strong>[TEACHES_ON]</strong>-&gt;Activity</li>
+<li>Activity-<strong>[TAKES_PLACE_IN]</strong>-&gt;Room</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -699,74 +680,6 @@ TODO
 <figcaption>Core Nodes and Properties</figcaption>
 </figure>
 </div>
-</section>
-</section>
-<section id="early-insights-unveiling-basic-patterns" class="level2">
-<h2 class="anchored" data-anchor-id="early-insights-unveiling-basic-patterns">Early Insights: Unveiling Basic Patterns</h2>
-<p>Even with this basic model, we can easily extract valuable insights, for example:</p>
-<ul>
-<li><strong>Activity Load</strong>: Identify staff with the highest number of teaching activities or total teaching hours.</li>
-<li><strong>Student Timetable Profiles</strong>: Calculate average hours per student or per programme to understand workload distribution.</li>
-<li><strong>Resource utilisation</strong>: Determine the busiest locations or times on campus based on activity scheduling.</li>
-<li><strong>Anomaly detection</strong>: Identify students who have unexpected profiles or unusual combinations</li>
-</ul>
-<section id="example-code" class="level3">
-<h3 class="anchored" data-anchor-id="example-code">Example code</h3>
-<section id="busiest-location-overall" class="level4">
-<h4 class="anchored" data-anchor-id="busiest-location-overall">Busiest location overall</h4>
-<pre class="{cypher}"><code>MATCH (r:Room)&lt;-[:TAKES_PLACE_IN]-(a:Activity)
-WITH r, sum(a.duration) AS totalDuration
-RETURN r.name AS Room, totalDuration
-ORDER BY totalDuration DESC
-LIMIT 1</code></pre>
-</section>
-<section id="busiest-location-for-a-specific-time" class="level4">
-<h4 class="anchored" data-anchor-id="busiest-location-for-a-specific-time">Busiest location for a specific time</h4>
-<pre class="{cypher}"><code>MATCH (r:Room)&lt;-[:TAKES_PLACE_IN]-(a:Activity)
-WHERE a.startTime = "11:00" 
-WITH r, count(a) AS activityCount
-RETURN r.name AS Room, activityCount
-ORDER BY activityCount DESC
-LIMIT 1 </code></pre>
-</section>
-<section id="students-with-belowabove-average-hours" class="level4">
-<h4 class="anchored" data-anchor-id="students-with-belowabove-average-hours">Students with below/above average hours</h4>
-<pre class="{cypher}"><code>// Calculate program averages and standard deviations
-MATCH (s:Student)-[:IS_ALLOCATED_TO]-&gt;(a:Activity)
-WITH s.prog AS programme, AVG(a.duration) AS avgDuration, STDEV(a.duration) AS stdDev
-GROUP BY programme
-
-// Identify students outside the 10% margin 
-MATCH (s:Student)-[:IS_ALLOCATED_TO]-&gt;(a:Activity)
-WITH s.studentID AS studentID, s.prog AS program, SUM(a.duration) AS totalDuration
-MATCH (avgData)
-WHERE avgData.programme = programme
-WITH studentID, programme, totalDuration, avgData.avgDuration AS avgDuration, avgData.stdDev AS stdDev
-WHERE totalDuration &lt; avgDuration - (0.1 * avgDuration) OR totalDuration &gt; avgDuration + (0.1 * avgDuration)
-RETURN studentID, programme, totalDuration, avgDuration, stdDev 
-ORDER BY programme, totalDuration DESC</code></pre>
-</section>
-</section>
-</section>
-<section id="expanding-the-model-towards-richer-insights" class="level2">
-<h2 class="anchored" data-anchor-id="expanding-the-model-towards-richer-insights">Expanding the Model: Towards Richer Insights</h2>
-<p>The true power of the graph model lies in its extensibility. Introducing additional nodes and properties allows for a more comprehensive representation and enables more sophisticated analysis.</p>
-<section id="potential-expansions" class="level3">
-<h3 class="anchored" data-anchor-id="potential-expansions">Potential Expansions:</h3>
-<ul>
-<li><strong>Organisational Units</strong>: Include departments, colleges, or schools to analyse timetabling within organizational structures.</li>
-<li><strong>Curriculum Data</strong>: Incorporate modules and programmes to understand the interconnectedness of courses and student enrolment patterns.</li>
-<li><strong>Activity Types</strong>: Differentiate between lectures, seminars, labs, etc., for a more granular analysis of teaching and learning activities.</li>
-<li><strong>Activity Delivery</strong>: Understand how teaching delivery (virtual, in-person, hybrid, drop-in) is factored.</li>
-<li><strong>Student Attributes</strong>: Add properties like “international student” or “first-year student” to explore potential student clusters.</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="./images/v2-expanded-tt-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Example of Expanded Timetable Graph Model"><img src="./images/v2-expanded-tt-2.png" class="img-fluid figure-img" style="width:75.0%" alt="Example of Expanded Timetable Graph Model"></a></p>
-<figcaption>Example of Expanded Timetable Graph Model</figcaption>
-</figure>
-</div>
-</section>
 </section>
 <section id="notes-to-be-deleted" class="level2">
 <h2 class="anchored" data-anchor-id="notes-to-be-deleted">NOTES TO BE DELETED</h2>
@@ -895,7 +808,7 @@ ORDER BY programme, totalDuration DESC</code></pre>
 <ul>
 <li><div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="../images/v1.1-load-all-nodes.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="all-nodes-for-posi"><img src="../images/v1.1-load-all-nodes.png" class="img-fluid figure-img" alt="all-nodes-for-posi"></a></p>
+<p><a href="../images/v1.1-load-all-nodes.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="all-nodes-for-posi"><img src="../images/v1.1-load-all-nodes.png" class="img-fluid figure-img" alt="all-nodes-for-posi"></a></p>
 <figcaption>all-nodes-for-posi</figcaption>
 </figure>
 </div></li>
@@ -920,7 +833,7 @@ ORDER BY programme, totalDuration DESC</code></pre>
 <p>It is clear that <code>Activity</code> is the central node in the basic model.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="attachment:v1-core-nodes-rels.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="core nodes with relationships"><img src="attachment:v1-core-nodes-rels.png" class="img-fluid figure-img" alt="core nodes with relationships"></a></p>
+<p><a href="attachment:v1-core-nodes-rels.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="core nodes with relationships"><img src="attachment:v1-core-nodes-rels.png" class="img-fluid figure-img" alt="core nodes with relationships"></a></p>
 <figcaption>core nodes with relationships</figcaption>
 </figure>
 </div>
@@ -1652,7 +1565,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"openEffect":"fade","descPosition":"bottom","selector":".lightbox","loop":false,"closeEffect":"fade"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"fade","openEffect":"fade","selector":".lightbox","descPosition":"bottom","loop":false});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
