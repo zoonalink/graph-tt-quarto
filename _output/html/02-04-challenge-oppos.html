@@ -505,63 +505,13 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="opportunities" class="level2">
 <h2 class="anchored" data-anchor-id="opportunities">Opportunities</h2>
-<ol type="1">
-<li>Unlocking Hidden Patterns:</li>
-</ol>
-<ul>
-<li>Example: “By analyzing student enrollment patterns in relation to course times and locations, we might uncover commuting difficulties that impact attendance, informing future scheduling.”</li>
-<li>General Point: Graphs excel at revealing patterns across relationships, not just within isolated data points.</li>
-</ul>
-<ol start="2" type="1">
-<li>Stakeholder-Centric Analysis:</li>
-</ol>
-<ul>
-<li>Example: “We can query the graph to assess how well a timetable meets faculty preferences for teaching times while also considering student travel burdens, revealing potential areas for improvement.”</li>
-<li>General Point: Graphs can model multiple perspectives simultaneously, unlike traditional approaches that often focus on one optimization goal at a time.</li>
-</ul>
-<ol start="3" type="1">
-<li>What-If Scenarios and Simulations:</li>
-</ol>
-<ul>
-<li>Example: “Adding hypothetical courses or adjusting room capacities in the graph allows us to simulate the impact on existing timetables before implementation, aiding decision-making.”</li>
-<li>General Point: Graphs’ flexibility makes them well-suited for modeling change, not just representing static data.</li>
-</ul>
-<ol start="4" type="1">
-<li>Visual Exploration and Communication:</li>
-</ol>
-<ul>
-<li>Example: “Presenting graph visualizations to stakeholders (even non-technical ones) can foster shared understanding of timetable complexities and potential trade-offs, leading to better buy-in.”</li>
-<li>General Point: While not unique to graphs, they lend themselves well to visual tools, which can be powerful for communication beyond raw numbers.</li>
-</ul>
+<p>Unveiling Hidden Patterns &amp; Improving Student Experience: Problem: Timetable inefficiencies often remain hidden in relational data, impacting student experience. Graph Solution: Graph analysis can uncover patterns like students with excessive travel time between classes, those lacking adequate breaks, or those facing scheduling conflicts due to part-time work. This empowers universities to optimize timetables for improved student well-being and academic performance. Stakeholder-Centric Analysis &amp; Enhanced Decision Making: Problem: Traditional timetabling often prioritizes one factor (e.g., room utilization) over others, neglecting holistic needs. Graph Solution: Graphs allow simultaneous modeling of student preferences (class times, travel distance), faculty constraints, and institutional priorities (resource allocation). This enables data-driven decisions that balance stakeholder needs and improve overall satisfaction. What-If Scenarios &amp; Agile Timetable Management: Problem: Evaluating the impact of timetable changes in relational systems is cumbersome, hindering proactive planning. Graph Solution: Graph databases excel at simulating “what-if” scenarios. Adding hypothetical courses, adjusting room capacities, or modifying faculty availability becomes straightforward. This agility allows for rapid evaluation of multiple scenarios, enabling institutions to anticipate challenges and adapt timetables dynamically. Visual Exploration &amp; Fostering Collaboration: Problem: Communicating complex timetable data to diverse stakeholders (students, faculty, administrators) is challenging. Graph Solution: Graph visualizations make complex relationships intuitive and accessible, fostering shared understanding. This transparency promotes collaboration, reduces misunderstandings, and facilitates informed decision-making.</p>
 </section>
 <section id="challenges" class="level2">
 <h2 class="anchored" data-anchor-id="challenges">Challenges</h2>
-<ol type="1">
-<li>Data Migration and Integration:</li>
-</ol>
-<ul>
-<li>Point: Moving from an existing relational system to a graph database requires careful planning and potential data transformation. This can be a significant upfront effort, especially for large universities.</li>
-</ul>
-<ol start="2" type="1">
-<li>Tooling and Expertise:</li>
-</ol>
-<ul>
-<li>Point: While maturing, the graph database ecosystem might have a steeper learning curve than traditional SQL-based tools. Finding staff with the right expertise could be a consideration.</li>
-</ul>
-<ol start="3" type="1">
-<li>Performance at Scale:</li>
-</ol>
-<ul>
-<li>Point: While generally efficient, graph database performance depends on query complexity and dataset size. For extremely large universities, careful optimization and potentially specialized graph database solutions might be needed.</li>
-</ul>
-<ol start="4" type="1">
-<li>“Soft” Constraint Modeling:</li>
-</ol>
-<ul>
-<li>Point: While graphs excel at representing relationships, quantifying subjective preferences (e.g., how much a student dislikes a late evening class) can still be challenging and might require combining graph analysis with other techniques.</li>
-</ul>
+<p>Data Migration &amp; Integration: A Necessary Hurdle: Challenge: Migrating from existing relational systems to a graph database requires careful planning and data transformation. Mitigation: Employing robust ETL (Extract, Transform, Load) processes and leveraging graph database import tools can streamline the migration process. Prioritizing incremental migration, starting with core entities, can minimize disruption. Tooling and Expertise: Bridging the Skills Gap: Challenge: The graph database ecosystem, while maturing, might require specialized skills compared to traditional SQL. Mitigation: Investing in staff training, collaborating with experts, and leveraging online resources can address the skills gap. Open-source graph databases like Neo4j offer ample learning material and community support. Performance at Scale: Ensuring Responsiveness with Large Datasets: Challenge: Graph databases, while generally performant for connected data, might face challenges with extremely large universities and complex queries. Mitigation: Employing performance tuning techniques like indexing, caching, and query optimization can enhance scalability. Exploring specialized graph database solutions designed for high-volume transactional systems might be necessary in extreme cases. “Soft” Constraint Modeling: Quantifying Subjective Preferences: Challenge: Graphs excel at explicit relationships but struggle with subjective preferences (e.g., student aversion to late classes). Mitigation: Combine graph analysis with techniques like sentiment analysis on student feedback or preference elicitation surveys. This hybrid approach allows incorporating both explicit relationships and quantified subjective factors.</p>
 <p>2.4 Data Augmentation Opportunities</p>
-<p>Room properties example (latitude, longitude) Potential for additional data integration (curriculum, student outcomes, etc.) Discussion on how graph model facilitates data enrichment</p>
+<p>Data Augmentation Opportunities: You touch on this briefly; expanding this section could be very compelling. Example: Integrating room location data (latitude/longitude) with student address data could allow for powerful analyses of commute patterns and potential inequities. Ethical Considerations: As your project deals with student data, briefly mention the importance of data privacy, anonymization, and responsible use of insights.</p>
 <p>2.5 Challenges and Considerations</p>
 <p>Potential limitations of the graph approach Data migration considerations Performance considerations for large-scale timetabling systems</p>
 

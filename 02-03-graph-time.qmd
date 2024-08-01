@@ -9,9 +9,9 @@ title: Graphing Time
 -   add arrows for each model
 :::
 
-The biggest challenge when modelling timetables into graph data structures involved temporal elements - that is, start and end times, dates, weeks, reccurences, durations, etc. Whether a data element is a node or a property of a node, or perhaps both is relatively trivial to model and test, and depends heavily on use cases. Time, on the other hand, is complicated, as I discovered when writing time-based queries on my first upload.
+The biggest challenge when modelling timetables into graph data structures involved temporal elements - that is, start and end times, dates, weeks, reccurences, durations, etc. Whether a data element is a node or a property of a node, or perhaps both is relatively trivial to model and test, and depends heavily on use cases. Time, on the other hand, is complicated, as I discovered when attempting to write aggregation queries on time elements.
 
-While the conceptual flexibility of graphs is appealing, finding the optimal balance between efficient representation, query performance, and data redundancy requires careful consideration. This section details the challenges encountered and the solutions explored in modeling time for a university timetable graph database.
+While the conceptual flexibility of graphs is appealing, finding the optimal balance between efficient representation, query performance, and data redundancy requires careful consideration. This section details some challenges encountered and the solutions explored in modeling time for a university timetable graph database.
 
 ## The Problem of Normalised Time
 
@@ -25,13 +25,15 @@ Traditional relational databases often store timetable information in a highly n
 
 To address these challenges, several time modeling approaches were explored, each with its own trade-offs. Let's explore with a fictional example for `Introduction to Graph Databases` :
 
-| Name | Day       | StartTime | EndTime | Weeks (11 weeks) |
+| Name | Day       | StartTime | EndTime | Weeks (11 weeks total) |
 |------|-----------|-----------|---------|------------------|
 | ITGD | Wednesday | 09:00     | 11:00   | 1-3, 5-7, 9-13   |
 
-: Source Data (Relational)
+: Example Source Data (Relational)
 
-### Option 1: Unique Activity Nodes for Each Date/Time Instance
+### Option 1: Unique Activity Nodes
+
+![Unique Activity Nodes Graph Example](./images/time-option1.png)
 
 **Graph Structure**: 11 separate `Activity` nodes one for each occurrence (date) 
 
@@ -55,10 +57,15 @@ To address these challenges, several time modeling approaches were explored, eac
 
 ### Option 2: Date and Time Nodes
 
+![Time and Date Nodes](./images/time-option2.png)
+
 **Graph Structure**: One `Activity` node for "Intro to Graph Databases".
+
 - 11 Date nodes (for each Wednesday).
 - 2 Time nodes (09:00 and 11:00) - shared by ALL activities on those times!
+
 - **Relationships**
+- 
   - `Activity` -[:SCHEDULED_ON]-> `Date` (11 relationships)
   - `Date` -[:STARTS_AT]-> `Time` (11 relationships to 09:00)
   - `Date` -[:ENDS_AT]-> `Time` (11 relationships to 11:00)
@@ -77,7 +84,7 @@ To address these challenges, several time modeling approaches were explored, eac
 
 -   **Increased Flexibility**: Facilitates queries across time ranges and aggregations across time slots.
 -   **Reduced Redundancy**: Avoids replicating time information for activities occurring on the same date and time.
--   **Lower Node Count**:  Potentially fewer nodes overall compared to Option 1 as `date` and `time` nodes are shared with all activities.
+-   **Lower Node Count**:  Potentially fewer nodes overall compared to Option 1 as `date` and `time` nodes are shared with all activities in the database.
 
 **Cons**:
 
@@ -85,6 +92,8 @@ To address these challenges, several time modeling approaches were explored, eac
 - **Potential Performance Overhead**: Querying might involve traversing multiple relationships, impacting efficiency.
 
 ### Option 3: Date and Time Block Nodes
+
+![TimeBlock and Date Nodes](./images/time-option3.png)
 
 **Graph Structure**: Same as Option 2, but instead of individual `Time` nodes, we have `TimeBlock` nodes.
 - For example, if using 30-minute blocks, you would have a node for "09:00-09:30" and another for "09:30-10:00", etc.
@@ -106,9 +115,17 @@ To address these challenges, several time modeling approaches were explored, eac
 -   **Potential for Data Sparsity**: Some time blocks might be sparsely populated, leading to storage inefficiencies.
 -   **Potential for High Node Codes**: Lots of `TimeBlocks` if using small intervals
 
-### Option 4: Start Time and Duration
+### Option: Variations
 
-This option simplifies the model by representing time using only `StartTime` and `DurationInMinutes` properties on the `Activity` node, omitting explicit `EndTime` nodes.  This approach is suitable for duration based queries but it is limiting in that it is more difficult to query for events occurring at specific times, overlapping time ranges or on end-times.
+**StartTime and Duration**: This option simplifies the model by representing time using only `StartTime` and `DurationInMinutes` properties on the `Activity` node, omitting explicit `EndTime` nodes.  This approach is suitable for duration based queries but it is limiting in that it is more difficult to query for events occurring at specific times, overlapping time ranges or on end-times.
+
+**Dynamic TimeBlocks**: This variation does not precreate timeblocks based on a set interval (e.g. 30 minutes).  They are created dynamically as required by the data and what already exists.  For example, activities at 09:00-11:00, 10:30-11:30 and 11:00-12:00 would require these TimeBlocks:
+
+```
+(Timeblock {name: "09:00-11:00", start: 09:00, end: 11:00, duration:120})
+(Timeblock {name: "10:30-11:30", start: 10:30, end: 11:30, duration:60})
+(Timeblock {name: "11:00-12:00", start: 11:00, end: 12:00, duration:60})
+```
 
 ### Summary
 
@@ -119,16 +136,18 @@ This option simplifies the model by representing time using only `StartTime` and
 | Unique Activities | Simple, direct | High node count, complex time pattern queries |
 | Date & Time | Lower node count, good for time-based queries | More complex relationships |
 | Date & TimeBlock | Granular, easier duration calculations | Potentially high node count, sparsity if blocks are fine-grained |
-| Start & Duration |  Simple for duration-based analysis | Limited for querying specific end times and overlaps |
+
 
 : Option summary 
 
 
-Given the scope of this project as a proof of concept, Option 1 (unique activity nodes for each date/time instance) was chosen. While this approach can lead to node proliferation, it offers the most straightforward implementation for exploring fundamental time-based queries and insights. 
+Given the proof-of-concept scope of this project, Option 1 (unique activity nodes for each date/time instance) was chosen. While this approach can lead to node proliferation, it offers the most straightforward implementation for exploring fundamental time-based queries and insights. 
 
 Future work could include evaluating the performance and scalability of different time modeling options, particularly: 
 
 - **Dynamic Node Creation (Option 2 or 3)**: This approach would create `Time` or `TimeBlock` nodes only when needed, potentially offering a good balance between flexibility and performance. 
 - **Direct Performance Comparisons**: Conducting benchmarks against specific use cases and datasets will provide valuable insights for choosing the optimal approach for large-scale deployments. 
 
-Modeling time effectively is crucial for unlocking the full potential of a graph database for university timetabling analysis. This section has outlined the challenges, explored potential solutions, and documented the chosen approach for this proof of concept. Further exploration and optimisation of time modeling will be essential for developing robust, scalable, and insightful graph-based timetabling solutions.  The next section will delve into the data engineering pipeline required to populate and maintain this model, bridging the gap between raw data and insightful analysis.
+Modeling time effectively is crucial for unlocking the full potential of a graph database for university timetabling analysis. This section has outlined the challenges, explored potential solutions, and documented the chosen approach for this proof of concept. 
+
+Further exploration and optimisation of time modeling will be essential for developing robust, scalable, and insightful graph-based timetabling solutions.  The next section will delve into the data engineering pipeline required to populate and maintain this model, bridging the gap between raw data and insightful analysis.

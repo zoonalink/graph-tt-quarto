@@ -24,7 +24,7 @@ Relational databases, using SQL as their query language, have long been the go-t
 
 While robust and well-understood, relational databases start to show their limitations when dealing with the highly interconnected nature of timetables:
 
--   **Join Complexity**: Even seemingly simple queries, like "find students attending a specific lecturer's class in a particular building," require joining multiple tables. As queries become more nuanced, the number of joins increases, often impacting performance, especially with large datasets.
+-   **Join Complexity**: Even seemingly simple queries, like *"find students attending a specific lecturer's class in a particular building,"* require joining multiple tables (see below). As queries become more nuanced, the number of joins increases, often impacting performance, especially with large datasets.
 
 -   **Rigidity**: Relational databases rely on a predefined schema, making them less adaptable to evolving needs. Adding new entities or relationships, a common occurrence in dynamic timetabling environments, often requires schema modifications, potentially disrupting existing queries and applications.
 -   
@@ -60,7 +60,7 @@ In contrast to the rigid table structure of relational databases, graph database
 -   **Nodes**: Represent entities (e.g., activity, room, lecturer, student).
 -   **Edges**: Represent relationships between nodes (e.g., "taught by," "enrolled in," "scheduled at").
 
-![Simple Graph Data Model](./images/v1-core-nodes-rels.png){width=75%}
+![Simple Graph Data Model](./images/v1-core-nodes-rels.png){.medium-image}
 
 This node-and-edge structure inherently reflects how timetabling elements connect. Instead of relying on cumbersome joins, relationships are directly encoded in the data model itself. This results in several advantages:
 

@@ -29,7 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./02-03-graph-time.html" rel="next">
+<link href="./02-02b-expand.html" rel="next">
 <link href="./02-01-comparison.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -42,6 +42,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -134,6 +137,10 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="./02-02-graph-timetable.html">
  <span class="dropdown-text">Graph Data Model for Timetabling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-02b-expand.html">
+ <span class="dropdown-text">Early Insights and Model Expansion</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./02-03-graph-time.html">
@@ -325,6 +332,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./02-02b-expand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Early Insights and Model Expansion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./02-03-graph-time.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graphing Time</span></a>
   </div>
@@ -493,7 +506,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#potential-expansions" id="toc-potential-expansions" class="nav-link" data-scroll-target="#potential-expansions">Potential Expansions:</a></li>
   </ul></li>
-  <li><a href="#the-challenge-of-time-finding-the-optimal-representation" id="toc-the-challenge-of-time-finding-the-optimal-representation" class="nav-link" data-scroll-target="#the-challenge-of-time-finding-the-optimal-representation">The Challenge of Time: Finding the Optimal Representation</a></li>
+  <li><a href="#notes-to-be-deleted" id="toc-notes-to-be-deleted" class="nav-link" data-scroll-target="#notes-to-be-deleted">NOTES TO BE DELETED</a></li>
   <li><a href="#approach" id="toc-approach" class="nav-link" data-scroll-target="#approach">approach</a></li>
   <li><a href="#nodes" id="toc-nodes" class="nav-link" data-scroll-target="#nodes">nodes</a></li>
   <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">properties</a></li>
@@ -664,7 +677,7 @@ TODO
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/poc1-import-interface.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p><a href="./images/poc1-import-interface.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Neo4j Interface showing basic nodes and properties"><img src="./images/poc1-import-interface.png" class="img-fluid figure-img" style="width:75.0%" alt="Neo4j Interface showing basic nodes and properties"></a></p>
 <figcaption>Neo4j Interface showing basic nodes and properties</figcaption>
 </figure>
 </div>
@@ -682,7 +695,7 @@ TODO
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/v1-core-nodes-rels-prop.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p><a href="./images/v1-core-nodes-rels-prop.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Core Nodes and Properties"><img src="./images/v1-core-nodes-rels-prop.png" class="img-fluid figure-img" style="width:75.0%" alt="Core Nodes and Properties"></a></p>
 <figcaption>Core Nodes and Properties</figcaption>
 </figure>
 </div>
@@ -749,17 +762,14 @@ ORDER BY programme, totalDuration DESC</code></pre>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/v2-expanded-tt-2.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p><a href="./images/v2-expanded-tt-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Example of Expanded Timetable Graph Model"><img src="./images/v2-expanded-tt-2.png" class="img-fluid figure-img" style="width:75.0%" alt="Example of Expanded Timetable Graph Model"></a></p>
 <figcaption>Example of Expanded Timetable Graph Model</figcaption>
 </figure>
 </div>
 </section>
 </section>
-<section id="the-challenge-of-time-finding-the-optimal-representation" class="level2">
-<h2 class="anchored" data-anchor-id="the-challenge-of-time-finding-the-optimal-representation">The Challenge of Time: Finding the Optimal Representation</h2>
-<p>Modeling time within a graph database presents a unique challenge. While your initial approach of representing time as properties on the Activity node works for basic analysis, it limits the ability to answer more nuanced questions related to time patterns and potential scheduling conflicts.</p>
-<p>Your exploration of alternative approaches highlights the flexibility of graph databases but also the need for careful consideration based on the desired analytical outcomes. Future work exploring dynamic node creation for start times, end times, and dates with direct performance comparisons against specific use cases will be valuable.</p>
-<p>This section has established the foundation for a graph-based approach to university timetabling. The next section will delve into the data engineering pipeline required to populate and maintain this model, bridging the gap between raw data and insightful analysis.</p>
+<section id="notes-to-be-deleted" class="level2">
+<h2 class="anchored" data-anchor-id="notes-to-be-deleted">NOTES TO BE DELETED</h2>
 </section>
 <section id="approach" class="level1">
 <h1>approach</h1>
@@ -885,7 +895,7 @@ ORDER BY programme, totalDuration DESC</code></pre>
 <ul>
 <li><div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../images/v1.1-load-all-nodes.png" class="img-fluid figure-img"></p>
+<p><a href="../images/v1.1-load-all-nodes.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="all-nodes-for-posi"><img src="../images/v1.1-load-all-nodes.png" class="img-fluid figure-img" alt="all-nodes-for-posi"></a></p>
 <figcaption>all-nodes-for-posi</figcaption>
 </figure>
 </div></li>
@@ -910,7 +920,7 @@ ORDER BY programme, totalDuration DESC</code></pre>
 <p>It is clear that <code>Activity</code> is the central node in the basic model.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="attachment:v1-core-nodes-rels.png" class="img-fluid figure-img"></p>
+<p><a href="attachment:v1-core-nodes-rels.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="core nodes with relationships"><img src="attachment:v1-core-nodes-rels.png" class="img-fluid figure-img" alt="core nodes with relationships"></a></p>
 <figcaption>core nodes with relationships</figcaption>
 </figure>
 </div>
@@ -1623,8 +1633,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-03-graph-time.html" class="pagination-link" aria-label="Graphing Time">
-        <span class="nav-page-text">Graphing Time</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./02-02b-expand.html" class="pagination-link" aria-label="Early Insights and Model Expansion">
+        <span class="nav-page-text">Early Insights and Model Expansion</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1642,6 +1652,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"openEffect":"fade","descPosition":"bottom","selector":".lightbox","loop":false,"closeEffect":"fade"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

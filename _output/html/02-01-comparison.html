@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./02-02-graph-timetable.html" rel="next">
-<link href="./02-00-graph-model.qmd" rel="prev">
+<link href="./01-04-project.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -128,16 +128,16 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-graph-data-model">    
         <li>
-    <a class="dropdown-item" href="./02-00-graph-model.qmd">
- <span class="dropdown-text">Graph Data</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./02-01-comparison.html">
  <span class="dropdown-text">Graph vs Relational Data Models</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./02-02-graph-timetable.html">
  <span class="dropdown-text">Graph Data Model for Timetabling</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-02b-expand.html">
+ <span class="dropdown-text">Early Insights and Model Expansion</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./02-03-graph-time.html">
@@ -245,7 +245,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-graph-model.qmd">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-01-comparison.html">Graph vs Relational Data Models</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-01-comparison.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-01-comparison.html">Graph vs Relational Data Models</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -317,12 +317,6 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-00-graph-model.qmd" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Graph Data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./02-01-comparison.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Graph vs Relational Data Models</span></a>
   </div>
@@ -331,6 +325,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./02-02-graph-timetable.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graph Data Model for Timetabling</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-02b-expand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Early Insights and Model Expansion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -501,7 +501,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-00-graph-model.qmd">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-01-comparison.html">Graph vs Relational Data Models</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-01-comparison.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-01-comparison.html">Graph vs Relational Data Models</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Graph vs Relational Data Models</h1>
 </div>
@@ -538,6 +538,7 @@ TODO
 </ul>
 </div>
 </div>
+<p>Having established the context and motivation for this project, let us now focus on the core of the proposed solution: the graph data model for university timetabling. As outlined in the <a href="./01-04-project.html">project aims</a>, my hypothesis is that graph-based approaches have the <em>potential</em> to offer new insights and efficiencies in timetable analysis and optimisation. This section will explore the theoretical underpinnings of graph data structures and their application to the complex domain of university timetabling.</p>
 <section id="relational-models" class="level2">
 <h2 class="anchored" data-anchor-id="relational-models">Relational Models</h2>
 <section id="tables-joins-and-the-limits-of-interconnectedness" class="level3">
@@ -1228,8 +1229,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="./02-00-graph-model.qmd" class="pagination-link" aria-label="Graph Data">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Graph Data</span>
+      <a href="./01-04-project.html" class="pagination-link" aria-label="Project Aims and Scope">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Project Aims and Scope</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

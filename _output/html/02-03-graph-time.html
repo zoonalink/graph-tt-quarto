@@ -29,8 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./02-04-challenge-oppos.html" rel="next">
-<link href="./02-02-graph-timetable.html" rel="prev">
+<link href="./03-01-overview.html" rel="next">
+<link href="./02-02c-challenge-oppos.qmd" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -136,12 +136,16 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Graph Data Model for Timetabling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02-03-graph-time.html">
- <span class="dropdown-text">Graphing Time</span></a>
+    <a class="dropdown-item" href="./02-02b-expand.html">
+ <span class="dropdown-text">Early Insights and Model Expansion</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02-04-challenge-oppos.html">
+    <a class="dropdown-item" href="./02-02c-challenge-oppos.qmd">
  <span class="dropdown-text">Opportunities and Challenges</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-03-graph-time.html">
+ <span class="dropdown-text">Graphing Time</span></a>
   </li>  
     </ul>
   </li>
@@ -325,14 +329,20 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-03-graph-time.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Graphing Time</span></a>
+  <a href="./02-02b-expand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Early Insights and Model Expansion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-04-challenge-oppos.html" class="sidebar-item-text sidebar-link">
+  <a href="./02-02c-challenge-oppos.qmd" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Opportunities and Challenges</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-03-graph-time.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Graphing Time</span></a>
   </div>
 </li>
       </ul>
@@ -471,11 +481,25 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-problem-of-normalised-time" id="toc-the-problem-of-normalised-time" class="nav-link active" data-scroll-target="#the-problem-of-normalised-time">The Problem of Normalised Time</a></li>
+  <li><a href="#exploring-potential-solutions" id="toc-exploring-potential-solutions" class="nav-link" data-scroll-target="#exploring-potential-solutions">Exploring Potential Solutions</a>
+  <ul class="collapse">
+  <li><a href="#option-1-unique-activity-nodes" id="toc-option-1-unique-activity-nodes" class="nav-link" data-scroll-target="#option-1-unique-activity-nodes">Option 1: Unique Activity Nodes</a></li>
+  <li><a href="#option-2-date-and-time-nodes" id="toc-option-2-date-and-time-nodes" class="nav-link" data-scroll-target="#option-2-date-and-time-nodes">Option 2: Date and Time Nodes</a></li>
+  <li><a href="#option-3-date-and-time-block-nodes" id="toc-option-3-date-and-time-block-nodes" class="nav-link" data-scroll-target="#option-3-date-and-time-block-nodes">Option 3: Date and Time Block Nodes</a></li>
+  <li><a href="#option-variations" id="toc-option-variations" class="nav-link" data-scroll-target="#option-variations">Option: Variations</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-01-comparison.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-03-graph-time.html">Graphing Time</a></li></ol></nav>
 <div class="quarto-title">
@@ -484,7 +508,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -496,8 +520,198 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+TODO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>quote on normalisation (footnote)</li>
+<li>add arrows for each model</li>
+</ul>
+</div>
+</div>
+<p>The biggest challenge when modelling timetables into graph data structures involved temporal elements - that is, start and end times, dates, weeks, reccurences, durations, etc. Whether a data element is a node or a property of a node, or perhaps both is relatively trivial to model and test, and depends heavily on use cases. Time, on the other hand, is complicated, as I discovered when attempting to write aggregation queries on time elements.</p>
+<p>While the conceptual flexibility of graphs is appealing, finding the optimal balance between efficient representation, query performance, and data redundancy requires careful consideration. This section details some challenges encountered and the solutions explored in modeling time for a university timetable graph database.</p>
+<section id="the-problem-of-normalised-time" class="level2">
+<h2 class="anchored" data-anchor-id="the-problem-of-normalised-time">The Problem of Normalised Time</h2>
+<p>Traditional relational databases often store timetable information in a highly normalised format, condensing recurring events into single rows with date ranges, week patterns, or lists of occurrences. While efficient for storage and basic display, this approach severely hinders analysis, especially when aiming to:</p>
+<ul>
+<li><strong>Identify Time-Based Patterns</strong>: Determining if students lack lunch breaks or experience excessive gaps between classes becomes difficult when time is fragmented across multiple fields.</li>
+<li><strong>Perform Aggregations</strong>: Calculating total teaching hours for a lecturer across specific weeks or days requires complex queries and data transformations.</li>
+<li><strong>Model Temporal Relationships</strong>: Representing relationships between activities based on their temporal proximity, such as students attending consecutive classes, becomes convoluted.</li>
+</ul>
+</section>
+<section id="exploring-potential-solutions" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-potential-solutions">Exploring Potential Solutions</h2>
+<p>To address these challenges, several time modeling approaches were explored, each with its own trade-offs. Let’s explore with a fictional example for <code>Introduction to Graph Databases</code> :</p>
+<table class="caption-top table">
+<caption>Example Source Data (Relational)</caption>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Day</th>
+<th>StartTime</th>
+<th>EndTime</th>
+<th>Weeks (11 weeks total)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ITGD</td>
+<td>Wednesday</td>
+<td>09:00</td>
+<td>11:00</td>
+<td>1-3, 5-7, 9-13</td>
+</tr>
+</tbody>
+</table>
+<section id="option-1-unique-activity-nodes" class="level3">
+<h3 class="anchored" data-anchor-id="option-1-unique-activity-nodes">Option 1: Unique Activity Nodes</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/time-option1.png" class="img-fluid figure-img"></p>
+<figcaption>Unique Activity Nodes Graph Example</figcaption>
+</figure>
+</div>
+<p><strong>Graph Structure</strong>: 11 separate <code>Activity</code> nodes one for each occurrence (date)</p>
+<ul>
+<li>Each node has <code>Date</code>, <code>StartTime</code>, <code>EndTime</code> properties</li>
+<li>Essentially - this is ‘un-normlising’ the relational data</li>
+</ul>
+<pre><code>(Activity {Name: "ITGD", Date: "2024-01-03", StartTime: "09:00", EndTime: "11:00"}) (Activity {Name: "ITGD", Date: "2024-01-10", StartTime: "09:00", EndTime: "11:00"}) ... (Activity {Name: "ITGD", Date: "2024-03-20", StartTime: "09:00", EndTime: "11:00"})</code></pre>
+<p><strong>Pros</strong>:</p>
+<ul>
+<li><strong>Conceptual Simplicity</strong>: Easy to understand and implement.</li>
+<li><strong>Direct Time Representation</strong>: Time is directly associated with each activity instance.</li>
+</ul>
+<p><strong>Cons</strong>:</p>
+<ul>
+<li><strong>Node Proliferation</strong>: Leads to a high volume of nodes, potentially impacting performance with large datasets.</li>
+<li><strong>Complex Time-Based Queries</strong>: Answering questions about time patterns or conflicts requires traversing numerous nodes and relationships.</li>
+</ul>
+</section>
+<section id="option-2-date-and-time-nodes" class="level3">
+<h3 class="anchored" data-anchor-id="option-2-date-and-time-nodes">Option 2: Date and Time Nodes</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/time-option2.png" class="img-fluid figure-img"></p>
+<figcaption>Time and Date Nodes</figcaption>
+</figure>
+</div>
+<p><strong>Graph Structure</strong>: One <code>Activity</code> node for “Intro to Graph Databases”.</p>
+<ul>
+<li><p>11 Date nodes (for each Wednesday).</p></li>
+<li><p>2 Time nodes (09:00 and 11:00) - shared by ALL activities on those times!</p></li>
+<li><p><strong>Relationships</strong></p></li>
+<li><ul>
+<li><code>Activity</code> -[:SCHEDULED_ON]-&gt; <code>Date</code> (11 relationships)</li>
+<li><code>Date</code> -[:STARTS_AT]-&gt; <code>Time</code> (11 relationships to 09:00)</li>
+<li><code>Date</code> -[:ENDS_AT]-&gt; <code>Time</code> (11 relationships to 11:00)</li>
+</ul></li>
+</ul>
+<pre><code>(Activity {Name: "ITGD"}) -[:SCHEDULED_ON]-&gt; (Date {date: "2024-01-03"}) -[:STARTS_AT]-&gt; (Time {time: "09:00"})
+                                             (Date {date: "2024-01-03"}) -[:ENDS_AT]-&gt;   (Time {time: "11:00"})
+(Activity {Name: "ITGD"}) -[:SCHEDULED_ON]-&gt; (Date {date: "2024-01-10"}) -[:STARTS_AT]-&gt; (Time {time: "09:00"}) // Same time node!
+                                             (Date {date: "2024-01-10"}) -[:ENDS_AT]-&gt;   (Time {time: "11:00"}) 
+...</code></pre>
+<p><strong>Key point</strong>: Relationships encode which activity happens when.</p>
+<p><strong>Pros</strong>:</p>
+<ul>
+<li><strong>Increased Flexibility</strong>: Facilitates queries across time ranges and aggregations across time slots.</li>
+<li><strong>Reduced Redundancy</strong>: Avoids replicating time information for activities occurring on the same date and time.</li>
+<li><strong>Lower Node Count</strong>: Potentially fewer nodes overall compared to Option 1 as <code>date</code> and <code>time</code> nodes are shared with all activities in the database.</li>
+</ul>
+<p><strong>Cons</strong>:</p>
+<ul>
+<li><strong>Increased Model Complexity</strong>: Requires managing relationships between Activity, Date, and Time nodes.</li>
+<li><strong>Potential Performance Overhead</strong>: Querying might involve traversing multiple relationships, impacting efficiency.</li>
+</ul>
+</section>
+<section id="option-3-date-and-time-block-nodes" class="level3">
+<h3 class="anchored" data-anchor-id="option-3-date-and-time-block-nodes">Option 3: Date and Time Block Nodes</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/time-option3.png" class="img-fluid figure-img"></p>
+<figcaption>TimeBlock and Date Nodes</figcaption>
+</figure>
+</div>
+<p><strong>Graph Structure</strong>: Same as Option 2, but instead of individual <code>Time</code> nodes, we have <code>TimeBlock</code> nodes. - For example, if using 30-minute blocks, you would have a node for “09:00-09:30” and another for “09:30-10:00”, etc.</p>
+<pre><code>(Activity {Name: "ITGD"}) -[:SCHEDULED_ON]-&gt; (Date {date: "2024-01-03"}) -[:OCCUPIES]-&gt; (TimeBlock {start: "09:00", end: "09:30"})
+                                                                          -[:OCCUPIES]-&gt; (TimeBlock {start: "09:30", end: "10:00"}) 
+...</code></pre>
+<p><strong>Pros</strong>:</p>
+<ul>
+<li><strong>Granular Time Representation</strong>: Enables analysis at specific time intervals</li>
+<li><strong>Easier Time Calculations</strong>: Duration is encoded and allows for easy calculations.</li>
+<li><strong>Reduced Node Count Compared to Option 2</strong>: Offers a balance between granularity and node proliferation.</li>
+</ul>
+<p><strong>Cons</strong>:</p>
+<ul>
+<li><strong>Potential for Data Sparsity</strong>: Some time blocks might be sparsely populated, leading to storage inefficiencies.</li>
+<li><strong>Potential for High Node Codes</strong>: Lots of <code>TimeBlocks</code> if using small intervals</li>
+</ul>
+</section>
+<section id="option-variations" class="level3">
+<h3 class="anchored" data-anchor-id="option-variations">Option: Variations</h3>
+<p><strong>StartTime and Duration</strong>: This option simplifies the model by representing time using only <code>StartTime</code> and <code>DurationInMinutes</code> properties on the <code>Activity</code> node, omitting explicit <code>EndTime</code> nodes. This approach is suitable for duration based queries but it is limiting in that it is more difficult to query for events occurring at specific times, overlapping time ranges or on end-times.</p>
+<p><strong>Dynamic TimeBlocks</strong>: This variation does not precreate timeblocks based on a set interval (e.g.&nbsp;30 minutes). They are created dynamically as required by the data and what already exists. For example, activities at 09:00-11:00, 10:30-11:30 and 11:00-12:00 would require these TimeBlocks:</p>
+<pre><code>(Timeblock {name: "09:00-11:00", start: 09:00, end: 11:00, duration:120})
+(Timeblock {name: "10:30-11:30", start: 10:30, end: 11:30, duration:60})
+(Timeblock {name: "11:00-12:00", start: 11:00, end: 12:00, duration:60})</code></pre>
+</section>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<p>:</p>
+<table class="caption-top table">
+<caption>Option summary</caption>
+<colgroup>
+<col style="width: 21%">
+<col style="width: 39%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Pros</th>
+<th>Cons</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Unique Activities</td>
+<td>Simple, direct</td>
+<td>High node count, complex time pattern queries</td>
+</tr>
+<tr class="even">
+<td>Date &amp; Time</td>
+<td>Lower node count, good for time-based queries</td>
+<td>More complex relationships</td>
+</tr>
+<tr class="odd">
+<td>Date &amp; TimeBlock</td>
+<td>Granular, easier duration calculations</td>
+<td>Potentially high node count, sparsity if blocks are fine-grained</td>
+</tr>
+</tbody>
+</table>
+<p>Given the proof-of-concept scope of this project, Option 1 (unique activity nodes for each date/time instance) was chosen. While this approach can lead to node proliferation, it offers the most straightforward implementation for exploring fundamental time-based queries and insights.</p>
+<p>Future work could include evaluating the performance and scalability of different time modeling options, particularly:</p>
+<ul>
+<li><strong>Dynamic Node Creation (Option 2 or 3)</strong>: This approach would create <code>Time</code> or <code>TimeBlock</code> nodes only when needed, potentially offering a good balance between flexibility and performance.</li>
+<li><strong>Direct Performance Comparisons</strong>: Conducting benchmarks against specific use cases and datasets will provide valuable insights for choosing the optimal approach for large-scale deployments.</li>
+</ul>
+<p>Modeling time effectively is crucial for unlocking the full potential of a graph database for university timetabling analysis. This section has outlined the challenges, explored potential solutions, and documented the chosen approach for this proof of concept.</p>
+<p>Further exploration and optimisation of time modeling will be essential for developing robust, scalable, and insightful graph-based timetabling solutions. The next section will delve into the data engineering pipeline required to populate and maintain this model, bridging the gap between raw data and insightful analysis.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1064,15 +1278,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="./02-02-graph-timetable.html" class="pagination-link" aria-label="Graph Data Model for Timetabling">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Graph Data Model for Timetabling</span>
+      <a href="./02-02c-challenge-oppos.qmd" class="pagination-link" aria-label="Opportunities and Challenges">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Opportunities and Challenges</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-04-challenge-oppos.html" class="pagination-link" aria-label="Opportunities and Challenges">
-        <span class="nav-page-text">Opportunities and Challenges</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./03-01-overview.html" class="pagination-link" aria-label="Overview">
+        <span class="nav-page-text">Overview</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

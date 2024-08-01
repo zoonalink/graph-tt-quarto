@@ -2,6 +2,12 @@
 title: Graph Data Model for Timebling
 execute: 
   enabled: false
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+  
 ---
 
 ::: callout-warning
@@ -18,8 +24,7 @@ Having discussed some advantages of graph databases for representing interconnec
 
 The design of this graph data model was iterative: design, build, test, review, and revise -\> ...and repeat. Using Neo4j Desktop and an Aura cloud instance, the first model was small scope in scope, incorporating minimal nodes and properties. This iterative approach allows for flexibility and refinement based on real-world data and evolving requirements.
 
-## Core Nodes
-### The Building Blocks
+## Core Nodes - Building Blocks
 
 At its core, the timetable model revolves around four key entities represented as nodes:
 
@@ -47,81 +52,17 @@ At its core, the timetable model revolves around four key entities represented a
 
 ![Neo4j Interface showing basic nodes and properties](./images/poc1-import-interface.png){width=75%}
 
-## Defining Relationships
-### Connecting the Dots
+## Relationships - Connecting the Dots
 
 These core nodes are interconnected through relationships that reflect the dynamics of a timetable:
 
--   Student-**\[IS_ALLOCATED_TO\]**-\>Activity: Represents a student's allocation to a specific activity.
--   Staff-**\[TEACHES_ON\]**-\>Activity: Indicates the staff member responsible for teaching an activity.
--   Activity-**\[TAKES_PLACE_IN\]**-\>Room: Connects an activity to the room where it is scheduled.
+-   Student-**\[IS_ALLOCATED_TO\]**-\>Activity
+-   Staff-**\[TEACHES_ON\]**-\>Activity
+-   Activity-**\[TAKES_PLACE_IN\]**-\>Room
 
 ![Core Nodes and Properties](./images/v1-core-nodes-rels-prop.png){width=75%}
 
-## Early Insights: Unveiling Basic Patterns
 
-Even with this basic model, we can easily extract valuable insights, for example:
-
--   **Activity Load**: Identify staff with the highest number of teaching activities or total teaching hours.
--   **Student Timetable Profiles**: Calculate average hours per student or per programme to understand workload distribution.
--   **Resource utilisation**: Determine the busiest locations or times on campus based on activity scheduling.
--   **Anomaly detection**: Identify students who have unexpected profiles or unusual combinations
-
-### Example code
-
-#### Busiest location overall
-
-```{cypher}
-MATCH (r:Room)<-[:TAKES_PLACE_IN]-(a:Activity)
-WITH r, sum(a.duration) AS totalDuration
-RETURN r.name AS Room, totalDuration
-ORDER BY totalDuration DESC
-LIMIT 1
-```
-
-#### Busiest location for a specific time
-
-```{cypher}
-MATCH (r:Room)<-[:TAKES_PLACE_IN]-(a:Activity)
-WHERE a.startTime = "11:00" 
-WITH r, count(a) AS activityCount
-RETURN r.name AS Room, activityCount
-ORDER BY activityCount DESC
-LIMIT 1 
-```
-
-#### Students with below/above average hours
-
-```{cypher}
-// Calculate program averages and standard deviations
-MATCH (s:Student)-[:IS_ALLOCATED_TO]->(a:Activity)
-WITH s.prog AS programme, AVG(a.duration) AS avgDuration, STDEV(a.duration) AS stdDev
-GROUP BY programme
-
-// Identify students outside the 10% margin 
-MATCH (s:Student)-[:IS_ALLOCATED_TO]->(a:Activity)
-WITH s.studentID AS studentID, s.prog AS program, SUM(a.duration) AS totalDuration
-MATCH (avgData)
-WHERE avgData.programme = programme
-WITH studentID, programme, totalDuration, avgData.avgDuration AS avgDuration, avgData.stdDev AS stdDev
-WHERE totalDuration < avgDuration - (0.1 * avgDuration) OR totalDuration > avgDuration + (0.1 * avgDuration)
-RETURN studentID, programme, totalDuration, avgDuration, stdDev 
-ORDER BY programme, totalDuration DESC
-```
-
-## Expanding the Model: Towards Richer Insights
-
-The true power of the graph model lies in its extensibility. Introducing additional nodes and properties allows for a more comprehensive representation and enables more sophisticated analysis.
-
-### Potential Expansions:
-
--   **Organisational Units**: Include departments, colleges, or schools to analyse timetabling within organizational structures.
--   **Curriculum Data**: Incorporate modules and programmes to understand the interconnectedness of courses and student enrolment patterns.
--   **Activity Types**: Differentiate between lectures, seminars, labs, etc., for a more granular analysis of teaching and learning activities.
--   **Activity Delivery**: Understand how teaching delivery (virtual, in-person, hybrid, drop-in) is factored.
--   **Student Attributes**: Add properties like "international student" or "first-year student" to explore potential student clusters.
-
-![Example of Expanded Timetable Graph Model](./images/v2-expanded-tt-2.png){width=75%}
 
 
 

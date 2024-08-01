@@ -43,10 +43,13 @@ website:
             text: Graph vs Relational Data Models
           - href: 02-02-graph-timetable.qmd
             text: Graph Data Model for Timetabling
+          - href: 02-02b-expand.qmd
+            text: Early Insights and Model Expansion
+          - href: 02-02c-challenge-oppos.qmd
+            text: Opportunities and Challenges
           - href: 02-03-graph-time.qmd
             text: Graphing Time
-          - href: 02-04-challenge-oppos.qmd
-            text: Opportunities and Challenges
+          
       - text: "Data Pipeline"
         menu:
           - href: 03-01-overview.qmd
@@ -127,6 +130,10 @@ website:
             text: Graph vs Relational Data Models
           - href: 02-02-graph-timetable.qmd
             text: Graph Data Model for Timetabling
+          - href: 02-02b-expand.qmd
+            text: Early Insights and Model Expansion
+          - href: 02-02c-challenge-oppos.qmd
+            text: Opportunities and Challenges
           - href: 02-03-graph-time.qmd
             text: Graphing Time
           - href: 02-04-challenge-oppos.qmd
