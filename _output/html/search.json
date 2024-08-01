@@ -28,7 +28,7 @@
     "href": "02-01-comparison.html#relational-models",
     "title": "Graph vs Relational Data Models",
     "section": "Relational Models",
-    "text": "Relational Models\n\nTables, Joins and the Limits of Interconnectedness\nRelational databases, using SQL as their query language, have long been the go-to for managing data, including timetabling information. They structure data into tables, where rows represent entities (like rooms, staff, or students) and columns represent their attributes (name, capacity, email, etc.). Relationships between these entities are established through foreign keys, forming links between tables. This often involves intermediary “relationship” tables to handle the many-to-many nature of timetabling data (e.g., a student attends many activities, and an activity has many students). (Khan et al., 2023;Sokolova, Gómez and Borisoglebskaya, 2020)\nWhile robust and well-understood, relational databases start to show their limitations when dealing with the highly interconnected nature of timetables:\n\nJoin Complexity: Even seemingly simple queries, like “find students attending a specific lecturer’s class in a particular building,” require joining multiple tables. As queries become more nuanced, the number of joins increases, often impacting performance, especially with large datasets.\nRigidity: Relational databases rely on a predefined schema, making them less adaptable to evolving needs. Adding new entities or relationships, a common occurrence in dynamic timetabling environments, often requires schema modifications, potentially disrupting existing queries and applications.\n\n\n\nExample Simple Entity Relationship Diagram\n\n\n\nExample Query in SQL\n-- Assuming \"BuildingName\" is in V_BUILDING and linked to V_LOCATION\n-- find students attending a specific lecturer's class in a particular building\n-- requires 6 JOINS\n\n\nSELECT DISTINCT \n    ss.[FirstName], \n    ss.[LastName],\n    ss.[Email]\nFROM [RDB_MAIN2223].[rdowner].[V_STUDENTSET] ss\nINNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_STUDENTSET] acts ON ss.[Id] = acts.[StudentSetId]\nINNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY] a ON acts.[ActivityId] = a.[Id]\nINNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_LOCATION] al ON a.[Id] = al.[ActivityId]\nINNER JOIN [RDB_MAIN2223].[rdowner].[V_LOCATION] l ON al.[LocationId] = l.[Id]\nINNER JOIN [RDB_MAIN2223].[rdowner].[V_BUILDING] b ON l.[BuildingId] = b.[Id] # Assuming a BuildingId column in V_LOCATION\nINNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_STAFF] ast ON a.[Id] = ast.[ActivityId]\nWHERE ast.[StaffId] = 'StaffID'  \n  AND b.[Name] = 'BuildingName';",
+    "text": "Relational Models\n\nTables, Joins and the Limits of Interconnectedness\nRelational databases, using SQL as their query language, have long been the go-to for managing data, including timetabling information. They structure data into tables, where rows represent entities (like rooms, staff, or students) and columns represent their attributes (name, capacity, email, etc.). Relationships between these entities are established through foreign keys, forming links between tables. This often involves intermediary “relationship” tables to handle the many-to-many nature of timetabling data (e.g., a student attends many activities, and an activity has many students). (Khan et al., 2023;Sokolova, Gómez and Borisoglebskaya, 2020)\nWhile robust and well-understood, relational databases start to show their limitations when dealing with the highly interconnected nature of timetables:\n\nJoin Complexity: Even seemingly simple queries, like “find students attending a specific lecturer’s class in a particular building,” require joining multiple tables (see below). As queries become more nuanced, the number of joins increases, often impacting performance, especially with large datasets.\nRigidity: Relational databases rely on a predefined schema, making them less adaptable to evolving needs. Adding new entities or relationships, a common occurrence in dynamic timetabling environments, often requires schema modifications, potentially disrupting existing queries and applications.\n\n\n\nExample Simple Entity Relationship Diagram\n\n\n\nExample Query in SQL\n-- Assuming \"BuildingName\" is in V_BUILDING and linked to V_LOCATION\n-- find students attending a specific lecturer's class in a particular building\n-- requires 6 JOINS\n\n\nSELECT DISTINCT \n    ss.[FirstName], \n    ss.[LastName],\n    ss.[Email]\nFROM [RDB_MAIN2223].[rdowner].[V_STUDENTSET] ss\nINNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_STUDENTSET] acts ON ss.[Id] = acts.[StudentSetId]\nINNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY] a ON acts.[ActivityId] = a.[Id]\nINNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_LOCATION] al ON a.[Id] = al.[ActivityId]\nINNER JOIN [RDB_MAIN2223].[rdowner].[V_LOCATION] l ON al.[LocationId] = l.[Id]\nINNER JOIN [RDB_MAIN2223].[rdowner].[V_BUILDING] b ON l.[BuildingId] = b.[Id] # Assuming a BuildingId column in V_LOCATION\nINNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_STAFF] ast ON a.[Id] = ast.[ActivityId]\nWHERE ast.[StaffId] = 'StaffID'  \n  AND b.[Name] = 'BuildingName';",
     "crumbs": [
       "Home",
       "Graph Data Model",
@@ -120,6 +120,30 @@
     ]
   },
   {
+    "objectID": "appendix-tech-stack.html",
+    "href": "appendix-tech-stack.html",
+    "title": "Technology Stack",
+    "section": "",
+    "text": "TO ADD:\n\nTechnology Stack\n\nPython used\nPython packages used and why\nNeo4j used\nGoogle API\nVS code\nQuarto\nSQL\n\ngraphviz\narrows\nmermaid\ngit hub, git",
+    "crumbs": [
+      "Home",
+      "Appendix & References",
+      "Technology Stack"
+    ]
+  },
+  {
+    "objectID": "appendix-tech-stack.html#technology-stack",
+    "href": "appendix-tech-stack.html#technology-stack",
+    "title": "Technology Stack",
+    "section": "",
+    "text": "TO ADD:\n\nTechnology Stack\n\nPython used\nPython packages used and why\nNeo4j used\nGoogle API\nVS code\nQuarto\nSQL\n\ngraphviz\narrows\nmermaid\ngit hub, git",
+    "crumbs": [
+      "Home",
+      "Appendix & References",
+      "Technology Stack"
+    ]
+  },
+  {
     "objectID": "appendix-config.html",
     "href": "appendix-config.html",
     "title": "Configuration YAML",
@@ -148,7 +172,31 @@
     "href": "05-future-opportunities.html",
     "title": "Future Opportunities",
     "section": "",
-    "text": "Discussion of potential analyses (module combinations, student clustering, etc.)\nIntegration of additional data sources",
+    "text": "Unveiling Hidden Patterns & Improving Student Experience: Problem: Timetable inefficiencies often remain hidden in relational data, impacting student experience. Graph Solution: Graph analysis can uncover patterns like students with excessive travel time between classes, those lacking adequate breaks, or those facing scheduling conflicts due to part-time work. This empowers universities to optimize timetables for improved student well-being and academic performance. Stakeholder-Centric Analysis & Enhanced Decision Making: Problem: Traditional timetabling often prioritizes one factor (e.g., room utilization) over others, neglecting holistic needs. Graph Solution: Graphs allow simultaneous modeling of student preferences (class times, travel distance), faculty constraints, and institutional priorities (resource allocation). This enables data-driven decisions that balance stakeholder needs and improve overall satisfaction. What-If Scenarios & Agile Timetable Management: Problem: Evaluating the impact of timetable changes in relational systems is cumbersome, hindering proactive planning. Graph Solution: Graph databases excel at simulating “what-if” scenarios. Adding hypothetical courses, adjusting room capacities, or modifying faculty availability becomes straightforward. This agility allows for rapid evaluation of multiple scenarios, enabling institutions to anticipate challenges and adapt timetables dynamically. Visual Exploration & Fostering Collaboration: Problem: Communicating complex timetable data to diverse stakeholders (students, faculty, administrators) is challenging. Graph Solution: Graph visualizations make complex relationships intuitive and accessible, fostering shared understanding. This transparency promotes collaboration, reduces misunderstandings, and facilitates informed decision-making.",
+    "crumbs": [
+      "Home",
+      "Final Thoughts",
+      "Future Opportunities"
+    ]
+  },
+  {
+    "objectID": "05-future-opportunities.html#opportunities",
+    "href": "05-future-opportunities.html#opportunities",
+    "title": "Future Opportunities",
+    "section": "",
+    "text": "Unveiling Hidden Patterns & Improving Student Experience: Problem: Timetable inefficiencies often remain hidden in relational data, impacting student experience. Graph Solution: Graph analysis can uncover patterns like students with excessive travel time between classes, those lacking adequate breaks, or those facing scheduling conflicts due to part-time work. This empowers universities to optimize timetables for improved student well-being and academic performance. Stakeholder-Centric Analysis & Enhanced Decision Making: Problem: Traditional timetabling often prioritizes one factor (e.g., room utilization) over others, neglecting holistic needs. Graph Solution: Graphs allow simultaneous modeling of student preferences (class times, travel distance), faculty constraints, and institutional priorities (resource allocation). This enables data-driven decisions that balance stakeholder needs and improve overall satisfaction. What-If Scenarios & Agile Timetable Management: Problem: Evaluating the impact of timetable changes in relational systems is cumbersome, hindering proactive planning. Graph Solution: Graph databases excel at simulating “what-if” scenarios. Adding hypothetical courses, adjusting room capacities, or modifying faculty availability becomes straightforward. This agility allows for rapid evaluation of multiple scenarios, enabling institutions to anticipate challenges and adapt timetables dynamically. Visual Exploration & Fostering Collaboration: Problem: Communicating complex timetable data to diverse stakeholders (students, faculty, administrators) is challenging. Graph Solution: Graph visualizations make complex relationships intuitive and accessible, fostering shared understanding. This transparency promotes collaboration, reduces misunderstandings, and facilitates informed decision-making.",
+    "crumbs": [
+      "Home",
+      "Final Thoughts",
+      "Future Opportunities"
+    ]
+  },
+  {
+    "objectID": "05-future-opportunities.html#challenges",
+    "href": "05-future-opportunities.html#challenges",
+    "title": "Future Opportunities",
+    "section": "Challenges",
+    "text": "Challenges\nData Migration & Integration: A Necessary Hurdle: Challenge: Migrating from existing relational systems to a graph database requires careful planning and data transformation. Mitigation: Employing robust ETL (Extract, Transform, Load) processes and leveraging graph database import tools can streamline the migration process. Prioritizing incremental migration, starting with core entities, can minimize disruption. Tooling and Expertise: Bridging the Skills Gap: Challenge: The graph database ecosystem, while maturing, might require specialized skills compared to traditional SQL. Mitigation: Investing in staff training, collaborating with experts, and leveraging online resources can address the skills gap. Open-source graph databases like Neo4j offer ample learning material and community support. Performance at Scale: Ensuring Responsiveness with Large Datasets: Challenge: Graph databases, while generally performant for connected data, might face challenges with extremely large universities and complex queries. Mitigation: Employing performance tuning techniques like indexing, caching, and query optimization can enhance scalability. Exploring specialized graph database solutions designed for high-volume transactional systems might be necessary in extreme cases. “Soft” Constraint Modeling: Quantifying Subjective Preferences: Challenge: Graphs excel at explicit relationships but struggle with subjective preferences (e.g., student aversion to late classes). Mitigation: Combine graph analysis with techniques like sentiment analysis on student feedback or preference elicitation surveys. This hybrid approach allows incorporating both explicit relationships and quantified subjective factors.\n2.4 Data Augmentation Opportunities\nData Augmentation Opportunities: You touch on this briefly; expanding this section could be very compelling. Example: Integrating room location data (latitude/longitude) with student address data could allow for powerful analyses of commute patterns and potential inequities. Ethical Considerations: As your project deals with student data, briefly mention the importance of data privacy, anonymization, and responsible use of insights.\n2.5 Challenges and Considerations\nPotential limitations of the graph approach Data migration considerations Performance considerations for large-scale timetabling systems",
     "crumbs": [
       "Home",
       "Final Thoughts",
@@ -159,8 +207,8 @@
     "objectID": "05-future-opportunities.html#future-opportunities-and-potential-insights-500-words",
     "href": "05-future-opportunities.html#future-opportunities-and-potential-insights-500-words",
     "title": "Future Opportunities",
-    "section": "",
-    "text": "Discussion of potential analyses (module combinations, student clustering, etc.)\nIntegration of additional data sources",
+    "section": "Future Opportunities and Potential Insights (500 words)",
+    "text": "Future Opportunities and Potential Insights (500 words)\n\nDiscussion of potential analyses (module combinations, student clustering, etc.)\nIntegration of additional data sources",
     "crumbs": [
       "Home",
       "Final Thoughts",
@@ -204,61 +252,52 @@
     ]
   },
   {
-    "objectID": "02-04-challenge-oppos.html",
-    "href": "02-04-challenge-oppos.html",
-    "title": "Opportunities and Challenges",
+    "objectID": "02-02-graph-timetable.html",
+    "href": "02-02-graph-timetable.html",
+    "title": "Graph Data Model for Timebling",
     "section": "",
-    "text": "Unveiling Hidden Patterns & Improving Student Experience: Problem: Timetable inefficiencies often remain hidden in relational data, impacting student experience. Graph Solution: Graph analysis can uncover patterns like students with excessive travel time between classes, those lacking adequate breaks, or those facing scheduling conflicts due to part-time work. This empowers universities to optimize timetables for improved student well-being and academic performance. Stakeholder-Centric Analysis & Enhanced Decision Making: Problem: Traditional timetabling often prioritizes one factor (e.g., room utilization) over others, neglecting holistic needs. Graph Solution: Graphs allow simultaneous modeling of student preferences (class times, travel distance), faculty constraints, and institutional priorities (resource allocation). This enables data-driven decisions that balance stakeholder needs and improve overall satisfaction. What-If Scenarios & Agile Timetable Management: Problem: Evaluating the impact of timetable changes in relational systems is cumbersome, hindering proactive planning. Graph Solution: Graph databases excel at simulating “what-if” scenarios. Adding hypothetical courses, adjusting room capacities, or modifying faculty availability becomes straightforward. This agility allows for rapid evaluation of multiple scenarios, enabling institutions to anticipate challenges and adapt timetables dynamically. Visual Exploration & Fostering Collaboration: Problem: Communicating complex timetable data to diverse stakeholders (students, faculty, administrators) is challenging. Graph Solution: Graph visualizations make complex relationships intuitive and accessible, fostering shared understanding. This transparency promotes collaboration, reduces misunderstandings, and facilitates informed decision-making.",
+    "text": "TODO\n\n\n\n\nwrite up section - review notes\nnew page of difficulties with time - see poc2 time\nappendix with queries (queries.ipynb (graph-project.ipynb)) - copy all queries onto one appendix see graph-tt\nHaving discussed some advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling. This model serves as the foundation for exploring graph-based analysis and its potential to unlock valuable insights.",
     "crumbs": [
       "Home",
       "Graph Data Model",
-      "Opportunities and Challenges"
+      "Graph Data Model for Timetabling"
     ]
   },
   {
-    "objectID": "02-04-challenge-oppos.html#opportunities",
-    "href": "02-04-challenge-oppos.html#opportunities",
-    "title": "Opportunities and Challenges",
-    "section": "",
-    "text": "Unveiling Hidden Patterns & Improving Student Experience: Problem: Timetable inefficiencies often remain hidden in relational data, impacting student experience. Graph Solution: Graph analysis can uncover patterns like students with excessive travel time between classes, those lacking adequate breaks, or those facing scheduling conflicts due to part-time work. This empowers universities to optimize timetables for improved student well-being and academic performance. Stakeholder-Centric Analysis & Enhanced Decision Making: Problem: Traditional timetabling often prioritizes one factor (e.g., room utilization) over others, neglecting holistic needs. Graph Solution: Graphs allow simultaneous modeling of student preferences (class times, travel distance), faculty constraints, and institutional priorities (resource allocation). This enables data-driven decisions that balance stakeholder needs and improve overall satisfaction. What-If Scenarios & Agile Timetable Management: Problem: Evaluating the impact of timetable changes in relational systems is cumbersome, hindering proactive planning. Graph Solution: Graph databases excel at simulating “what-if” scenarios. Adding hypothetical courses, adjusting room capacities, or modifying faculty availability becomes straightforward. This agility allows for rapid evaluation of multiple scenarios, enabling institutions to anticipate challenges and adapt timetables dynamically. Visual Exploration & Fostering Collaboration: Problem: Communicating complex timetable data to diverse stakeholders (students, faculty, administrators) is challenging. Graph Solution: Graph visualizations make complex relationships intuitive and accessible, fostering shared understanding. This transparency promotes collaboration, reduces misunderstandings, and facilitates informed decision-making.",
+    "objectID": "02-02-graph-timetable.html#an-iterative-approach",
+    "href": "02-02-graph-timetable.html#an-iterative-approach",
+    "title": "Graph Data Model for Timebling",
+    "section": "An Iterative Approach",
+    "text": "An Iterative Approach\nThe design of this graph data model was iterative: design, build, test, review, and revise -&gt; …and repeat. Using Neo4j Desktop and an Aura cloud instance, the first model was small scope in scope, incorporating minimal nodes and properties. This iterative approach allows for flexibility and refinement based on real-world data and evolving requirements.",
     "crumbs": [
       "Home",
       "Graph Data Model",
-      "Opportunities and Challenges"
+      "Graph Data Model for Timetabling"
     ]
   },
   {
-    "objectID": "02-04-challenge-oppos.html#challenges",
-    "href": "02-04-challenge-oppos.html#challenges",
-    "title": "Opportunities and Challenges",
-    "section": "Challenges",
-    "text": "Challenges\nData Migration & Integration: A Necessary Hurdle: Challenge: Migrating from existing relational systems to a graph database requires careful planning and data transformation. Mitigation: Employing robust ETL (Extract, Transform, Load) processes and leveraging graph database import tools can streamline the migration process. Prioritizing incremental migration, starting with core entities, can minimize disruption. Tooling and Expertise: Bridging the Skills Gap: Challenge: The graph database ecosystem, while maturing, might require specialized skills compared to traditional SQL. Mitigation: Investing in staff training, collaborating with experts, and leveraging online resources can address the skills gap. Open-source graph databases like Neo4j offer ample learning material and community support. Performance at Scale: Ensuring Responsiveness with Large Datasets: Challenge: Graph databases, while generally performant for connected data, might face challenges with extremely large universities and complex queries. Mitigation: Employing performance tuning techniques like indexing, caching, and query optimization can enhance scalability. Exploring specialized graph database solutions designed for high-volume transactional systems might be necessary in extreme cases. “Soft” Constraint Modeling: Quantifying Subjective Preferences: Challenge: Graphs excel at explicit relationships but struggle with subjective preferences (e.g., student aversion to late classes). Mitigation: Combine graph analysis with techniques like sentiment analysis on student feedback or preference elicitation surveys. This hybrid approach allows incorporating both explicit relationships and quantified subjective factors.\n2.4 Data Augmentation Opportunities\nData Augmentation Opportunities: You touch on this briefly; expanding this section could be very compelling. Example: Integrating room location data (latitude/longitude) with student address data could allow for powerful analyses of commute patterns and potential inequities. Ethical Considerations: As your project deals with student data, briefly mention the importance of data privacy, anonymization, and responsible use of insights.\n2.5 Challenges and Considerations\nPotential limitations of the graph approach Data migration considerations Performance considerations for large-scale timetabling systems",
+    "objectID": "02-02-graph-timetable.html#core-nodes---building-blocks",
+    "href": "02-02-graph-timetable.html#core-nodes---building-blocks",
+    "title": "Graph Data Model for Timebling",
+    "section": "Core Nodes - Building Blocks",
+    "text": "Core Nodes - Building Blocks\nAt its core, the timetable model revolves around four key entities represented as nodes:\n\n\n\n\nNode\nProperty\nDescription\nData Type\n\n\n\n\nStudent\nfirstName\nLegal first name\nstring\n\n\n\nlastName\nLegal last name\nstring\n\n\n\nstudentID\nUniversity identifier\ninteger\n\n\n\nsplusID\nTimetable URN\nstring\n\n\nLecturer\nfirstName\nFirst name\nstring\n\n\n\nlastName\nLast name\nstring\n\n\n\nstaffID\nUniversity identifier\ninteger\n\n\n\nsplusID\nTimetable URN\nstring\n\n\nRoom\nname\nRoom name\nstring\n\n\n\nsplusID\nTimetable URN\ninteger\n\n\nActivity\nname\nActivity name\nstring\n\n\n\ndescription\nActivity description\nstring\n\n\n\nstartTime\nScheduled start time\ndatetime\n\n\n\nendTime\nScheduled end time\ndatetime\n\n\n\ndate\nDate of activity\ndate\n\n\n\n\n\n\n\nNeo4j Interface showing basic nodes and properties",
     "crumbs": [
       "Home",
       "Graph Data Model",
-      "Opportunities and Challenges"
+      "Graph Data Model for Timetabling"
     ]
   },
   {
-    "objectID": "02-02-NOTES-graph-timetable.html",
-    "href": "02-02-NOTES-graph-timetable.html",
+    "objectID": "02-02-graph-timetable.html#relationships---connecting-the-dots",
+    "href": "02-02-graph-timetable.html#relationships---connecting-the-dots",
     "title": "Graph Data Model for Timebling",
-    "section": "",
-    "text": "TODO\n\n\n\nDELETE\n2.3 Graph Data Model for Timetabling\nDetailed description of proposed graph model Node types (e.g., courses, instructors, rooms, time slots) Edge types (e.g., “scheduled_in”, “taught_by”) Properties for nodes and edges"
-  },
-  {
-    "objectID": "02-02-NOTES-graph-timetable.html#time",
-    "href": "02-02-NOTES-graph-timetable.html#time",
-    "title": "Graph Data Model for Timebling",
-    "section": "time",
-    "text": "time\nmodelling time in graph was challenging. my simple model above does take time into account other than to have startTime, endTime, date. In reality, an activity can take have the same start time, end time but be scheduled over several weeks - sometimes consecutive, sometimes non-consecutive weeks. How should this be represented? week patterns? date ranges? or separate activities? what happens when an activity is scheduled over several days but the same time over several weeks for example, Mondays and Wednesdays between 09:00-11:00 for ten weeks?\nthis is where normalisation (footnote) and different designs come into play. In a relational database, it is fairly easy to normalise the data into activities where start and end time and day(s) of week, staff, locations, students are the same for the week pattern. Any deviation will require a new ‘activity’ to accommodate the difference. Therefore there is an inevitable repetition of data.\nIn graph these scenarios can be handled in different ways. My initial model simply ported data as string data to an activity - that is, I literally created an activity as it existed in database and added start time, end time, weeks, etc. as properties of the activity.\nThis worked to an extent but it was not optimised for calculating on time.\nI anticipated being able to answer questions and identify patterns like:\n\nstudents on programmes who do not have a lunch break (12:00-14:00)\nstudents who have X hours consecutive teaching without a break\nstudents who have X hours between teaching activities on any given date (e.g. early activity (09:00-10:00) and late finish (18:00-19:00))\n\nBeing able to answer these types of queries easily will help pinpoint where there may be timetable quality concerns.\nI considered and explored differnet options including:\n\nactivities with 52 week patterns (0000011101 etc.), start and end times\nactivities which are unique combinations of date, start, end, name\nactivities with date ranges, start and end times\nactivities linked to start time, end time and date nodes\n\nAt this point, I did remember the project’s scope and reminded myself that it is a proof of concept. I settled for option 2 - where each activity is a unique combination of start, end, date and name. This required transforming from sql - there is some loss of redundancy but calculations on times are more manageable (although not uncomplicated). Also being restricted by Neo4j’s free aura instance, there is a limit to nodes (200K) and relationships (400K) which I would hit quickly.\nMy suspicion is that creating separate nodes for start and end times and dates dynamically from the activity data would be the better model - but this will need to be future work with direct comparisons aganst specific use cases and insights."
-  },
-  {
-    "objectID": "02-02-NOTES-graph-timetable.html#appendix--",
-    "href": "02-02-NOTES-graph-timetable.html#appendix--",
-    "title": "Graph Data Model for Timebling",
-    "section": "appendix -",
-    "text": "appendix -\n\nexample load\n\nAttempt 2 - load separately\n// remove all relationships\nMATCH ()-[r]-() \nDELETE r\nactivity-room\n// Activity-Room\nLOAD CSV WITH HEADERS FROM \"file:///phl-rel-room-activity.csv\" AS row3\nMATCH (r:Room {roomSplusID: row3.roomSplusID}) \nMATCH (a:Activity {activitySplusID: row3.activitySplusID})\nCREATE (a)-[:TAKES_PLACE_IN]-&gt;(r)\nactivity-staff\n// Staff-activity \nLOAD CSV WITH HEADERS FROM \"file:///phl-rel-staff-activity.csv\" AS row2\nMATCH (s:Staff {staffSplusID: row2.staffSplusID}) \nMATCH (a:Activity {activitySplusID: row2.activitySplusID})\nCREATE (s)-[:TEACHES_ON]-&gt;(a)\nactivity-student\n// Student-Activity\nLOAD CSV WITH HEADERS FROM \"file:///phl-rel-student-activity.csv\" AS row\nMATCH (s:Student {studentSplusID: row.studentSplusID}) \nMATCH (a:Activity {activitySplusID: row.activitySplusID})\nCREATE (s)-[:IS_ALLOCATED_TO]-&gt;(a)"
+    "section": "Relationships - Connecting the Dots",
+    "text": "Relationships - Connecting the Dots\nThese core nodes are interconnected through relationships that reflect the dynamics of a timetable:\n\nStudent-[IS_ALLOCATED_TO]-&gt;Activity\nStaff-[TEACHES_ON]-&gt;Activity\nActivity-[TAKES_PLACE_IN]-&gt;Room\n\n\n\n\nCore Nodes and Properties",
+    "crumbs": [
+      "Home",
+      "Graph Data Model",
+      "Graph Data Model for Timetabling"
+    ]
   },
   {
     "objectID": "01-03-good-timetable.html",
@@ -309,13 +348,6 @@
     ]
   },
   {
-    "objectID": "0015-overview.html",
-    "href": "0015-overview.html",
-    "title": "Project Overview",
-    "section": "",
-    "text": "The remainder of this project will be structured as follows:\nThrough this project, we aim to contribute to the ongoing dialogue about improving university timetabling practices and potentially open new avenues for enhancing the student experience through more insightful timetable analysis and design."
-  },
-  {
     "objectID": "01-02-background.html",
     "href": "01-02-background.html",
     "title": "Background and Motivation",
@@ -332,7 +364,7 @@
     "href": "01-02-background.html#research-gap-bridging-theory-and-practice",
     "title": "Background and Motivation",
     "section": "Research Gap: Bridging Theory and Practice",
-    "text": "Research Gap: Bridging Theory and Practice\nMuch of the current research in university course timetabling (UCTTP) centres on optimisation algorithms, sophisticated techniques designed to efficiently generate feasible solutions given a set of constraints. This computationally-driven approach stems from the inherent difficulty of the UCTTP, often categorised as NP-hard1, meaning finding the absolute “best” timetable is exceptionally challenging (Babaei, Karimpour and Hadidi, 2015; Herres and Schmitz, 2021; Wikipedia contributors, 2024). Consequently, significant effort has been dedicated to developing algorithms like constraint programming (Holm et al., 2022) and local search techniques such as Tabu Search and simulated annealing (Oude Vrielink et al., 2019), aiming to create workable timetables within reasonable timeframes.\nHowever, this emphasis on computational optimisation often unfolds within the controlled environment of standardised datasets and predefined constraints. While crucial for advancing algorithmic development, these idealised scenarios may not fully capture the dynamic complexity of real-world university timetabling. Universities grapple with constantly shifting demands: fluctuating student popoulations, evolving school preferences, resource limitations, and the ever-present need to balance diverse stakeholder needs. These complexities extend beyond simply finding a feasible solution – they necessitate tools to understand the trade-offs inherent in any timetable, enabling informed decisions about which “good” to prioritise (Lindahl, 2017).\nWhile algorithms excel at generating solutions, there remains a significant gap in post-generation analysis – the ability to delve into a timetable’s nuanced impacts on student and staff experience. Despite the acknowledged importance of factors like room allocation, teaching period distribution, and their effect on overall timetable quality, traditional optimization-focused approaches often lack the tools to explore these relationships in depth [Ceschia, Di Gaspero and Schaerf, 2023; Lindahl, 2017; Rudová, Müller and Murray, 2011].\nWhile algorithms excel at generating solutions, there remains a significant gap in post-generation analysis – the ability to delve into a timetable’s nuanced impacts on student and staff experience. Despite the acknowledged importance of factors like room allocation, teaching period distribution, and their effect on overall timetable quality, traditional optimisation-focused approaches often lack the tools to explore these relationships in depth (Ceschia, Di Gaspero and Schaerf, 2023; Lindahl, 2017; Rudová, Müller and Murray, 2011).",
+    "text": "Research Gap: Bridging Theory and Practice\nMuch of the current research in university course timetabling (UCTTP) centres on optimisation algorithms, sophisticated techniques designed to efficiently generate feasible solutions given a set of constraints. This computationally-driven approach stems from the inherent difficulty of the UCTTP, often categorised as NP-hard1, meaning finding the absolute “best” timetable is exceptionally challenging (Babaei, Karimpour and Hadidi, 2015; Herres and Schmitz, 2021; Wikipedia contributors, 2024). Consequently, significant effort has been dedicated to developing algorithms like constraint programming (Holm et al., 2022) and local search techniques such as Tabu Search and simulated annealing (Oude Vrielink et al., 2019), aiming to create workable timetables within reasonable timeframes.\nHowever, this emphasis on computational optimisation often unfolds within the controlled environment of standardised datasets and predefined constraints. While crucial for advancing algorithmic development, these idealised scenarios may not fully capture the dynamic complexity of real-world university timetabling. Universities grapple with constantly shifting demands: fluctuating student popoulations, evolving school preferences, resource limitations, and the ever-present need to balance diverse stakeholder needs. These complexities extend beyond simply finding a feasible solution – they necessitate tools to understand the trade-offs inherent in any timetable, enabling informed decisions about which “good” to prioritise (Lindahl, 2017). This is where I believe graph data structures offer unique potential. Timetables are inherently about relationships: curriculum linked to lecturers, students connected through shared modules, rooms associated with specific times and capacities. Graph databases excel in this domain, offering a way to unlock insights hidden within the complex web of a university timetable.\nWhile algorithms excel at generating solutions, there remains a significant gap in post-generation analysis – the ability to delve into a timetable’s nuanced impacts on student and staff experience. Despite the acknowledged importance of factors like room allocation, teaching period distribution, and their effect on overall timetable quality, traditional optimisation-focused approaches often lack the tools to explore these relationships in depth (Ceschia, Di Gaspero and Schaerf, 2023; Lindahl, 2017; Rudová, Müller and Murray, 2011).",
     "crumbs": [
       "Home",
       "Introduction",
@@ -412,20 +444,6 @@
     ]
   },
   {
-    "objectID": "02-NOTES-graph-data-model.html",
-    "href": "02-NOTES-graph-data-model.html",
-    "title": "Graph Data Model",
-    "section": "",
-    "text": "Visual representation of both models - mermaid, or simmilar\n\n\n\n\n\n\n\n\nRoom properties example (lat, long)\nPotential for additional data integration (curriculum, student outcomes, etc.)\n\n2 Graph Data Model Given the highly relational nature of timetables, where courses, instructors, rooms, and time slots are interconnected in intricate ways, it is hypothesized that a graph-based approach could offer a more natural and insightful way to represent and analyze timetable data. Graph databases, designed to handle complex relationships and interconnected data, have the potential to unlock new avenues for understanding and optimizing university timetables.\n2.1 Graph vs. Relational Data Structures (General) In the realm of data management, two prominent paradigms exist: the relational model and the graph model. The relational model, exemplified by relational databases like SQL Server, MySQL, and PostgreSQL, organizes data into tables with rows and columns. Each row represents an entity, and columns store the attributes of that entity. Relationships between entities are established through foreign keys, creating a structured and rigid schema.\nIn contrast, the graph model, employed by graph databases like Neo4j, Amazon Neptune, and Microsoft Azure Cosmos DB, represents data as nodes and edges. Nodes are the fundamental entities, and edges define the relationships between them. Both nodes and edges can have properties, allowing for flexible and dynamic schemas.\nThe choice between relational and graph databases depends on the nature of the data and the types of queries that need to be executed. Relational databases excel at structured data with well-defined relationships, making them suitable for transactional systems and reporting. However, they can become cumbersome when dealing with complex, interconnected data, as queries often involve multiple joins across tables, leading to performance bottlenecks.\nGraph databases, on the other hand, are designed to handle complex relationships and interconnected data naturally. They shine in scenarios where the focus is on exploring relationships, traversing networks, and uncovering patterns in interconnected data. Graph databases offer superior performance for queries that involve traversing multiple relationships, as the relationships are explicitly represented as edges in the graph.\n2.2 Pros and Cons of Graph Databases Graph databases offer several advantages over relational databases, particularly when dealing with highly connected data:\nFlexibility: Graph databases allow for flexible and dynamic schemas, making it easy to add new types of nodes and edges as the data evolves. This flexibility is crucial in domains like university timetabling, where the relationships between entities can be complex and subject to change. Scalability: Graph databases are designed to scale horizontally, distributing data across multiple machines to handle large datasets and high query volumes. This scalability is essential for university timetabling, as the number of courses, students, and instructors can be substantial. Performance: Graph databases excel at traversing relationships, making them ideal for queries that involve exploring connections between entities. In the context of university timetabling, this translates to faster and more efficient queries for tasks like finding all courses taught by a particular instructor or identifying scheduling conflicts. Expressiveness: Graph query languages, such as Cypher, are designed to express complex relationship-based queries concisely. This expressiveness simplifies the formulation of queries that would be cumbersome in SQL, the query language for relational databases. However, graph databases also have some limitations:\nMaturity: Graph database technology is relatively young compared to relational databases, and the ecosystem of tools and libraries is still evolving. Learning Curve: Graph query languages, while expressive, require a learning curve for those familiar with SQL. Limited Support for Aggregation: Graph databases are not optimized for aggregation queries, such as calculating averages or sums, which are common in relational databases. 2.3 Comparison of Timetable Data in Relational and Graph Structures In a relational database, timetable data is typically organized into tables, with each table representing an entity like courses, rooms, instructors, and time slots. Relationships between entities are established through foreign keys, creating a structured schema. For example, a “course” table might have columns for course code, name, and credits, while an “instructor” table might have columns for instructor ID, name, and department. A “schedule” table would then link courses, instructors, rooms, and time slots using foreign keys.\nIn contrast, a graph database represents timetable data as nodes and edges. Nodes represent entities like courses, rooms, instructors, and time slots, while edges represent relationships between them. For instance, an edge labeled “scheduled_in” could connect a course node to a room node, indicating that the course is scheduled in that room. Similarly, an edge labeled “taught_by” could connect a course node to an instructor node, signifying that the course is taught by that instructor."
-  },
-  {
-    "objectID": "02-NOTES-graph-data-model.html#graph-data-model-for-timetabling-1000-words",
-    "href": "02-NOTES-graph-data-model.html#graph-data-model-for-timetabling-1000-words",
-    "title": "Graph Data Model",
-    "section": "",
-    "text": "Visual representation of both models - mermaid, or simmilar\n\n\n\n\n\n\n\n\nRoom properties example (lat, long)\nPotential for additional data integration (curriculum, student outcomes, etc.)\n\n2 Graph Data Model Given the highly relational nature of timetables, where courses, instructors, rooms, and time slots are interconnected in intricate ways, it is hypothesized that a graph-based approach could offer a more natural and insightful way to represent and analyze timetable data. Graph databases, designed to handle complex relationships and interconnected data, have the potential to unlock new avenues for understanding and optimizing university timetables.\n2.1 Graph vs. Relational Data Structures (General) In the realm of data management, two prominent paradigms exist: the relational model and the graph model. The relational model, exemplified by relational databases like SQL Server, MySQL, and PostgreSQL, organizes data into tables with rows and columns. Each row represents an entity, and columns store the attributes of that entity. Relationships between entities are established through foreign keys, creating a structured and rigid schema.\nIn contrast, the graph model, employed by graph databases like Neo4j, Amazon Neptune, and Microsoft Azure Cosmos DB, represents data as nodes and edges. Nodes are the fundamental entities, and edges define the relationships between them. Both nodes and edges can have properties, allowing for flexible and dynamic schemas.\nThe choice between relational and graph databases depends on the nature of the data and the types of queries that need to be executed. Relational databases excel at structured data with well-defined relationships, making them suitable for transactional systems and reporting. However, they can become cumbersome when dealing with complex, interconnected data, as queries often involve multiple joins across tables, leading to performance bottlenecks.\nGraph databases, on the other hand, are designed to handle complex relationships and interconnected data naturally. They shine in scenarios where the focus is on exploring relationships, traversing networks, and uncovering patterns in interconnected data. Graph databases offer superior performance for queries that involve traversing multiple relationships, as the relationships are explicitly represented as edges in the graph.\n2.2 Pros and Cons of Graph Databases Graph databases offer several advantages over relational databases, particularly when dealing with highly connected data:\nFlexibility: Graph databases allow for flexible and dynamic schemas, making it easy to add new types of nodes and edges as the data evolves. This flexibility is crucial in domains like university timetabling, where the relationships between entities can be complex and subject to change. Scalability: Graph databases are designed to scale horizontally, distributing data across multiple machines to handle large datasets and high query volumes. This scalability is essential for university timetabling, as the number of courses, students, and instructors can be substantial. Performance: Graph databases excel at traversing relationships, making them ideal for queries that involve exploring connections between entities. In the context of university timetabling, this translates to faster and more efficient queries for tasks like finding all courses taught by a particular instructor or identifying scheduling conflicts. Expressiveness: Graph query languages, such as Cypher, are designed to express complex relationship-based queries concisely. This expressiveness simplifies the formulation of queries that would be cumbersome in SQL, the query language for relational databases. However, graph databases also have some limitations:\nMaturity: Graph database technology is relatively young compared to relational databases, and the ecosystem of tools and libraries is still evolving. Learning Curve: Graph query languages, while expressive, require a learning curve for those familiar with SQL. Limited Support for Aggregation: Graph databases are not optimized for aggregation queries, such as calculating averages or sums, which are common in relational databases. 2.3 Comparison of Timetable Data in Relational and Graph Structures In a relational database, timetable data is typically organized into tables, with each table representing an entity like courses, rooms, instructors, and time slots. Relationships between entities are established through foreign keys, creating a structured schema. For example, a “course” table might have columns for course code, name, and credits, while an “instructor” table might have columns for instructor ID, name, and department. A “schedule” table would then link courses, instructors, rooms, and time slots using foreign keys.\nIn contrast, a graph database represents timetable data as nodes and edges. Nodes represent entities like courses, rooms, instructors, and time slots, while edges represent relationships between them. For instance, an edge labeled “scheduled_in” could connect a course node to a room node, indicating that the course is scheduled in that room. Similarly, an edge labeled “taught_by” could connect a course node to an instructor node, signifying that the course is taught by that instructor."
-  },
-  {
     "objectID": "03-03-config.html",
     "href": "03-03-config.html",
     "title": "Configuration and Logging",
@@ -462,7 +480,7 @@
   {
     "objectID": "06-conclusion.html",
     "href": "06-conclusion.html",
-    "title": "Opportunities and Challenges",
+    "title": "Conclusion",
     "section": "",
     "text": "Summary of key achievements\nReflection on the project’s impact and potential for timetabling processes\nFuture work and recommendations",
     "crumbs": [
@@ -474,7 +492,7 @@
   {
     "objectID": "06-conclusion.html#conclusion-500-words",
     "href": "06-conclusion.html#conclusion-500-words",
-    "title": "Opportunities and Challenges",
+    "title": "Conclusion",
     "section": "",
     "text": "Summary of key achievements\nReflection on the project’s impact and potential for timetabling processes\nFuture work and recommendations",
     "crumbs": [
@@ -484,28 +502,11 @@
     ]
   },
   {
-    "objectID": "appendix-tech-stack.html",
-    "href": "appendix-tech-stack.html",
-    "title": "Technology Stack",
+    "objectID": "appendix-supervisor.html",
+    "href": "appendix-supervisor.html",
+    "title": "Supervisor notes",
     "section": "",
-    "text": "TO ADD:\n\nTechnology Stack\n\nPython used\nPython packages used and why\nNeo4j used\nGoogle API\nVS code\nQuarto\nSQL\n\ngraphviz\narrows\nmermaid\ngit hub, git",
-    "crumbs": [
-      "Home",
-      "Appendix & References",
-      "Technology Stack"
-    ]
-  },
-  {
-    "objectID": "appendix-tech-stack.html#technology-stack",
-    "href": "appendix-tech-stack.html#technology-stack",
-    "title": "Technology Stack",
-    "section": "",
-    "text": "TO ADD:\n\nTechnology Stack\n\nPython used\nPython packages used and why\nNeo4j used\nGoogle API\nVS code\nQuarto\nSQL\n\ngraphviz\narrows\nmermaid\ngit hub, git",
-    "crumbs": [
-      "Home",
-      "Appendix & References",
-      "Technology Stack"
-    ]
+    "text": "TODO\n\n\n\n\nwrite up section - review notes"
   },
   {
     "objectID": "03-01-overview.html",
@@ -566,114 +567,6 @@
     ]
   },
   {
-    "objectID": "02-02-graph-timetable.html",
-    "href": "02-02-graph-timetable.html",
-    "title": "Graph Data Model for Timebling",
-    "section": "",
-    "text": "TODO\n\n\n\n\nwrite up section - review notes\nnew page of difficulties with time - see poc2 time\nappendix with queries (queries.ipynb (graph-project.ipynb)) - copy all queries onto one appendix see graph-tt\nHaving discussed some advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling. This model serves as the foundation for exploring graph-based analysis and its potential to unlock valuable insights.",
-    "crumbs": [
-      "Home",
-      "Graph Data Model",
-      "Graph Data Model for Timetabling"
-    ]
-  },
-  {
-    "objectID": "02-02-graph-timetable.html#an-iterative-approach",
-    "href": "02-02-graph-timetable.html#an-iterative-approach",
-    "title": "Graph Data Model for Timebling",
-    "section": "An Iterative Approach",
-    "text": "An Iterative Approach\nThe design of this graph data model was iterative: design, build, test, review, and revise -&gt; …and repeat. Using Neo4j Desktop and an Aura cloud instance, the first model was small scope in scope, incorporating minimal nodes and properties. This iterative approach allows for flexibility and refinement based on real-world data and evolving requirements.",
-    "crumbs": [
-      "Home",
-      "Graph Data Model",
-      "Graph Data Model for Timetabling"
-    ]
-  },
-  {
-    "objectID": "02-02-graph-timetable.html#core-nodes",
-    "href": "02-02-graph-timetable.html#core-nodes",
-    "title": "Graph Data Model for Timebling",
-    "section": "Core Nodes",
-    "text": "Core Nodes\n\nThe Building Blocks\nAt its core, the timetable model revolves around four key entities represented as nodes:\n\n\n\n\nNode\nProperty\nDescription\nData Type\n\n\n\n\nStudent\nfirstName\nLegal first name\nstring\n\n\n\nlastName\nLegal last name\nstring\n\n\n\nstudentID\nUniversity identifier\ninteger\n\n\n\nsplusID\nTimetable URN\nstring\n\n\nLecturer\nfirstName\nFirst name\nstring\n\n\n\nlastName\nLast name\nstring\n\n\n\nstaffID\nUniversity identifier\ninteger\n\n\n\nsplusID\nTimetable URN\nstring\n\n\nRoom\nname\nRoom name\nstring\n\n\n\nsplusID\nTimetable URN\ninteger\n\n\nActivity\nname\nActivity name\nstring\n\n\n\ndescription\nActivity description\nstring\n\n\n\nstartTime\nScheduled start time\ndatetime\n\n\n\nendTime\nScheduled end time\ndatetime\n\n\n\ndate\nDate of activity\ndate\n\n\n\n\n\n\n\nNeo4j Interface showing basic nodes and properties",
-    "crumbs": [
-      "Home",
-      "Graph Data Model",
-      "Graph Data Model for Timetabling"
-    ]
-  },
-  {
-    "objectID": "02-02-graph-timetable.html#defining-relationships",
-    "href": "02-02-graph-timetable.html#defining-relationships",
-    "title": "Graph Data Model for Timebling",
-    "section": "Defining Relationships",
-    "text": "Defining Relationships\n\nConnecting the Dots\nThese core nodes are interconnected through relationships that reflect the dynamics of a timetable:\n\nStudent-[IS_ALLOCATED_TO]-&gt;Activity: Represents a student’s allocation to a specific activity.\nStaff-[TEACHES_ON]-&gt;Activity: Indicates the staff member responsible for teaching an activity.\nActivity-[TAKES_PLACE_IN]-&gt;Room: Connects an activity to the room where it is scheduled.\n\n\n\n\nCore Nodes and Properties",
-    "crumbs": [
-      "Home",
-      "Graph Data Model",
-      "Graph Data Model for Timetabling"
-    ]
-  },
-  {
-    "objectID": "02-02-graph-timetable.html#early-insights-unveiling-basic-patterns",
-    "href": "02-02-graph-timetable.html#early-insights-unveiling-basic-patterns",
-    "title": "Graph Data Model for Timebling",
-    "section": "Early Insights: Unveiling Basic Patterns",
-    "text": "Early Insights: Unveiling Basic Patterns\nEven with this basic model, we can easily extract valuable insights, for example:\n\nActivity Load: Identify staff with the highest number of teaching activities or total teaching hours.\nStudent Timetable Profiles: Calculate average hours per student or per programme to understand workload distribution.\nResource utilisation: Determine the busiest locations or times on campus based on activity scheduling.\nAnomaly detection: Identify students who have unexpected profiles or unusual combinations\n\n\nExample code\n\nBusiest location overall\nMATCH (r:Room)&lt;-[:TAKES_PLACE_IN]-(a:Activity)\nWITH r, sum(a.duration) AS totalDuration\nRETURN r.name AS Room, totalDuration\nORDER BY totalDuration DESC\nLIMIT 1\n\n\nBusiest location for a specific time\nMATCH (r:Room)&lt;-[:TAKES_PLACE_IN]-(a:Activity)\nWHERE a.startTime = \"11:00\" \nWITH r, count(a) AS activityCount\nRETURN r.name AS Room, activityCount\nORDER BY activityCount DESC\nLIMIT 1 \n\n\nStudents with below/above average hours\n// Calculate program averages and standard deviations\nMATCH (s:Student)-[:IS_ALLOCATED_TO]-&gt;(a:Activity)\nWITH s.prog AS programme, AVG(a.duration) AS avgDuration, STDEV(a.duration) AS stdDev\nGROUP BY programme\n\n// Identify students outside the 10% margin \nMATCH (s:Student)-[:IS_ALLOCATED_TO]-&gt;(a:Activity)\nWITH s.studentID AS studentID, s.prog AS program, SUM(a.duration) AS totalDuration\nMATCH (avgData)\nWHERE avgData.programme = programme\nWITH studentID, programme, totalDuration, avgData.avgDuration AS avgDuration, avgData.stdDev AS stdDev\nWHERE totalDuration &lt; avgDuration - (0.1 * avgDuration) OR totalDuration &gt; avgDuration + (0.1 * avgDuration)\nRETURN studentID, programme, totalDuration, avgDuration, stdDev \nORDER BY programme, totalDuration DESC",
-    "crumbs": [
-      "Home",
-      "Graph Data Model",
-      "Graph Data Model for Timetabling"
-    ]
-  },
-  {
-    "objectID": "02-02-graph-timetable.html#expanding-the-model-towards-richer-insights",
-    "href": "02-02-graph-timetable.html#expanding-the-model-towards-richer-insights",
-    "title": "Graph Data Model for Timebling",
-    "section": "Expanding the Model: Towards Richer Insights",
-    "text": "Expanding the Model: Towards Richer Insights\nThe true power of the graph model lies in its extensibility. Introducing additional nodes and properties allows for a more comprehensive representation and enables more sophisticated analysis.\n\nPotential Expansions:\n\nOrganisational Units: Include departments, colleges, or schools to analyse timetabling within organizational structures.\nCurriculum Data: Incorporate modules and programmes to understand the interconnectedness of courses and student enrolment patterns.\nActivity Types: Differentiate between lectures, seminars, labs, etc., for a more granular analysis of teaching and learning activities.\nActivity Delivery: Understand how teaching delivery (virtual, in-person, hybrid, drop-in) is factored.\nStudent Attributes: Add properties like “international student” or “first-year student” to explore potential student clusters.\n\n\n\n\nExample of Expanded Timetable Graph Model",
-    "crumbs": [
-      "Home",
-      "Graph Data Model",
-      "Graph Data Model for Timetabling"
-    ]
-  },
-  {
-    "objectID": "02-02-graph-timetable.html#notes-to-be-deleted",
-    "href": "02-02-graph-timetable.html#notes-to-be-deleted",
-    "title": "Graph Data Model for Timebling",
-    "section": "NOTES TO BE DELETED",
-    "text": "NOTES TO BE DELETED",
-    "crumbs": [
-      "Home",
-      "Graph Data Model",
-      "Graph Data Model for Timetabling"
-    ]
-  },
-  {
-    "objectID": "02-02-graph-timetable.html#time",
-    "href": "02-02-graph-timetable.html#time",
-    "title": "Graph Data Model for Timebling",
-    "section": "time",
-    "text": "time\nmodelling time in graph was challenging. my simple model above does take time into account other than to have startTime, endTime, date. In reality, an activity can take have the same start time, end time but be scheduled over several weeks - sometimes consecutive, sometimes non-consecutive weeks. How should this be represented? week patterns? date ranges? or separate activities? what happens when an activity is scheduled over several days but the same time over several weeks for example, Mondays and Wednesdays between 09:00-11:00 for ten weeks?\nthis is where normalisation (footnote) and different designs come into play. In a relational database, it is fairly easy to normalise the data into activities where start and end time and day(s) of week, staff, locations, students are the same for the week pattern. Any deviation will require a new ‘activity’ to accommodate the difference. Therefore there is an inevitable repetition of data.\nIn graph these scenarios can be handled in different ways. My initial model simply ported data as string data to an activity - that is, I literally created an activity as it existed in database and added start time, end time, weeks, etc. as properties of the activity.\nThis worked to an extent but it was not optimised for calculating on time.\nI anticipated being able to answer questions and identify patterns like:\n\nstudents on programmes who do not have a lunch break (12:00-14:00)\nstudents who have X hours consecutive teaching without a break\nstudents who have X hours between teaching activities on any given date (e.g. early activity (09:00-10:00) and late finish (18:00-19:00))\n\nBeing able to answer these types of queries easily will help pinpoint where there may be timetable quality concerns.\nI considered and explored differnet options including:\n\nactivities with 52 week patterns (0000011101 etc.), start and end times\nactivities which are unique combinations of date, start, end, name\nactivities with date ranges, start and end times\nactivities linked to start time, end time and date nodes\n\nAt this point, I did remember the project’s scope and reminded myself that it is a proof of concept. I settled for option 2 - where each activity is a unique combination of start, end, date and name. This required transforming from sql - there is some loss of redundancy but calculations on times are more manageable (although not uncomplicated). Also being restricted by Neo4j’s free aura instance, there is a limit to nodes (200K) and relationships (400K) which I would hit quickly.\nMy suspicion is that creating separate nodes for start and end times and dates dynamically from the activity data would be the better model - but this will need to be future work with direct comparisons aganst specific use cases and insights.",
-    "crumbs": [
-      "Home",
-      "Graph Data Model",
-      "Graph Data Model for Timetabling"
-    ]
-  },
-  {
-    "objectID": "02-02-graph-timetable.html#appendix--",
-    "href": "02-02-graph-timetable.html#appendix--",
-    "title": "Graph Data Model for Timebling",
-    "section": "appendix -",
-    "text": "appendix -\n\nexample load\n\nAttempt 2 - load separately\n// remove all relationships\nMATCH ()-[r]-() \nDELETE r\nactivity-room\n// Activity-Room\nLOAD CSV WITH HEADERS FROM \"file:///phl-rel-room-activity.csv\" AS row3\nMATCH (r:Room {roomSplusID: row3.roomSplusID}) \nMATCH (a:Activity {activitySplusID: row3.activitySplusID})\nCREATE (a)-[:TAKES_PLACE_IN]-&gt;(r)\nactivity-staff\n// Staff-activity \nLOAD CSV WITH HEADERS FROM \"file:///phl-rel-staff-activity.csv\" AS row2\nMATCH (s:Staff {staffSplusID: row2.staffSplusID}) \nMATCH (a:Activity {activitySplusID: row2.activitySplusID})\nCREATE (s)-[:TEACHES_ON]-&gt;(a)\nactivity-student\n// Student-Activity\nLOAD CSV WITH HEADERS FROM \"file:///phl-rel-student-activity.csv\" AS row\nMATCH (s:Student {studentSplusID: row.studentSplusID}) \nMATCH (a:Activity {activitySplusID: row.activitySplusID})\nCREATE (s)-[:IS_ALLOCATED_TO]-&gt;(a)",
-    "crumbs": [
-      "Home",
-      "Graph Data Model",
-      "Graph Data Model for Timetabling"
-    ]
-  },
-  {
     "objectID": "02-02b-expand.html",
     "href": "02-02b-expand.html",
     "title": "Early Insights and Future Expansion",
@@ -707,90 +600,6 @@
       "Home",
       "Graph Data Model",
       "Early Insights and Model Expansion"
-    ]
-  },
-  {
-    "objectID": "02-02c-challenge-oppos.html",
-    "href": "02-02c-challenge-oppos.html",
-    "title": "Opportunities and Challenges",
-    "section": "",
-    "text": "Unveiling Hidden Patterns & Improving Student Experience: Problem: Timetable inefficiencies often remain hidden in relational data, impacting student experience. Graph Solution: Graph analysis can uncover patterns like students with excessive travel time between classes, those lacking adequate breaks, or those facing scheduling conflicts due to part-time work. This empowers universities to optimize timetables for improved student well-being and academic performance. Stakeholder-Centric Analysis & Enhanced Decision Making: Problem: Traditional timetabling often prioritizes one factor (e.g., room utilization) over others, neglecting holistic needs. Graph Solution: Graphs allow simultaneous modeling of student preferences (class times, travel distance), faculty constraints, and institutional priorities (resource allocation). This enables data-driven decisions that balance stakeholder needs and improve overall satisfaction. What-If Scenarios & Agile Timetable Management: Problem: Evaluating the impact of timetable changes in relational systems is cumbersome, hindering proactive planning. Graph Solution: Graph databases excel at simulating “what-if” scenarios. Adding hypothetical courses, adjusting room capacities, or modifying faculty availability becomes straightforward. This agility allows for rapid evaluation of multiple scenarios, enabling institutions to anticipate challenges and adapt timetables dynamically. Visual Exploration & Fostering Collaboration: Problem: Communicating complex timetable data to diverse stakeholders (students, faculty, administrators) is challenging. Graph Solution: Graph visualizations make complex relationships intuitive and accessible, fostering shared understanding. This transparency promotes collaboration, reduces misunderstandings, and facilitates informed decision-making.",
-    "crumbs": [
-      "Home",
-      "Graph Data Model",
-      "Opportunities and Challenges"
-    ]
-  },
-  {
-    "objectID": "02-02c-challenge-oppos.html#opportunities",
-    "href": "02-02c-challenge-oppos.html#opportunities",
-    "title": "Opportunities and Challenges",
-    "section": "",
-    "text": "Unveiling Hidden Patterns & Improving Student Experience: Problem: Timetable inefficiencies often remain hidden in relational data, impacting student experience. Graph Solution: Graph analysis can uncover patterns like students with excessive travel time between classes, those lacking adequate breaks, or those facing scheduling conflicts due to part-time work. This empowers universities to optimize timetables for improved student well-being and academic performance. Stakeholder-Centric Analysis & Enhanced Decision Making: Problem: Traditional timetabling often prioritizes one factor (e.g., room utilization) over others, neglecting holistic needs. Graph Solution: Graphs allow simultaneous modeling of student preferences (class times, travel distance), faculty constraints, and institutional priorities (resource allocation). This enables data-driven decisions that balance stakeholder needs and improve overall satisfaction. What-If Scenarios & Agile Timetable Management: Problem: Evaluating the impact of timetable changes in relational systems is cumbersome, hindering proactive planning. Graph Solution: Graph databases excel at simulating “what-if” scenarios. Adding hypothetical courses, adjusting room capacities, or modifying faculty availability becomes straightforward. This agility allows for rapid evaluation of multiple scenarios, enabling institutions to anticipate challenges and adapt timetables dynamically. Visual Exploration & Fostering Collaboration: Problem: Communicating complex timetable data to diverse stakeholders (students, faculty, administrators) is challenging. Graph Solution: Graph visualizations make complex relationships intuitive and accessible, fostering shared understanding. This transparency promotes collaboration, reduces misunderstandings, and facilitates informed decision-making.",
-    "crumbs": [
-      "Home",
-      "Graph Data Model",
-      "Opportunities and Challenges"
-    ]
-  },
-  {
-    "objectID": "02-02c-challenge-oppos.html#challenges",
-    "href": "02-02c-challenge-oppos.html#challenges",
-    "title": "Opportunities and Challenges",
-    "section": "Challenges",
-    "text": "Challenges\nData Migration & Integration: A Necessary Hurdle: Challenge: Migrating from existing relational systems to a graph database requires careful planning and data transformation. Mitigation: Employing robust ETL (Extract, Transform, Load) processes and leveraging graph database import tools can streamline the migration process. Prioritizing incremental migration, starting with core entities, can minimize disruption. Tooling and Expertise: Bridging the Skills Gap: Challenge: The graph database ecosystem, while maturing, might require specialized skills compared to traditional SQL. Mitigation: Investing in staff training, collaborating with experts, and leveraging online resources can address the skills gap. Open-source graph databases like Neo4j offer ample learning material and community support. Performance at Scale: Ensuring Responsiveness with Large Datasets: Challenge: Graph databases, while generally performant for connected data, might face challenges with extremely large universities and complex queries. Mitigation: Employing performance tuning techniques like indexing, caching, and query optimization can enhance scalability. Exploring specialized graph database solutions designed for high-volume transactional systems might be necessary in extreme cases. “Soft” Constraint Modeling: Quantifying Subjective Preferences: Challenge: Graphs excel at explicit relationships but struggle with subjective preferences (e.g., student aversion to late classes). Mitigation: Combine graph analysis with techniques like sentiment analysis on student feedback or preference elicitation surveys. This hybrid approach allows incorporating both explicit relationships and quantified subjective factors.\n2.4 Data Augmentation Opportunities\nData Augmentation Opportunities: You touch on this briefly; expanding this section could be very compelling. Example: Integrating room location data (latitude/longitude) with student address data could allow for powerful analyses of commute patterns and potential inequities. Ethical Considerations: As your project deals with student data, briefly mention the importance of data privacy, anonymization, and responsible use of insights.\n2.5 Challenges and Considerations\nPotential limitations of the graph approach Data migration considerations Performance considerations for large-scale timetabling systems",
-    "crumbs": [
-      "Home",
-      "Graph Data Model",
-      "Opportunities and Challenges"
-    ]
-  },
-  {
-    "objectID": "06-conclusion.html#opportunities",
-    "href": "06-conclusion.html#opportunities",
-    "title": "Opportunities and Challenges",
-    "section": "Opportunities",
-    "text": "Opportunities\nUnveiling Hidden Patterns & Improving Student Experience: Problem: Timetable inefficiencies often remain hidden in relational data, impacting student experience. Graph Solution: Graph analysis can uncover patterns like students with excessive travel time between classes, those lacking adequate breaks, or those facing scheduling conflicts due to part-time work. This empowers universities to optimize timetables for improved student well-being and academic performance. Stakeholder-Centric Analysis & Enhanced Decision Making: Problem: Traditional timetabling often prioritizes one factor (e.g., room utilization) over others, neglecting holistic needs. Graph Solution: Graphs allow simultaneous modeling of student preferences (class times, travel distance), faculty constraints, and institutional priorities (resource allocation). This enables data-driven decisions that balance stakeholder needs and improve overall satisfaction. What-If Scenarios & Agile Timetable Management: Problem: Evaluating the impact of timetable changes in relational systems is cumbersome, hindering proactive planning. Graph Solution: Graph databases excel at simulating “what-if” scenarios. Adding hypothetical courses, adjusting room capacities, or modifying faculty availability becomes straightforward. This agility allows for rapid evaluation of multiple scenarios, enabling institutions to anticipate challenges and adapt timetables dynamically. Visual Exploration & Fostering Collaboration: Problem: Communicating complex timetable data to diverse stakeholders (students, faculty, administrators) is challenging. Graph Solution: Graph visualizations make complex relationships intuitive and accessible, fostering shared understanding. This transparency promotes collaboration, reduces misunderstandings, and facilitates informed decision-making.",
-    "crumbs": [
-      "Home",
-      "Final Thoughts",
-      "Conclusion"
-    ]
-  },
-  {
-    "objectID": "06-conclusion.html#challenges",
-    "href": "06-conclusion.html#challenges",
-    "title": "Opportunities and Challenges",
-    "section": "Challenges",
-    "text": "Challenges\nData Migration & Integration: A Necessary Hurdle: Challenge: Migrating from existing relational systems to a graph database requires careful planning and data transformation. Mitigation: Employing robust ETL (Extract, Transform, Load) processes and leveraging graph database import tools can streamline the migration process. Prioritizing incremental migration, starting with core entities, can minimize disruption. Tooling and Expertise: Bridging the Skills Gap: Challenge: The graph database ecosystem, while maturing, might require specialized skills compared to traditional SQL. Mitigation: Investing in staff training, collaborating with experts, and leveraging online resources can address the skills gap. Open-source graph databases like Neo4j offer ample learning material and community support. Performance at Scale: Ensuring Responsiveness with Large Datasets: Challenge: Graph databases, while generally performant for connected data, might face challenges with extremely large universities and complex queries. Mitigation: Employing performance tuning techniques like indexing, caching, and query optimization can enhance scalability. Exploring specialized graph database solutions designed for high-volume transactional systems might be necessary in extreme cases. “Soft” Constraint Modeling: Quantifying Subjective Preferences: Challenge: Graphs excel at explicit relationships but struggle with subjective preferences (e.g., student aversion to late classes). Mitigation: Combine graph analysis with techniques like sentiment analysis on student feedback or preference elicitation surveys. This hybrid approach allows incorporating both explicit relationships and quantified subjective factors.\n2.4 Data Augmentation Opportunities\nData Augmentation Opportunities: You touch on this briefly; expanding this section could be very compelling. Example: Integrating room location data (latitude/longitude) with student address data could allow for powerful analyses of commute patterns and potential inequities. Ethical Considerations: As your project deals with student data, briefly mention the importance of data privacy, anonymization, and responsible use of insights.\n2.5 Challenges and Considerations\nPotential limitations of the graph approach Data migration considerations Performance considerations for large-scale timetabling systems",
-    "crumbs": [
-      "Home",
-      "Final Thoughts",
-      "Conclusion"
-    ]
-  },
-  {
-    "objectID": "02-02-graph-timetable.html#core-nodes---building-blocks",
-    "href": "02-02-graph-timetable.html#core-nodes---building-blocks",
-    "title": "Graph Data Model for Timebling",
-    "section": "Core Nodes - Building Blocks",
-    "text": "Core Nodes - Building Blocks\nAt its core, the timetable model revolves around four key entities represented as nodes:\n\n\n\n\nNode\nProperty\nDescription\nData Type\n\n\n\n\nStudent\nfirstName\nLegal first name\nstring\n\n\n\nlastName\nLegal last name\nstring\n\n\n\nstudentID\nUniversity identifier\ninteger\n\n\n\nsplusID\nTimetable URN\nstring\n\n\nLecturer\nfirstName\nFirst name\nstring\n\n\n\nlastName\nLast name\nstring\n\n\n\nstaffID\nUniversity identifier\ninteger\n\n\n\nsplusID\nTimetable URN\nstring\n\n\nRoom\nname\nRoom name\nstring\n\n\n\nsplusID\nTimetable URN\ninteger\n\n\nActivity\nname\nActivity name\nstring\n\n\n\ndescription\nActivity description\nstring\n\n\n\nstartTime\nScheduled start time\ndatetime\n\n\n\nendTime\nScheduled end time\ndatetime\n\n\n\ndate\nDate of activity\ndate\n\n\n\n\n\n\n\nNeo4j Interface showing basic nodes and properties",
-    "crumbs": [
-      "Home",
-      "Graph Data Model",
-      "Graph Data Model for Timetabling"
-    ]
-  },
-  {
-    "objectID": "02-02-graph-timetable.html#relationships---connecting-the-dots",
-    "href": "02-02-graph-timetable.html#relationships---connecting-the-dots",
-    "title": "Graph Data Model for Timebling",
-    "section": "Relationships - Connecting the Dots",
-    "text": "Relationships - Connecting the Dots\nThese core nodes are interconnected through relationships that reflect the dynamics of a timetable:\n\nStudent-[IS_ALLOCATED_TO]-&gt;Activity\nStaff-[TEACHES_ON]-&gt;Activity\nActivity-[TAKES_PLACE_IN]-&gt;Room\n\n\n\n\nCore Nodes and Properties",
-    "crumbs": [
-      "Home",
-      "Graph Data Model",
-      "Graph Data Model for Timetabling"
     ]
   }
 ]

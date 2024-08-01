@@ -143,10 +143,6 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Early Insights and Model Expansion</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02-02c-challenge-oppos.qmd">
- <span class="dropdown-text">Opportunities and Challenges</span></a>
-  </li>  
-        <li>
     <a class="dropdown-item" href="./02-03-graph-time.html">
  <span class="dropdown-text">Graphing Time</span></a>
   </li>  
@@ -338,12 +334,6 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-02c-challenge-oppos.qmd" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Opportunities and Challenges</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./02-03-graph-time.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graphing Time</span></a>
   </div>
@@ -492,19 +482,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#an-iterative-approach" id="toc-an-iterative-approach" class="nav-link active" data-scroll-target="#an-iterative-approach">An Iterative Approach</a></li>
   <li><a href="#core-nodes---building-blocks" id="toc-core-nodes---building-blocks" class="nav-link" data-scroll-target="#core-nodes---building-blocks">Core Nodes - Building Blocks</a></li>
   <li><a href="#relationships---connecting-the-dots" id="toc-relationships---connecting-the-dots" class="nav-link" data-scroll-target="#relationships---connecting-the-dots">Relationships - Connecting the Dots</a></li>
-  <li><a href="#notes-to-be-deleted" id="toc-notes-to-be-deleted" class="nav-link" data-scroll-target="#notes-to-be-deleted">NOTES TO BE DELETED</a></li>
-  <li><a href="#approach" id="toc-approach" class="nav-link" data-scroll-target="#approach">approach</a></li>
-  <li><a href="#nodes" id="toc-nodes" class="nav-link" data-scroll-target="#nodes">nodes</a></li>
-  <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">properties</a></li>
-  <li><a href="#expansions" id="toc-expansions" class="nav-link" data-scroll-target="#expansions">expansions</a>
-  <ul class="collapse">
-  <li><a href="#time" id="toc-time" class="nav-link" data-scroll-target="#time">time</a></li>
-  <li><a href="#appendix--" id="toc-appendix--" class="nav-link" data-scroll-target="#appendix--">appendix -</a>
-  <ul class="collapse">
-  <li><a href="#example-load" id="toc-example-load" class="nav-link" data-scroll-target="#example-load">example load</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">results</a></li>
   </ul>
 </nav>
     </div>
@@ -680,296 +657,6 @@ TODO
 <figcaption>Core Nodes and Properties</figcaption>
 </figure>
 </div>
-</section>
-<section id="notes-to-be-deleted" class="level2">
-<h2 class="anchored" data-anchor-id="notes-to-be-deleted">NOTES TO BE DELETED</h2>
-</section>
-<section id="approach" class="level1">
-<h1>approach</h1>
-<p>iterative: design, build, test, review, revise and back to design Used: neo4j desktop and cloud instance started small (data wise -&gt; me and complexity (minimal nodes, minimal properties) things went wrong - many examples of wrong nodes, multiple relationships or more frustratingly - failure and error codes</p>
-</section>
-<section id="nodes" class="level1">
-<h1>nodes</h1>
-<p>The key nodes (nouns) in a timetable are:</p>
-<ul>
-<li>Student (Person)</li>
-<li>Staff (Person)</li>
-<li>Activity (Event)</li>
-<li>Room (Location)</li>
-</ul>
-<p>The key nodes (nouns) are:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Node</th>
-<th>Property</th>
-<th>Description</th>
-<th>Data Type</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Student</td>
-<td>firstName</td>
-<td>Legal first name</td>
-<td>string</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>lastName</td>
-<td>Legal last name</td>
-<td>string</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>studentID</td>
-<td>University identifier</td>
-<td>integer</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>splusID</td>
-<td>Timetable URN</td>
-<td>string</td>
-</tr>
-<tr class="odd">
-<td>Lecturer</td>
-<td>firstName</td>
-<td>First name</td>
-<td>string</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>lastName</td>
-<td>Last name</td>
-<td>string</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>staffID</td>
-<td>University identifier</td>
-<td>integer</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>splusID</td>
-<td>Timetable URN</td>
-<td>string</td>
-</tr>
-<tr class="odd">
-<td>Room</td>
-<td>name</td>
-<td>Room name</td>
-<td>string</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>splusID</td>
-<td>Timetable URN</td>
-<td>integer</td>
-</tr>
-<tr class="odd">
-<td>Activity</td>
-<td>name</td>
-<td>Activity name</td>
-<td>string</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>description</td>
-<td>Activity description</td>
-<td>string</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>startTime</td>
-<td>Scheduled start time</td>
-<td>datetime</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>endTime</td>
-<td>Scheduled end time</td>
-<td>datetime</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>date</td>
-<td>Date of activity</td>
-<td>date</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><p>sample cypher of loading self (v1-core-load-student-node.png)</p></li>
-<li><p>results v1-core-load-all-nodes.png</p></li>
-<li><p>example of a student node (me) <img src="../images/v1.1-core-student-phl.png" class="img-fluid" alt="student detail"></p></li>
-<li><p>all nodes loaded for MSc Data Science 2022-23 students:</p>
-<ul>
-<li><div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="../images/v1.1-load-all-nodes.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="all-nodes-for-posi"><img src="../images/v1.1-load-all-nodes.png" class="img-fluid figure-img" alt="all-nodes-for-posi"></a></p>
-<figcaption>all-nodes-for-posi</figcaption>
-</figure>
-</div></li>
-<li>no relationships # relationships</li>
-</ul></li>
-</ul>
-<p>The nodes are related as follows:</p>
-<ul>
-<li><code>Student</code> <em>allocated to</em> <code>Activity</code>
-<ul>
-<li>alternatives include <em>attends</em></li>
-</ul></li>
-<li><code>Staff</code> <em>teaches on</em> <code>Activity</code>
-<ul>
-<li>alternatives include <em>lectures</em>, <em>leads</em>, etc.</li>
-</ul></li>
-<li><code>Activity</code> <em>takes place in</em> <code>Room</code>
-<ul>
-<li>alternatives include <em>scheduled in</em></li>
-</ul></li>
-</ul>
-<p>It is clear that <code>Activity</code> is the central node in the basic model.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="attachment:v1-core-nodes-rels.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="core nodes with relationships"><img src="attachment:v1-core-nodes-rels.png" class="img-fluid figure-img" alt="core nodes with relationships"></a></p>
-<figcaption>core nodes with relationships</figcaption>
-</figure>
-</div>
-<ul>
-<li>loaded into neo4j <img src="../images/v1.1-core-full-model.png" class="img-fluid" alt="v1.1 full model">
-<ul>
-<li>two clusters? waht are they</li>
-<li>some orphans? who/waht are they?</li>
-</ul></li>
-<li>basic query examples - probably not worth
-<ul>
-<li>staff with most activities, hours</li>
-<li>average hours per student, per programme</li>
-<li>most popular activities</li>
-<li>most popular tutors (attendance)</li>
-<li>days with most activities</li>
-<li>times with most activities / scheduled hours/start times</li>
-<li>histogram of activities by day</li>
-<li>most popular combinations (modules, pairs of modules, triplets)
-<ul>
-<li>most attended</li>
-</ul></li>
-<li>most attendance percentage</li>
-<li>relationship between attendance and time/day of activity</li>
-<li>anomalies, combinations</li>
-</ul></li>
-</ul>
-</section>
-<section id="properties" class="level1">
-<h1>properties</h1>
-<ul>
-<li><p>dependent on use cases - which questions are to be answered</p></li>
-<li><p>some may be better as nodes, others as properties on node or properties on relationship</p></li>
-<li><p>no right or wrong - highly experimental, needs to be tested, optimised</p></li>
-<li><p>flexbility of graph to accommodate</p></li>
-<li><p>each node person/student, person/staff, activity, room needs some properties</p>
-<ul>
-<li>name, id, description</li>
-<li>activity needs date, times, (although modelling time has many varieties)</li>
-</ul></li>
-</ul>
-<p>image of final proof of concept simple model: v1-core-nodes-rels-prop.png</p>
-</section>
-<section id="expansions" class="level1">
-<h1>expansions</h1>
-<p>more nodes from timetable db could include:</p>
-<ul>
-<li>organisational unit (department, college, school)</li>
-<li>curriculum data (module, programme) - activity is part of module, programme made of modules (compulsory, optional)</li>
-<li>students who are pal leaders (as a mentoring relationship)</li>
-<li>activity type (property or node) - lecture, seminar, workshop, lab</li>
-<li>delivery type (property or node) - online, on-campus, recorded, optional, drop-in</li>
-<li>technician staff facilitating workshops</li>
-<li>equipment requirements in rooms</li>
-</ul>
-<p>more student properties could include: * reasonable adjustments * international student * first year student * pal leader</p>
-<p>example of expanded model: <img src="../images/v2.0-expanded-tt.png" class="img-fluid" alt="Title"></p>
-<p>this would allow for quickly getting insights such as:</p>
-<ul>
-<li>Identify students with anomalous timetables - e.g.&nbsp;timetables that have gaps of more than 2 hours between activities, or that violate a policy of no more than X hours per day.</li>
-<li>Find the <strong>busiest locations</strong> on campus - analyse room nodes to identify those with the most connected activity nodes on a given day. Useful for improving room bookings.</li>
-<li>Identify <strong>outlier teaching loads</strong> - find staff with significantly more or fewer allocated teaching hours compared to their peers. Analyse each staff node’s connected activity nodes and sum the durations</li>
-<li>Analyse <strong>room utilisation</strong> - calculate the percentage of available hours that rooms are booked based on their connected activities. Help optimise room usage.</li>
-<li>Identify <strong>module co-dependencies</strong> - find modules that are often taken together by analysing frequent appearing :CONTRIBUTES_TOWARDS relationships between modules taken by the same students.</li>
-<li><strong>Cluster students</strong> based on their curriculum/programs using community detection algorithms on the connections between student nodes, program nodes and module nodes. Identify common trajectories.</li>
-<li><strong>Predict student results</strong> - build a model based on relationships between student attributes, their enrollment relationships to modules, module difficulties and prerequisites, and historical grade data</li>
-<li>Make <strong>course recommendations</strong> - suggest new modules to students based on their existing modules and other similar students’ module relationships.</li>
-</ul>
-<p>then the possible:</p>
-<ul>
-<li>adding more location data - buildings, latitude, longitude</li>
-<li>student details - home postcode (travel distance),</li>
-<li>student outcomes - module marks, award outcomes, graduate outcomes</li>
-<li>admissions data - (free lunch scheme, social economic data, a-level results, inclusivity insights)</li>
-<li>curriculum data - from master curriculum data</li>
-<li>engagement data - attendance, engagement</li>
-<li>space use data - wifi locators, how busy areas are, correlations</li>
-<li></li>
-</ul>
-<section id="time" class="level2">
-<h2 class="anchored" data-anchor-id="time">time</h2>
-<p>modelling time in graph was challenging. my simple model above does take time into account other than to have startTime, endTime, date. In reality, an activity can take have the same start time, end time but be scheduled over several weeks - sometimes consecutive, sometimes non-consecutive weeks. How should this be represented? week patterns? date ranges? or separate activities? what happens when an activity is scheduled over several days but the same time over several weeks for example, Mondays and Wednesdays between 09:00-11:00 for ten weeks?</p>
-<p>this is where normalisation (footnote) and different designs come into play. In a relational database, it is fairly easy to normalise the data into activities where start and end time and day(s) of week, staff, locations, students are the same for the week pattern. Any deviation will require a new ‘activity’ to accommodate the difference. Therefore there is an inevitable repetition of data.</p>
-<p>In graph these scenarios can be handled in different ways. My initial model simply ported data as string data to an activity - that is, I literally created an activity as it existed in database and added start time, end time, weeks, etc. as properties of the activity.</p>
-<p>This worked to an extent but it was not optimised for calculating on time.</p>
-<p>I anticipated being able to answer questions and identify patterns like:</p>
-<ul>
-<li>students on programmes who do not have a lunch break (12:00-14:00)</li>
-<li>students who have X hours consecutive teaching without a break</li>
-<li>students who have X hours between teaching activities on any given date (e.g.&nbsp;early activity (09:00-10:00) and late finish (18:00-19:00))</li>
-</ul>
-<p>Being able to answer these types of queries easily will help pinpoint where there may be timetable quality concerns.</p>
-<p>I considered and explored differnet options including:</p>
-<ol type="1">
-<li>activities with 52 week patterns (0000011101 etc.), start and end times</li>
-<li>activities which are unique combinations of date, start, end, name</li>
-<li>activities with date ranges, start and end times</li>
-<li>activities linked to start time, end time and date nodes</li>
-</ol>
-<p>At this point, I did remember the project’s scope and reminded myself that it is a proof of concept. I settled for option 2 - where each activity is a unique combination of start, end, date and name. This required transforming from sql - there is some loss of redundancy but calculations on times are more manageable (although not uncomplicated). Also being restricted by Neo4j’s free aura instance, there is a limit to nodes (200K) and relationships (400K) which I would hit quickly.</p>
-<p>My suspicion is that creating separate nodes for start and end times and dates dynamically from the activity data would be the better model - but this will need to be future work with direct comparisons aganst specific use cases and insights.</p>
-</section>
-<section id="appendix--" class="level2">
-<h2 class="anchored" data-anchor-id="appendix--">appendix -</h2>
-<section id="example-load" class="level3">
-<h3 class="anchored" data-anchor-id="example-load">example load</h3>
-<section id="attempt-2---load-separately" class="level4">
-<h4 class="anchored" data-anchor-id="attempt-2---load-separately">Attempt 2 - load separately</h4>
-<pre class="cypher"><code>// remove all relationships
-MATCH ()-[r]-() 
-DELETE r</code></pre>
-<p><strong>activity-room</strong></p>
-<pre class="cypher"><code>// Activity-Room
-LOAD CSV WITH HEADERS FROM "file:///phl-rel-room-activity.csv" AS row3
-MATCH (r:Room {roomSplusID: row3.roomSplusID}) 
-MATCH (a:Activity {activitySplusID: row3.activitySplusID})
-CREATE (a)-[:TAKES_PLACE_IN]-&gt;(r)</code></pre>
-<p><strong>activity-staff</strong></p>
-<pre class="cypher"><code>// Staff-activity 
-LOAD CSV WITH HEADERS FROM "file:///phl-rel-staff-activity.csv" AS row2
-MATCH (s:Staff {staffSplusID: row2.staffSplusID}) 
-MATCH (a:Activity {activitySplusID: row2.activitySplusID})
-CREATE (s)-[:TEACHES_ON]-&gt;(a)</code></pre>
-<p><strong>activity-student</strong></p>
-<pre class="cypher"><code>// Student-Activity
-LOAD CSV WITH HEADERS FROM "file:///phl-rel-student-activity.csv" AS row
-MATCH (s:Student {studentSplusID: row.studentSplusID}) 
-MATCH (a:Activity {activitySplusID: row.activitySplusID})
-CREATE (s)-[:IS_ALLOCATED_TO]-&gt;(a)</code></pre>
-</section>
-</section>
-</section>
-</section>
-<section id="results" class="level1">
-<h1>results</h1>
-<p>v1-core-poc.png</p>
 
 
 </section>
@@ -1565,7 +1252,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"fade","openEffect":"fade","selector":".lightbox","descPosition":"bottom","loop":false});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"fade","loop":false,"openEffect":"fade","descPosition":"bottom","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
