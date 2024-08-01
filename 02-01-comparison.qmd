@@ -60,7 +60,7 @@ In contrast to the rigid table structure of relational databases, graph database
 -   **Nodes**: Represent entities (e.g., activity, room, lecturer, student).
 -   **Edges**: Represent relationships between nodes (e.g., "taught by," "enrolled in," "scheduled at").
 
-![Simple Graph Data Model](./images/v1-core-nodes-rels.png){.medium-image}
+![Simple Graph Data Model](./images/graph-nodes-rels.png){.medium-image}
 
 This node-and-edge structure inherently reflects how timetabling elements connect. Instead of relying on cumbersome joins, relationships are directly encoded in the data model itself. This results in several advantages:
 
