@@ -13,7 +13,7 @@ lightbox:
 ## TODO
 
 -   add cypher output results when reload data
--  
+  
 :::
 
 ## Unveiling Basic Patterns
@@ -27,7 +27,7 @@ Even with this basic model, we can easily extract valuable insights, for example
 
 ### Example code
 
-#### Busiest location overall
+**Busiest location overall**
 
 ```{cypher}
 MATCH (r:Room)<-[:TAKES_PLACE_IN]-(a:Activity)
@@ -37,7 +37,7 @@ ORDER BY totalDuration DESC
 LIMIT 1
 ```
 
-#### Busiest location for a specific time
+**Busiest location for a specific time**
 
 ```{cypher}
 MATCH (r:Room)<-[:TAKES_PLACE_IN]-(a:Activity)
@@ -48,7 +48,7 @@ ORDER BY activityCount DESC
 LIMIT 1 
 ```
 
-#### Students with below/above average hours
+**Students with below/above average hours**
 
 ```{cypher}
 // Calculate program averages and standard deviations
@@ -78,5 +78,7 @@ The true power of the graph model lies in its extensibility. Introducing additio
 -   **Activity Types**: Differentiate between lectures, seminars, labs, etc., for a more granular analysis of teaching and learning activities.
 -   **Activity Delivery**: Understand teaching delivery (virtual, in-person, hybrid, drop-in).
 -   **Student Attributes**: Add properties like "international student" or "first-year student" to explore potential student clusters.
+
+The below image shows an graph model expanded with some of the additional data contained within the timetable database.  It is much richer and therefore more complex, but this allows for richer analysis.
 
 ![Example of Expanded Timetable Graph Model](./images/v2.0-expanded-tt-2.png){.medium-image}

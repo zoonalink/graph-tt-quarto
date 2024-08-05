@@ -4,15 +4,16 @@ title: Introduction
 
 :::{.callout-warning}
 ## TODO
-* add references and quote
 * consider adding 'operational challenges - see 01-01a'
 :::
 
-University timetabling is the complex process of scheduling curriculum elements (modules, programmes), rooms, and resources within an academic institution. At its core, it involves collecting and combining time slots, rooms, students, and other resources while satisfying a multitude of constraints and preferences to achieve a viable outcome. However, the reality of timetabling is far more intricate than this simple definition suggests.
+University timetabling is the process of scheduling curriculum elements (modules, programmes), locations, and resources within the constraints of an academic institution and calendar. At its core, it involves collecting and combining time slots, rooms, students, and other resources while satisfying a multitude of constraints and preferences to achieve a viable outcome. 
 
-University timetabling is the intricate puzzle of scheduling courses, rooms, and resources within the constraints of an academic calendar. It involves coordinating thousands of students, hundreds of modules, and diverse faculty needs to create a functioning schedule. This process is far from simple, as timetablers must juggle numerous hard constraints (e.g., room capacities, pre-assigned times) and soft constraints (e.g., staff preferences, student travel times) to reach a workable solution. The scale of this task, combined with interdependencies between scheduling decisions, makes university timetabling one of the most challenging administrative tasks in higher education.
+However, the reality of timetabling is far more complicated than this simple definition suggests.
 
-Timetabling shapes the daily experiences of students and staff, influences resource utilisation, and plays a significant role in institutional efficiency. The complexity of this task stems from various factors:
+Timetablers must juggle numerous hard constraints (e.g., room capacities, pre-assigned times) and soft constraints (e.g., staff preferences, student travel times) to reach a workable solution. The scale of this task, combined with interdependencies between scheduling decisions, makes university timetabling one of the most challenging administrative tasks in higher education (de Werra, 1997).
+
+Timetables can make or break a university - they shape the daily experiences of students and staff, influence resource utilisation, and play a significant role in institutional efficiency. The complexity of timetabling stems from various factors:
 
 * **Scale**: Tens of thousands of students, countless modules, and limited resources create a logistical nightmare.
 * **Constraints**: Juggling hard limits (room capacities) and soft preferences (college desires) is a constant balancing act.
@@ -20,4 +21,4 @@ Timetabling shapes the daily experiences of students and staff, influences resou
 * **Diversity of Needs**: Different organisational units (colleges, faculties, schools, departments) have varying requirements and preferences.
 * **Optimisation Goals**: Timetablers must balance efficiency, fairness, and quality of education.
 
-While traditional approaches focus heavily on generating feasible timetables – ensuring no clashes or rule violations – this project explores a different facet: how analysing those timetables can lead to deeper insights and ultimately, improved quality for all stakeholders.
+While traditional studies on "timetabling" focus heavily on generating or optimising feasible timetables (Bonutti et al., 2012; Ceschia, Di Gaspero and Schaerf, 2023; Rudová, Müller and Murray, 2011) – ensuring no clashes or rule violations – this project explores a different facet: how analysing those timetables can lead to deeper insights and ultimately, improved quality for all stakeholders.

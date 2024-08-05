@@ -7,22 +7,14 @@ lightbox:
   effect: fade
   desc-position: bottom
   loop: false
-  
+   
 ---
 
-::: callout-warning
-## TODO
-
--   write up section - review notes
--   new page of difficulties with time - see poc2 time
--   appendix with queries (queries.ipynb (graph-project\docs\notes\queries.ipynb)) - copy all queries onto one appendix see graph-tt
-:::
-
-Having discussed some advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling. This model serves as the foundation for exploring graph-based analysis and its potential to unlock valuable insights.
+Having discussed some advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling.
 
 ## An Iterative Approach
 
-The design of this graph data model was iterative: design, build, test, review, and revise -\> ...and repeat. Using Neo4j Desktop and an Aura cloud instance, the first model was small scope in scope, incorporating minimal nodes and properties. This iterative approach allows for flexibility and refinement based on real-world data and evolving requirements.
+The graph data model design was an iterative process: design -> build -> test -> review -> revise -\> ...and repeat. Using Neo4j Desktop, the first model was small scope in scope, incorporating *minimal* nodes and properties. Eventually, the expanded model was created in an cloud-based Neo4j Aura instance.  
 
 ## Core Nodes - Building Blocks
 
@@ -54,7 +46,7 @@ At its core, the timetable model revolves around four key entities represented a
 
 ## Relationships - Connecting the Dots
 
-These core nodes are interconnected through relationships that reflect the dynamics of a timetable:
+The core nodes are interconnected through relationships that reflect the dynamics of a timetable:
 
 -   Student-**\[IS_ALLOCATED_TO\]**-\>Activity
 -   Staff-**\[TEACHES_ON\]**-\>Activity

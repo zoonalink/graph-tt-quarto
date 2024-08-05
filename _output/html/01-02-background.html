@@ -476,8 +476,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#research-gap-bridging-theory-and-practice" id="toc-research-gap-bridging-theory-and-practice" class="nav-link active" data-scroll-target="#research-gap-bridging-theory-and-practice">Research Gap: Bridging Theory and Practice</a></li>
-  <li><a href="#motivation" id="toc-motivation" class="nav-link" data-scroll-target="#motivation">Motivation</a></li>
+  <li><a href="#todo" id="toc-todo" class="nav-link active" data-scroll-target="#todo">TODO</a></li>
+  <li><a href="#research-gap-bridging-theory-and-practice" id="toc-research-gap-bridging-theory-and-practice" class="nav-link" data-scroll-target="#research-gap-bridging-theory-and-practice">Research Gap: Bridging Theory and Practice</a></li>
   </ul>
 </nav>
     </div>
@@ -503,31 +503,20 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-TODO
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="todo" class="level2 {callout-warning}">
+<h2 class="anchored" data-anchor-id="todo">TODO</h2>
 <ul>
 <li>review - reduce?</li>
 </ul>
-</div>
-</div>
-<p>My journey into the world of university timetabling began several years ago, first as a scheduler grappling with the complexities of timetable generation, and later transitioning into the role of a timetabling data manager. These experiences exposed me not only to the intricate data and systems involved but also to the intense pressures faced by timetabling teams. The constant scrutiny, stakeholder demands, and the near-impossibility of achieving universal satisfaction left an indelible mark, highlighting the critical need for better tools and metrics to understand and assess timetable quality – a factor often overshadowed by the pursuit of mere feasibility.</p>
+</section>
+<p>Many years ago I slipped into the world of timetabling and scheduling. I grappled with the complexities of timetable generation and optimisation and battled with trying to balance competing, but conflicting demands, like maximising room utilisation <strong>AND</strong> adhering to staff working patterns <strong>ADD</strong> producing a ‘decent’ timetable for the students. Following this, I spent some years as a timetabling data manager, where my view needed to be slightly broader, encompassing the whole dataset. These experiences exposed me not only to the intricacies of the data, systems and processes but also the intense pressures faced by timetabling teams. The constant scrutiny, stakeholder demands and impossibility of achieving universal satisfaction left an indelible mark, highlighting the need for robust tools and metrics to understand and assess timetable quality - a factor often overshadowed by the pursuit of mere feasibility.</p>
 <section id="research-gap-bridging-theory-and-practice" class="level2">
 <h2 class="anchored" data-anchor-id="research-gap-bridging-theory-and-practice">Research Gap: Bridging Theory and Practice</h2>
-<p>Much of the current research in university course timetabling (UCTTP) centres on optimisation algorithms, sophisticated techniques designed to efficiently generate feasible solutions given a set of constraints. This computationally-driven approach stems from the inherent difficulty of the UCTTP, often categorised as NP-hard<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, meaning finding the absolute “best” timetable is exceptionally challenging (Babaei, Karimpour and Hadidi, 2015; Herres and Schmitz, 2021; Wikipedia contributors, 2024). Consequently, significant effort has been dedicated to developing algorithms like constraint programming (Holm et al., 2022) and local search techniques such as Tabu Search and simulated annealing (Oude Vrielink et al., 2019), aiming to create workable timetables within reasonable timeframes.</p>
-<p>However, this emphasis on computational optimisation often unfolds within the controlled environment of standardised datasets and predefined constraints. While crucial for advancing algorithmic development, these idealised scenarios may not fully capture the dynamic complexity of real-world university timetabling. Universities grapple with constantly shifting demands: fluctuating student popoulations, evolving school preferences, resource limitations, and the ever-present need to balance diverse stakeholder needs. These complexities extend beyond simply finding a feasible solution – they necessitate tools to understand the trade-offs inherent in any timetable, enabling informed decisions about which “good” to prioritise (Lindahl, 2017). This is where I believe graph data structures offer unique potential. Timetables are inherently about relationships: curriculum linked to lecturers, students connected through shared modules, rooms associated with specific times and capacities. Graph databases excel in this domain, offering a way to unlock insights hidden within the complex web of a university timetable.</p>
-<p>While algorithms excel at generating solutions, there remains a significant gap in post-generation analysis – the ability to delve into a timetable’s nuanced impacts on student and staff experience. Despite the acknowledged importance of factors like room allocation, teaching period distribution, and their effect on overall timetable quality, traditional optimisation-focused approaches often lack the tools to explore these relationships in depth (Ceschia, Di Gaspero and Schaerf, 2023; Lindahl, 2017; Rudová, Müller and Murray, 2011).</p>
-</section>
-<section id="motivation" class="level2">
-<h2 class="anchored" data-anchor-id="motivation">Motivation</h2>
-<p><strong>This is where I believe graph data structures offer unique potential.</strong> Timetables are inherently about relationships: curriculum linked to lecturers, students connected through shared modules, rooms associated with specific times and capacities. Traditional data analysis methods often struggle to capture the richness of these interconnected elements. Graph databases, on the other hand, are specifically designed to excel in this domain, offering a way to unlock insights hidden within the complex web of a university timetable. This potential for deeper analysis, coupled with the limitations of optimisation-centric approaches, motivates this exploration of graph data structures for enhancing timetable understanding and, ultimately, improving timetable quality for all stakeholders.</p>
+<p>Much of current research into university timetabling centres on combinatorial optimisation (Chen et al., 2021), that is using various sophisticated techniques designed to efficiently generate feasible solutions given a set of constraints. The computationally-driven optimisation research is often referred to as the university course timetabing problem (UCTTP) and is categorised as NP-hard<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, meaning finding the absolute “best” timetable is exceptionally challenging (Babaei, Karimpour and Hadidi, 2015; Herres and Schmitz, 2021; Wikipedia contributors, 2024). Consequently, significant effort has been dedicated to developing algorithms like constraint programming (Holm et al., 2022) and local search techniques such as Tabu Search and simulated annealing (Oude Vrielink et al., 2019), aiming to create workable timetables within reasonable timeframes.</p>
+<p>However, this emphasis on computational optimisation makes use of standardised datasets and predefined constraints. While crucial for advancing algorithmic development, these idealised scenarios do not fully capture the dynamic complexity of real-world university timetabling. Universities grapple with constantly shifting demands: fluctuating student populations, evolving college preferences, resource limitations, and the ever-present need to balance diverse stakeholder needs. These complexities extend beyond simply finding a feasible solution – they necessitate tools to understand the trade-offs inherent in any timetable, enabling informed decisions about which “good” outcomes to prioritise (Lindahl, 2017).</p>
+<p>This is where I believe graph data structures offer unique potential. Timetables are inherently about relationships: curriculum linked to lecturers, students connected through shared modules, rooms associated with specific times and capacities. Graph databases excel in this domain, offering a way to unlock insights hidden within the complex web of a university timetable.</p>
+<p>While algorithms excel at generating solutions, there remains a gap in post-generation analysis – e.g.&nbsp;the ability to delve into a timetable’s nuanced impacts on student and staff experience. Despite the acknowledged importance of factors like room allocation and teaching period distribution, traditional optimisation-focused approaches lack the tools to explore these relationships in depth (Ceschia, Di Gaspero and Schaerf, 2023; Lindahl, 2017; Rudová, Müller and Murray, 2011).</p>
+<p>This potential for deeper analysis, coupled with the limitations of optimisation-centric approaches, motivates this exploration of graph data structures for enhancing timetable understanding and, ultimately, improving timetable quality for all stakeholders.</p>
 
 
 </section>

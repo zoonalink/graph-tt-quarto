@@ -51,3 +51,16 @@ Performance considerations for large-scale timetabling systems
 
 * Discussion of potential analyses (module combinations, student clustering, etc.)
 * Integration of additional data sources
+
+
+
+## Exploring time
+
+Future work could include evaluating the performance and scalability of different time modeling options, particularly: 
+
+- **Dynamic Node Creation (Option 2 or 3)**: This approach would create `Time` or `TimeBlock` nodes only when needed, potentially offering a good balance between flexibility and performance. 
+- **Direct Performance Comparisons**: Conducting benchmarks against specific use cases and datasets will provide valuable insights for choosing the optimal approach for large-scale deployments. 
+
+Modeling time effectively is crucial for unlocking the full potential of a graph database for university timetabling analysis. This section has outlined the challenges, explored potential solutions, and documented the chosen approach for this proof of concept. 
+
+Further exploration and optimisation of time modeling will be essential for developing robust, scalable, and insightful graph-based timetabling solutions.  The next section will delve into the data engineering pipeline required to populate and maintain this model, bridging the gap between raw data and insightful analysis.

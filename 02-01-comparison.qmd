@@ -4,31 +4,22 @@ execute:
   enabled: false
 ---
 
-::: callout-warning
-## TODO
 
--   find graph, rel quotes
--   add refernces
--   update images and text
--   
-:::
-
-Having established the context and motivation for this project, let us now focus on the core of the proposed solution: the graph data model for university timetabling. As outlined in the [project aims](01-04-project.qmd), my hypothesis is that graph-based approaches have the *potential* to offer new insights and efficiencies in timetable analysis and optimisation. This section will explore the theoretical underpinnings of graph data structures and their application to the complex domain of university timetabling.
-
+As outlined in the [project aims](01-04-project.qmd), my hypothesis is that graph-based approaches have the *potential* to offer new insights and efficiencies in timetable analysis. This section will briefly explore the theoretical underpinnings of graph data structures and their application to domain of university timetabling.
 
 
 ## Relational Models
 ### Tables, Joins and the Limits of Interconnectedness
 
-Relational databases, using SQL as their query language, have long been the go-to for managing data, including timetabling information. They structure data into tables, where rows represent entities (like rooms, staff, or students) and columns represent their attributes (name, capacity, email, etc.). Relationships between these entities are established through foreign keys, forming links between tables. This often involves intermediary "relationship" tables to handle the many-to-many nature of timetabling data (e.g., a student attends many activities, and an activity has many students). (Khan et al., 2023;Sokolova, Gómez and Borisoglebskaya, 2020)
+Relational databases, using SQL as their query language, have long been the go-to for managing data, including timetabling information. They structure data into tables, where rows represent instances of entities (e.g. individual rooms, staff, or students) and columns represent their attributes (name, capacity, email, etc.). Relationships between these entity tables are established through foreign keys, forming links between tables. This often involves intermediary "relationship" tables to handle the many-to-many nature of timetabling data (e.g., a student attends many activities, and an activity has many students) (Khan et al., 2023;Sokolova, Gómez and Borisoglebskaya, 2020).
 
 While robust and well-understood, relational databases start to show their limitations when dealing with the highly interconnected nature of timetables:
 
--   **Join Complexity**: Even seemingly simple queries, like *"find students attending a specific lecturer's class in a particular building,"* require joining multiple tables (see below). As queries become more nuanced, the number of joins increases, often impacting performance, especially with large datasets.
+-   **Join Complexity**: Even seemingly simple queries, like *"find students attending a specific lecturer's class in a particular building,"* require joining multiple tables (see below in both SQL and graph queries). As queries become more nuanced, the number of joins increases, often impacting performance, especially with large datasets.
 
--   **Rigidity**: Relational databases rely on a predefined schema, making them less adaptable to evolving needs. Adding new entities or relationships, a common occurrence in dynamic timetabling environments, often requires schema modifications, potentially disrupting existing queries and applications.
--   
-![Example Simple Entity Relationship Diagram](./images/RDB-small-light.png)
+-   **Rigidity**: Relational databases rely on a predefined schema, making them less adaptable to evolving needs. Adding new entities or relationships is not possible without disrupting existing queries and applications.
+
+![Example Simple Entity Relationship Diagram](./images/RDB-ER-miro.jpg)
 
 **Example Query in SQL**
 ```{sql}
@@ -46,7 +37,7 @@ INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_STUDENTSET] acts ON ss.[Id] = ac
 INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY] a ON acts.[ActivityId] = a.[Id]
 INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_LOCATION] al ON a.[Id] = al.[ActivityId]
 INNER JOIN [RDB_MAIN2223].[rdowner].[V_LOCATION] l ON al.[LocationId] = l.[Id]
-INNER JOIN [RDB_MAIN2223].[rdowner].[V_BUILDING] b ON l.[BuildingId] = b.[Id] # Assuming a BuildingId column in V_LOCATION
+INNER JOIN [RDB_MAIN2223].[rdowner].[V_BUILDING] b ON l.[BuildingId] = b.[Id] 
 INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_STAFF] ast ON a.[Id] = ast.[ActivityId]
 WHERE ast.[StaffId] = 'StaffID'  
   AND b.[Name] = 'BuildingName'; 
@@ -57,23 +48,23 @@ WHERE ast.[StaffId] = 'StaffID'
 
 In contrast to the rigid table structure of relational databases, graph databases offer a more intuitive and flexible approach for representing interconnected data like timetables. They utilise:
 
--   **Nodes**: Represent entities (e.g., activity, room, lecturer, student).
--   **Edges**: Represent relationships between nodes (e.g., "taught by," "enrolled in," "scheduled at").
+-   **Nodes**: Represent entities (e.g., activity, room, staff, student).  These are often "nouns."
+-   **Edges**: Represent relationships between nodes (e.g., "taught by," "enrolled in," "scheduled at").  These are often "verbs."
 
-![Simple Graph Data Model](./images/graph-nodes-rels.png){.medium-image}
+![Simple Graph Data Model](./images/graph-nodes-rels2.png){.medium-image}
 
 This node-and-edge structure inherently reflects how timetabling elements connect. Instead of relying on cumbersome joins, relationships are directly encoded in the data model itself. This results in several advantages:
 
 -   **Natural Representation**: Graph databases visually and conceptually mirror the relationships inherent in timetables, making them easier to understand and query.
--   **Relationship-Centric Queries**: Graph databases are optimised for traversing and analysing relationships. Queries that would require multiple joins in a relational database often become significantly simpler and faster in a graph database.
--   **Flexibility**: The schema-less or schema-optional nature of most graph databases allows for greater flexibility in data modeling. New entities or relationships can be added effortlessly without impacting existing structures or queries (Nan and Bai, 2019;Webber, Eifrem and Robinson, 2013).
+-   **Relationship-Centric Queries**: Graph databases are optimised for traversing and analysing relationships. Queries that would require multiple joins in a relational database often become significantly simpler and faster in a graph database - see below.
+-   **Flexibility**: The schema-less or schema-optional nature of most graph databases allows for greater flexibility in data modeling. New entities or relationships can be added effortlessly without impacting existing structures or queries (Nan and Bai, 2019; Webber, Eifrem and Robinson, 2013).
 
 **Example Query in Cypher**
 ```{cypher}
 // Assuming properties on nodes
 // Much simpler query pattern
 
-MATCH (s:Student)-[:ATTENDS]->(a:Activity)<-[:TEACHES]-(st:Staff), 
+MATCH (s:Student)-[:ATTENDS]->(a:Activity)<-[:TEACHES_ON]-(st:Staff), 
       (a:Activity)-[:TAKES_PLACE_IN]->(r:Room)
 WHERE st.last_name = "LecturerLastName" AND r.building = "BuildingName"
 RETURN s.first_name, s.last_name, s.email 
@@ -94,4 +85,4 @@ RETURN s.first_name, s.last_name, s.email
 
 :::
 
-These advantages position graph databases as a powerful tool for uncovering insights hidden within complex, interconnected datasets like university timetables. The following section will detail a graph data model specifically designed to leverage these strengths for enhanced timetable analysis.
+These advantages position graph databases as a powerful tool for uncovering insights hidden within complex, interconnected datasets like university timetables.
