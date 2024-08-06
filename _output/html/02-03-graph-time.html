@@ -479,6 +479,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#the-problem-of-normalised-time" id="toc-the-problem-of-normalised-time" class="nav-link active" data-scroll-target="#the-problem-of-normalised-time">The Problem of Normalised Time</a></li>
   <li><a href="#exploring-potential-solutions" id="toc-exploring-potential-solutions" class="nav-link" data-scroll-target="#exploring-potential-solutions">Exploring Potential Solutions</a>
   <ul class="collapse">
+  <li><a href="#option-0-proof-of-concept-activity" id="toc-option-0-proof-of-concept-activity" class="nav-link" data-scroll-target="#option-0-proof-of-concept-activity">Option 0: Proof-of-concept activity</a></li>
   <li><a href="#option-1-unique-activity-nodes" id="toc-option-1-unique-activity-nodes" class="nav-link" data-scroll-target="#option-1-unique-activity-nodes">Option 1: Unique Activity Nodes</a></li>
   <li><a href="#option-2-date-and-time-nodes" id="toc-option-2-date-and-time-nodes" class="nav-link" data-scroll-target="#option-2-date-and-time-nodes">Option 2: Date and Time Nodes</a></li>
   <li><a href="#option-3-date-and-time-block-nodes" id="toc-option-3-date-and-time-block-nodes" class="nav-link" data-scroll-target="#option-3-date-and-time-block-nodes">Option 3: Date and Time Block Nodes</a></li>
@@ -526,8 +527,8 @@ TODO
 </ul>
 </div>
 </div>
-<p>The biggest challenge when modelling timetables into graph data structures involved temporal elements - that is, start and end times, dates, weeks, reccurences, durations, etc. Whether a data element is a node or a property of a node, or perhaps both is relatively trivial to model and test, and depends heavily on use cases. Time, on the other hand, is complicated, as I discovered when attempting to write aggregation queries on time elements.</p>
-<p>While the conceptual flexibility of graphs is appealing, finding the optimal balance between efficient representation, query performance, and data redundancy requires careful consideration. This section details some challenges encountered and the solutions explored in modeling time for a university timetable graph database.</p>
+<p>The biggest challenge I encountered when modelling timetables into graph data structures involved temporal elements - that is, start and end times, dates, weeks, reccurences, durations, etc. Whether a data element is a node or a property of a node, or perhaps both is relatively trivial to model and test, and depends heavily on use cases. Time, on the other hand, is complicated, especially when you want to write aggregation queries on time elements.</p>
+<p>While the conceptual flexibility of graphs is appealing, finding the optimal balance between efficient representation, query performance, and data redundancy requires careful consideration. This section details some challenges encountered and the approach taken for the proof-of-concept.</p>
 <section id="the-problem-of-normalised-time" class="level2">
 <h2 class="anchored" data-anchor-id="the-problem-of-normalised-time">The Problem of Normalised Time</h2>
 <p>Traditional relational databases often store timetable information in a highly normalised format, condensing recurring events into single rows with date ranges, week patterns, or lists of occurrences. While efficient for storage and basic display, this approach severely hinders analysis, especially when aiming to:</p>
@@ -539,7 +540,7 @@ TODO
 </section>
 <section id="exploring-potential-solutions" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-potential-solutions">Exploring Potential Solutions</h2>
-<p>To address these challenges, several time modeling approaches were explored, each with its own trade-offs. Let’s explore with a fictional example for <code>Introduction to Graph Databases</code> :</p>
+<p>To address these challenges, several time modelling approaches were explored, each with its own trade-offs. Let’s explore using a fictional example - <code>Introduction to Graph Databases</code>:</p>
 <table class="caption-top table">
 <caption>Example Source Data (Relational)</caption>
 <thead>
@@ -559,22 +560,51 @@ TODO
 <td>11:00</td>
 <td>1-3, 5-7, 9-13</td>
 </tr>
+<tr class="even">
+<td>ITGD</td>
+<td>Wednesday</td>
+<td>10:00</td>
+<td>13:00</td>
+<td>4, 7-8, 15</td>
+</tr>
+<tr class="odd">
+<td>ITGD</td>
+<td>Monday</td>
+<td>13:00</td>
+<td>16:00</td>
+<td>4, 7-8, 15</td>
+</tr>
 </tbody>
 </table>
+<section id="option-0-proof-of-concept-activity" class="level3">
+<h3 class="anchored" data-anchor-id="option-0-proof-of-concept-activity">Option 0: Proof-of-concept activity</h3>
+<p>The basic model created nodes for each activity as they exist in the relational database. This simple approach is perfectly acceptable, but makes any time based calculations difficult because each activity node can represent a different number of activities because of the week ranges (number of occurrences).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/time-option0.png" class="img-fluid figure-img"></p>
+<figcaption>Basic example</figcaption>
+</figure>
+</div>
+<p>If all students attend on Wednesday 09:00-11:00 (lecture) and only one of Monday or Thursday (seminar), some students will have a clash in week 7 between 10:00-11:00 . Unpicking this from the normalised activities is very challenging and not immediately obvious at a glance.</p>
+</section>
 <section id="option-1-unique-activity-nodes" class="level3">
 <h3 class="anchored" data-anchor-id="option-1-unique-activity-nodes">Option 1: Unique Activity Nodes</h3>
+<p>Option 1 creates nodes for each unique combination of <code>name</code>, <code>startTime</code>, <code>endTime</code> and <code>date</code> - this means de-normalising the relational data and deliberately introducing duplication.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./images/time-option1.png" class="img-fluid figure-img"></p>
 <figcaption>Unique Activity Nodes Graph Example</figcaption>
 </figure>
 </div>
-<p><strong>Graph Structure</strong>: 11 separate <code>Activity</code> nodes one for each occurrence (date)</p>
+<p><strong>Graph Structure</strong>:</p>
 <ul>
-<li>Each node has <code>Date</code>, <code>StartTime</code>, <code>EndTime</code> properties</li>
-<li>Essentially - this is ‘un-normlising’ the relational data</li>
+<li>11 separate <code>Activity</code> nodes one for each occurrence (date)</li>
+<li>Each node has <code>date</code>, <code>startTime</code>, <code>endTime</code> properties</li>
 </ul>
-<pre><code>(Activity {Name: "ITGD", Date: "2024-01-03", StartTime: "09:00", EndTime: "11:00"}) (Activity {Name: "ITGD", Date: "2024-01-10", StartTime: "09:00", EndTime: "11:00"}) ... (Activity {Name: "ITGD", Date: "2024-03-20", StartTime: "09:00", EndTime: "11:00"})</code></pre>
+<pre><code>(Activity {Name: "ITGD", Date: "2024-01-03", StartTime: "09:00", EndTime: "11:00"}) 
+(Activity {Name: "ITGD", Date: "2024-01-10", StartTime: "09:00", EndTime: "11:00"}) 
+... 
+(Activity {Name: "ITGD", Date: "2024-03-20", StartTime: "09:00", EndTime: "11:00"})</code></pre>
 <p><strong>Pros</strong>:</p>
 <ul>
 <li><strong>Conceptual Simplicity</strong>: Easy to understand and implement.</li>
@@ -588,17 +618,18 @@ TODO
 </section>
 <section id="option-2-date-and-time-nodes" class="level3">
 <h3 class="anchored" data-anchor-id="option-2-date-and-time-nodes">Option 2: Date and Time Nodes</h3>
+<p>Option 2 creates a single activity node but also additional <code>date</code> and <code>time</code> nodes, as required.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./images/time-option2.png" class="img-fluid figure-img"></p>
 <figcaption>Time and Date Nodes</figcaption>
 </figure>
 </div>
-<p><strong>Graph Structure</strong>: One <code>Activity</code> node for “Intro to Graph Databases”.</p>
+<p><strong>Graph Structure</strong>:</p>
 <ul>
-<li><p>11 Date nodes (for each Wednesday).</p></li>
+<li><p>11 Date nodes</p></li>
 <li><p>2 Time nodes (09:00 and 11:00) - shared by ALL activities on those times!</p></li>
-<li><p><strong>Relationships</strong></p></li>
+<li><p><strong>Additional Relationships</strong></p></li>
 <li><ul>
 <li><code>Activity</code> -[:SCHEDULED_ON]-&gt; <code>Date</code> (11 relationships)</li>
 <li><code>Date</code> -[:STARTS_AT]-&gt; <code>Time</code> (11 relationships to 09:00)</li>
@@ -625,13 +656,24 @@ TODO
 </section>
 <section id="option-3-date-and-time-block-nodes" class="level3">
 <h3 class="anchored" data-anchor-id="option-3-date-and-time-block-nodes">Option 3: Date and Time Block Nodes</h3>
+<p>Option 3 creates a single activity but instead of individual start and end time nodes, we use predetermined <code>timeBlocks</code> encompassing both. For example, if using 30-minute blocks, we would have a node for “09:00-09:30” and another for “09:30-10:00”, etc.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./images/time-option3.png" class="img-fluid figure-img"></p>
 <figcaption>TimeBlock and Date Nodes</figcaption>
 </figure>
 </div>
-<p><strong>Graph Structure</strong>: Same as Option 2, but instead of individual <code>Time</code> nodes, we have <code>TimeBlock</code> nodes. - For example, if using 30-minute blocks, you would have a node for “09:00-09:30” and another for “09:30-10:00”, etc.</p>
+<p><strong>Graph Structure</strong>:</p>
+<ul>
+<li><p>11 Date nodes</p></li>
+<li><p>4 Timeblock nodes (09:00-09:30, etc.) - shared by ALL activities on those times!</p></li>
+<li><p><strong>Additional Relationships</strong></p></li>
+<li><ul>
+<li><code>Activity</code> -[:SCHEDULED_ON]-&gt; <code>Date</code> (11 relationships)</li>
+<li><code>Date</code> -[:TAKES_PLACE_DURING]-&gt; <code>timeBlock 09:00-09:30</code> (11 relationships)</li>
+<li><code>Date</code> -[:TAKES_PLACE_DURING]-&gt; <code>timeBlock 09:30-10:00</code> (11 relationships)</li>
+</ul></li>
+</ul>
 <pre><code>(Activity {Name: "ITGD"}) -[:SCHEDULED_ON]-&gt; (Date {date: "2024-01-03"}) -[:OCCUPIES]-&gt; (TimeBlock {start: "09:00", end: "09:30"})
                                                                           -[:OCCUPIES]-&gt; (TimeBlock {start: "09:30", end: "10:00"}) 
 ...</code></pre>
@@ -649,15 +691,14 @@ TODO
 </section>
 <section id="option-variations" class="level3">
 <h3 class="anchored" data-anchor-id="option-variations">Option: Variations</h3>
-<p><strong>StartTime and Duration</strong>: This option simplifies the model by representing time using only <code>StartTime</code> and <code>DurationInMinutes</code> properties on the <code>Activity</code> node, omitting explicit <code>EndTime</code> nodes. This approach is suitable for duration based queries but it is limiting in that it is more difficult to query for events occurring at specific times, overlapping time ranges or on end-times.</p>
-<p><strong>Dynamic TimeBlocks</strong>: This variation does not precreate timeblocks based on a set interval (e.g.&nbsp;30 minutes). They are created dynamically as required by the data and what already exists. For example, activities at 09:00-11:00, 10:30-11:30 and 11:00-12:00 would require these TimeBlocks:</p>
+<p><strong>StartTime and Duration</strong>: This option simplifies the model by representing time using only <code>StartTime</code> and <code>DurationInMinutes</code> properties on the <code>Activity</code> node, omitting explicit <code>EndTime</code> nodes. This approach is suitable for duration based queries but it is limiting in that it is more difficult to query events occurring at specific times, overlapping time ranges or on end-times.</p>
+<p><strong>Dynamic TimeBlocks</strong>: This variation does not pre-create timeblocks based on a set interval (e.g.&nbsp;30 minutes). They are created dynamically as required by the data and what already exists. For example, activities at 09:00-11:00, 10:30-11:30 and 11:00-12:00 would require these TimeBlocks:</p>
 <pre><code>(Timeblock {name: "09:00-11:00", start: 09:00, end: 11:00, duration:120})
 (Timeblock {name: "10:30-11:30", start: 10:30, end: 11:30, duration:60})
 (Timeblock {name: "11:00-12:00", start: 11:00, end: 12:00, duration:60})</code></pre>
 </section>
 <section id="summary" class="level3">
 <h3 class="anchored" data-anchor-id="summary">Summary</h3>
-<p>:</p>
 <table class="caption-top table">
 <caption>Option summary</caption>
 <colgroup>
@@ -690,14 +731,7 @@ TODO
 </tr>
 </tbody>
 </table>
-<p>Given the proof-of-concept scope of this project, Option 1 (unique activity nodes for each date/time instance) was chosen. While this approach can lead to node proliferation, it offers the most straightforward implementation for exploring fundamental time-based queries and insights.</p>
-<p>Future work could include evaluating the performance and scalability of different time modeling options, particularly:</p>
-<ul>
-<li><strong>Dynamic Node Creation (Option 2 or 3)</strong>: This approach would create <code>Time</code> or <code>TimeBlock</code> nodes only when needed, potentially offering a good balance between flexibility and performance.</li>
-<li><strong>Direct Performance Comparisons</strong>: Conducting benchmarks against specific use cases and datasets will provide valuable insights for choosing the optimal approach for large-scale deployments.</li>
-</ul>
-<p>Modeling time effectively is crucial for unlocking the full potential of a graph database for university timetabling analysis. This section has outlined the challenges, explored potential solutions, and documented the chosen approach for this proof of concept.</p>
-<p>Further exploration and optimisation of time modeling will be essential for developing robust, scalable, and insightful graph-based timetabling solutions. The next section will delve into the data engineering pipeline required to populate and maintain this model, bridging the gap between raw data and insightful analysis.</p>
+<p>Given the proof-of-concept scope of this project, I chose Option 1. While this approach can lead to node proliferation, it offers the most straightforward implementation for exploring fundamental time-based queries and insights. It also acts as an easy jumping off point for exploring any of the other options.</p>
 
 
 </section>

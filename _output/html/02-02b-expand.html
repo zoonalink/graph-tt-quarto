@@ -524,7 +524,6 @@ TODO
 <div class="callout-body-container callout-body">
 <ul>
 <li>add cypher output results when reload data</li>
-<li></li>
 </ul>
 </div>
 </div>
@@ -539,25 +538,20 @@ TODO
 </ul>
 <section id="example-code" class="level3">
 <h3 class="anchored" data-anchor-id="example-code">Example code</h3>
-<section id="busiest-location-overall" class="level4">
-<h4 class="anchored" data-anchor-id="busiest-location-overall">Busiest location overall</h4>
+<p><strong>Busiest location overall</strong></p>
 <pre class="{cypher}"><code>MATCH (r:Room)&lt;-[:TAKES_PLACE_IN]-(a:Activity)
 WITH r, sum(a.duration) AS totalDuration
 RETURN r.name AS Room, totalDuration
 ORDER BY totalDuration DESC
 LIMIT 1</code></pre>
-</section>
-<section id="busiest-location-for-a-specific-time" class="level4">
-<h4 class="anchored" data-anchor-id="busiest-location-for-a-specific-time">Busiest location for a specific time</h4>
+<p><strong>Busiest location for a specific time</strong></p>
 <pre class="{cypher}"><code>MATCH (r:Room)&lt;-[:TAKES_PLACE_IN]-(a:Activity)
 WHERE a.startTime = "11:00" 
 WITH r, count(a) AS activityCount
 RETURN r.name AS Room, activityCount
 ORDER BY activityCount DESC
 LIMIT 1 </code></pre>
-</section>
-<section id="students-with-belowabove-average-hours" class="level4">
-<h4 class="anchored" data-anchor-id="students-with-belowabove-average-hours">Students with below/above average hours</h4>
+<p><strong>Students with below/above average hours</strong></p>
 <pre class="{cypher}"><code>// Calculate program averages and standard deviations
 MATCH (s:Student)-[:IS_ALLOCATED_TO]-&gt;(a:Activity)
 WITH s.prog AS programme, AVG(a.duration) AS avgDuration, STDEV(a.duration) AS stdDev
@@ -574,7 +568,6 @@ RETURN studentID, programme, totalDuration, avgDuration, stdDev
 ORDER BY programme, totalDuration DESC</code></pre>
 </section>
 </section>
-</section>
 <section id="expanding-the-model-towards-richer-insights" class="level2">
 <h2 class="anchored" data-anchor-id="expanding-the-model-towards-richer-insights">Expanding the Model: Towards Richer Insights</h2>
 <p>The true power of the graph model lies in its extensibility. Introducing additional nodes and properties allows for a more comprehensive representation and enables more sophisticated analysis.</p>
@@ -587,6 +580,7 @@ ORDER BY programme, totalDuration DESC</code></pre>
 <li><strong>Activity Delivery</strong>: Understand teaching delivery (virtual, in-person, hybrid, drop-in).</li>
 <li><strong>Student Attributes</strong>: Add properties like “international student” or “first-year student” to explore potential student clusters.</li>
 </ul>
+<p>The below image shows an graph model expanded with some of the additional data contained within the timetable database. It is much richer and therefore more complex, but this allows for richer analysis.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="./images/v2.0-expanded-tt-2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Example of Expanded Timetable Graph Model"><img src="./images/v2.0-expanded-tt-2.png" class="medium-image img-fluid figure-img" alt="Example of Expanded Timetable Graph Model"></a></p>
@@ -1189,7 +1183,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"fade","loop":false,"closeEffect":"fade","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"fade","loop":false,"descPosition":"bottom","openEffect":"fade"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

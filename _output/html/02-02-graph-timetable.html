@@ -507,27 +507,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-TODO
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>write up section - review notes</li>
-<li>new page of difficulties with time - see poc2 time</li>
-<li>appendix with queries (queries.ipynb (graph-project.ipynb)) - copy all queries onto one appendix see graph-tt</li>
-</ul>
-</div>
-</div>
-<p>Having discussed some advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling. This model serves as the foundation for exploring graph-based analysis and its potential to unlock valuable insights.</p>
+<p>Having discussed some advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling.</p>
 <section id="an-iterative-approach" class="level2">
 <h2 class="anchored" data-anchor-id="an-iterative-approach">An Iterative Approach</h2>
-<p>The design of this graph data model was iterative: design, build, test, review, and revise -&gt; …and repeat. Using Neo4j Desktop and an Aura cloud instance, the first model was small scope in scope, incorporating minimal nodes and properties. This iterative approach allows for flexibility and refinement based on real-world data and evolving requirements.</p>
+<p>The graph data model design was an iterative process: design -&gt; build -&gt; test -&gt; review -&gt; revise -&gt; …and repeat. Using Neo4j Desktop, the first model was small scope in scope, incorporating <em>minimal</em> nodes and properties. Eventually, the expanded model was created in an cloud-based Neo4j Aura instance.</p>
 </section>
 <section id="core-nodes---building-blocks" class="level2">
 <h2 class="anchored" data-anchor-id="core-nodes---building-blocks">Core Nodes - Building Blocks</h2>
@@ -645,7 +628,7 @@ TODO
 </section>
 <section id="relationships---connecting-the-dots" class="level2">
 <h2 class="anchored" data-anchor-id="relationships---connecting-the-dots">Relationships - Connecting the Dots</h2>
-<p>These core nodes are interconnected through relationships that reflect the dynamics of a timetable:</p>
+<p>The core nodes are interconnected through relationships that reflect the dynamics of a timetable:</p>
 <ul>
 <li>Student-<strong>[IS_ALLOCATED_TO]</strong>-&gt;Activity</li>
 <li>Staff-<strong>[TEACHES_ON]</strong>-&gt;Activity</li>
@@ -1252,7 +1235,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"fade","loop":false,"openEffect":"fade","selector":".lightbox","descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"fade","closeEffect":"fade"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
