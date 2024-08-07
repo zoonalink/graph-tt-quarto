@@ -11,7 +11,9 @@
 * review data engineering
 * write timetable-metrics section
 * run exatraction - a couple of programmes (maths, art intel)
-* add end-to-end example for I400
+* add end-to-end example for I400 -> appendix
+* copy all cypher queries to a page
+  
 
 ### word/pdf doc
 * add front page instruction about viewing as a website
