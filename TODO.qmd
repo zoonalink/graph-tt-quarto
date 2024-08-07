@@ -13,6 +13,8 @@
 * run exatraction - a couple of programmes (maths, art intel)
 * add end-to-end example for I400 -> appendix
 * copy all cypher queries to a page
+* add pages to html and rerender
+* share with xiaodong
   
 
 ### word/pdf doc
