@@ -11,6 +11,7 @@
 * review data engineering
 * write timetable-metrics section
 * run exatraction - a couple of programmes (maths, art intel)
+* add end-to-end example for I400
 
 ### word/pdf doc
 * add front page instruction about viewing as a website
