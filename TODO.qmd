@@ -1,4 +1,38 @@
 
+## TODO - Friday AM
+
+- [ ] from SQL get POS sizes for programmes
+- [ ] delete entire graph database
+- [ ] delete I400 files
+- [ ] new ipynb page for each load
+- [ ] screencapture I400 again
+- [ ] run extract for each programme in list
+- [ ] re-render html and pdf
+- [ ] review new html/pdf - send/share zip with xiaodong
+- [ ] 
+
+
+## Weekend
+
+- [ ] load remaining programmes
+- [ ] research graph explore/query
+- [ ] copy all cypher queries to page and annotate
+- [ ] add new html pages - 
+  - [ ] dedication, 
+  - [ ] cypher queries, 
+  - [ ] techstack
+- [ ] explore graph 
+  - [ ] write down interesting questions
+  - [ ] screencapture interesting insights
+  - [ ] list of things to do
+  - [ ] delete unnatttached nodes?
+
+## Later
+
+- [ ] clipchamp for video
+- [ ] quarto for presentation?
+- [ ] script for video - combination of presentation slides, demo and neo4j capabilities - leave on cliffhanger
+
 ## yaml
 
 ## overall
@@ -15,6 +49,8 @@
 * copy all cypher queries to a page
 * add pages to html and rerender
 * share with xiaodong
+* presentation / appendix
+  * show slicing/range example
   
 
 ### word/pdf doc
