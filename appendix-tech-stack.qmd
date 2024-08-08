@@ -4,19 +4,67 @@ title: "Technology Stack"
 
 ## Technology Stack
 
-TO ADD: 
+This project used a variety of tools, applications, programming languages, and so on.  Below is a high-level record of the 'tech stack' - the `what` and `why`: 
 
-* Technology Stack
-  * Python used
-  * Python packages used and why
-  * Neo4j used
-  * Google API
-  * VS code
-  * Quarto
-  * SQL
+### Programming
 
-* graphviz
-* arrows
-* mermaid
+1. [`Python`](https://www.python.org/) - Main programming language.
+2. [`SQL`](https://www.microsoft.com/en-us/sql-server/) - SELECT queries to extract source data from relational database.
+3. [`Cypher`](https://neo4j.com/developer/cypher/) - Querying language for Neo4j Graph Databases.
+4. [`Batch`](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands) - Windows command language to handle yaml files and multi-format rendering.
+5. [`VSCode`](https://code.visualstudio.com/) - Main IDE (Integrated Development Environment).
 
-* git hub, git
+### Documentation
+
+* [`Quarto`](https://quarto.org/) - Open-source technical publishing system.
+* [`Jupyter`](https://jupyter.org/) - Open-source application for interactive notebooks.
+* [`Zotero`](https://www.zotero.org/) - Open-source reference management system.
+
+### Visualisation
+
+* [`Graphviz`](https://graphviz.org/) - Open-source graph visualisation application.
+* [`Mermaid`](https://mermaid-js.github.io/mermaid/) - Open-source JavaScript diagramming tool.
+* [`Arrows`](https://neo4j.com/labs/arrows/) - Neo4j Labs diagramming tool.
+
+### Versioning
+
+* [`Github`](https://github.com/) - Web-based platform for version control and collaboration using Git.
+
+### Python Libraries
+
+Several Python libraries were explored in the development of this prototype.  The below libraries are the ones used in the current implementation.
+
+#### Directory/File Handling
+
+* [`os`](https://docs.python.org/3/library/os.html) - Interacting with the operating system for tasks like creating, deleting, and navigating directories and files. 
+* [`glob`](https://docs.python.org/3/library/glob.html) - Finding files and directories based on pattern matching.
+* [`io`](https://docs.python.org/3/library/io.html) - Working with input/output streams for reading and writing data.
+
+#### Data Handling
+
+* [`pandas`](https://pandas.pydata.org/) - Handling tabular data for analysis and manipulation.
+* [`json`](https://docs.python.org/3/library/json.html) - Encoding and decoding JSON (JavaScript Object Notation) data.
+
+#### Typing and Logging
+
+* [`typing`](https://docs.python.org/3/library/typing.html) - Adding type hints to code for better code readability, maintainability, and static type checking.
+* [`logging`](https://docs.python.org/3/library/logging.html) - Configuring and managing logging for application.
+* [`time`](https://docs.python.org/3/library/time.html) - Working with time-related functions, potentially used for logging timestamps.
+
+
+#### Database Connectivity
+
+* [`keyring`](https://keyring.readthedocs.io/en/latest/) - Securely storing and retrieving passwords and other sensitive information.
+* [`pyodbc`](https://github.com/mkleehammer/pyodbc/wiki) - Connecting to and interacting with SQL databases using the Open Database Connectivity (ODBC) standard.
+* [`neo4j`](https://neo4j.com/docs/api/python-driver/current/) - Interacting with Neo4j graph databases.
+
+#### Google API Integration
+
+* [`googleapiclient`](https://googleapis.dev/python/google-api-core/latest/index.html) - Interacting with various Google APIs.
+* [`google.oauth2`](https://google-auth.readthedocs.io/en/latest/) - Handling OAuth 2.0 authentication for accessing Google services securely.
+
+#### Anonymisation
+
+* [`random`](https://docs.python.org/3/library/random.html) - Generating random numbers and making random choices.
+* [`hashlib`](https://docs.python.org/3/library/hashlib.html) - Implementing various secure hash and message digest algorithms.
+* [`Faker`](https://faker.readthedocs.io/en/master/) - Generating fake data for testing and development purposes.

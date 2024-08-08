@@ -20,12 +20,13 @@
 - [ ] add new html pages - 
   - [ ] dedication, 
   - [ ] cypher queries, 
-  - [ ] techstack
+  - [x] techstack
 - [ ] explore graph 
   - [ ] write down interesting questions
   - [ ] screencapture interesting insights
   - [ ] list of things to do
   - [ ] delete unnatttached nodes?
+- [ ] update pipe files - comments, etc.
 
 ## Later
 
