@@ -1,20 +1,23 @@
 
 ## TODO - Friday AM
 
-- [ ] from SQL get POS sizes for programmes
-- [ ] delete entire graph database
-- [ ] delete I400 files
-- [ ] new ipynb page for each load
-- [ ] screencapture I400 again
-- [ ] run extract for each programme in list
+- [x] from SQL get POS sizes for programmes
+- [x] delete entire graph database
+- [x] delete I400 files
+- [x] new ipynb page for final load
+- [x] screencapture I400 again
+- [x] run extract/process for each programme in list
 - [ ] re-render html and pdf
 - [ ] review new html/pdf - send/share zip with xiaodong
-- [ ] 
+
 
 
 ## Weekend
 
-- [ ] load remaining programmes
+- [ ] save extracts to local folder for loading
+- [ ] add to ignore file 
+- [ ] load remaining programmes to gmail
+- [ ] load remaining programmes to neo4j
 - [ ] research graph explore/query
 - [ ] copy all cypher queries to page and annotate
 - [ ] add new html pages - 
@@ -27,6 +30,35 @@
   - [ ] list of things to do
   - [ ] delete unnatttached nodes?
 - [ ] update pipe files - comments, etc.
+
+### making links between students and programmes/modules afterwards
+```cypher
+// Match student and programme nodes based on matching properties
+MATCH (s:student), (p:programme)
+WHERE s.stuProgSplusID = p.posSplusID
+
+// Create REGISTERED_ON relationship
+MERGE (s)-[:REGISTERED_ON]->(p)
+
+// Match student, activity, and module nodes based on ATTEND and BELONGS_TO relationships
+MATCH (s:student)-[:ATTENDS]->(a:activity)-[:BELONGS_TO]->(m:module)
+
+// Create ENROLLED_ON relationship
+MERGE (s)-[:ENROLLED_ON]->(m)
+
+```
+### deleting
+```cypher
+// Delete REGISTERED_ON relationships
+MATCH (:student)-[r:REGISTERED_ON]->(:programme)
+DELETE r
+
+// Delete ENROLLED_ON relationships
+MATCH (:student)-[r:ENROLLED_ON]->(:module)
+DELETE r
+
+```
+
 
 ## Later
 
