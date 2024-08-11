@@ -66,9 +66,9 @@ digraph neo4j_load {
 There are two authentication requirements:
 
 1. **Google Drive** to get node and relationship files and data.  
-2. **Neo4j Aura instance** is connected to with Keyring encrypted credentials.
+2. **Neo4j Aura instance** is connected to with `Keyring` encrypted credentials.
 
-The process automatically processes nodes and relationships based on files in the specified folders by using a file-pattern matching approach.  However, this can be overridden within configuration.
+The process automatically processes nodes and relationships based on files in the specified folders by using a file-pattern matching approach.  However, this can be overridden within configuration, if desired.
 
 Also in configuration is the option to create a database schema.  There are three options:
 
@@ -80,3 +80,4 @@ At this point, the ETL loads data on a row-by-row basis, reading the public csv 
 
 If there have been no errors - we should have data in our Neo4j Aura instance!
 
+![Loaded data for one programme - Artificial Intelligence](./images/I400-loaded.png)

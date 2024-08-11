@@ -2,14 +2,8 @@
 title: "Transformation"
 ---
 
-:::{.callout-warning}
-## TODO
 
-* 
-
-:::
-
-The transformation section of the ETL pipeline picks up from where `extract` finished by using the extracted csv files as the source.
+`Transform` picks up from where `extract` finished by using the extracted csv files as the source.
 
 ```{dot}
 digraph transform {
@@ -56,14 +50,15 @@ digraph transform {
 
 ```
 
+Configuration allows the user to control which nodes and relationships are included and how they are processed.  There are options to specify validation, cleaning, data linking, anonymisation and relationship details. 
 
-The configuration files allows the user to specify which columns should be used as the unique identifier when determining uniqueness, creating relationships between nodes and linking to additional datasets.  It is also possible to specify datatypes - the load process will automatically load properties as `string` unless it is well formatted or the datatype is predetermined.  The config file allows the user to specify how to handle certain datatypes like dates, times, boolean, etc.
+It is also possible to specify datatypes.  Neo4j assumes `string` datatype unless it is well-formatted or pre-determined.  Config allows the user to specify specific datatyples like dates, times, point, boolean, etc.
+
 
 ## All data
 
 1. **Validation** - basic validation of the data is performed.  Validation is extensible and can be expanded, as requirements are identified.
-2. **Cleaned** - basic cleaning of all data is performed by stripping empty space and removing non-printable characters, etc. using regex.  The cleaning functionality can be expanded.
-
+2. **Cleaned** - basic cleaning of all data is performed by stripping empty space and removing non-printable characters, etc. using regex.  The cleaning functionality is expandable. 
 
 With clean data, the transformation proper starts: 
 
@@ -71,5 +66,5 @@ With clean data, the transformation proper starts:
 
 1. **Add Organisational Unit** -  where appropriate, the University Organisational Unit (e.g. College, School, Department) is added to the node.  This will be picked up as a property during load.  
 2. **Data Augmentation** - Room data is augmented with additional properties from the location master database, including latitude, longitude, square meterage, etc.  Data augmentation is extensible. 
-3. **Anonymisation** - Personal data is anonymised.  An anonymisation function was developed to remove and replace any personally identifiable information (PII).  The pipeline extracts minimal PII but this is safely anonymised.  The functional also adds fake emails.  [See Appendix for Anonymisation](appendix-anonymise.qmd)
+3. **Anonymisation** - Personal data is anonymised.  An anonymisation function was developed to remove and replace any personally identifiable information (PII).  The pipeline extracts minimal PII but this is safely anonymised.  The functional also adds fake emails.  [See Appendix for additional details](appendix-anonymise.qmd)
 4. **Relationships** - Based on requirements in the configuration, relationships are extracted including optional relationship properties.

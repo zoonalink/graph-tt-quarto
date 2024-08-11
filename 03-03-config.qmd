@@ -2,34 +2,27 @@
 title: "Configuration and Logging"
 ---
 
-:::{.callout-warning}
-## TODO
+I centralised configuration parameters into python scripts to allow the user to manage different aspects of the ETL pipeline.  The configuration options are as a result of both initial design and discovery during development.  
 
-* rewrite detailed options into a summary format
-* update if YAML config implemented.
-- [ ] revisit approach doc in final script folder
-
-:::
-
-
-The configuration and logging approach was to centralise configuration parameters into a python scripts in order to allow the user to manage different aspects of the ETL pipeline.  The configuration options are as a result of both initial design and discovery during development.  
+For example, each time I set an option during prototyping, I considered whether they should be config parameters - weighing up development cost versus value (in a proof-of-concept scope).  In general, I aimed for an *automatic* and *dynamic
 
 When I set options during prototyping and testing, I considered whether these are worth parameterising in the ETL by weighing up cost versus value within a proof-of-concept scope.  In general, my design is set up to run *automatically* or *dynamically* with well structured data, but I included options to override these settings.
 
 
 ### Main Configuration options
 
-An YAML file containing configuration options can be viewed in the [Appendix](appendix-config.qmd).
+A YAML file containing configuration options can be viewed in the [Appendix](appendix-config.qmd).
 
-General settings include being able to filter which data to extract by way of a list of award codes.  This is the default folder name for this ETL run, although default folder names, filepaths and directories can be overwritten and customised.  This includes source data files and Google Drive folders for processed data.  
+General settings include being able to filter which data to extract by way of a list of award codes.  Folders and filepaths (local and Google Drive) are created dynamically, although there are override options.
 
-Credentials to SQL databases, Neo4j instances and Google drives are stored securely via environment variables or keyring secure storage. 
+Credentials to SQL databases, Neo4j instances and Google drives are stored securely via environment variables or `keyring` secure storage. 
 
-There is an option to specify additional data sources, that is data which does not originate in the timetable database.  This has been configured for optionally adding additional location data, e.g. latitude and longitude, square meterage, etc.
+Additional data sources can be added to the graph database - that is, timetabling data can be augmented within non-timetabling data.  In the proof-of-concept, I added additional location data by merging with the master data source to get latitude, longitude, square meterage, etc.
+
 
 ### Logging
 
-I set up a mechanism which can create a separate loggers with ease.  This can be expanded or contracted, as required - for example, during development I had sepaparate loggers for each stage of the ETL to allow me to understand errors.  However, if the ETL was developed into a stable release, it can be configured to have one log.  
+Each module has its own log file which can be expanded or contracted, as ndeeded.
 
 Options include customising the log level (DEBUG, INFO, WARNING, ERROR, CRITICAL).  
 

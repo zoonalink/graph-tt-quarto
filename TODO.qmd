@@ -9,17 +9,19 @@
 - [x] run extract/process for each programme in list
 - [ ] re-render html and pdf
 - [ ] review new html/pdf - send/share zip with xiaodong
+- [ ] copy all cypher queries to page and annotate
+- [ ] research graph explore/query
 
 
 
-## Weekend
+## Monday
 
 - [ ] save extracts to local folder for loading
 - [ ] add to ignore file 
-- [ ] load remaining programmes to gmail
+- [ ] load remaining programmes to gdrive
 - [ ] load remaining programmes to neo4j
-- [ ] research graph explore/query
-- [ ] copy all cypher queries to page and annotate
+
+
 - [ ] add new html pages - 
   - [ ] dedication, 
   - [ ] cypher queries, 
@@ -30,6 +32,12 @@
   - [ ] list of things to do
   - [ ] delete unnatttached nodes?
 - [ ] update pipe files - comments, etc.
+
+## to check
+
+- [ ] PDf version links
+- [ ] make github public (graph-tt-quarto)
+- [ ] add word count
 
 ### making links between students and programmes/modules afterwards
 ```cypher

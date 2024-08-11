@@ -1,0 +1,64 @@
+---
+title: Early Insights
+execute: 
+  enabled: false
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+
+---
+
+
+## Unveiling Basic Patterns
+
+Even with this basic model, we can easily extract valuable insights, for example:
+
+-   **Activity Load**: Identify staff with the highest number of teaching activities or total teaching hours.
+-   **Student Timetable Profiles**: Calculate average hours per student or per programme to understand workload distribution.
+-   **Resource utilisation**: Determine the busiest teaching locations or times on campus.
+-   **Anomaly detection**: Identify students who have unexpected profiles or unusual combinations.
+
+### Example code
+
+**Busiest location overall**
+
+```{cypher}
+MATCH (r:Room)<-[:TAKES_PLACE_IN]-(a:Activity)
+WITH r, sum(a.duration) AS totalDuration
+RETURN r.name AS Room, totalDuration
+ORDER BY totalDuration DESC
+LIMIT 1
+```
+
+**Busiest location for a specific time**
+
+```{cypher}
+MATCH (r:Room)<-[:TAKES_PLACE_IN]-(a:Activity)
+WHERE a.startTime = "11:00" 
+WITH r, count(a) AS activityCount
+RETURN r.name AS Room, activityCount
+ORDER BY activityCount DESC
+LIMIT 1 
+```
+
+**Students with below/above average hours**
+
+```{cypher}
+// Calculate program averages and standard deviations
+MATCH (s:Student)-[:IS_ALLOCATED_TO]->(a:Activity)
+WITH s.prog AS programme, AVG(a.duration) AS avgDuration, STDEV(a.duration) AS stdDev
+GROUP BY programme
+
+// Identify students outside the 10% margin 
+MATCH (s:Student)-[:IS_ALLOCATED_TO]->(a:Activity)
+WITH s.studentID AS studentID, s.prog AS program, SUM(a.duration) AS totalDuration
+MATCH (avgData)
+WHERE avgData.programme = programme
+WITH studentID, programme, totalDuration, avgData.avgDuration AS avgDuration, avgData.stdDev AS stdDev
+WHERE totalDuration < avgDuration - (0.1 * avgDuration) OR totalDuration > avgDuration + (0.1 * avgDuration)
+RETURN studentID, programme, totalDuration, avgDuration, stdDev 
+ORDER BY programme, totalDuration DESC
+```
+

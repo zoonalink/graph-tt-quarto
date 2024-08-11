@@ -2,20 +2,17 @@
 title: Graphing Time
 ---
 
-::: callout-warning
-## TODO
+The biggest challenge I encountered when translating timetables into graph data structures involved temporal elements - that is, start and end times, dates, weeks, reccurences, durations, etc. Whether a data element is a node or a property of a node, or perhaps both is relatively trivial to model and test, and depends heavily on use cases.
 
--   quote on normalisation (footnote)
--   add arrows for each model
-:::
-
-The biggest challenge I encountered when modelling timetables into graph data structures involved temporal elements - that is, start and end times, dates, weeks, reccurences, durations, etc. Whether a data element is a node or a property of a node, or perhaps both is relatively trivial to model and test, and depends heavily on use cases. Time, on the other hand, is complicated, especially when you want to write aggregation queries on time elements.
+Time, on the other hand, is complicated, especially when you want to write aggregation queries on time elements e.g. total taught hours on campus on a Wedneday at 11:00 for student X across the whole year.
 
 While the conceptual flexibility of graphs is appealing, finding the optimal balance between efficient representation, query performance, and data redundancy requires careful consideration. This section details some challenges encountered and the approach taken for the proof-of-concept.
 
 ## The Problem of Normalised Time
 
-Traditional relational databases often store timetable information in a highly normalised format, condensing recurring events into single rows with date ranges, week patterns, or lists of occurrences. While efficient for storage and basic display, this approach severely hinders analysis, especially when aiming to:
+Traditional relational databases often store timetable information in a highly normalised[^1] format, condensing recurring events into single rows with date ranges, week patterns, or lists of occurrences. While efficient for storage and basic display, this approach severely hinders analysis, especially when aiming to:
+
+[^1]: "Normalization is the process of organizing data in a database. It includes creating tables and establishing relationships between those tables according to rules designed both to protect the data and to make the database more flexible by eliminating redundancy and inconsistent dependency." (helenclu, 2024)
 
 -   **Identify Time-Based Patterns**: Determining if students lack lunch breaks or experience excessive gaps between classes becomes difficult when time is fragmented across multiple fields.
 -   **Perform Aggregations**: Calculating total teaching hours for a lecturer across specific weeks or days requires complex queries and data transformations.
@@ -23,36 +20,39 @@ Traditional relational databases often store timetable information in a highly n
 
 ## Exploring Potential Solutions
 
+Several time modelling approaches were explored to explore these challenges, each with its own trade-offs.
 
+To illustrate this, let's explore using a fictional example - `Introduction to Graph Databases` - focusing on the `lecture`:
 
-To address these challenges, several time modelling approaches were explored, each with its own trade-offs. Let's explore using a fictional example - `Introduction to Graph Databases`:
-
-| Name | Day       | StartTime | EndTime | Weeks (11 weeks total) |
-|------|-----------|-----------|---------|------------------|
-| ITGD | Wednesday | 09:00     | 11:00   | 1-3, 5-7, 9-13   |
-| ITGD | Wednesday  | 10:00     | 13:00   | 4, 7-8, 15         |
-| ITGD | Monday    | 13:00     | 16:00   | 4, 7-8, 15         |
+| Name | ActivityType | Day       | StartTime | EndTime | Weeks          |
+|------|--------------|-----------|-----------|---------|----------------|
+| ITGD | Lecture      | Wednesday | 09:00     | 11:00   | 1-3, 5-7, 9-13 |
+| ITGD | Seminar      | Wednesday | 10:00     | 13:00   | 4, 7-8, 15     |
+| ITGD | Seminar      | Monday    | 13:00     | 16:00   | 4, 7-8, 15     |
 
 : Example Source Data (Relational)
 
 ### Option 0: Proof-of-concept activity
 
-The basic model created nodes for each activity as they exist in the relational database.  This simple approach is perfectly acceptable, but makes any time based calculations difficult because each activity node can represent a different number of activities because of the week ranges (number of occurrences).
+The basic model create nodes for each activity as they exist in the relational database. This simple approach is perfectly acceptable, but makes any time based calculations difficult because each activity node can represent a different number of occurrences because of the week ranges.
 
-![Basic example](./images/time-option0.png)
+This in turn means you cannot simple COUNT each activity "equally" - for example, row one above has 11 instances, each of two hours. The second and third rows have four instances, each of three hours. Calculating aggregations, finding clashes and similar is very challenging.
 
-If all students attend on Wednesday 09:00-11:00 (lecture) and only one of Monday or Thursday (seminar), some students will have a clash in week 7 between 10:00-11:00 .  Unpicking this from the normalised activities is very challenging and not immediately obvious at a glance.  
+![Basic example of Graphing Normalised Activities](./images/time-option0.png)
+
+If we assume that all students attend the lecture and one of the seminars, some students have a clash in week 7 (Wednesday 10:00-11:00) - this is very difficult to identify and isolate in a highly normalised dataset.
 
 ### Option 1: Unique Activity Nodes
 
-Option 1 creates nodes for each unique combination of `name`, `startTime`, `endTime` and `date` - this means de-normalising the relational data and deliberately introducing duplication.
+Option 1 addresses this by creating nodes for each unique combination of `name`, `startTime`, `endTime` and `date` - this means de-normalising the relational data and deliberately introducing duplication.
 
-![Unique Activity Nodes Graph Example](./images/time-option1.png)
+![Unique Activity Nodes Graph](./images/time-option1.png)
 
-**Graph Structure**: 
+**Graph Structure**:
 
-- 11 separate `Activity` nodes one for each occurrence (date) 
-- Each node has `date`, `startTime`, `endTime` properties
+-   11 separate `Activity` nodes one for each occurrence (date)
+-   Each node has `date`, `startTime`, `endTime` properties
+-   Only `date` is different between each node.
 
 ```         
 (Activity {Name: "ITGD", Date: "2024-01-03", StartTime: "09:00", EndTime: "11:00"}) 
@@ -60,7 +60,6 @@ Option 1 creates nodes for each unique combination of `name`, `startTime`, `endT
 ... 
 (Activity {Name: "ITGD", Date: "2024-03-20", StartTime: "09:00", EndTime: "11:00"})
 ```
-
 
 **Pros**:
 
@@ -70,105 +69,102 @@ Option 1 creates nodes for each unique combination of `name`, `startTime`, `endT
 **Cons**:
 
 -   **Node Proliferation**: Leads to a high volume of nodes, potentially impacting performance with large datasets.
--   **Complex Time-Based Queries**: Answering questions about time patterns or conflicts requires traversing numerous nodes and relationships.
+
+**Use Case dependent**
+
+-   **Time-Based Queries**: Answering questions about time patterns or conflicts requires traversing numerous nodes and relationships. Some queries will benefit - e.g. identifying clashes which may only occur in a specicific week, others will become more complex as denormalised data needs to be re-aggregated.
 
 ### Option 2: Date and Time Nodes
 
-Option 2 creates a single activity node but also additional `date` and `time` nodes, as required.  
+Option 2 creates a *single activity* node but also additional `date` and `time` nodes, as required, thus not proliferating activities.
 
 ![Time and Date Nodes](./images/time-option2.png)
 
-**Graph Structure**: 
+**Graph Structure**:
 
-- 11 Date nodes
-- 2 Time nodes (09:00 and 11:00) - shared by ALL activities on those times!
+-   1 Activity node
+-   11 Date nodes - shared by ALL activities on those dates.
+-   2 Time nodes (09:00 and 11:00) - shared by ALL activities on those times!
+-   **Additional Relationships**
+    -   Activity -\[:SCHEDULED_ON\]-\> Date (11 relationships)
+    -   Activity -\[:STARTS_AT\]-\> Time (11 relationships to 09:00)
+    -   Activity -\[:ENDS_AT\]-\> Time (11 relationships to 11:00)
 
-- **Additional Relationships**
-- 
-  - `Activity` -[:SCHEDULED_ON]-> `Date` (11 relationships)
-  - `Date` -[:STARTS_AT]-> `Time` (11 relationships to 09:00)
-  - `Date` -[:ENDS_AT]-> `Time` (11 relationships to 11:00)
+```         
+(Activity {Name: "ITGD"})
+    -[:SCHEDULED_ON]-> (Date {date: "2024-01-03"})
+    -[:STARTS_AT]-> (Time {time: "09:00"}) 
+    -[:ENDS_AT]-> (Time {time: "11:00"})
 
-
-
-```
-(Activity {Name: "ITGD"}) -[:SCHEDULED_ON]-> (Date {date: "2024-01-03"}) -[:STARTS_AT]-> (Time {time: "09:00"})
-                                             (Date {date: "2024-01-03"}) -[:ENDS_AT]->   (Time {time: "11:00"})
-(Activity {Name: "ITGD"}) -[:SCHEDULED_ON]-> (Date {date: "2024-01-10"}) -[:STARTS_AT]-> (Time {time: "09:00"}) // Same time node!
-                                             (Date {date: "2024-01-10"}) -[:ENDS_AT]->   (Time {time: "11:00"}) 
+(Activity {Name: "ITGD"}) 
+    -[:SCHEDULED_ON]-> (Date {date: "2024-01-10"})  
+    -[:STARTS_AT]-> (Time {time: "09:00"}) 
+    -[:ENDS_AT]-> (Time {time: "11:00"})
 ...
 ```
 
-**Key point**:  Relationships encode which activity happens when.
+**Key point**: Relationships encode which activity happens when.
 
 **Pros**:
 
 -   **Increased Flexibility**: Facilitates queries across time ranges and aggregations across time slots.
 -   **Reduced Redundancy**: Avoids replicating time information for activities occurring on the same date and time.
--   **Lower Node Count**:  Potentially fewer nodes overall compared to Option 1 as `date` and `time` nodes are shared with all activities in the database.
+-   **Lower Node Count**: Potentially fewer nodes overall compared to Option 1 as `date` and `time` nodes are shared with all activities in the database.
 
 **Cons**:
 
-- **Increased Model Complexity**: Requires managing relationships between Activity, Date, and Time nodes. 
-- **Potential Performance Overhead**: Querying might involve traversing multiple relationships, impacting efficiency.
+-   **Increased Model Complexity**: Requires managing relationships between Activity, Date, and Time nodes.
+-   **Potential Performance Overhead**: Querying might involve traversing multiple relationships, impacting efficiency.
 
 ### Option 3: Date and Time Block Nodes
 
-Option 3 creates a single activity but instead of individual start and end time nodes, we use predetermined `timeBlocks` encompassing both.  For example, if using 30-minute blocks, we would have a node for "09:00-09:30" and another for "09:30-10:00", etc.
+Option 3 creates a single activity but instead of individual start and end time nodes, we use predetermined `timeBlocks` encompassing both. For example, if using 30-minute blocks, we would have a node for "09:00-09:30" and another for "09:30-10:00", etc.
 
 ![TimeBlock and Date Nodes](./images/time-option3.png)
 
-**Graph Structure**: 
+**Graph Structure**:
 
-- 11 Date nodes
-- 4 Timeblock nodes (09:00-09:30, etc.) - shared by ALL activities on those times!
+-   11 Date nodes
+-   4 Timeblock nodes (09:00-09:30, etc.) - shared by ALL activities on those times!
+    -   **Additional Relationships**
+        -   `Activity` -\[:SCHEDULED_ON\]-\> `Date` (11 relationships)
+        -   `Activity` -\[:TAKES_PLACE_DURING\]-\> `timeBlock 09:00-09:30` (11 relationships)
+        -   `Activity` -\[:TAKES_PLACE_DURING\]-\> `timeBlock 09:30-10:00` (11 relationships) ... \`\`\`\
+            (Activity {Name: "ITGD"}) -\[:SCHEDULED_ON\]-\> (Date {date: "2024-01-03"}) -\[:OCCUPIES\]-\> (TimeBlock {start: "09:00", end: "09:30"}) -\[:OCCUPIES\]-\> (TimeBlock {start: "09:30", end: "10:00"})
 
-- **Additional Relationships**
-- 
-  - `Activity` -[:SCHEDULED_ON]-> `Date` (11 relationships)
-  - `Date` -[:TAKES_PLACE_DURING]-> `timeBlock 09:00-09:30` (11 relationships)
-  - `Date` -[:TAKES_PLACE_DURING]-> `timeBlock 09:30-10:00` (11 relationships)
+(Activity {Name: "ITGD"}) -\[:SCHEDULED_ON\]-\> (Date {date: "2024-01-03"}) -\[:TAKES_PLACE_DURING\]-\> (Timeblock {time: "09:00-09:30"}) -\[:TAKES_PLACE_DURING\]-\> (Timeblock {time: "09:30-10:00"}) -\[:TAKES_PLACE_DURING\]-\> (Timeblock {time: "10:00-10:30"}) -\[:TAKES_PLACE_DURING\]-\> (Timeblock {time: "10:30-11:00"}) ...
 
-```
-(Activity {Name: "ITGD"}) -[:SCHEDULED_ON]-> (Date {date: "2024-01-03"}) -[:OCCUPIES]-> (TimeBlock {start: "09:00", end: "09:30"})
-                                                                          -[:OCCUPIES]-> (TimeBlock {start: "09:30", end: "10:00"}) 
-...
-```
+```         
 
 **Pros**:
 
 -   **Granular Time Representation**: Enables analysis at specific time intervals
 -   **Easier Time Calculations**: Duration is encoded and allows for easy calculations.
--   **Reduced Node Count Compared to Option 2**: Offers a balance between granularity and node proliferation.
 
 **Cons**:
 
 -   **Potential for Data Sparsity**: Some time blocks might be sparsely populated, leading to storage inefficiencies.
 -   **Potential for High Node Codes**: Lots of `TimeBlocks` if using small intervals
+-   **Less flexibile**: Timeblocks are not dynamic.
 
 ### Option: Variations
 
-**StartTime and Duration**: This option simplifies the model by representing time using only `StartTime` and `DurationInMinutes` properties on the `Activity` node, omitting explicit `EndTime` nodes.  This approach is suitable for duration based queries but it is limiting in that it is more difficult to query events occurring at specific times, overlapping time ranges or on end-times.
+**StartTime and Duration**: This option simplifies the model by representing time using only `StartTime` and `DurationInMinutes` properties on the `Activity` node, omitting explicit `EndTime` nodes. This approach is suitable for duration based queries but it is limiting in that it is more difficult to query events occurring at specific times, overlapping time ranges or on end-times.
 
-**Dynamic TimeBlocks**: This variation does not pre-create timeblocks based on a set interval (e.g. 30 minutes).  They are created dynamically as required by the data and what already exists.  For example, activities at 09:00-11:00, 10:30-11:30 and 11:00-12:00 would require these TimeBlocks:
+**Dynamic TimeBlocks**: This variation does not pre-create timeblocks based on a set interval (e.g. 30 minutes). They are created dynamically as required by the data and what already exists. For example, activities at 09:00-11:00, 10:30-11:30 and 11:00-12:00 would require these TimeBlocks:
+```
 
-```
-(Timeblock {name: "09:00-11:00", start: 09:00, end: 11:00, duration:120})
-(Timeblock {name: "10:30-11:30", start: 10:30, end: 11:30, duration:60})
-(Timeblock {name: "11:00-12:00", start: 11:00, end: 12:00, duration:60})
-```
+(Timeblock {name: "09:00-11:00", start: 09:00, end: 11:00, duration:120}) (Timeblock {name: "10:30-11:30", start: 10:30, end: 11:30, duration:60}) (Timeblock {name: "11:00-12:00", start: 11:00, end: 12:00, duration:60}) \`\`\`
 
 ### Summary
 
+|   | Option | Pros | Cons |
+|--|------------------|---------------------------|---------------------------|
+| 0 | Direct transfer (Normalised) | Simple | Minimal benefits (for time calculations) |
+| 1 | Unique Activities | Simple, direct | High node count, complex time pattern queries |
+| 2 | Date & Time | Lower activity node count, good for time-based queries | More complex relationships |
+| 3 | Date & TimeBlock | Granular, easier duration calculations | Potentially high node count, sparsity if blocks are fine-grained |
 
-| Option | Pros       | Cons | 
-|------|-----------|-----------|
-| Unique Activities | Simple, direct | High node count, complex time pattern queries |
-| Date & Time | Lower node count, good for time-based queries | More complex relationships |
-| Date & TimeBlock | Granular, easier duration calculations | Potentially high node count, sparsity if blocks are fine-grained |
+: Option summary
 
-
-: Option summary 
-
-
-Given the proof-of-concept scope of this project, I chose Option 1. While this approach can lead to node proliferation, it offers the most straightforward implementation for exploring fundamental time-based queries and insights.  It also acts as an easy jumping off point for exploring any of the other options.
+Given the proof-of-concept scope of this project, I chose to proceed with Option 1. While this approach can lead to node proliferation, it offers the most straightforward implementation for exploring fundamental time-based queries and insights. It also acts as an easy jumping off point for exploring any of the other options.

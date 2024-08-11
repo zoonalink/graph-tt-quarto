@@ -5,9 +5,9 @@ author: "Petter Lovehagen"
 date: "29 August 2024"
 ---
 
-**Supervisor**: Xiaodong Li
+**Supervisor**: [Xiaodong Li](https://people.uwe.ac.uk/Person/XiaodongLi)
 
-**Programme**: MSc Data Science
+**Programme**: [MSc Data Science](https://courses.uwe.ac.uk/INB112/data-science)
 
 **Word Count**: [add when finished]
 
@@ -326,6 +326,6 @@ digraph G {
 ```
 
 
-This is a randomly generated graph for visual purposes only.  
+A randomly generated graph for visual purposes only.  
 
 [See Appendix for graph generator code](appendix-random-graph.qmd)

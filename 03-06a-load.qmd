@@ -2,14 +2,7 @@
 title: "Google Load"
 ---
 
-:::{.callout-warning}
-## TODO
-
-* add log files?
-* add screenshot?
-:::
-
-As I am using a free instance of Neo4j's graph database - called Neo4j Aura - I needed to overcome some limitations which are not relevant to desktop installations of Neo4j or paid-for cloud instances.  
+As I am using a free instance of Neo4j's graph database - called Neo4j Aura - I needed to overcome some limitations which are not relevant to local installations of Neo4j or paid-for cloud instances.  
 
 In order to load from csv files, Neo4j Aura requires that the csv files are stored in [public cloud storage](https://neo4j.com/docs/aura/aurads/importing-data/load-csv/) like Google Drive or Dropbox.  Therefore, my project requires this intermediary step.
 
@@ -45,7 +38,7 @@ digraph google_drive_storage {
 
 ```
 
-Configuration settings determine where processed node and relationship files are stored.  I have made one folder in my drive public and all ETL files are stored within this root as follows:
+Configuration settings determine where processed node and relationship files are stored.  I created one publicly shared folder in Google drive which contains all project csvs:
 
 - root Google Drive folder
   - hostkeys (automatically created, unless override)

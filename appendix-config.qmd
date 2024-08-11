@@ -2,7 +2,7 @@
 title: Configuration YAML
 ---
 
-## Config 
+
 
 The below is an example of configuration options configured in more human readable YAML format.
 

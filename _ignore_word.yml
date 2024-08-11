@@ -14,7 +14,8 @@ book:
     #- 02-00-graph-model.qmd
     - 02-01-comparison.qmd
     - 02-02-graph-timetable.qmd
-    - 02-02b-expand.qmd
+    - 02-02b-early.qmd
+    - 02-02c-expand.qmd
     #- 02-02c-challenge-oppos.qmd
     - 02-03-graph-time.qmd
     #- 02-04-challenge-oppos.qmd

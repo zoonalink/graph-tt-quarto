@@ -14,7 +14,7 @@ Having discussed some advantages of graph databases for representing interconnec
 
 ## An Iterative Approach
 
-The graph data model design was an iterative process: design -> build -> test -> review -> revise -\> ...and repeat. Using Neo4j Desktop, the first model was small scope in scope, incorporating *minimal* nodes and properties. Eventually, the expanded model was created in an cloud-based Neo4j Aura instance.  
+Due to flexibility, creating graph data models is an iterative process: design -> build -> test -> review -> revise -\> ...and repeat. My first model was small in scope, incorporating *minimal* noces and properties in an MVP[^4] approach.  Eventually, my expanded model was created in a cloud-instance of Neo4j Aura.
 
 ## Core Nodes - Building Blocks
 
@@ -42,7 +42,6 @@ At its core, the timetable model revolves around four key entities represented a
 
 :::
 
-![Neo4j Interface showing basic nodes and properties](./images/poc1-import-interface.png){width=75%}
 
 ## Relationships - Connecting the Dots
 
@@ -52,4 +51,12 @@ The core nodes are interconnected through relationships that reflect the dynamic
 -   Staff-**\[TEACHES_ON\]**-\>Activity
 -   Activity-**\[TAKES_PLACE_IN\]**-\>Room
 
+## MVP model 
+
 ![Core Nodes and Properties](./images/v1-core-nodes-rels-prop.png){width=75%}
+
+
+![Neo4j Interface showing basic nodes and properties](./images/poc1-import-interface.png){width=75%}
+
+
+[^4]: Minimum Viable Product: "First, a definition: the minimum viable product is that version of a new product which allows a team to collect the maximum amount of validated learning about customers with the least effort or in other words building the most minimum version of their product that will still allow them to learn." (Ries, 2024)

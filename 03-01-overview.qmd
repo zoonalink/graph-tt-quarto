@@ -1,25 +1,18 @@
 ---
 title: "Data Engineering Overview"
 ---
-:::{.callout-warning}
-## TODO
 
-* add references - neo4j, graphviz
-:::
-
-## Overview of the Data Pipeline
-
-The data engineering pipeline is designed to efficiently and securely transfer selected university timetabling data from a relational database ([MS SQL](https://www.microsoft.com/en-us/sql-server/sql-server-2019)) to a graph database ([Neo4j](https://neo4j.com/)), enabling advanced analytics and insights. 
+A significant proportion of my project has been the development and implementation of a data pipeline which efficiently and securely transfers selected university timetabling data from a relational database ([MS SQL](https://www.microsoft.com/en-us/sql-server/sql-server-2019)) to a graph database ([Neo4j](https://neo4j.com/)), enabling advanced analytics and insights. 
 
 This section provides an overview of the pipeline architecture, fundamental design principles, implementation approach and key learning takeaways.
 
-### High-level Architecture
+## High-level Architecture
 
 The data pipeline consists of these core stages:
 
 1. **Extraction**: Data is extracted from the SQL database and saved into CSV files.
-2. **Transformation**: The CSV files are processed, cleaned, transformed, merged, and anonymised using Python code.
-3. **Intermediate Storage**: Processed CSVs are saved locally and uploaded to Google Drive (required for [Neo4j Aura](https://neo4j.com/cloud/platform/aura-graph-database/) free instance).
+2. **Transformation**: CSV files are processed, cleaned, transformed, merged, and anonymised using Python.
+3. **Intermediate Storage**: Processed CSVs are uploaded to Google Drive (required for [Neo4j Aura](https://neo4j.com/cloud/platform/aura-graph-database/) free instance).
 4. **Loading**: Clean data is processed and loaded into Neo4j.
 
 :::{.figure #fig-pipeline fig-align="center"}
@@ -49,13 +42,13 @@ digraph Overview {
       D -> E [style=invis]; 
   }
 
-  // Edges and Labels 
-  A -> B [label=" 1. 𝗘𝗫𝗧𝗥𝗔𝗖𝗧: filter"];
+  // Edges and labels 
+  A -> B [label=" 1. 𝗘𝗫𝗧𝗥𝗔𝗖𝗧: Filter"];
   B -> C [label=" 2. 𝗧𝗥𝗔𝗡𝗦𝗙𝗢𝗥𝗠: Validate, Process & Anonymise"];
   C -> D [label=" 3. 𝐔𝐏𝐋𝐎𝐀𝐃"];
   
-  // Arrows from Google Drive (left and right)
-  D:w -> E [label=" 4. Load Schema", style=dashed];   
+  // arrows from Google Drive (left and right)
+  D:w -> E [label=" 4. (Optional) Load Schema", style=dashed];   
   D:e-> E [label=" 5. 𝗟𝗢𝗔𝗗: Load & Validate Data"]; 
 }
 ```
@@ -63,22 +56,17 @@ digraph Overview {
 :::
 
 
-### Design Principles
+## Design Principles
 
-This pipeline represents a comprehensive approach to data engineering, incorporating several best practices in data handling, processing, and database management.
+Several best practices in data handling, processing, and database management were incorporated in developing this ETL: 
 
 ![Design Principles](./images/design-principles-graph.png){.small-image}
 
-The data pipeline is built on several core design principles.  I started with a strong sense of what I wanted to achieve - a modular, scalable, secure and configurable design - however, what *exactly* this meant was discovered during the development process.  
+The data pipeline is built on several core design principles.  I started with a strong sense of what I wanted to build - a modular, scalable, secure and configurable design - however, what *exactly* this meant was discovered during the development process.  
 
+Given the project constraints - time, word-limits, resources, data, technology - it is fair to say that compromises were made.  That said, it was important that the final artefact is one that can be developed further, potentially with specific business use cases. 
 
-Given that my project bound by time and word-limits and has additional resource and technology constraints, it was important to make the final artefact one which can be built upon after submission, including potential further development within operational contexts.  
-
-
-However, the project is also a *proof-of-concept* and as such, some design opportunities were eschewed in favour of simplicity and progress.
-
-
-#### Security and Data Protection
+### Security and Data Protection
 
 ![](./images/designSecure.png){.smaller-image fig-alt="Security, Access, Anonymisation"}
 
@@ -86,30 +74,30 @@ However, the project is also a *proof-of-concept* and as such, some design oppor
 * Data anonymisation
 * Controlled handling of personally identifiable information
 
-#### Modularity, Scalability and Automation
+### Modularity, Scalability and Automation
 
 ![](./images/designModular.png){.smaller-image fig-alt="Modularity, Scalability, Validity, Automation"}
 
-* Distinct, interoperable modules (extract, transform, load)
+* Distinct, interoperable modules (extract, process, upload, load)
 * Ability to handle increased data volume and complexity
 * Automation, where possible
 * Configurable data processing options (e.g., data chunking, row processing)
 * Optimised, where possible
 
-#### Error Handling and Logging
+### Error Handling and Logging
 
 ![](./images/designLog.png){.smaller-image fig-alt="Logging and Error Handling"}
 
 * Robust error handling
 * Comprehensive logging for troubleshooting and auditing
 
-#### User configurable
+### User configurable
 
 ![](./images/designConfig.png){.smaller-image fig-alt="Configurability"}
 
 * Flexible configuration options for data filtering, directory controls, and schema handling
 
-### Implementation Approach
+## Implementation Approach
 
 The pipeline was developed using an iterative approach, allowing for continuous discovery, refinement and improvement. 
 
@@ -118,9 +106,9 @@ Crucial aspects of the implementation include:
 * **Technology Stack**: Python for data processing, MS SQL for source data, Neo4j for the target graph database.  See [Appendix](appendix-tech-stack.qmd) for more details.
 * **Cloud Integration**: Utilisation of Google Drive for intermediate storage, compatible with Neo4j Aura.
 * **Validation**: Implemented at various stages to ensure data integrity and fitness for processing.
-* **Testing**: Continuous simulated unit testing to ensure that componentsare behaving as expected.
+* **Testing**: Continuous simulated unit testing to ensure that components are behaving as expected.
 
-### Upcoming Sections
+## Upcoming Sections
 
 The following sections will delve into the specific implementation details of each stage in the pipeline, demonstrating how these principles are put into practice.
 

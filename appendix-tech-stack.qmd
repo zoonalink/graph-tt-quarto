@@ -2,7 +2,7 @@
 title: "Technology Stack"
 ---
 
-## Technology Stack
+
 
 This project used a variety of tools, applications, programming languages, and so on.  Below is a high-level record of the 'tech stack' - the `what` and `why`: 
 

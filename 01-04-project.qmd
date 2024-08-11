@@ -7,11 +7,11 @@ The primary aim of this project is to investigate the viability of using graph d
 Objectives include:
 
 * Designing an extensible, system-agnostic graph data model for university timetables
-* Developing a mapping pipeline to transition from relational to graph database representations of timetables
+* Developing a configurable ETL (extract, transform, load) pipeline to transition from relational to graph database representations of timetables
 * Implementing and evaluating a set of proof-of-concept analytical metrics leveraging the graph data model
 * Discussing the performance and capabilities of graph-based analytics against traditional relational database approaches
 * Exploring how graph-based approaches might contribute to measuring and improving timetable 'quality' from various stakeholder perspectives
 
-It is important to note that this project is positioned as a proof-of-concept and exploratory study. I will not be implementing a full-scale timetabling system or focusing on real-time timetable generation or optimisation. Instead, the scope is limited to demonstrating the potential of graph-based approaches in enhancing understanding and analysis of university timetables.
+It is important to note that this project is positioned as a proof-of-concept and exploratory study. I will not be reinventing a full-scale timetabling system or focusing on real-time timetable generation or optimisation. Instead, the scope is limited to demonstrating the potential of graph-based approaches in enhancing understanding and analysis of university timetables.  This is a data engineering project which opens the door for future analytical work. 
 
 Let's graph!

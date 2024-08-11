@@ -1,44 +1,208 @@
 project:
-  type: book
-  output-dir: _output/word  # Output directory for Word files
+  type: website
+  output-dir: _output/html
+  render:
+    - "*.qmd"
+    - "!ignored.qmd"
+    - "!code/"
+    - "!data/"
+    - "!images/"
+    - "!ignore/"
+    - "!TODO.qmd"
+  
 
-book:
-  title: "Graph Time"
-  chapters:
-    - index.qmd
-    - 01-01a-introduction.qmd
-    #- 01-01b-timetable.qmd
-    - 01-02-background.qmd
-    - 01-03-good-timetable.qmd
-    - 01-04-project.qmd
-    #- 02-00-graph-model.qmd
-    - 02-01-comparison.qmd
-    - 02-02-graph-timetable.qmd
-    - 02-02b-expand.qmd
-    #- 02-02c-challenge-oppos.qmd
-    - 02-03-graph-time.qmd
-    #- 02-04-challenge-oppos.qmd
-    - 03-01-overview.qmd
-    - 03-02-approach.qmd
-    - 03-03-config.qmd
-    - 03-04-extract.qmd
-    - 03-05-transform.qmd
-    - 03-06a-load.qmd
-    - 03-06b-load.qmd
-    - 03-07-reflection.qmd
-    - 04-timetable-metrics.qmd
-    - 05-future-opportunities.qmd
-    - 06-conclusion.qmd
-    - appendix-random-graph.qmd
-    - appendix-tech-stack.qmd
-    - appendix-config.qmd
-    - appendix-anonymise.qmd
-    - references.qmd
+website:
+  
+  title: " "
+  page-navigation: true
+  
+  navbar:
+    pinned: true
+    logo: "images/logo3.png"
+    left:
+      - href: index.qmd
+        text: Home
+        icon: home
+      - text: Introduction
+        menu:
+          - href: 01-01a-introduction.qmd
+            text: Introduction
+        #  - href: 01-01b-timetable.qmd
+        #    text: University Timetabling
+          - href: 01-02-background.qmd
+            text: Background and Motivation
+          - href: 01-03-good-timetable.qmd
+            text: What is a Good Timetable?
+          - href: 01-04-project.qmd
+            text: Project Aims and Scope
+      - text: Graph Data Model
+        menu: 
+          #- href: 02-00-graph-model.qmd
+          #  text: Graph Data
+          - href: 02-01-comparison.qmd
+            text: Graph vs Relational Data Models
+          - href: 02-02-graph-timetable.qmd
+            text: Graph Data Model for Timetabling
+          - href: 02-02b-early.qmd
+            text: Early Insights
+          - href: 02-02c-expand.qmd
+            text: Model Expansion
+          #- href: 02-02c-challenge-oppos.qmd
+          #  text: Opportunities and Challenges
+          - href: 02-03-graph-time.qmd
+            text: Graphing Time
+          
+      - text: "Data Pipeline"
+        menu:
+          - href: 03-01-overview.qmd
+            text: Overview
+          - href: 03-02-approach.qmd
+            text: Approach
+          - href: 03-03-config.qmd
+            text: Configuration and Logging
+          - href: 03-04-extract.qmd
+            text: Extract
+          - href: 03-05-transform.qmd
+            text: Transform
+          - href: 03-06a-load.qmd
+            text: Google Drive Load
+          - href: 03-06b-load.qmd
+            text: Neo4j Load
+          - href: 03-07-reflection.qmd
+            text: Reflection
+      - href: 04-timetable-metrics.qmd
+        text: Timetable Metrics
+      - text: "Conclusion"
+        menu:
+        - href: 05-future-opportunities.qmd
+          text: Future Opportunities
+        - href: 06-conclusion.qmd
+          text: Conclusion
+      - text: "Appendix & References"
+        href: appendix-random-graph.qmd
+        menu:
+        - href: appendix-random-graph.qmd
+          text: Random Graph Generator
+        - href: appendix-tech-stack.qmd
+          text: Technology Stack
+        - href: appendix-config.qmd
+          text: Configuration
+        - href: appendix-anonymise.qmd
+          text: Anonymisation
+        - href: references.qmd
+          text: References
+    right:
+      - href: ./_output/pdf/Graph-Time.pdf
+        text: PDF Version
+        icon: file-pdf
+      - icon: bug
+        href: "https://github.com/zoonalink/graph-tt-quarto/issues/new"
+        aria-label: Report an issue
+      - icon: github
+        href: "https://github.com/zoonalink/graph-tt-quarto/"
+        aria-label: GitHub
+      - icon: envelope
+        href: "mailto:zoonalink@gmail.com"
+        aria-label: Email me
+  
+  sidebar: 
+    style: "docked"
+    search: true
+    collapse-level: 1
+    contents: 
+      - href: index.qmd
+        text: Home
+      - section: "Introduction"
+        contents:
+          - href: 01-01a-introduction.qmd
+            text: Introduction
+        #  - href: 01-01b-timetable.qmd
+        #    text: University Timetabling
+          - href: 01-02-background.qmd
+            text: Background and Motivation
+          - href: 01-03-good-timetable.qmd
+            text: What is a Good Timetable?
+          - href: 01-04-project.qmd
+            text: Project Aims and Scope
+      - section: "Graph Data Model" 
+        contents:
+          #- href: 02-00-graph-model.qmd
+          #  text: Graph Data
+          - href: 02-01-comparison.qmd
+            text: Graph vs Relational Data Models
+          - href: 02-02-graph-timetable.qmd
+            text: Graph Data Model for Timetabling
+          - href: 02-02b-early.qmd
+            text: Early Insights
+          - href: 02-02c-expand.qmd
+            text: Model Expansion
+          #- href: 02-02c-challenge-oppos.qmd
+          #  text: Opportunities and Challenges
+          - href: 02-03-graph-time.qmd
+            text: Graphing Time
+          #- href: 02-04-challenge-oppos.qmd
+          #  text: Opportunities and Challenges
+      - section: "Data Pipeline"
+        contents:
+          - href: 03-01-overview.qmd
+            text: Overview
+          - href: 03-02-approach.qmd
+            text: Approach
+          - href: 03-03-config.qmd
+            text: Configuration and Logging
+          - href: 03-04-extract.qmd
+            text: Extract
+          - href: 03-05-transform.qmd
+            text: Transform
+          - href: 03-06a-load.qmd
+            text: Google Drive Load
+          - href: 03-06b-load.qmd
+            text: Neo4j Load
+          - href: 03-07-reflection.qmd
+            text: Reflection
+      - href: 04-timetable-metrics.qmd
+        text: Timetable Metrics
+      - section: "Final Thoughts"
+        contents:
+          - href: 05-future-opportunities.qmd
+            text: Future Opportunities
+          - href: 06-conclusion.qmd
+            text: Conclusion
+      - section: "Appendix & References"
+        contents:
+          - href: appendix-random-graph.qmd
+            text: Random Graph Generator
+          - href: appendix-tech-stack.qmd
+            text: Technology Stack
+          - href: appendix-config.qmd
+            text: Configuration
+          - href: appendix-anonymise.qmd
+            text: Anonymisation
+          - href: references.qmd
+            text: References
+
+
+  page-footer:
+    left: "Copyright 2024, Petter Lövehagen"
+    right: "Built with Quarto"
 
 format:
-  wordcount-docx:
-    reference-doc: styles.docx
-    number-sections: true # or false, depending on your preference
+  
+  html: # see https://github.com/andrewheiss/quarto-wordcount#readme
+    #output-dir: _output/html
+    theme:
+      light: lightly
+      dark: cyborg
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    code-overflow: wrap
+    code-summary: "Click to show code"
+    page-layout: full
+    
+    
+
 
 execute:
-  freeze: auto  # Or 'false' if you want to re-run code chunks each time
+  freeze: auto  #keep website up-to-date

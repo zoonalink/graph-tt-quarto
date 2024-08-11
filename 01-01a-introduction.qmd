@@ -2,21 +2,16 @@
 title: Introduction
 ---
 
-:::{.callout-warning}
-## TODO
-* consider adding 'operational challenges - see 01-01a'
-:::
-
-University timetabling is the process of scheduling curriculum elements (modules, programmes), locations, and resources within the constraints of an academic institution and calendar. At its core, it involves collecting and combining time slots, rooms, students, and other resources while satisfying a multitude of constraints and preferences to achieve a viable outcome. 
+University timetabling is the process of scheduling resources within the constraints of an academic institution and calendar. At its core, it involves collecting and combining time slots, rooms, students, and other resources while satisfying a multitude of constraints and preferences to achieve a viable outcome. 
 
 However, the reality of timetabling is far more complicated than this simple definition suggests.
 
 Timetablers must juggle numerous hard constraints (e.g., room capacities, pre-assigned times) and soft constraints (e.g., staff preferences, student travel times) to reach a workable solution. The scale of this task, combined with interdependencies between scheduling decisions, makes university timetabling one of the most challenging administrative tasks in higher education (de Werra, 1997).
 
-Timetables can make or break a university - they shape the daily experiences of students and staff, influence resource utilisation, and play a significant role in institutional efficiency. The complexity of timetabling stems from various factors:
+Timetables can make or break a university - they shape the *daily* experiences of students and staff, influence resource utilisation, and play a significant role in institutional efficiency. The complexity of timetabling stems from various factors:
 
-* **Scale**: Tens of thousands of students, countless modules, and limited resources create a logistical nightmare.
-* **Constraints**: Juggling hard limits (room capacities) and soft preferences (college desires) is a constant balancing act.
+* **Scale**: Tens of thousands of students and activities, and limited resources create a logistical nightmare.
+* **Constraints**: Juggling hard limits (room capacities) and soft preferences (College desires) is a constant balancing act.
 * **Interdependencies**: Changes in one part of the schedule can have cascading effects throughout the entire timetable.
 * **Diversity of Needs**: Different organisational units (colleges, faculties, schools, departments) have varying requirements and preferences.
 * **Optimisation Goals**: Timetablers must balance efficiency, fairness, and quality of education.

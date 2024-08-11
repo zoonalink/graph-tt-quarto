@@ -43,8 +43,10 @@ website:
             text: Graph vs Relational Data Models
           - href: 02-02-graph-timetable.qmd
             text: Graph Data Model for Timetabling
-          - href: 02-02b-expand.qmd
-            text: Early Insights and Model Expansion
+          - href: 02-02b-early.qmd
+            text: Early Insights
+          - href: 02-02c-expand.qmd
+            text: Model Expansion
           #- href: 02-02c-challenge-oppos.qmd
           #  text: Opportunities and Challenges
           - href: 02-03-graph-time.qmd
@@ -94,10 +96,10 @@ website:
         text: PDF Version
         icon: file-pdf
       - icon: bug
-        href: "https://github.com/your-username/your-repo/issues/new"
+        href: "https://github.com/zoonalink/graph-tt-quarto/issues/new"
         aria-label: Report an issue
       - icon: github
-        href: https://github.com/
+        href: "https://github.com/zoonalink/graph-tt-quarto/"
         aria-label: GitHub
       - icon: envelope
         href: "mailto:zoonalink@gmail.com"
@@ -130,8 +132,10 @@ website:
             text: Graph vs Relational Data Models
           - href: 02-02-graph-timetable.qmd
             text: Graph Data Model for Timetabling
-          - href: 02-02b-expand.qmd
-            text: Early Insights and Model Expansion
+          - href: 02-02b-early.qmd
+            text: Early Insights
+          - href: 02-02c-expand.qmd
+            text: Model Expansion
           #- href: 02-02c-challenge-oppos.qmd
           #  text: Opportunities and Challenges
           - href: 02-03-graph-time.qmd

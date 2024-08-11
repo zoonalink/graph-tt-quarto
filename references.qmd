@@ -4,6 +4,8 @@ Anon. (no date) CPB Projects [online]. Available from: https://www.cpbprojects.c
 
 Babaei, H., Karimpour, J. and Hadidi, A. (2015)‘A survey of approaches for university course timetabling problem’ Computers & Industrial EngineeringApplications of Computational Intelligence and Fuzzy Logic to Manufacturing and Service Systems [online]. 86, pp. 43–59. Available from: https://www.sciencedirect.com/science/article/pii/S0360835214003714 [Accessed 28 July 2024].
 
+Beck, K., et al. (2001) The Agile Manifesto. Agile Alliance. http://agilemanifesto.org/
+
 Bellio, R., Ceschia, S., Di Gaspero, L., Schaerf, A. and Urli, T. (2016) Feature-based tuning of simulated annealing applied to the curriculum-based course timetabling problem. Computers & Operations Research [online]. 65, pp. 83–92. Available from: https://linkinghub.elsevier.com/retrieve/pii/S0305054815001690 [Accessed 26 January 2024].
 
 Bonutti, A., De Cesco, F., Di Gaspero, L. and Schaerf, A. (2012) Benchmarking curriculum-based course timetabling: formulations, data formats, instances, validation, visualization, and results. Annals of Operations Research [online]. 194 (1), pp. 59–70. Available from: https://doi.org/10.1007/s10479-010-0707-0 [Accessed 3 February 2024].
@@ -27,6 +29,8 @@ Don State Technical University, Rostov-on-Don, Russian Federation and Al-Gabri, 
 Dowland, D. (2018) Rubik’s cube or Battenburg? The university timetable Wonkhe. 11 January 2018 [online]. Available from: https://wonkhe.com/blogs/rubiks-cube-or-battenburg-the-university-timetable/ [Accessed 25 July 2024].
 
 Foung, D. and Chen, J. (2019) Discovering disciplinary differences: blending data sources to explore the student online behaviors in a University English course. Information Discovery and Delivery [online]. 47 (2), pp. 106–114. Available from: https://www.emerald.com/insight/content/doi/10.1108/IDD-10-2018-0053/full/html [Accessed 19 February 2024].
+
+helenclu (2024) Database normalization description - Microsoft 365 Apps. 6 June 2024 [online]. Available from: https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description [Accessed 11 August 2024].
 
 Herres, B. and Schmitz, H. (2021) Decomposition of university course timetabling: A systematic study of subproblems and their complexities. Annals of Operations Research [online]. 302 (2), pp. 405–423. Available from: https://ezproxy.uwe.ac.uk/login?url=https://search.ebscohost.com/login.aspx?direct=true&db=bsu&AN=150973572&site=ehost-live [Accessed 28 July 2024].
 
@@ -65,6 +69,8 @@ Norman, R. and Williams, E. (no date) PSP Board Pack 220804 v1.3.pptx [online]. 
 
 Oude Vrielink, R.A., Jansen, E.A., Hans, E.W. and Van Hillegersberg, J. (2019) Practices in timetabling in higher education institutions: a systematic review. Annals of Operations Research [online]. 275 (1), pp. 145–160. Available from: http://link.springer.com/10.1007/s10479-017-2688-8 [Accessed 2 November 2023].
 
+Ries, E. (2024) What Is an MVP? Eric Ries Explains Lean Startup Co. 28 February 2024 [online]. Available from: https://leanstartup.co/resources/articles/what-is-an-mvp/ [Accessed 11 August 2024].
+
 Rudová, H., Müller, T. and Murray, K. (2011) Complex university course timetabling. Journal of Scheduling [online]. 14 (2), pp. 187–207. Available from: http://link.springer.com/10.1007/s10951-010-0171-3 [Accessed 26 January 2024].
 
 Sanchez, C.A. (2015) An analytics based architecture and methodology for collaborative timetabling in higher education - ProQuest [online]. Available from: https://www.proquest.com/docview/1779550151?pq-origsite=primo&parentSessionId=GLad2hOIbVrF%2F0eiOKHGi%2BO%2BFOyV9GXuQTQCxSfgWNw%3D&sourcetype=Dissertations%20&%20Theses [Accessed 25 January 2024].
@@ -78,3 +84,6 @@ Thomas, J.J., Khader, A.T. and Belaton, B. (2009) Visualization Techniques on th
 Webber, J., Eifrem, E. and Robinson, I. (2013) Graph Databases [online]. [Accessed 4 November 2023].
 
 Wikipedia contributors (2024) NP-hardness — Wikipedia, the free encyclopedia [online]. Available from: https://en.wikipedia.org/w/index.php?title=NP-hardness&oldid=1236371945.
+
+Wikipedia contributors (2024) SQL Wikipedia, The Free Encyclopedia [online]. Available from: https://en.wikipedia.org/w/index.php?title=SQL&oldid=1238737606 [Accessed 11 August 2024].
+
