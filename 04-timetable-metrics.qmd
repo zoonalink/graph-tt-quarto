@@ -3,7 +3,7 @@ title: "Timetable Metrics"
 ---
 
 
-## Timetable Quality Metrics and Insights (1500-2000 words)
+## Timetable Quality Metrics and Insights
 
 ### 4.1 Defining Timetable Quality
 

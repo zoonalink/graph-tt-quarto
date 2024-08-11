@@ -2,9 +2,9 @@
 title: Graphing Time
 ---
 
-The biggest challenge I encountered when translating timetables into graph data structures involved temporal elements - that is, start and end times, dates, weeks, reccurences, durations, etc. Whether a data element is a node or a property of a node, or perhaps both is relatively trivial to model and test, and depends heavily on use cases.
+The biggest challenge I encountered when translating timetables into graph data structures involved temporal elements - that is, start and end times, dates, weeks, recurrences, durations, etc. Whether a data element is a node or a property of a node, or perhaps both is relatively trivial to model and test and depends heavily on use cases.
 
-Time, on the other hand, is complicated, especially when you want to write aggregation queries on time elements e.g. total taught hours on campus on a Wedneday at 11:00 for student X across the whole year.
+Time, on the other hand, is complicated, especially when you want to write aggregation queries on time elements e.g. total taught hours on campus on a Wednesday at 11:00 for student X across the whole year.
 
 While the conceptual flexibility of graphs is appealing, finding the optimal balance between efficient representation, query performance, and data redundancy requires careful consideration. This section details some challenges encountered and the approach taken for the proof-of-concept.
 
@@ -34,9 +34,9 @@ To illustrate this, let's explore using a fictional example - `Introduction to G
 
 ### Option 0: Proof-of-concept activity
 
-The basic model create nodes for each activity as they exist in the relational database. This simple approach is perfectly acceptable, but makes any time based calculations difficult because each activity node can represent a different number of occurrences because of the week ranges.
+The basic model creates nodes for each activity as they exist in the relational database. This simple approach is perfectly acceptable but makes any time based calculations difficult because each activity node can represent a different number of occurrences because of the week ranges.
 
-This in turn means you cannot simple COUNT each activity "equally" - for example, row one above has 11 instances, each of two hours. The second and third rows have four instances, each of three hours. Calculating aggregations, finding clashes and similar is very challenging.
+This in turn means you cannot simply COUNT each activity "equally" - for example, row one above has 11 instances, each of two hours. The second and third rows have four instances, each of three hours. Calculating aggregations, finding clashes and similar is very challenging.
 
 ![Basic example of Graphing Normalised Activities](./images/time-option0.png)
 
@@ -72,7 +72,7 @@ Option 1 addresses this by creating nodes for each unique combination of `name`,
 
 **Use Case dependent**
 
--   **Time-Based Queries**: Answering questions about time patterns or conflicts requires traversing numerous nodes and relationships. Some queries will benefit - e.g. identifying clashes which may only occur in a specicific week, others will become more complex as denormalised data needs to be re-aggregated.
+-   **Time-Based Queries**: Answering questions about time patterns or conflicts requires traversing numerous nodes and relationships. Some queries will benefit - e.g. identifying clashes which may only occur in a specific week, others will become more complex as de-normalised data needs to be re-aggregated.
 
 ### Option 2: Date and Time Nodes
 
@@ -86,21 +86,19 @@ Option 2 creates a *single activity* node but also additional `date` and `time` 
 -   11 Date nodes - shared by ALL activities on those dates.
 -   2 Time nodes (09:00 and 11:00) - shared by ALL activities on those times!
 -   **Additional Relationships**
-    -   Activity -\[:SCHEDULED_ON\]-\> Date (11 relationships)
-    -   Activity -\[:STARTS_AT\]-\> Time (11 relationships to 09:00)
-    -   Activity -\[:ENDS_AT\]-\> Time (11 relationships to 11:00)
+    -   Activity -[:SCHEDULED_ON]-> Date (11 relationships)
+    -   Activity -[:STARTS_AT]-> Time (11 relationships to 09:00)
+    -   Activity -[:ENDS_AT]-> Time (11 relationships to 11:00)
+
+<br>
 
 ```         
 (Activity {Name: "ITGD"})
     -[:SCHEDULED_ON]-> (Date {date: "2024-01-03"})
+    -[:SCHEDULED_ON]-> (Date {date: "2024-01-10"})
+    ...
     -[:STARTS_AT]-> (Time {time: "09:00"}) 
     -[:ENDS_AT]-> (Time {time: "11:00"})
-
-(Activity {Name: "ITGD"}) 
-    -[:SCHEDULED_ON]-> (Date {date: "2024-01-10"})  
-    -[:STARTS_AT]-> (Time {time: "09:00"}) 
-    -[:ENDS_AT]-> (Time {time: "11:00"})
-...
 ```
 
 **Key point**: Relationships encode which activity happens when.
@@ -124,15 +122,24 @@ Option 3 creates a single activity but instead of individual start and end time 
 
 **Graph Structure**:
 
+-   1 Activity node
 -   11 Date nodes
 -   4 Timeblock nodes (09:00-09:30, etc.) - shared by ALL activities on those times!
-    -   **Additional Relationships**
-        -   `Activity` -\[:SCHEDULED_ON\]-\> `Date` (11 relationships)
-        -   `Activity` -\[:TAKES_PLACE_DURING\]-\> `timeBlock 09:00-09:30` (11 relationships)
-        -   `Activity` -\[:TAKES_PLACE_DURING\]-\> `timeBlock 09:30-10:00` (11 relationships) ... \`\`\`\
-            (Activity {Name: "ITGD"}) -\[:SCHEDULED_ON\]-\> (Date {date: "2024-01-03"}) -\[:OCCUPIES\]-\> (TimeBlock {start: "09:00", end: "09:30"}) -\[:OCCUPIES\]-\> (TimeBlock {start: "09:30", end: "10:00"})
-
-(Activity {Name: "ITGD"}) -\[:SCHEDULED_ON\]-\> (Date {date: "2024-01-03"}) -\[:TAKES_PLACE_DURING\]-\> (Timeblock {time: "09:00-09:30"}) -\[:TAKES_PLACE_DURING\]-\> (Timeblock {time: "09:30-10:00"}) -\[:TAKES_PLACE_DURING\]-\> (Timeblock {time: "10:00-10:30"}) -\[:TAKES_PLACE_DURING\]-\> (Timeblock {time: "10:30-11:00"}) ...
+-   **Additional Relationships**
+    -   `Activity` -[:SCHEDULED_ON]-> `Date` (11 relationships)
+    -   `Activity` -[:TAKES_PLACE_DURING]-> `timeBlock 09:00-09:30` (11 relationships)
+    -   `Activity` -[:TAKES_PLACE_DURING]-> `timeBlock 09:30-10:00` (11 relationships) 
+    -   ...
+  
+```
+(Activity {Name: "ITGD"}) 
+    -[:SCHEDULED_ON]-> (Date {date: "2024-01-03"}) 
+    -[:SCHEDULED_ON]-> (Date {date: "2024-01-10"})
+    ...
+    -[:TAKES_PLACE_DURING]-> (TimeBlock {timeBlock: "09:00-09:30"}) 
+    -[:TAKES_PLACE_DURING]-> (TimeBlock {timeBlock: "09:30-10:00"})
+    -[:TAKES_PLACE_DURING]-> (Timeblock {timeBlock: "10:00-10:30"}) 
+    -[:TAKES_PLACE_DURING]-> (Timeblock {timeBlock: "10:30-11:00"})
 
 ```         
 

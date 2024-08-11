@@ -1,5 +1,5 @@
 
-## TODO - Friday AM
+## TODO - Monday AM
 
 - [x] from SQL get POS sizes for programmes
 - [x] delete entire graph database
@@ -7,19 +7,32 @@
 - [x] new ipynb page for final load
 - [x] screencapture I400 again
 - [x] run extract/process for each programme in list
-- [ ] re-render html and pdf
-- [ ] review new html/pdf - send/share zip with xiaodong
+- [x] re-render html and pdf
+- [x] review new html/pdf 
+- [x] research graph explore/query
+- [x] copy all sections so far to word doc - 6500 words
+- [ ] get word count - 6500 words
+
+
+- [ ] send/share zip with xiaodong
+
+  
+  - [ ] draft tte quality section
+  - [ ] draft conclusion section 
+  - [ ] make list of work needed
+
+
 - [ ] copy all cypher queries to page and annotate
-- [ ] research graph explore/query
-
-
-
-## Monday
 
 - [ ] save extracts to local folder for loading
 - [ ] add to ignore file 
 - [ ] load remaining programmes to gdrive
 - [ ] load remaining programmes to neo4j
+
+
+## Tuesday
+
+
 
 
 - [ ] add new html pages - 
@@ -80,16 +93,12 @@ DELETE r
 
 * add dedication page/section
 * appendix page with all timetable quality queries
-* appendix tech stack - python libraries
 * appendix supervisor notes/pages
 * trim references page
-* review data engineering
 * write timetable-metrics section
-* run exatraction - a couple of programmes (maths, art intel)
 * add end-to-end example for I400 -> appendix
 * copy all cypher queries to a page
 * add pages to html and rerender
-* share with xiaodong
 * presentation / appendix
   * show slicing/range example
   

@@ -3,7 +3,7 @@ title: "Conclusion"
 ---
 
 
-## Conclusion (500 words)
+## Conclusion
 
 * Summary of key achievements
 * Reflection on the project's impact and potential for timetabling processes

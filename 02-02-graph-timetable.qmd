@@ -14,7 +14,7 @@ Having discussed some advantages of graph databases for representing interconnec
 
 ## An Iterative Approach
 
-Due to flexibility, creating graph data models is an iterative process: design -> build -> test -> review -> revise -\> ...and repeat. My first model was small in scope, incorporating *minimal* noces and properties in an MVP[^4] approach.  Eventually, my expanded model was created in a cloud-instance of Neo4j Aura.
+Due to flexibility, creating graph data models is an iterative process: design -> build -> test -> review -> revise -\> ...and repeat. My first model was small in scope, incorporating *minimal* nodes and properties in an MVP[^4] approach.  Eventually, my expanded model was created in a cloud-instance of Neo4j Aura.
 
 ## Core Nodes - Building Blocks
 
@@ -47,9 +47,9 @@ At its core, the timetable model revolves around four key entities represented a
 
 The core nodes are interconnected through relationships that reflect the dynamics of a timetable:
 
--   Student-**\[IS_ALLOCATED_TO\]**-\>Activity
--   Staff-**\[TEACHES_ON\]**-\>Activity
--   Activity-**\[TAKES_PLACE_IN\]**-\>Room
+-   (Student)-**\[IS_ALLOCATED_TO\]**-\>(Activity)
+-   (Staff)-**\[TEACHES_ON\]**-\>(Activity)
+-   (Activity)-**\[TAKES_PLACE_IN\]**-\>(Room)
 
 ## MVP model 
 
