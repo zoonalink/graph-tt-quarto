@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.45">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Transformation –</title>
+<title>Transformation –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,10 +100,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-introduction" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Introduction</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-project-introduction" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Project Introduction</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-introduction">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-project-introduction">    
         <li>
     <a class="dropdown-item" href="./01-01a-introduction.html">
  <span class="dropdown-text">Introduction</span></a>
@@ -136,8 +136,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Graph Data Model for Timetabling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02-02b-expand.html">
- <span class="dropdown-text">Early Insights and Model Expansion</span></a>
+    <a class="dropdown-item" href="./02-02b-early.html">
+ <span class="dropdown-text">Early Insights</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-02c-expand.html">
+ <span class="dropdown-text">Model Expansion</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./02-03-graph-time.html">
@@ -215,12 +219,12 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">PDF Version</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/your-username/your-repo/issues/new"> <i class="bi bi-bug" role="img" aria-label="Report an issue">
+    <a class="nav-link" href="https://github.com/zoonalink/graph-tt-quarto/issues/new"> <i class="bi bi-bug" role="img" aria-label="Report an issue">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="https://github.com/zoonalink/graph-tt-quarto/"> <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -270,7 +274,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Introduction</span></a>
+ <span class="menu-text">Project Introduction</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -325,8 +329,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-02b-expand.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Early Insights and Model Expansion</span></a>
+  <a href="./02-02b-early.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Early Insights</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-02c-expand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Expansion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -460,6 +470,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./appendix-snippets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code Snippets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -503,22 +519,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-TODO
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li></li>
-</ul>
-</div>
-</div>
-<p>The transformation section of the ETL pipeline picks up from where <code>extract</code> finished by using the extracted csv files as the source.</p>
+<p><code>Transform</code> picks up from where <code>extract</code> finished by using the extracted csv files as the source.</p>
 <div class="cell" data-layout-align="default">
 <div class="cell-output-display">
 <div>
@@ -671,12 +672,13 @@ TODO
 </div>
 </div>
 </div>
-<p>The configuration files allows the user to specify which columns should be used as the unique identifier when determining uniqueness, creating relationships between nodes and linking to additional datasets. It is also possible to specify datatypes - the load process will automatically load properties as <code>string</code> unless it is well formatted or the datatype is predetermined. The config file allows the user to specify how to handle certain datatypes like dates, times, boolean, etc.</p>
+<p>Configuration allows the user to control which nodes and relationships are included and how they are processed. There are options to specify validation, cleaning, data linking, anonymisation and relationship details.</p>
+<p>It is also possible to specify datatypes. Neo4j assumes <code>string</code> datatype unless it is well-formatted or pre-determined. Config allows the user to specify specific datatyples like dates, times, point, boolean, etc.</p>
 <section id="all-data" class="level2">
 <h2 class="anchored" data-anchor-id="all-data">All data</h2>
 <ol type="1">
 <li><strong>Validation</strong> - basic validation of the data is performed. Validation is extensible and can be expanded, as requirements are identified.</li>
-<li><strong>Cleaned</strong> - basic cleaning of all data is performed by stripping empty space and removing non-printable characters, etc. using regex. The cleaning functionality can be expanded.</li>
+<li><strong>Cleaned</strong> - basic cleaning of all data is performed by stripping empty space and removing non-printable characters, etc. using regex. The cleaning functionality is expandable.</li>
 </ol>
 <p>With clean data, the transformation proper starts:</p>
 </section>
@@ -686,7 +688,7 @@ TODO
 <li><strong>Add Organisational Unit</strong> - where appropriate, the University Organisational Unit (e.g.&nbsp;College, School, Department) is added to the node. This will be picked up as a property during load.<br>
 </li>
 <li><strong>Data Augmentation</strong> - Room data is augmented with additional properties from the location master database, including latitude, longitude, square meterage, etc. Data augmentation is extensible.</li>
-<li><strong>Anonymisation</strong> - Personal data is anonymised. An anonymisation function was developed to remove and replace any personally identifiable information (PII). The pipeline extracts minimal PII but this is safely anonymised. The functional also adds fake emails. <a href="./appendix-anonymise.html">See Appendix for Anonymisation</a></li>
+<li><strong>Anonymisation</strong> - Personal data is anonymised. An anonymisation function was developed to remove and replace any personally identifiable information (PII). The pipeline extracts minimal PII but this is safely anonymised. The functional also adds fake emails. <a href="./appendix-anonymise.html">See Appendix for additional details</a></li>
 <li><strong>Relationships</strong> - Based on requirements in the configuration, relationships are extracted including optional relationship properties.</li>
 </ol>
 

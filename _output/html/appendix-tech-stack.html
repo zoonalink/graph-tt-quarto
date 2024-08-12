@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.45">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Technology Stack –</title>
+<title>Technology Stack –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,10 +100,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-introduction" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Introduction</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-project-introduction" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Project Introduction</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-introduction">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-project-introduction">    
         <li>
     <a class="dropdown-item" href="./01-01a-introduction.html">
  <span class="dropdown-text">Introduction</span></a>
@@ -136,8 +136,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Graph Data Model for Timetabling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02-02b-expand.html">
- <span class="dropdown-text">Early Insights and Model Expansion</span></a>
+    <a class="dropdown-item" href="./02-02b-early.html">
+ <span class="dropdown-text">Early Insights</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-02c-expand.html">
+ <span class="dropdown-text">Model Expansion</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./02-03-graph-time.html">
@@ -215,12 +219,12 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">PDF Version</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/your-username/your-repo/issues/new"> <i class="bi bi-bug" role="img" aria-label="Report an issue">
+    <a class="nav-link" href="https://github.com/zoonalink/graph-tt-quarto/issues/new"> <i class="bi bi-bug" role="img" aria-label="Report an issue">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="https://github.com/zoonalink/graph-tt-quarto/"> <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -270,7 +274,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Introduction</span></a>
+ <span class="menu-text">Project Introduction</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -325,8 +329,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-02b-expand.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Early Insights and Model Expansion</span></a>
+  <a href="./02-02b-early.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Early Insights</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-02c-expand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Expansion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -460,6 +470,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./appendix-snippets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code Snippets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -476,14 +492,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#technology-stack" id="toc-technology-stack" class="nav-link active" data-scroll-target="#technology-stack">Technology Stack</a>
-  <ul class="collapse">
-  <li><a href="#programming" id="toc-programming" class="nav-link" data-scroll-target="#programming">Programming</a></li>
+  <li><a href="#programming" id="toc-programming" class="nav-link active" data-scroll-target="#programming">Programming</a></li>
   <li><a href="#documentation" id="toc-documentation" class="nav-link" data-scroll-target="#documentation">Documentation</a></li>
   <li><a href="#visualisation" id="toc-visualisation" class="nav-link" data-scroll-target="#visualisation">Visualisation</a></li>
   <li><a href="#versioning" id="toc-versioning" class="nav-link" data-scroll-target="#versioning">Versioning</a></li>
   <li><a href="#python-libraries" id="toc-python-libraries" class="nav-link" data-scroll-target="#python-libraries">Python Libraries</a></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
@@ -509,8 +522,6 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="technology-stack" class="level2">
-<h2 class="anchored" data-anchor-id="technology-stack">Technology Stack</h2>
 <p>This project used a variety of tools, applications, programming languages, and so on. Below is a high-level record of the ‘tech stack’ - the <code>what</code> and <code>why</code>:</p>
 <section id="programming" class="level3">
 <h3 class="anchored" data-anchor-id="programming">Programming</h3>
@@ -594,7 +605,6 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 
 
-</section>
 </section>
 </section>
 

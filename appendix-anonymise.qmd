@@ -25,12 +25,12 @@ import pandas as pd
 
 def anonymise_data(df):
     """
-    Anonymises a DataFrame by generating fake names, emails, and IDs.
+    anonymises cols in df by generating fake names, emails, and IDs.
     """
     process_logger.info("Starting anonymisation")
     process_logger.info(f"Columns in dataframe: {df.columns.tolist()}")
     
-    # Determine if it's staff or student data
+    # staff or student data
     if 'staffSplusID' in df.columns:
         process_logger.info("Processing staff data")
         id_col = 'staffID'
@@ -45,12 +45,12 @@ def anonymise_data(df):
         process_logger.error("Neither 'staffSplusID' nor 'stuSplusID' found in columns.")
         return df  # Return original dataframe if required columns are missing
 
-    # Create a dictionary to store anonymised data
+    # dictionary to store anonymised data
     anon_data = {}
     
-    # Generate anonymised data for each unique ID
+    # generate anonymised data for each unique ID
     for unique_id in df[id_col].unique():
-        # Create a seed based on the unique_id
+        # create a seed based on the unique_id
         seed = int(hashlib.md5(str(unique_id).encode()).hexdigest(), 16) & 0xFFFFFFFF
         fake = Faker()
         fake.seed_instance(seed)
@@ -70,17 +70,17 @@ def anonymise_data(df):
             f'{prefix}ID_anon': anon_id
         }
     
-    # Create a new DataFrame with anonymised data
+    # create a new df with anonymised data
     df_anon = pd.DataFrame.from_dict(anon_data, orient='index')
     
-    # Reset the index and rename it to match the original ID column
+    # reset the index and rename it to match the original ID column
     df_anon = df_anon.reset_index().rename(columns={'index': id_col})
     
     try:
         # Merge anonymised data with the original DataFrame
         df_result = pd.merge(df, df_anon, on=id_col)
         
-        # Remove columns that should be anonymised
+        # Rmove columns that should be anonymised
         columns_to_remove = [col for col in columns_to_remove if col in df_result.columns]
         df_result = df_result.drop(columns=columns_to_remove)
         
@@ -89,5 +89,5 @@ def anonymise_data(df):
 
     except Exception as e:
         process_logger.error(f"Error during anonymisation: {str(e)}")
-        return df  # Return original dataframe if an error occurs
+        return df  # return original df if error 
 ```

@@ -34,9 +34,8 @@ This divergence in preferences and the complex interplay of constraints make it 
 -   The second timetable has two days free of activities (Wednesday and Thursday). Monday has a single activity at 18:00-19:00.
 -   The third timetable has activities on five days. There are large gaps between activities on Tuesday and Wednesday.
 
-Which timetable is better? Is any of them 'good'?
+Which timetable is better? Is any of them 'good'? (Click to enlarge)
 
-The answer is *it depends!* or *none of them!*
 
 ![](./images/timetable-week-full.png){.gallery-image group="gallery" description="Evenly spread over 5 days.  Tuesday afternoons are heavily scheduled; activities take place over lunch"}
 
@@ -45,3 +44,4 @@ The answer is *it depends!* or *none of them!*
 ![](./images/timetable-week-ns.png){.gallery-image group="gallery" description="Activities on five days.  There are large gaps between activities on Tuesday and Wednesday."}
 
 <br> <br>
+The answer is *it depends!* or *none of them!*

@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.45">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Data Engineering Approach –</title>
+<title>Data Engineering Approach –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,10 +100,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-introduction" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Introduction</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-project-introduction" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Project Introduction</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-introduction">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-project-introduction">    
         <li>
     <a class="dropdown-item" href="./01-01a-introduction.html">
  <span class="dropdown-text">Introduction</span></a>
@@ -136,8 +136,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Graph Data Model for Timetabling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02-02b-expand.html">
- <span class="dropdown-text">Early Insights and Model Expansion</span></a>
+    <a class="dropdown-item" href="./02-02b-early.html">
+ <span class="dropdown-text">Early Insights</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-02c-expand.html">
+ <span class="dropdown-text">Model Expansion</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./02-03-graph-time.html">
@@ -215,12 +219,12 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">PDF Version</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/your-username/your-repo/issues/new"> <i class="bi bi-bug" role="img" aria-label="Report an issue">
+    <a class="nav-link" href="https://github.com/zoonalink/graph-tt-quarto/issues/new"> <i class="bi bi-bug" role="img" aria-label="Report an issue">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="https://github.com/zoonalink/graph-tt-quarto/"> <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -270,7 +274,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Introduction</span></a>
+ <span class="menu-text">Project Introduction</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -325,8 +329,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-02b-expand.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Early Insights and Model Expansion</span></a>
+  <a href="./02-02b-early.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Early Insights</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-02c-expand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Expansion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -460,6 +470,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./appendix-snippets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code Snippets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -507,25 +523,11 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-TODO
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>Add agile reference</li>
-</ul>
-</div>
-</div>
-<p>I followed an interative, agile-inspired approach when developing the data pipeline, despite being a team of one. This allowed for flexibility, continuous improvement and the opportunity to adapt to new insights during the process. The bulk of my effort was spent <em>prototyping</em>, <em>testing</em> and <em>reviewing</em> with each iteration resulting in a new challenge, issue, opportunity or occasionally, success.</p>
+<p>I followed an interative, agile-inspired approach when developing the data pipeline, despite being a team of one. This allowed for flexibility, continuous improvement and the opportunity to adapt to new insights during the process (Beck, K., et al.&nbsp;2001).</p>
+<p>The bulk of my effort was spent <em>prototyping</em>, <em>testing</em> and <em>reviewing</em> with each iteration resulting in a new challenge, issue, opportunity and less frequently, success.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="./images/iteration.png" class="img-fluid figure-img"></p>
+<p><img src="./images/iteration.png" class="medium-image img-fluid figure-img"></p>
 <figcaption>Iterative Development Approach</figcaption>
 </figure>
 </div>
@@ -552,18 +554,18 @@ TODO
 <li>An iterative, component-based testing approach was employed</li>
 <li>While formal unit tests were not always created, each component was thoroughly tested for functionality</li>
 </ul>
-<p>This approach allowed for continuous progress while maintaining a focus on component-level quality. It was during this phase that I started expanding configuration, logging and error-handling options.</p>
+<p>This approach allowed for continuous progress while maintaining a focus on component-level quality. It was during this phase that I started expanding configuration, logging and error-handling options - and I am glad I did!</p>
 </section>
 <section id="integration---review---demo---feedback---repeat" class="level3">
 <h3 class="anchored" data-anchor-id="integration---review---demo---feedback---repeat">Integration -&gt; Review -&gt; Demo -&gt; Feedback -&gt; Repeat</h3>
 <p>As components reached a (more) stable state, they were integrated and reviewed:</p>
 <ul>
 <li>Components were combined to form larger functional units</li>
-<li>Integrated functionality was occasionally demonstrated to subject matter experts (operational timetablers, timetable manager, data manager)</li>
+<li>Integrated functionality was occasionally demonstrated to subject matter experts (operational timetablers, data manager)</li>
 <li>Feedback was gathered on functionality, usability, and alignment with requirements</li>
 </ul>
 <p>Insights gained from reviews, demonstrations and ongoing development were continuously fed back into the process. New requirements or modifications were documented, for example updates to SQL SELECT statements and data model interpretations.</p>
-<p>With each new piece of information or change, decisions were required and made - but not always the right ones.</p>
+<p>With each new piece of information or change, decisions were required and made - but not always the right ones!</p>
 </section>
 <section id="version-validation-and-documentation" class="level3">
 <h3 class="anchored" data-anchor-id="version-validation-and-documentation">Version Validation and Documentation</h3>
@@ -571,17 +573,15 @@ TODO
 <ul>
 <li>End-to-end validation of the entire pipeline was performed.</li>
 <li>Results were documented in notebooks, including opportunities for improvement.</li>
-<li>Any issues (or opportunities) identified were logged for the next iteration.</li>
+<li>Any bugs or opportunities were logged for the next iteration.</li>
 </ul>
 </section>
 <section id="continuous-learning-and-adaptation" class="level3">
 <h3 class="anchored" data-anchor-id="continuous-learning-and-adaptation">Continuous Learning and Adaptation</h3>
-<p>Throughout the development process, learning and adaptation became central to the project’s evolution. Each iteration brought new insights, often through trial and error and certainly through unintended consequences or unforeseen complications. Early challenges included the need to modularise components <em>before</em> they became unmanageable, resisting the temptation to make overly ambitious changes or indeed resisting the temptation to carry on when it would have been better to pause and shore up progress. With practice, I became better at recognising when refactoring was necessary. These experiences underscored the importance of incremental progress and consistent testing in maintaining project stability and direction.</p>
-<p>This iterative journey was far from linear. There were many moments of frustration, periods of painstaking troubleshooting, and the constant urge to overdeliver, often exceeding the original proof-of-concept scope. Yet, with each stumble, the process itself became more refined, transforming into a powerful tool for identifying and resolving issues.</p>
+<p>Learning and adaptation became central to the project. Each iteration brought new insights, often through trial and error and certainly through unintended consequences or unforeseen complications. Early challenges included the need to modularise components <em><em>before</em></em> they became unmanageable and resisting the temptation to make overly ambitious changes. With practice, I became better at recognising when refactoring was necessary.</p>
+<p>Developing the ETL was not a linear journey. There were many moments of frustration, periods of seemingly endless, painstaking troubleshooting, and a constant battle against the urge to over-deliver. Yet, with each stumble, the process itself became more refined, transforming into a powerful tool for identifying and resolving issues.</p>
 <p>While the core MVP (minimum viable product) requirements remained relatively stable (I set them after all!), the iterative approach empowered me to seize opportunities for enhancement. Each chance to modularise, parameterise, or fine-tune sparked an almost compulsive drive for improvement, pushing the pipeline beyond its initial scope.</p>
-<p>This dedication to continuous refinement, while time-consuming, ultimately resulted in a robust, flexible solution that can adapt gracefully to unforeseen challenges and serve as the starting point for future opportunities.</p>
-<p>However, this rigorous development process naturally led to a greater focus on data engineering rather than delving into the potential insights offered by Neo4j, simply due to the allocation of time and resources.</p>
-<p>The iterative approach proved to be more than just a development methodology. It facilitated personal growth, enhanced technical skills, and improved project management capabilities.</p>
+<p>This dedication to continuous refinement, while time-consuming, ultimately resulted in a robust, flexible solution that can adapt (relatively) gracefully to unforeseen challenges and serve as the starting point for future opportunities.</p>
 
 
 </section>

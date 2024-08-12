@@ -55,7 +55,7 @@ Data migration considerations
 Performance considerations for large-scale timetabling systems
 
 
-## Future Opportunities and Potential Insights (500 words)
+## Future Opportunities and Potential Insights
 
 * Discussion of potential analyses (module combinations, student clustering, etc.)
 * Integration of additional data sources

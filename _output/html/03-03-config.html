@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.45">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Configuration and Logging –</title>
+<title>Configuration and Logging –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,10 +100,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-introduction" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Introduction</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-project-introduction" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Project Introduction</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-introduction">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-project-introduction">    
         <li>
     <a class="dropdown-item" href="./01-01a-introduction.html">
  <span class="dropdown-text">Introduction</span></a>
@@ -136,8 +136,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Graph Data Model for Timetabling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02-02b-expand.html">
- <span class="dropdown-text">Early Insights and Model Expansion</span></a>
+    <a class="dropdown-item" href="./02-02b-early.html">
+ <span class="dropdown-text">Early Insights</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-02c-expand.html">
+ <span class="dropdown-text">Model Expansion</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./02-03-graph-time.html">
@@ -215,12 +219,12 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">PDF Version</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/your-username/your-repo/issues/new"> <i class="bi bi-bug" role="img" aria-label="Report an issue">
+    <a class="nav-link" href="https://github.com/zoonalink/graph-tt-quarto/issues/new"> <i class="bi bi-bug" role="img" aria-label="Report an issue">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="https://github.com/zoonalink/graph-tt-quarto/"> <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -270,7 +274,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Introduction</span></a>
+ <span class="menu-text">Project Introduction</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -325,8 +329,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-02b-expand.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Early Insights and Model Expansion</span></a>
+  <a href="./02-02b-early.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Early Insights</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-02c-expand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Expansion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -460,6 +470,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./appendix-snippets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code Snippets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -503,35 +519,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-TODO
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>rewrite detailed options into a summary format</li>
-<li>update if YAML config implemented.</li>
-<li><label><input type="checkbox">revisit approach doc in final script folder</label></li>
-</ul>
-</div>
-</div>
-<p>The configuration and logging approach was to centralise configuration parameters into a python scripts in order to allow the user to manage different aspects of the ETL pipeline. The configuration options are as a result of both initial design and discovery during development.</p>
+<p>I centralised configuration parameters into python scripts to allow the user to manage different aspects of the ETL pipeline. The configuration options are as a result of both initial design and discovery during development.</p>
+<p>For example, each time I set an option during prototyping, I considered whether they should be config parameters - weighing up development cost versus value (in a proof-of-concept scope). In general, I aimed for an <em>automatic</em> and *dynamic</p>
 <p>When I set options during prototyping and testing, I considered whether these are worth parameterising in the ETL by weighing up cost versus value within a proof-of-concept scope. In general, my design is set up to run <em>automatically</em> or <em>dynamically</em> with well structured data, but I included options to override these settings.</p>
 <section id="main-configuration-options" class="level3">
 <h3 class="anchored" data-anchor-id="main-configuration-options">Main Configuration options</h3>
-<p>An YAML file containing configuration options can be viewed in the <a href="./appendix-config.html">Appendix</a>.</p>
-<p>General settings include being able to filter which data to extract by way of a list of award codes. This is the default folder name for this ETL run, although default folder names, filepaths and directories can be overwritten and customised. This includes source data files and Google Drive folders for processed data.</p>
-<p>Credentials to SQL databases, Neo4j instances and Google drives are stored securely via environment variables or keyring secure storage.</p>
-<p>There is an option to specify additional data sources, that is data which does not originate in the timetable database. This has been configured for optionally adding additional location data, e.g.&nbsp;latitude and longitude, square meterage, etc.</p>
+<p>A YAML file containing configuration options can be viewed in the <a href="./appendix-config.html">Appendix</a>.</p>
+<p>General settings include being able to filter which data to extract by way of a list of award codes. Folders and filepaths (local and Google Drive) are created dynamically, although there are override options.</p>
+<p>Credentials to SQL databases, Neo4j instances and Google drives are stored securely via environment variables or <code>keyring</code> secure storage.</p>
+<p>Additional data sources can be added to the graph database - that is, timetabling data can be augmented within non-timetabling data. In the proof-of-concept, I added additional location data by merging with the master data source to get latitude, longitude, square meterage, etc.</p>
 </section>
 <section id="logging" class="level3">
 <h3 class="anchored" data-anchor-id="logging">Logging</h3>
-<p>I set up a mechanism which can create a separate loggers with ease. This can be expanded or contracted, as required - for example, during development I had sepaparate loggers for each stage of the ETL to allow me to understand errors. However, if the ETL was developed into a stable release, it can be configured to have one log.</p>
+<p>Each module has its own log file which can be expanded or contracted, as ndeeded.</p>
 <p>Options include customising the log level (DEBUG, INFO, WARNING, ERROR, CRITICAL).</p>
 <section id="example-extract-log" class="level4">
 <h4 class="anchored" data-anchor-id="example-extract-log">Example Extract Log</h4>

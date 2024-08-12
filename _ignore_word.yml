@@ -34,6 +34,8 @@ book:
     - appendix-tech-stack.qmd
     - appendix-config.qmd
     - appendix-anonymise.qmd
+    - appendix-snippets.qmd
+    - appendix-supervisor.qmd
     - references.qmd
 
 format:

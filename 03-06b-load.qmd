@@ -2,14 +2,6 @@
 title: "Neo4j Load"
 ---
 
-:::{.callout-warning}
-## TODO
-
-* add log files?
-* add screenshot?
-* add neo4j loaded data screenshot
-:::
-
 With accessible csv files, the final module of the ETL pipeline creates (or updates) nodes and relationships in the Neo4j instance.
 
 ```{dot}

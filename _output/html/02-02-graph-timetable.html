@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.45">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Graph Data Model for Timebling –</title>
+<title>Graph Data Model for Timebling –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,7 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./02-02b-expand.html" rel="next">
+<link href="./02-02b-early.html" rel="next">
 <link href="./02-01-comparison.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -103,10 +103,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-introduction" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Introduction</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-project-introduction" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Project Introduction</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-introduction">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-project-introduction">    
         <li>
     <a class="dropdown-item" href="./01-01a-introduction.html">
  <span class="dropdown-text">Introduction</span></a>
@@ -139,8 +139,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Graph Data Model for Timetabling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02-02b-expand.html">
- <span class="dropdown-text">Early Insights and Model Expansion</span></a>
+    <a class="dropdown-item" href="./02-02b-early.html">
+ <span class="dropdown-text">Early Insights</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-02c-expand.html">
+ <span class="dropdown-text">Model Expansion</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./02-03-graph-time.html">
@@ -218,12 +222,12 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">PDF Version</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/your-username/your-repo/issues/new"> <i class="bi bi-bug" role="img" aria-label="Report an issue">
+    <a class="nav-link" href="https://github.com/zoonalink/graph-tt-quarto/issues/new"> <i class="bi bi-bug" role="img" aria-label="Report an issue">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="https://github.com/zoonalink/graph-tt-quarto/"> <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -273,7 +277,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Introduction</span></a>
+ <span class="menu-text">Project Introduction</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -328,8 +332,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-02b-expand.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Early Insights and Model Expansion</span></a>
+  <a href="./02-02b-early.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Early Insights</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-02c-expand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Expansion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -463,6 +473,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./appendix-snippets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code Snippets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -482,6 +498,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#an-iterative-approach" id="toc-an-iterative-approach" class="nav-link active" data-scroll-target="#an-iterative-approach">An Iterative Approach</a></li>
   <li><a href="#core-nodes---building-blocks" id="toc-core-nodes---building-blocks" class="nav-link" data-scroll-target="#core-nodes---building-blocks">Core Nodes - Building Blocks</a></li>
   <li><a href="#relationships---connecting-the-dots" id="toc-relationships---connecting-the-dots" class="nav-link" data-scroll-target="#relationships---connecting-the-dots">Relationships - Connecting the Dots</a></li>
+  <li><a href="#mvp-model" id="toc-mvp-model" class="nav-link" data-scroll-target="#mvp-model">MVP model</a></li>
   </ul>
 </nav>
     </div>
@@ -510,7 +527,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Having discussed some advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling.</p>
 <section id="an-iterative-approach" class="level2">
 <h2 class="anchored" data-anchor-id="an-iterative-approach">An Iterative Approach</h2>
-<p>The graph data model design was an iterative process: design -&gt; build -&gt; test -&gt; review -&gt; revise -&gt; …and repeat. Using Neo4j Desktop, the first model was small scope in scope, incorporating <em>minimal</em> nodes and properties. Eventually, the expanded model was created in an cloud-based Neo4j Aura instance.</p>
+<p>Due to flexibility, creating graph data models is an iterative process: design -&gt; build -&gt; test -&gt; review -&gt; revise -&gt; …and repeat. My first model was small in scope, incorporating <em>minimal</em> nodes and properties in an MVP<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> approach. Eventually, my expanded model was created in a cloud-instance of Neo4j Aura.</p>
 </section>
 <section id="core-nodes---building-blocks" class="level2">
 <h2 class="anchored" data-anchor-id="core-nodes---building-blocks">Core Nodes - Building Blocks</h2>
@@ -619,32 +636,41 @@ ul.task-list li input[type="checkbox"] {
 </tbody>
 </table>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="./images/poc1-import-interface.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Neo4j Interface showing basic nodes and properties"><img src="./images/poc1-import-interface.png" class="img-fluid figure-img" style="width:75.0%" alt="Neo4j Interface showing basic nodes and properties"></a></p>
-<figcaption>Neo4j Interface showing basic nodes and properties</figcaption>
-</figure>
-</div>
 </section>
 <section id="relationships---connecting-the-dots" class="level2">
 <h2 class="anchored" data-anchor-id="relationships---connecting-the-dots">Relationships - Connecting the Dots</h2>
 <p>The core nodes are interconnected through relationships that reflect the dynamics of a timetable:</p>
 <ul>
-<li>Student-<strong>[IS_ALLOCATED_TO]</strong>-&gt;Activity</li>
-<li>Staff-<strong>[TEACHES_ON]</strong>-&gt;Activity</li>
-<li>Activity-<strong>[TAKES_PLACE_IN]</strong>-&gt;Room</li>
+<li>(Student)-<strong>[IS_ALLOCATED_TO]</strong>-&gt;(Activity)</li>
+<li>(Staff)-<strong>[TEACHES_ON]</strong>-&gt;(Activity)</li>
+<li>(Activity)-<strong>[TAKES_PLACE_IN]</strong>-&gt;(Room)</li>
 </ul>
+</section>
+<section id="mvp-model" class="level2">
+<h2 class="anchored" data-anchor-id="mvp-model">MVP model</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./images/v1-core-nodes-rels-prop.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Core Nodes and Properties"><img src="./images/v1-core-nodes-rels-prop.png" class="img-fluid figure-img" style="width:75.0%" alt="Core Nodes and Properties"></a></p>
+<p><a href="./images/v1-core-nodes-rels-prop.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Core Nodes and Properties"><img src="./images/v1-core-nodes-rels-prop.png" class="img-fluid figure-img" style="width:75.0%" alt="Core Nodes and Properties"></a></p>
 <figcaption>Core Nodes and Properties</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./images/poc1-import-interface.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Neo4j Interface showing basic nodes and properties"><img src="./images/poc1-import-interface.png" class="img-fluid figure-img" style="width:75.0%" alt="Neo4j Interface showing basic nodes and properties"></a></p>
+<figcaption>Neo4j Interface showing basic nodes and properties</figcaption>
 </figure>
 </div>
 
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Minimum Viable Product: “First, a definition: the minimum viable product is that version of a new product which allows a team to collect the maximum amount of validated learning about customers with the least effort or in other words building the most minimum version of their product that will still allow them to learn.” (Ries, 2024)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1216,8 +1242,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-02b-expand.html" class="pagination-link" aria-label="Early Insights and Model Expansion">
-        <span class="nav-page-text">Early Insights and Model Expansion</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./02-02b-early.html" class="pagination-link" aria-label="Early Insights">
+        <span class="nav-page-text">Early Insights</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1235,7 +1261,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"fade","selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"fade"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"fade","descPosition":"bottom","selector":".lightbox","loop":false,"openEffect":"fade"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

@@ -9,7 +9,7 @@ date: "29 August 2024"
 
 **Programme**: [MSc Data Science](https://courses.uwe.ac.uk/INB112/data-science)
 
-**Word Count**: [add when finished]
+**Word Count**: [add when finished - currently ~6100 words (excluding code, tables, references)]
 
 
 
@@ -20,7 +20,7 @@ digraph G {
 	start=random
 	overlap=false
 	splines=true
-	size="8,8"
+	size="6,6"
 	"4zj99lz2" [label="" fillcolor="#c887ce" fontsize=1 height=0.12 shape=circle style=filled width=0.12]
 	"666n359b" [label="" fillcolor="#1a40e0" fontsize=1 height=0.12 shape=circle style=filled width=0.12]
 	"4s3xzocl" [label="" fillcolor="#4ddd8e" fontsize=1 height=0.12 shape=circle style=filled width=0.12]

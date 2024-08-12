@@ -23,7 +23,7 @@ website:
       - href: index.qmd
         text: Home
         icon: home
-      - text: Introduction
+      - text: Project Introduction
         menu:
           - href: 01-01a-introduction.qmd
             text: Introduction
@@ -89,6 +89,8 @@ website:
           text: Configuration
         - href: appendix-anonymise.qmd
           text: Anonymisation
+        - href: appendix-snippets.qmd
+          text: Code Snippets
         - href: references.qmd
           text: References
     right:
@@ -112,7 +114,7 @@ website:
     contents: 
       - href: index.qmd
         text: Home
-      - section: "Introduction"
+      - section: "Project Introduction"
         contents:
           - href: 01-01a-introduction.qmd
             text: Introduction
@@ -178,6 +180,8 @@ website:
             text: Configuration
           - href: appendix-anonymise.qmd
             text: Anonymisation
+          - href: appendix-snippets.qmd
+            text: Code Snippets
           - href: references.qmd
             text: References
 

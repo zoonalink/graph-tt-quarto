@@ -11,7 +11,7 @@
 - [x] review new html/pdf 
 - [x] research graph explore/query
 - [x] copy all sections so far to word doc - 6500 words
-- [ ] get word count - 6500 words
+- [x] get word count - 6500 words
 
 
 - [ ] send/share zip with xiaodong

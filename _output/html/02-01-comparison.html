@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.45">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Graph vs Relational Data Models –</title>
+<title>Graph vs Relational Data Models –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -100,10 +100,10 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-introduction" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Introduction</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-project-introduction" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Project Introduction</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-introduction">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-project-introduction">    
         <li>
     <a class="dropdown-item" href="./01-01a-introduction.html">
  <span class="dropdown-text">Introduction</span></a>
@@ -136,8 +136,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Graph Data Model for Timetabling</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./02-02b-expand.html">
- <span class="dropdown-text">Early Insights and Model Expansion</span></a>
+    <a class="dropdown-item" href="./02-02b-early.html">
+ <span class="dropdown-text">Early Insights</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./02-02c-expand.html">
+ <span class="dropdown-text">Model Expansion</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./02-03-graph-time.html">
@@ -215,12 +219,12 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">PDF Version</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/your-username/your-repo/issues/new"> <i class="bi bi-bug" role="img" aria-label="Report an issue">
+    <a class="nav-link" href="https://github.com/zoonalink/graph-tt-quarto/issues/new"> <i class="bi bi-bug" role="img" aria-label="Report an issue">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/"> <i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="https://github.com/zoonalink/graph-tt-quarto/"> <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -270,7 +274,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Introduction</span></a>
+ <span class="menu-text">Project Introduction</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -325,8 +329,14 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-02b-expand.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Early Insights and Model Expansion</span></a>
+  <a href="./02-02b-early.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Early Insights</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-02c-expand.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Model Expansion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -460,6 +470,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./appendix-snippets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code Snippets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -483,6 +499,11 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#graph-models" id="toc-graph-models" class="nav-link" data-scroll-target="#graph-models">Graph Models</a>
   <ul class="collapse">
   <li><a href="#embracing-interconnectedness" id="toc-embracing-interconnectedness" class="nav-link" data-scroll-target="#embracing-interconnectedness">Embracing interconnectedness</a></li>
+  </ul></li>
+  <li><a href="#comparing-queries" id="toc-comparing-queries" class="nav-link" data-scroll-target="#comparing-queries">Comparing queries</a>
+  <ul class="collapse">
+  <li><a href="#sql-query" id="toc-sql-query" class="nav-link" data-scroll-target="#sql-query">SQL Query</a></li>
+  <li><a href="#cypher-query" id="toc-cypher-query" class="nav-link" data-scroll-target="#cypher-query">Cypher Query</a></li>
   </ul></li>
   <li><a href="#key-differences-and-implications" id="toc-key-differences-and-implications" class="nav-link" data-scroll-target="#key-differences-and-implications">Key Differences and Implications</a></li>
   </ul>
@@ -510,15 +531,16 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>As outlined in the <a href="./01-04-project.html">project aims</a>, my hypothesis is that graph-based approaches have the <em>potential</em> to offer new insights and efficiencies in timetable analysis. This section will briefly explore the theoretical underpinnings of graph data structures and their application to domain of university timetabling.</p>
+<p>As outlined in the <a href="./01-04-project.html">project aims</a>, my hypothesis is that graph-based approaches have the <em>potential</em> to offer new insights and efficiencies in timetable analysis. This section will briefly explore the theoretical underpinnings of graph data structures and their application to the domain of university timetabling.</p>
 <section id="relational-models" class="level2">
 <h2 class="anchored" data-anchor-id="relational-models">Relational Models</h2>
 <section id="tables-joins-and-the-limits-of-interconnectedness" class="level3">
 <h3 class="anchored" data-anchor-id="tables-joins-and-the-limits-of-interconnectedness">Tables, Joins and the Limits of Interconnectedness</h3>
-<p>Relational databases, using SQL as their query language, have long been the go-to for managing data, including timetabling information. They structure data into tables, where rows represent instances of entities (e.g.&nbsp;individual rooms, staff, or students) and columns represent their attributes (name, capacity, email, etc.). Relationships between these entity tables are established through foreign keys, forming links between tables. This often involves intermediary “relationship” tables to handle the many-to-many nature of timetabling data (e.g., a student attends many activities, and an activity has many students) (Khan et al., 2023;Sokolova, Gómez and Borisoglebskaya, 2020).</p>
+<p>Relational databases, using SQL<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> as their query language, have long been the go-to for managing data, including timetabling information. They structure data into tables, where rows represent instances of entities (e.g.&nbsp;individual rooms, staff, or students) and columns represent entity attributes (name, capacity, email, etc.).</p>
+<p>Relationships between these entity tables are established through foreign keys, forming links between tables. This often involves intermediary “relationship” tables to handle the many-to-many nature of timetabling data (e.g., a student attends many activities, and an activity has many students) (Khan et al., 2023;Sokolova, Gómez and Borisoglebskaya, 2020).</p>
 <p>While robust and well-understood, relational databases start to show their limitations when dealing with the highly interconnected nature of timetables:</p>
 <ul>
-<li><p><strong>Join Complexity</strong>: Even seemingly simple queries, like <em>“find students attending a specific lecturer’s class in a particular building,”</em> require joining multiple tables (see below in both SQL and graph queries). As queries become more nuanced, the number of joins increases, often impacting performance, especially with large datasets.</p></li>
+<li><p><strong>Join Complexity</strong>: Even seemingly simple queries, like <em>“find students attending a specific lecturer’s class in a particular building,”</em> require joining multiple tables. As queries become more nuanced, the number of joins increases, often impacting performance, especially with large datasets.</p></li>
 <li><p><strong>Rigidity</strong>: Relational databases rely on a predefined schema, making them less adaptable to evolving needs. Adding new entities or relationships is not possible without disrupting existing queries and applications.</p></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
@@ -527,25 +549,6 @@ ul.task-list li input[type="checkbox"] {
 <figcaption>Example Simple Entity Relationship Diagram</figcaption>
 </figure>
 </div>
-<p><strong>Example Query in SQL</strong></p>
-<pre class="{sql}"><code>-- Assuming "BuildingName" is in V_BUILDING and linked to V_LOCATION
--- find students attending a specific lecturer's class in a particular building
--- requires 6 JOINS
-
-
-SELECT DISTINCT 
-    ss.[FirstName], 
-    ss.[LastName],
-    ss.[Email]
-FROM [RDB_MAIN2223].[rdowner].[V_STUDENTSET] ss
-INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_STUDENTSET] acts ON ss.[Id] = acts.[StudentSetId]
-INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY] a ON acts.[ActivityId] = a.[Id]
-INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_LOCATION] al ON a.[Id] = al.[ActivityId]
-INNER JOIN [RDB_MAIN2223].[rdowner].[V_LOCATION] l ON al.[LocationId] = l.[Id]
-INNER JOIN [RDB_MAIN2223].[rdowner].[V_BUILDING] b ON l.[BuildingId] = b.[Id] 
-INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_STAFF] ast ON a.[Id] = ast.[ActivityId]
-WHERE ast.[StaffId] = 'StaffID'  
-  AND b.[Name] = 'BuildingName'; </code></pre>
 </section>
 </section>
 <section id="graph-models" class="level2">
@@ -554,8 +557,8 @@ WHERE ast.[StaffId] = 'StaffID'
 <h3 class="anchored" data-anchor-id="embracing-interconnectedness">Embracing interconnectedness</h3>
 <p>In contrast to the rigid table structure of relational databases, graph databases offer a more intuitive and flexible approach for representing interconnected data like timetables. They utilise:</p>
 <ul>
-<li><strong>Nodes</strong>: Represent entities (e.g., activity, room, staff, student). These are often “nouns.”</li>
-<li><strong>Edges</strong>: Represent relationships between nodes (e.g., “taught by,” “enrolled in,” “scheduled at”). These are often “verbs.”</li>
+<li><strong>Nodes</strong>: Represent entities. These are often the “nouns” like activity, room, staff, student.</li>
+<li><strong>Edges</strong>: Represent relationships between nodes. These are often the “verbs” like TAUGHT_BY, ENROLLED_IN, SCHEDULED_AT, OWNED_BY.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -566,13 +569,32 @@ WHERE ast.[StaffId] = 'StaffID'
 <p>This node-and-edge structure inherently reflects how timetabling elements connect. Instead of relying on cumbersome joins, relationships are directly encoded in the data model itself. This results in several advantages:</p>
 <ul>
 <li><strong>Natural Representation</strong>: Graph databases visually and conceptually mirror the relationships inherent in timetables, making them easier to understand and query.</li>
-<li><strong>Relationship-Centric Queries</strong>: Graph databases are optimised for traversing and analysing relationships. Queries that would require multiple joins in a relational database often become significantly simpler and faster in a graph database - see below.</li>
+<li><strong>Relationship-Centric Queries</strong>: Graph databases are optimised for traversing and analysing relationships. Queries that would require multiple joins in a relational database often become significantly simpler and faster in a graph database.</li>
 <li><strong>Flexibility</strong>: The schema-less or schema-optional nature of most graph databases allows for greater flexibility in data modeling. New entities or relationships can be added effortlessly without impacting existing structures or queries (Nan and Bai, 2019; Webber, Eifrem and Robinson, 2013).</li>
+<li></li>
 </ul>
-<p><strong>Example Query in Cypher</strong></p>
-<pre class="{cypher}"><code>// Assuming properties on nodes
-// Much simpler query pattern
-
+</section>
+</section>
+<section id="comparing-queries" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-queries">Comparing queries</h2>
+<p><strong>Example Insight</strong>: Find all students attending a specific lecturer’s class in a particular building</p>
+<p>Representative queries have been written in SQL and Cypher to find this insight. The SQL query is much longer and requires six joins, each coming at a computational cost. In contrast, the Cypher query pattern is much simpler - written in one line (MATCH pattern).</p>
+<section id="sql-query" class="level3">
+<h3 class="anchored" data-anchor-id="sql-query">SQL Query</h3>
+<pre class="{sql}"><code>SELECT DISTINCT ss.[FirstName], ss.[LastName], ss.[Email]
+FROM [RDB_MAIN2223].[rdowner].[V_STUDENTSET] ss
+INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_STUDENTSET] acts ON ss.[Id] = acts.[StudentSetId]
+INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY] a ON acts.[ActivityId] = a.[Id]
+INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_LOCATION] al ON a.[Id] = al.[ActivityId]
+INNER JOIN [RDB_MAIN2223].[rdowner].[V_LOCATION] l ON al.[LocationId] = l.[Id]
+INNER JOIN [RDB_MAIN2223].[rdowner].[V_BUILDING] b ON l.[BuildingId] = b.[Id] 
+INNER JOIN [RDB_MAIN2223].[rdowner].[V_ACTIVITY_STAFF] ast ON a.[Id] = ast.[ActivityId]
+WHERE ast.[StaffId] = 'StaffID'  
+  AND b.[Name] = 'BuildingName'; </code></pre>
+</section>
+<section id="cypher-query" class="level3">
+<h3 class="anchored" data-anchor-id="cypher-query">Cypher Query</h3>
+<pre class="{cypher}"><code>
 MATCH (s:Student)-[:ATTENDS]-&gt;(a:Activity)&lt;-[:TEACHES_ON]-(st:Staff), 
       (a:Activity)-[:TAKES_PLACE_IN]-&gt;(r:Room)
 WHERE st.last_name = "LecturerLastName" AND r.building = "BuildingName"
@@ -634,7 +656,13 @@ RETURN s.first_name, s.last_name, s.email </code></pre>
 
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Structured Query Language (Wikipedia contributors, 2024)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
