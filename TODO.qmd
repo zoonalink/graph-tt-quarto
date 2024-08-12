@@ -14,7 +14,6 @@
 - [x] get word count - 6500 words
 - [x] save all code as gists - new page
 
-
 - [x] load remaining programmes to gdrive
 - [x] load remaining programmes to neo4j
 
@@ -27,7 +26,8 @@
   - [ ] make list of work needed
 
 
-
+- [ ] delete csv from online repo
+- [ ] check quarto repo for security issues
 
 
 
@@ -46,7 +46,7 @@
   - [ ] screencapture interesting insights
   - [ ] list of things to do
   - [ ] delete unnatttached nodes?
-- [ ] update pipe files - comments, etc.
+- [x] update pipe files - comments, etc.
 
 ## to check
 
