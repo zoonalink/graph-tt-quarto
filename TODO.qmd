@@ -13,8 +13,13 @@
 - [x] copy all sections so far to word doc - 6500 words
 - [x] get word count - 6500 words
 
+- [ ] save extracts to local folder for loading
+- [ ] add to ignore file 
+- [x] load remaining programmes to gdrive
+- [x] load remaining programmes to neo4j
+- [ ] 
 
-- [ ] send/share zip with xiaodong
+- [x] send/share zip with xiaodong
 
   
   - [ ] draft tte quality section
@@ -24,10 +29,7 @@
 
 - [ ] copy all cypher queries to page and annotate
 
-- [ ] save extracts to local folder for loading
-- [ ] add to ignore file 
-- [ ] load remaining programmes to gdrive
-- [ ] load remaining programmes to neo4j
+
 
 
 ## Tuesday
