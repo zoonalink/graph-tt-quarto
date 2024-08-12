@@ -167,5 +167,8 @@
   },
   "appendix-snippets.qmd": {
     "appendix-snippets.html": "0a29e207"
+  },
+  "appendix-code.qmd": {
+    "appendix-code.html": "4613c94b"
   }
 }

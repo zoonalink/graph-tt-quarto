@@ -12,22 +12,22 @@
 - [x] research graph explore/query
 - [x] copy all sections so far to word doc - 6500 words
 - [x] get word count - 6500 words
+- [x] save all code as gists - new page
 
-- [ ] save extracts to local folder for loading
-- [ ] add to ignore file 
+
 - [x] load remaining programmes to gdrive
 - [x] load remaining programmes to neo4j
-- [ ] 
 
 - [x] send/share zip with xiaodong
 
-  
+- [ ] copy all cypher queries to page and annotate
+
   - [ ] draft tte quality section
   - [ ] draft conclusion section 
   - [ ] make list of work needed
 
 
-- [ ] copy all cypher queries to page and annotate
+
 
 
 

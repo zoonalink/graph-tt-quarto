@@ -721,5 +721,17 @@
       "Graph Data Model",
       "Early Insights"
     ]
+  },
+  {
+    "objectID": "appendix-code.html",
+    "href": "appendix-code.html",
+    "title": "Code Gists",
+    "section": "",
+    "text": "Complete code can be found in these Github gists.\nGraph Timetable - Quarto - Config and Misc\n\nconfig.py\nlogger_config.py\nneo4j_schema.py\nutils.py\nconnect_to_neo4j.py\nconnect_to_rdb.py\n\n\n\n\n\nGraph Timetable - Quarto - SQL Queries\n\ncreate_temp_tables.sql\nnode-activity-by-pos-temp.sql\nnode-activityType-by-pos-temp.sql\nnode-dept-all.sql\nnode-module-by-pos-temp.sql\nnode-pos-by-pos-temp.sql\nnode-room-by-pos-temp.sql\nnode-staff-by-pos-temp.sql\nnode-student-by-pos-temp.sql\nrel-activity-module-by-pos-temp.sql\nrel-activity-room-by-pos-temp.sql\nrel-module-programme-by-pos-temp.sql\nrel-staff-activity-by-pos-temp.sql\nrel-student-activity-by-pos-temp.sql\n\n\n\n\n\nGraph Timetable - Quarto - Extract\n\ntemp_table_loader\nextract_sql_file\nextract_data\nextract_main\n\n\nGraph Timetable - Quarto - Upload to Google Drive\n\ngdrive_upload\ngoogle_drive_utils\n\n\nGraph Timetable - Quarto - Load\n\nload_schema\nload_utils\nload_nodes\nload_relationships\nconvert_properties\nset_display_properties\nload_main\n\n\nGraph Timetable - Quarto - Process\n\nprocess_utils\nprocess_node\nprocess_main",
+    "crumbs": [
+      "Home",
+      "Appendix & References",
+      "Code Gist"
+    ]
   }
 ]
