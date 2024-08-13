@@ -54,33 +54,12 @@
 - [ ] make github public (graph-tt-quarto)
 - [ ] add word count
 
-### making links between students and programmes/modules afterwards
-```cypher
-// Match student and programme nodes based on matching properties
-MATCH (s:student), (p:programme)
-WHERE s.stuProgSplusID = p.posSplusID
 
-// Create REGISTERED_ON relationship
-MERGE (s)-[:REGISTERED_ON]->(p)
+## cypher queries
 
-// Match student, activity, and module nodes based on ATTEND and BELONGS_TO relationships
-MATCH (s:student)-[:ATTENDS]->(a:activity)-[:BELONGS_TO]->(m:module)
+* dynamic node/relationship count query
+* what do students named 'aaron' have in common? (any other biodem)
 
-// Create ENROLLED_ON relationship
-MERGE (s)-[:ENROLLED_ON]->(m)
-
-```
-### deleting
-```cypher
-// Delete REGISTERED_ON relationships
-MATCH (:student)-[r:REGISTERED_ON]->(:programme)
-DELETE r
-
-// Delete ENROLLED_ON relationships
-MATCH (:student)-[r:ENROLLED_ON]->(:module)
-DELETE r
-
-```
 
 
 ## Later
