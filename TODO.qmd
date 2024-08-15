@@ -19,7 +19,13 @@
 
 - [x] send/share zip with xiaodong
 
-- [ ] copy all cypher queries to page and annotate
+- [x] copy all cypher queries to page and annotate
+- [ ] cypher query - QMD page
+  - [ ] cypher - clash QMD page
+  - [ ] rewrite time model page with new images
+- [ ] load demo archibus data
+  - [ ] room page
+  - [ ] reference tt quality penalty
 
   - [ ] draft tte quality section
   - [ ] draft conclusion section 
@@ -30,6 +36,10 @@
 - [ ] check quarto repo for security issues
 
 
+## Cypher
+
+- [ ] student clash page - link
+- [ ] project video - opening doors and peaking through
 
 
 ## Tuesday
