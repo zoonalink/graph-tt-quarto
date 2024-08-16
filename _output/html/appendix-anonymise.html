@@ -508,7 +508,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
- <span class="menu-text">Code Gists</span></a>
+ <span class="menu-text">ETL Code</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -558,6 +558,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text">Cypher Code</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-cypher.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cypher Queries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-cypher1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Creating Nodes and Relationships</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-cypher2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deleting Nodes and Relationships</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-cypher3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">General Queries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-cypher4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Count Queries</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-cypher5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hard (timetabling) Constraints</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-cypher5a.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Student Clashes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-cypher6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Soft Constraints</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-cypher7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Rooms and Spaces</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -600,19 +665,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The code generates fake names, emails, and IDs for staff or student data based on the unique IDs in the extract DataFrame. The anonymised data is then merged back with the original DataFrame, and the original columns are removed.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./images/anon_pre.png" class="lightbox" data-glightbox="description: .lightbox-desc-1;title:Pre-anonymisation Extract;" data-gallery="anon" title="Pre-anonymisation Extract"><img src="./images/anon_pre.png" class="gallery-image-large img-fluid figure-img" alt="Pre-anonymisation Extract"></a></p>
+<p><a href="./images/anon_pre.png" class="lightbox" data-gallery="anon" data-glightbox="description: .lightbox-desc-1;title:Pre-anonymisation Extract;" title="Pre-anonymisation Extract"><img src="./images/anon_pre.png" class="gallery-image-large img-fluid figure-img" alt="Pre-anonymisation Extract"></a></p>
 <figcaption>Pre-anonymisation Extract</figcaption>
 </figure>
 </div>
 <p><br></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./images/anon_post.png" class="lightbox" data-glightbox="description: .lightbox-desc-2;title:Post-anonymisation Extract;" data-gallery="anon" title="Post-anonymisation Extract"><img src="./images/anon_post.png" class="gallery-image-large img-fluid figure-img" alt="Post-anonymisation Extract"></a></p>
+<p><a href="./images/anon_post.png" class="lightbox" data-gallery="anon" data-glightbox="description: .lightbox-desc-2;title:Post-anonymisation Extract;" title="Post-anonymisation Extract"><img src="./images/anon_post.png" class="gallery-image-large img-fluid figure-img" alt="Post-anonymisation Extract"></a></p>
 <figcaption>Post-anonymisation Extract</figcaption>
 </figure>
 </div>
 <p><br> <br></p>
-<div id="92a36177" class="cell">
+<div id="5011953f" class="cell">
 <details class="code-fold">
 <summary>Click to show code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
@@ -1292,7 +1357,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"openEffect":"fade","closeEffect":"fade","selector":".lightbox","loop":false,"descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"fade","loop":false,"descPosition":"bottom","closeEffect":"fade"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

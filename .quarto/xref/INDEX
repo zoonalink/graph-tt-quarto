@@ -191,5 +191,29 @@
   },
   "appendix-code6-load.qmd": {
     "appendix-code6-load.html": "b2254806"
+  },
+  "appendix-cypher4.qmd": {
+    "appendix-cypher4.html": "f6168095"
+  },
+  "appendix-cypher1.qmd": {
+    "appendix-cypher1.html": "06b72ba1"
+  },
+  "appendix-cypher2.qmd": {
+    "appendix-cypher2.html": "830139da"
+  },
+  "appendix-cypher3.qmd": {
+    "appendix-cypher3.html": "781e3ca0"
+  },
+  "appendix-cypher5a.qmd": {
+    "appendix-cypher5a.html": "c4d7f350"
+  },
+  "appendix-cypher7.qmd": {
+    "appendix-cypher7.html": "44cfa344"
+  },
+  "appendix-cypher5.qmd": {
+    "appendix-cypher5.html": "6cdd2c13"
+  },
+  "appendix-cypher6.qmd": {
+    "appendix-cypher6.html": "f9ff6f3b"
   }
 }

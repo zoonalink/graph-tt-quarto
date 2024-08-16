@@ -1,0 +1,169 @@
+---
+title: "Creating Nodes and Relationships"
+---
+
+<br> Creating nodes and relationships is the first step in building a graph database. Nodes represent entities in the graph, such as students, rooms, or activities. Relationships connect nodes and represent the connections between them.
+
+## Creating Nodes
+
+Nodes are created using the `CREATE` clause in Cypher. The general syntax for creating a node is:
+
+``` cypher
+CREATE (n:NodeLabel {propertyName: propertyValue, ...})
+```
+
+Where:
+
+-   `n` is the node variable
+-   `NodeLabel` is the label assigned to the node
+-   `propertyName` is the property name
+-   `propertyValue` is the value assigned to the property
+-   `...` represents additional properties
+
+### Example: Creating a Student Node
+
+``` cypher
+CREATE (s:Student {studentID: '123456', studentName: 'Alice'...})
+```
+
+## Creating Relationships
+
+Relationships are created using the `CREATE` clause in Cypher. The general syntax for creating a relationship is:
+
+``` cypher
+MATCH (n1:NodeLabel1), (n2:NodeLabel2)
+WHERE n1.propertyName = propertyValue1 AND n2.propertyName = propertyValue2
+CREATE (n1)-[r:RELATIONSHIP_TYPE]->(n2)
+```
+
+Where:
+
+-   `n1` and `n2` are the node variables
+-   `NodeLabel1` and `NodeLabel2` are the labels assigned to the nodes
+-   `propertyName` is the property name
+-   `propertyValue` is the value assigned to the property
+-   `r` is the relationship variable
+-   `RELATIONSHIP_TYPE` is the type of relationship
+-   `->` represents the direction of the relationship
+-   `MATCH` is used to find the nodes to connect
+-   `WHERE` is used to filter the nodes
+-   `CREATE` is used to create the relationship
+-   `...` represents additional properties
+-   `MATCH` and `WHERE` are optional and can be used to find and filter nodes before creating the relationship
+
+### Example: Creating a Relationship Between a Student and an Activity
+
+``` cypher
+MATCH (s:Student {studentID: '123456'}), (a:Activity {activityID: '789'})
+CREATE (s)-[r:ATTENDS]->(a)
+```
+
+## Relationships created after ETL
+
+The following examples were applied to the proof-of-concept graph database to create relationships after loading data into the graph.
+
+### (student)-\[REGISTERED_ON\]-\>(programme)
+
+``` cypher
+
+// Create REGISTERED_ON relationship between student and programme nodes
+
+// Match student and programme nodes based on matching properties
+MATCH (s:student), (p:programme)
+WHERE s.stuProgSplusID = p.posSplusID
+
+// Create REGISTERED_ON relationship
+MERGE (s)-[:REGISTERED_ON]->(p)
+```
+
+``` cypher
+// Delete REGISTERED_ON relationships
+MATCH (:student)-[r:REGISTERED_ON]->(:programme)
+DELETE r
+```
+
+### (student)-\[ENROLLED_ON\]-\>(module)
+
+``` cypher
+// Create ENROLLED_ON relationship between students and modules 
+
+// Match student, activity, and module nodes based on ATTEND and BELONGS_TO relationships
+MATCH (s:student)-[:ATTENDS]->(a:activity)-[:BELONGS_TO]->(m:module)
+
+// Create ENROLLED_ON relationship
+MERGE (s)-[:ENROLLED_ON]->(m)
+```
+
+``` cypher
+// Delete ENROLLED_ON relationships
+MATCH (:student)-[r:ENROLLED_ON]->(:module)
+DELETE r
+```
+
+### (activity)-\[HAS_TYPE\]-\>(activity_type)
+
+``` cypher
+// Create HAS_TYPE relationship between activity and activityType nodes
+
+// Match activity and activityType nodes based on matching properties
+MATCH (a:activity), (at:activityType)
+WHERE a.actTypeName = at.actTypeDescription
+
+// Create HAS_TYPE relationship
+MERGE (a)-[:HAS_TYPE]->(at)
+```
+
+``` cypher
+// Find activities without an activityType
+
+MATCH (a:activity)
+WHERE NOT EXISTS ((a)-[:HAS_TYPE]->(:activityType))
+RETURN a
+```
+
+``` cypher
+// Delete HAS_TYPE relationships between activity and activityType nodes
+
+MATCH (a:activity)-[r:HAS_TYPE]->(at:activityType)
+DELETE r
+```
+
+### (module)-\[HAS_OWNING_DEPT\]-\>(department)
+
+``` cypher
+// Create HAS_OWNING_DEPT relationship between module and department nodes
+
+// Match module and department nodes based on matching properties
+MATCH (m:module), (d:department)
+WHERE m.modDepartment = d.deptName
+
+// Create HAS_OWNING_DEPT relationship
+MERGE (m)-[:HAS_OWNING_DEPT]->(d)
+```
+
+``` cypher
+// Delete HAS_OWNING_DEPT relationships between module and department nodes
+
+MATCH (m:module)-[r:HAS_OWNING_DEPT]->(d:department)
+DELETE r
+```
+
+### (programme)-\[HAS_OWNING_DEPT\]-\>(department)
+
+``` cypher
+// Create HAS_OWNING_DEPT relationship between programme and department nodes
+
+// Match programme and department nodes based on matching properties
+MATCH (p:programme), (d:department)
+WHERE p.posDepartment = d.deptName
+
+// Create HAS_OWNING_DEPT relationship
+MERGE (p)-[:HAS_OWNING_DEPT]->(d)
+```
+
+``` cypher
+// Delete HAS_OWNING_DEPT relationships between programme and department nodes
+
+MATCH (p:programme)-[r:HAS_OWNING_DEPT]->(d:department)
+DELETE r
+```

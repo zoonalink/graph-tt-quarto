@@ -1,0 +1,60 @@
+---
+title: "Deleting Nodes and Relationships"
+---
+
+## Deleting Nodes and Relationships
+
+Deleting nodes and relationships is an important operation in managing the graph database. Nodes and relationships can be deleted using the `DELETE` clause in Cypher.
+
+### Deleting Nodes
+
+Nodes can be deleted using the `DELETE` clause with the node variable. The general syntax for deleting a node is:
+
+```cypher
+MATCH (n:NodeLabel {propertyName: propertyValue})
+DELETE n
+```
+
+Where:
+
+- `n` is the node variable
+- `NodeLabel` is the label assigned to the node
+- `propertyName` is the property name
+- `propertyValue` is the value assigned to the property
+- `DELETE` is used to delete the node
+- `MATCH` is used to find the node to delete
+- `...` represents additional properties
+
+### Example: Deleting a Student Node
+
+```cypher
+MATCH (s:Student {studentID: '123456'})
+DELETE s
+```
+
+### Deleting Relationships
+
+Relationships can be deleted using the `DELETE` clause with the relationship variable. The general syntax for deleting a relationship is:
+
+```cypher
+MATCH (n1:NodeLabel1)-[r:RELATIONSHIP_TYPE]->(n2:NodeLabel2)
+DELETE r
+```
+
+Where:
+
+- `n1` and `n2` are the node variables
+- `NodeLabel1` and `NodeLabel2` are the labels assigned to the nodes
+- `r` is the relationship variable
+- `RELATIONSHIP_TYPE` is the type of relationship
+- `DELETE` is used to delete the relationship
+- `MATCH` is used to find the relationship to delete
+- `...` represents additional properties
+- `MATCH` is used to find the relationship to delete
+
+### Example: Deleting a Relationship Between a Student and an Activity
+
+```cypher
+MATCH (s:Student {studentID: '123456'})-[r:ATTENDS]->(a:Activity {activityID: '789'})
+DELETE r
+```

@@ -1,0 +1,106 @@
+---
+title: "General Queries"
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+---
+<br>
+This page contains a selection general queries that are used to explore the graph database. The queries are designed to provide insights into the data and relationships between nodes. The queries can be run in a Neo4j browser or other Cypher-compatible interface.
+
+### List all nodes
+
+The following query lists all nodes in the graph:
+
+```cypher
+MATCH (n)
+RETURN n
+```
+
+![List All Nodes](./images/cypher-all-nodes.png)
+
+
+### node labels without relationships
+
+```cypher
+// Find node labels without relationships and their count
+
+MATCH (n)
+WHERE NOT EXISTS(()-[]-(n)) AND NOT EXISTS((n)-[]-())
+RETURN DISTINCT labels(n) AS nodeLabels, count(n) AS nodeCount
+```
+
+![Node labels without Relationships](./images/cypher-nodeLabels-no-rels.png)
+
+### nodes without relationships - aka orphans
+
+```cypher
+// Find nodes without relationships
+
+MATCH (n)
+WHERE NOT EXISTS(()-[]-(n)) AND NOT EXISTS((n)-[]-())
+RETURN n
+```
+![Nodes Without Relationships](./images/cypher-nodes-no-rels.png)
+
+
+### datatype of property
+
+```cypher
+/* return datatype of actStartTime on activity node */
+
+MATCH (a:activity)
+RETURN DISTINCT apoc.meta.cypher.type(a.actStartTime) as actStartTimeType
+```
+![Datatype of Property](./images/cypher-property-datatype.png)
+
+
+### unique property values
+
+```cypher
+// List unique properties for a Node
+
+MATCH (a:activity)
+UNWIND keys(a) AS propertyKey
+RETURN COLLECT(DISTINCT propertyKey) AS propertyKeys
+//RETURN DISTINCT propertyKey as propertyKeys
+```
+
+![Unique Property Values](./images/cypher-activity-properties.png)
+
+
+### students without activities 
+
+```cypher
+// Students without Activities
+MATCH (s:student)
+WHERE NOT (s)-[:ATTENDS]->()
+RETURN s
+```
+
+![Students Without Activities](./images/cypher-student-no-activity.png)
+
+
+### activityType without activity
+
+```cypher
+// Activities without Rooms
+
+MATCH (at:activityType)
+WHERE NOT (at)<-[:HAS_TYPE]-()
+RETURN at;
+```
+
+![ActivityType Without Room](./images/cypher-actType-no-activity.png)
+
+### activities without rooms
+
+```cypher
+// Activities without Rooms
+
+MATCH (a:activity)
+WHERE NOT (a)-[]->(:room)
+RETURN a;
+```
+![Activities Without Rooms](./images/cypher-activity-no-room.png)

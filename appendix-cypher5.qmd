@@ -1,0 +1,182 @@
+---
+title: "Hard Constraints"
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+---
+<br>
+
+Hard constraints in a timetabling context are generally rules or conditions which cannot be violated.  Violation would indicate non-viable timetable, e.g. a lecturer being scheduled to teach in two places simultaneously.
+
+In reality, hard constraints appear in timetables and are accepted with real-world workarounds.
+
+This page contains cypher queries that can be used to identify where a timetabling hard constraint has been violated.
+
+Example hard constraints include:
+
+* **All Activities Scheduled**: Every lecture, tutorial, lab, etc., must have a designated time and place.
+* **No Room Conflicts (aka room clash)**: Two activities cannot be scheduled in the same room at the same time.
+* **No Staff Conflicts (aka staff clash)**: A staff member cannot be assigned to two activities or more occurring at the same datetime.
+* **No Student Conflicts (aka student clash)**: A student cannot be allocated to two or more activities which are scheduled at the same datetime.
+* **Staff Availability Respected**: Activities cannot be scheduled during a staff member's unavailable times (e.g., research days, meetings, unavailability pattern).
+* **Room Capacity Sufficient**: The room assigned to an activity must accommodate the expected number of students
+* **Curriculum Requirements Met**: Required courses must be offered at times when students can take them
+
+
+### Unscheduled activities
+
+```cypher
+MATCH (a:activity)
+WHERE a.actStartDate IS NULL 
+OR a.actStartTime IS NULL 
+OR a.actEndTime IS NULL
+RETURN a
+```
+
+### Room clashes
+
+```cypher
+MATCH (a1:activity)-[r1:OCCUPIES]->(r:room)<-[r2:OCCUPIES]-(a2:activity)
+WHERE a1.actStartDate = a2.actStartDate AND a1 <> a2
+    AND (
+        (a1.actStartTime <= a2.actStartTime AND a1.actEndTime > a2.actStartTime)
+        OR 
+        (a2.actStartTime <= a1.actStartTime AND a2.actEndTime > a1.actStartTime)
+    )
+RETURN a1, a2, r, r1, r2
+```
+![Room Clashes](./images/cypher-room-clash.png)
+
+```{python}
+from connect_to_neo4j_db import connect_to_neo4j
+from neo4j import GraphDatabase
+import pandas as pd
+
+# connect to Neo4j
+driver = connect_to_neo4j()
+
+# session
+session = driver.session()
+
+# run query
+query = """
+MATCH (a1:activity)-[r1:OCCUPIES]->(r:room)<-[r2:OCCUPIES]-(a2:activity)
+WHERE r.roomName IN ["4Q50/51 FR", "4Q69 FR", "3E Maths Open Zone A", "3E12 FR"] 
+  AND a1.actStartDate = a2.actStartDate 
+  AND a1 <> a2
+  AND (
+        (a1.actStartTime <= a2.actStartTime AND a1.actEndTime > a2.actStartTime)
+        OR 
+        (a2.actStartTime <= a1.actStartTime AND a2.actEndTime > a1.actStartTime)
+      )
+RETURN a1.actName AS activity1, a2.actName AS activity2, 
+       r.roomName AS room, a1.actStartDate AS date,
+       a1.actStartTime AS activity1_start, a1.actEndTime AS activity1_end,
+       a2.actStartTime AS activity2_start, a2.actEndTime AS activity2_end
+""" 
+
+print("Running query...\n")
+result = session.run(query)
+
+# list to hold records
+records = []
+for record in result:
+    records.append(record)
+
+# df
+df = pd.DataFrame(records, columns=["activity1", "activity2", "room", "date", 
+                                   "activity1_start", "activity1_end", 
+                                   "activity2_start", "activity2_end"])
+
+# print
+print(df)
+
+# close session and driver
+session.close()
+driver.close()
+```
+
+### Room capacity exceeded
+
+This query identifies activities where the number of students exceeds the room capacity.
+
+```cypher
+MATCH (r:room)<-[r1:OCCUPIES]-(a:activity)<-[:ATTENDS]-(s:student)
+//WHERE a.Date >= date("2022-01-01") AND a.Date <= date("2022-06-30") 
+WITH r, a, count(s) as numStudents
+WHERE numStudents > r.roomCapacity
+RETURN r, a.actStartDate, a.actName AS Activity, r.roomCapacity, numStudents - r.roomCapacity AS extraNeeded
+ORDER BY extraNeeded DESC
+```
+
+```{python}
+from connect_to_neo4j_db import connect_to_neo4j
+from neo4j import GraphDatabase
+import pandas as pd
+
+# connect to Neo4j
+driver = connect_to_neo4j()
+
+# session
+session = driver.session()
+
+# run query
+query = """
+MATCH (r:room)<-[r1:OCCUPIES]-(a:activity)<-[:ATTENDS]-(s:student)
+//WHERE a.Date >= date("2022-01-01") AND a.Date <= date("2022-06-30") 
+WITH r, a, count(s) as numStudents
+WHERE numStudents > r.roomCapacity
+RETURN DISTINCT r.roomName, r.roomType,  a.actName AS Activity, 
+       r.roomCapacity, numStudents - r.roomCapacity AS extraNeeded
+ORDER BY extraNeeded DESC
+""" 
+
+print("Running query...\n")
+result = session.run(query)
+
+# list to hold records
+records = []
+for record in result:
+    records.append(record)
+
+# df
+df = pd.DataFrame(records, columns=["roomName", "roomType", "Activity", 
+                                   "roomCapacity", "extraNeeded"])
+
+# print
+print("Printing first 5 records...\n")
+print(df.head())
+
+# close the session and driver
+session.close()
+driver.close()
+```
+
+
+### Student clashes
+
+This query identifies students who are scheduled to attend two or more activities at the same time.  However, it is not an efficient query.  This is an instance where the graph structure might make a significant difference to the query performance.
+
+This page explores the student clash query in more detail: [Student Clashes](appendix-cypher5a.qmd)
+
+```cypher
+MATCH (s:student)-[:ATTENDS]->(a1:activity)
+WITH s, a1
+MATCH (s)-[:ATTENDS]->(a2:activity) 
+WHERE a1 <> a2 
+  AND a1.actStartDate = a2.actStartDate 
+  AND (a1.actStartTime < a2.actEndTime AND a1.actEndTime > a2.actStartTime)  
+  AND NOT (a1.actStartTime = a2.actEndTime OR a1.actEndTime = a2.actStartTime) 
+  AND a1.actName < a2.actName  // Ensure only one direction of the pair is returned
+RETURN s.stuFirstName_anon AS Student, 
+       a1.actStartDate AS ClashDate, 
+       a1.actName AS Activity1, 
+       a1.actStartTime + "-" + a1.actEndTime AS Timeslot1, 
+       a2.actName AS Activity2, 
+       a2.actStartTime + "-" + a2.actEndTime AS Timeslot2
+ORDER BY Student, ClashDate;
+```
+
+![Student Clashes](./images/cypher-student-clash.png)

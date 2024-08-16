@@ -89,7 +89,7 @@ website:
           text: Configuration
         - href: appendix-anonymise.qmd
           text: Anonymisation
-        - text: Code 
+        - text: ETL Code 
           menu:
           - href: appendix-code.qmd
             text: Code Gist
@@ -105,7 +105,26 @@ website:
             text: Transform
           - href: appendix-code6-load.qmd
             text: Neo4j Load
-          
+        - text: Cypher Code
+          menu:
+          - href: appendix-cypher.qmd
+            text: Cypher Queries
+          - href: appendix-cypher1.qmd
+            text: Creating Nodes and Relationships
+          - href: appendix-cypher2.qmd
+            text: Deleting Nodes and  Relationships
+          - href: appendix-cypher3.qmd
+            text: General Queries
+          - href: appendix-cypher4.qmd
+            text: Count Queries
+          - href: appendix-cypher5.qmd
+            text: Hard (timetabling) Constraints
+          - href: appendix-cypher5a.qmd
+            text: Student Clashes
+          - href: appendix-cypher6.qmd
+            text: Soft Constraints
+          - href: appendix-cypher7.qmd
+            text: Rooms and Spaces
           
         - href: references.qmd
           text: References
@@ -196,7 +215,7 @@ website:
             text: Configuration
           - href: appendix-anonymise.qmd
             text: Anonymisation
-          - section: "Code"          
+          - section: "ETL Code"          
             contents:
               - href: appendix-code.qmd
                 text: Code Gist
@@ -211,7 +230,27 @@ website:
               - href: appendix-code5-transform.qmd
                 text: Transform
               - href: appendix-code6-load.qmd
-                text: Neo4j Load         
+                text: Neo4j Load    
+          - section: "Cypher Code"
+            contents:
+              - href: appendix-cypher.qmd
+                text: Cypher Queries
+              - href: appendix-cypher1.qmd
+                text: Creating Nodes and Relationships
+              - href: appendix-cypher2.qmd
+                text: Deleting Nodes and  Relationships 
+              - href: appendix-cypher3.qmd
+                text: General Queries
+              - href: appendix-cypher4.qmd
+                text: Count Queries  
+              - href: appendix-cypher5.qmd
+                text: Hard (timetabling) Constraints 
+              - href: appendix-cypher5a.qmd
+                text: Student Clashes 
+              - href: appendix-cypher6.qmd
+                text: Soft Constraints
+              - href: appendix-cypher7.qmd
+                text: Rooms and Spaces
           - href: references.qmd
             text: References
 

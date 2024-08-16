@@ -1,0 +1,330 @@
+---
+title: "Student Clashes - Deeper Dive"
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+---
+<br>
+
+This page explore different graph data structures for the purposes of identifying student clashes.  It illustrates the inherent flexiblity of graph data structures and that thorough modelling and profiling of the data can lead to more efficient and effective queries.
+
+## Scenario
+
+Each model below will use the same basic scenario:
+
+* Two students - Alice and Bob
+* Three activities:
+  * `ITGD` - Introduction to Graph Databases
+  * `Neo4j` - Neo4j for Beginners
+  * `TigerDB` - TigerGraph for Data Scientists
+  * Each activity has a start and end time
+  * Each activity is scheduled for several weeks
+* There are deliberate clashes between the activities to illustrate the concept of a student clash
+
+## Model 1 - Simple
+
+This model is the one used in the data engineering proof-of-concept.  Each 'occurence' of an activity is a separate node.  This model is simple and easy to understand, but can be inefficient for certain queries.
+
+### Create data
+
+```cypher
+// Create unique activity nodes (TestActivityModel1)
+CREATE (:TestActivityModel1 { actName: "ITGD", date: date("2024-08-06"), startTime: localtime("09:00:00"), endTime: localtime("11:00:00") })
+CREATE (:TestActivityModel1 { actName: "ITGD", date: date("2024-08-13"), startTime: localtime("09:00:00"), endTime: localtime("11:00:00") })
+CREATE (:TestActivityModel1 { actName: "ITGD", date: date("2024-08-20"), startTime: localtime("09:00:00"), endTime: localtime("11:00:00") })
+CREATE (:TestActivityModel1 { actName: "ITGD", date: date("2024-08-27"), startTime: localtime("09:00:00"), endTime: localtime("11:00:00") })
+CREATE (:TestActivityModel1 { actName: "ITGD", date: date("2024-09-03"), startTime: localtime("09:00:00"), endTime: localtime("11:00:00") })
+CREATE (:TestActivityModel1 { actName: "Neo4j", date: date("2024-07-30"), startTime: localtime("10:00:00"), endTime: localtime("11:00:00") })
+CREATE (:TestActivityModel1 { actName: "Neo4j", date: date("2024-08-13"), startTime: localtime("10:00:00"), endTime: localtime("11:00:00") })
+CREATE (:TestActivityModel1 { actName: "Neo4j", date: date("2024-08-27"), startTime: localtime("10:00:00"), endTime: localtime("11:00:00") })
+CREATE (:TestActivityModel1 { actName: "TigerDb", date: date("2024-08-06"), startTime: localtime("11:00:00"), endTime: localtime("12:00:00") })
+CREATE (:TestActivityModel1 { actName: "TigerDb", date: date("2024-08-13"), startTime: localtime("11:00:00"), endTime: localtime("12:00:00") });
+
+// Create unique student nodes (TestStudentModel1)
+CREATE (:TestStudentModel1 { stuFirstName_anon: "Alice", stuID_anon: "test-student-1" })
+CREATE (:TestStudentModel1 { stuFirstName_anon: "Bob", stuID_anon: "test-student-2" });
+
+// Create ATTENDS relationships (one student attends all TigerDb and Neo4j)
+MATCH (s:TestStudentModel1 { stuID_anon: "test-student-1" })
+MATCH (a:TestActivityModel1) WHERE a.actName IN ["TigerDb", "Neo4j"]
+CREATE (s)-[:ATTENDS]->(a);
+
+MATCH (s:TestStudentModel1 { stuID_anon: "test-student-2" })
+MATCH (a:TestActivityModel1) WHERE a.actName IN ["ITGD", "Neo4j"]
+MERGE (s)-[:ATTENDS]->(a) ;
+```
+![Model 1](./images/cypher-clash1-model.png)
+
+
+```cypher
+
+MATCH (s:TestStudentModel1)-[:ATTENDS]->(a1:TestActivityModel1)
+WITH s, a1
+MATCH (s)-[:ATTENDS]->(a2:TestActivityModel1) 
+WHERE a1 <> a2 
+  AND a1.date = a2.date 
+  AND (a1.startTime < a2.endTime AND a1.endTime > a2.startTime)  // Correct overlap condition
+  AND NOT (a1.startTime = a2.endTime OR a1.endTime = a2.startTime) // Exclude "touching" cases
+  AND a1.actName < a2.actName  // This ensures only one direction of the pair is returned
+RETURN s.stuFirstName_anon AS Student, 
+       a1.date AS ClashDate, 
+       a1.actName AS Activity1, 
+       a1.startTime + "-" + a1.endTime AS Timeslot1, 
+       a2.actName AS Activity2, 
+       a2.startTime + "-" + a2.endTime AS Timeslot2
+ORDER BY Student, ClashDate;
+```
+
+![Model 1 results](./images/cypher-clash1-result.png)
+
+![Model 1 profile](./images/cypher-clash1-db-hits.png)
+
+## Model 2 - Date and Time Nodes
+
+Model 2 uses a single node for each activity but has date and time nodes.  This model is more complex but can be more efficient for certain queries.
+
+### Create data
+
+```cypher
+// Create unique time nodes
+CREATE (:TestStartTimeNode { time: localtime("09:00:00") })
+CREATE (:TestStartTimeNode { time: localtime("10:00:00") })
+CREATE (:TestStartTimeNode { time: localtime("11:00:00") })
+CREATE (:TestEndTimeNode { time: localtime("11:00:00") })
+CREATE (:TestEndTimeNode { time: localtime("12:00:00") })
+
+// Create unique date nodes
+CREATE (:TestDateNode { date: date("2024-07-30") })
+CREATE (:TestDateNode { date: date("2024-08-06") })
+CREATE (:TestDateNode { date: date("2024-08-13") })
+CREATE (:TestDateNode { date: date("2024-08-20") })
+CREATE (:TestDateNode { date: date("2024-08-27") })
+CREATE (:TestDateNode { date: date("2024-09-03") })
+
+// Create activity nodes
+CREATE (:TestActivityModel2 { actName: "ITGD" })
+CREATE (:TestActivityModel2 { actName: "Neo4j" })
+CREATE (:TestActivityModel2 { actName: "TigerDb" });
+
+// Connect ITGD to dates and times (using MERGE)
+MATCH (a:TestActivityModel2 { actName: "ITGD" })
+MATCH (d:TestDateNode) WHERE d.date IN [date("2024-08-06"), date("2024-08-13"), date("2024-08-20"), date("2024-08-27"), date("2024-09-03")]
+MERGE (a)-[:SCHEDULED_ON]->(d)
+WITH a
+MATCH (st:TestStartTimeNode { time: localtime("09:00:00") })
+MATCH (et:TestEndTimeNode { time: localtime("11:00:00") })
+MERGE (a)-[:STARTS_AT]->(st)
+MERGE (st)-[:ENDS_AT]->(et);
+
+// Connect Neo4j to dates and times (adjust dates/times and use MERGE)
+MATCH (a:TestActivityModel2 { actName: "Neo4j" })
+MATCH (d:TestDateNode) WHERE d.date IN [date("2024-07-30"), date("2024-08-13"), date("2024-08-27")]
+MERGE (a)-[:SCHEDULED_ON]->(d)
+WITH a
+MATCH (st:TestStartTimeNode { time: localtime("10:00:00") })
+MATCH (et:TestEndTimeNode { time: localtime("11:00:00") })
+MERGE (a)-[:STARTS_AT]->(st)
+MERGE (st)-[:ENDS_AT]->(et);
+
+// Connect TigerDb to dates and times (adjust dates/times and use MERGE)
+MATCH (a:TestActivityModel2 { actName: "TigerDb" })
+MATCH (d:TestDateNode) WHERE d.date IN [date("2024-08-06"), date("2024-08-13")]
+MERGE (a)-[:SCHEDULED_ON]->(d)
+WITH a
+MATCH (st:TestStartTimeNode { time: localtime("11:00:00") })
+MATCH (et:TestEndTimeNode { time: localtime("12:00:00") })
+MERGE (a)-[:STARTS_AT]->(st)
+MERGE (st)-[:ENDS_AT]->(et);
+
+// Create Students and ATTENDS relationships (same as Model 1)
+CREATE (:TestStudentModel2 { stuFirstName_anon: "Alice", stuID_anon: "test-student-1" })
+CREATE (:TestStudentModel2 { stuFirstName_anon: "Bob", stuID_anon: "test-student-2" });
+
+MATCH (s:TestStudentModel2 { stuID_anon: "test-student-1" })
+MATCH (a:TestActivityModel2) WHERE a.actName IN ["TigerDb", "Neo4j"]
+CREATE (s)-[:ATTENDS]->(a);
+
+MATCH (s:TestStudentModel2 { stuID_anon: "test-student-2" })
+MATCH (a:TestActivityModel2) WHERE a.actName IN ["ITGD", "Neo4j"]
+MERGE (s)-[:ATTENDS]->(a) ;
+```
+
+![Model 2](./images/cypher-clash2-model.png)
+
+```cypher
+MATCH (s:TestStudentModel2)-[:ATTENDS]->(a1:TestActivityModel2)-[:SCHEDULED_ON]->(d:TestDateNode)
+WITH s, a1, d
+MATCH (s)-[:ATTENDS]->(a2:TestActivityModel2)-[:SCHEDULED_ON]->(d) // Same date
+MATCH (a1)-[:STARTS_AT]->(st1:TestStartTimeNode)-[:ENDS_AT]->(et1:TestEndTimeNode) 
+MATCH (a2)-[:STARTS_AT]->(st2:TestStartTimeNode)-[:ENDS_AT]->(et2:TestEndTimeNode) 
+WHERE a1 <> a2 
+  AND (st1.time < et2.time AND et1.time > st2.time)  // Correct overlap condition
+  AND NOT (st1.time = et2.time OR et1.time = st2.time) // Exclude "touching" cases
+  AND a1.actName < a2.actName  // This ensures only one direction of the pair is returned
+RETURN  s.stuFirstName_anon AS Student, 
+        d.date AS ClashDate, 
+        a1.actName AS Activity1, 
+        st1.time + "-" + et1.time AS Timeslot1,
+        a2.actName AS Activity2,
+        st2.time + "-" + et2.time AS Timeslot2
+ORDER BY Student, ClashDate;
+```
+
+The results are the same as Model 1, but the profile is different:
+
+![Model 2 profile](./images/cypher-clash2-db-hits.png)
+
+
+## Model 3 - Date Nodes 
+
+Model 3 uses a single node for each activity and date - start and end times are properties of the activity.
+
+```cypher
+// Create unique date nodes
+CREATE (:TestDateNodeModel3 { date: date("2024-07-30") })
+CREATE (:TestDateNodeModel3 { date: date("2024-08-06") })
+CREATE (:TestDateNodeModel3 { date: date("2024-08-13") })
+CREATE (:TestDateNodeModel3 { date: date("2024-08-20") })
+CREATE (:TestDateNodeModel3 { date: date("2024-08-27") })
+CREATE (:TestDateNodeModel3 { date: date("2024-09-03") })
+
+// Create activity nodes with start/end times as properties
+CREATE (:TestActivityModel3 { actName: "ITGD", startTime: localtime("09:00:00"), endTime: localtime("11:00:00") })
+CREATE (:TestActivityModel3 { actName: "Neo4j", startTime: localtime("10:00:00"), endTime: localtime("11:00:00") })
+CREATE (:TestActivityModel3 { actName: "TigerDb", startTime: localtime("11:00:00"), endTime: localtime("12:00:00") });
+
+// Connect Activities to Dates (using MERGE)
+MATCH (a:TestActivityModel3 { actName: "ITGD" })
+MATCH (d:TestDateNodeModel3) WHERE d.date IN [date("2024-08-06"), date("2024-08-13"), date("2024-08-20"), date("2024-08-27"), date("2024-09-03")]
+MERGE (a)-[:SCHEDULED_ON]->(d);
+
+MATCH (a:TestActivityModel3 { actName: "Neo4j" })
+MATCH (d:TestDateNodeModel3) WHERE d.date IN [date("2024-07-30"), date("2024-08-13"), date("2024-08-27")]
+MERGE (a)-[:SCHEDULED_ON]->(d);
+
+MATCH (a:TestActivityModel3 { actName: "TigerDb" })
+MATCH (d:TestDateNodeModel3) WHERE d.date IN [date("2024-08-06"), date("2024-08-13")]
+MERGE (a)-[:SCHEDULED_ON]->(d);
+
+// Create Students and ATTENDS relationships
+CREATE (:TestStudentModel3 { stuFirstName_anon: "Alice", stuID_anon: "test-student-1" })
+CREATE (:TestStudentModel3 { stuFirstName_anon: "Bob", stuID_anon: "test-student-2" });
+
+MATCH (s:TestStudentModel3 { stuID_anon: "test-student-1" })
+MATCH (a:TestActivityModel3) WHERE a.actName IN ["TigerDb", "Neo4j"]
+CREATE (s)-[:ATTENDS]->(a) ;
+
+MATCH (s:TestStudentModel3 { stuID_anon: "test-student-2" })
+MATCH (a:TestActivityModel3) WHERE a.actName IN ["ITGD", "Neo4j"]
+CREATE (s)-[:ATTENDS]->(a) ;
+```
+
+![Model 3](./images/cypher-clash3-model.png)
+
+The results are the same as Model 1 and Model 2, but the profile is different:
+
+![Model 3 profile](./images/cypher-clash3-db-hits.png)
+
+
+### Model 4 - 
+
+Model 4 uses a single node for each activity and date - start and end times are properties of the *relationship* between the activity and the date.
+
+```cypher
+// Create unique date nodes
+MERGE (:TestDateNodeModel4 { date: date("2024-07-30") })
+MERGE (:TestDateNodeModel4 { date: date("2024-08-06") })
+MERGE (:TestDateNodeModel4 { date: date("2024-08-13") })
+MERGE (:TestDateNodeModel4 { date: date("2024-08-20") })
+MERGE (:TestDateNodeModel4 { date: date("2024-08-27") })
+MERGE (:TestDateNodeModel4 { date: date("2024-09-03") })
+
+// Create activity nodes 
+MERGE (:TestActivityModel4 { actName: "ITGD" })
+MERGE (:TestActivityModel4 { actName: "Neo4j" })
+MERGE (:TestActivityModel4 { actName: "TigerDb" });
+
+// Connect ITGD to Dates with START and END relationships
+MATCH (a:TestActivityModel4 { actName: "ITGD" })
+MATCH (d:TestDateNodeModel4) WHERE d.date IN [date("2024-08-06"), date("2024-08-13"), date("2024-08-20"), date("2024-08-27"), date("2024-09-03")]
+MERGE (a)-[:STARTS { time: localtime("09:00:00") }]->(d)
+MERGE (a)-[:ENDS { time: localtime("11:00:00") }]->(d);
+
+// Connect Neo4j to Dates (adjust dates and times)
+MATCH (a:TestActivityModel4 { actName: "Neo4j" })
+MATCH (d:TestDateNodeModel4) WHERE d.date IN [date("2024-07-30"), date("2024-08-13"), date("2024-08-27")]
+MERGE (a)-[:STARTS { time: localtime("10:00:00") }]->(d)
+MERGE (a)-[:ENDS { time: localtime("11:00:00") }]->(d);
+
+// Connect TigerDb to Dates (adjust dates and times)
+MATCH (a:TestActivityModel4 { actName: "TigerDb" })
+MATCH (d:TestDateNodeModel4) WHERE d.date IN [date("2024-08-06"), date("2024-08-13")]
+MERGE (a)-[:STARTS { time: localtime("11:00:00") }]->(d)
+MERGE (a)-[:ENDS { time: localtime("12:00:00") }]->(d);
+
+// Create Students and ATTENDS relationships
+MERGE (:TestStudentModel4 { stuFirstName_anon: "Alice", stuID_anon: "test-student-1" })
+MERGE (:TestStudentModel4 { stuFirstName_anon: "Bob", stuID_anon: "test-student-2" });
+
+MATCH (s:TestStudentModel4 { stuID_anon: "test-student-1" })
+MATCH (a:TestActivityModel4) WHERE a.actName IN ["TigerDb", "Neo4j"]
+MERGE (s)-[:ATTENDS]->(a) ;
+
+MATCH (s:TestStudentModel4 { stuID_anon: "test-student-2" })
+MATCH (a:TestActivityModel4) WHERE a.actName IN ["ITGD", "Neo4j"]
+MERGE (s)-[:ATTENDS]->(a) ;
+```
+![Model 4](./images/cypher-clash4-model.png)
+
+
+The results are the same as Model 1, Model 2, and Model 3, but the profile is different:
+
+![Model 4 profile](./images/cypher-clash4-db-hits.png)
+
+## Conclusion
+
+Each model has its own strengths and weaknesses.  The choice of model will depend on the specific requirements.  The more complex models can be more efficient for certain queries, but can also be more difficult to understand and maintain.  The simpler models are easier to understand and maintain, but can be less efficient for certain queries.
+
+Of the four tested, Model 3 was the most efficient in terms of database hits on the *very* small dataset used.  However, this may not be the case with larger datasets.  It is important to profile the queries and the data to determine the best model for the specific requirements.
+
+## Delete Data
+
+### Model 1
+
+```cypher
+// Delete all TestActivityModel1 nodes
+MATCH (a:TestActivityModel1)
+DETACH DELETE a; 
+
+// Delete all TestStudentModel1 nodes
+MATCH (s:TestStudentModel1)
+DETACH DELETE s;
+```
+
+### Model 2
+
+```cypher
+// Delete test data for Model 2
+MATCH (n) 
+WHERE n:TestStudentModel2 OR n:TestActivityModel2 OR n:TestDateNode OR n:TestStartTimeNode OR n:TestEndTimeNode
+DETACH DELETE n
+```
+
+### Model 3
+
+```cypher
+// Delete test data for Model 3
+MATCH (n) 
+WHERE n:TestStudentModel3 OR n:TestActivityModel3 OR n:TestDateNodeModel3 
+DETACH DELETE n
+```
+
+### Model 4
+
+```cypher
+MATCH (n) 
+WHERE n:TestStudentModel4 OR n:TestActivityModel4 OR n:TestDateNodeModel4
+DETACH DELETE n
+```

@@ -1,0 +1,161 @@
+---
+title: "Count Queries"
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+---
+
+This page contains a selection of count queries that are used to explore the graph database. The queries are designed to provide insights into the data and relationships between nodes. The queries can be run in a Neo4j browser or other Cypher-compatible interface.
+
+### Count all nodes - by label
+
+```cypher
+// Count of nodes - row per node
+
+UNWIND ["student", "staff", "room", "activity"] AS label
+MATCH (n)
+WHERE label IN labels(n)
+RETURN label, count(n) AS count
+```
+![Count All Nodes](./images/cypher-node-count1.png)
+
+```cypher
+// Count of nodes - single row
+
+MATCH (n:student)
+WITH count(n) AS studentCount
+MATCH (n:staff)
+WITH studentCount, count(n) AS lecturerCount
+MATCH (n:room)
+WITH studentCount, lecturerCount, count(n) AS roomCount
+MATCH (n:activity)
+RETURN studentCount, lecturerCount, roomCount, count(n) AS activityCount
+```
+![Count All Nodes](./images/cypher-node-count2.png)
+
+
+### Count all relationships - by type
+
+```cypher
+// Count of relationships
+
+MATCH ()-[r:ATTENDS]->()
+WITH count(r) AS attendsCount
+MATCH ()-[r:TEACHES]->()
+WITH attendsCount, count(r) AS teachesCount
+MATCH ()-[r:OCCUPIES]->() 
+WITH attendsCount, teachesCount, count(r) AS occupiesCount
+MATCH ()-[r:BELONGS_TO]->()
+RETURN attendsCount, teachesCount, occupiesCount, count(r) AS belongsCount
+```
+![Count All Relationships](./images/cypher-rel-count.png)
+
+
+### Activity counts
+
+```cypher
+// Count of activities
+
+MATCH (a:activity)
+RETURN count(a) AS totalActivities;
+```
+
+```cypher
+// Count of activities on a day
+
+MATCH (a:activity)
+WHERE a.actDayName = "Wednesday"
+RETURN DISTINCT count(a) AS wednesdayActivities
+```
+
+```cypher
+
+MATCH (a:activity)
+RETURN DISTINCT a.actDayName AS dayName, count(a) AS activityCount
+```
+
+![](./images/cypher-act-count.png){.gallery-image group="cypher-act"}
+
+![](./images/cypher-act-day-count.png){.gallery-image group="cypher-act"}
+
+![](./images/cypher-act-days-count.png){.gallery-image group="cypher-act"}
+
+### Activity counts by time
+
+* Query run via Python
+
+```{python}
+from connect_to_neo4j_db import connect_to_neo4j
+from neo4j import GraphDatabase
+
+# connect to Neo4j
+driver = connect_to_neo4j()
+
+# session
+session = driver.session()
+
+# run query
+query = """
+// Activity count by time (start)
+
+MATCH (a:activity)
+WHERE a.actStartTime = localtime("17:00:00")
+//AND a.actDayName = "Wednesday"
+RETURN count(a) AS activitiesStartingAt5pm
+"""
+print("Running query...\n")
+result = session.run(query)
+for record in result:
+    print(record)
+
+# close the session and driver
+session.close()
+driver.close()
+```
+
+
+### Staff activity count
+
+* Query run via Python
+* First 5 records as Pandas DataFrame
+
+```{python}
+from connect_to_neo4j_db import connect_to_neo4j
+from neo4j import GraphDatabase
+import pandas as pd
+
+# connect to Neo4j
+driver = connect_to_neo4j()
+
+# session
+session = driver.session()
+
+# run query
+query = """
+// Staff activity count
+
+MATCH (st:staff)-[r:TEACHES]->(a:activity)
+RETURN st.staffFullName_anon AS staffName, count(a) AS activityCount
+ORDER BY activityCount DESC
+"""
+print("Running query...\n")
+result = session.run(query)
+
+# list to hold records
+records = []
+for record in result:
+    records.append(record)
+
+# df of first 5 records
+df = pd.DataFrame(records[:5], columns=["staffName", "activityCount"])
+
+# print
+print(df)
+
+# close the session and driver
+session.close()
+driver.close()
+```
+

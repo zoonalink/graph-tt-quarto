@@ -1,0 +1,494 @@
+---
+title: "Soft Constraints"
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+---
+
+<br>
+
+Soft constraints in a timetabling context can be considered to be (strong) preferences. They should be generally met and only violated when absolutely necessary.
+
+For example, a member of staff may be unavailable on Fridays, generally, but at a push can be available. Other examples might include ensuring that students have an opportunity to eat lunch or minimising travel between distant locations.
+
+This page contains cypher queries that can be used to identify where a timetabling soft constraint has been violated.
+
+Example soft constraints include:
+
+-   **Minimal Idle Time (aka no large gaps):** Minimise gaps in staff and student schedules (within reason).
+-   **Spread Activities (aka maximum consecutive hours):** Avoid clumping all activities for a student or staff member on one day.
+-   **Preferred Times:** Consider staff and student preferences for morning, afternoon, or evening classes
+-   **Travel Time:** Minimise the time students need to travel between consecutive classes (especially on large campuses), e.g. between building blocks or by lat/long
+-   **Lunch Breaks:** Ensure students have sufficient time for lunch breaks.
+
+### Minimal idle time
+
+```{python}
+from connect_to_neo4j_db import connect_to_neo4j
+from neo4j import GraphDatabase
+import pandas as pd
+
+# connect to Neo4j
+driver = connect_to_neo4j()
+
+# session
+session = driver.session()
+
+# run query (modified RETURN clause)
+query = """
+// students with gaps between activities
+MATCH (s:student)-[:ATTENDS]->(a:activity)
+WITH s, a
+ORDER BY s.stuFirstName_anon, a.actStartDate, a.actStartTime
+// Group activities by student and date
+WITH s, a.actStartDate AS date, collect({start: a.actStartTime, end: a.actEndTime, activity: a}) AS times
+// Calculating the gaps in hours between consecutive activities
+WITH s, date, times, 
+     [i IN range(0, size(times)-2) | 
+      {gap: duration.between(times[i].end, times[i+1].start).minutes / 60.0, 
+       firstActivity: times[i].activity, 
+       secondActivity: times[i+1].activity}] AS gaps
+// Filtering gaps based on a threshold of 6 hours
+WITH s, date, gaps
+WHERE any(gapRecord IN gaps WHERE gapRecord.gap > 6.0)
+// Finding the maximum gap that exceeds the threshold
+WITH s, date, reduce(maxGap = {gap: 0.0, firstActivity: null, secondActivity: null}, gapRecord IN gaps | 
+    CASE WHEN gapRecord.gap > maxGap.gap THEN gapRecord ELSE maxGap END) AS maxGapRecord
+// Group by student to remove duplications
+WITH s.stuID_anon AS student, 
+     collect({date: date, 
+              activity1: maxGapRecord.firstActivity.actName,
+              activity1_time: maxGapRecord.firstActivity.actStartTime + "-" + maxGapRecord.firstActivity.actEndTime,
+              activity2: maxGapRecord.secondActivity.actName,
+              activity2_time: maxGapRecord.secondActivity.actStartTime + "-" + maxGapRecord.secondActivity.actEndTime,
+              maxGapInHours: maxGapRecord.gap}) AS gapRecords
+// Unwind the collected records
+UNWIND gapRecords AS record
+// Returning the result
+RETURN student, 
+       record.date AS date,
+       record.activity1 AS activity1, 
+       record.activity1_time AS activity1_time,
+       record.activity2 AS activity2,
+       record.activity2_time AS activity2_time,
+       record.maxGapInHours AS maxGapInHours
+ORDER BY student, date
+"""
+
+print("Running query...\n")
+result = session.run(query)
+
+#  list to hold records
+records = []
+for record in result:
+    records.append(record)
+
+# df
+df = pd.DataFrame(records, columns=["student", "date", "activity1", "activity1_time", 
+                                   "activity2", "activity2_time", "maxGapInHours"])
+
+# print 
+print(df.head(5))
+
+# close session and driver
+session.close()
+driver.close()
+```
+
+``` cypher
+MATCH (s:student)-[:ATTENDS]->(a:activity)
+WHERE s.stuID_anon = "stu-10085720"
+AND a.actStartDate = date("2022-10-03")
+WITH s, a
+ORDER BY a.actStartTime
+
+// Collecting the start and end times of the activities
+WITH s, collect({start: a.actStartTime, end: a.actEndTime}) AS times
+
+// Calculating the gaps in minutes between consecutive activities
+WITH s, times, 
+     [i IN range(0, size(times)-2) | 
+      duration.between(times[i].end, times[i+1].start).minutes / 60.0] AS gaps
+
+// Finding the maximum gap
+RETURN s.stuID_anon AS student, times, gaps, reduce(maxGap = 0.0, gap IN gaps | CASE WHEN gap > maxGap THEN gap ELSE maxGap END) AS maxGap
+```
+
+The above query illustrates the logic for identifying gaps between activities with the following results for an example student:
+
+![Example student with gaps between activities](./images/cypher-maxGap-example.png)
+
+```{python}
+from connect_to_neo4j_db import connect_to_neo4j
+from neo4j import GraphDatabase
+import pandas as pd
+
+# connect to Neo4j
+driver = connect_to_neo4j()
+
+# session
+session = driver.session()
+
+# run query (modified RETURN clause)
+query = """
+// Calculates - total hours, max block hours, max block activities per day 
+// to be used for max block hours and max block activities per day
+// logic - example
+
+MATCH (s:student {stuID_anon:"stu-10085720"})-[:ATTENDS]->(a:activity)
+WITH s, a ORDER BY a.actStartDate, a.actStartTime
+WITH s, a.actStartDate AS date, 
+     SUM(a.actDurationInMinutes) / 60.0 AS totalHours,
+     REDUCE(
+        blockInfo = [],
+        activity IN COLLECT(a)
+        | CASE
+            WHEN blockInfo = [] THEN [[activity]]
+            ELSE CASE
+                   WHEN head(last(blockInfo)).actEndTime >= activity.actStartTime
+                     THEN blockInfo[..-1] + [last(blockInfo) + activity]
+                   ELSE blockInfo + [[activity]]
+                 END
+          END
+     ) AS blocks
+UNWIND blocks AS block
+WITH s, date, totalHours, blocks,
+     REDUCE(blockHours = 0.0, activity IN block | blockHours + activity.actDurationInMinutes) / 60.0 AS blockHours,
+     SIZE(block) AS blockActivities
+RETURN s.stuFullName_anon AS student, date, totalHours, 
+       MAX(blockHours) AS blockHours,
+       MAX(blockActivities) AS blockActivities
+ORDER BY date;
+"""
+
+print("Running query...\n")
+result = session.run(query)
+
+#  list to hold records
+records = []
+for record in result:
+    records.append(record)
+
+# df
+df = pd.DataFrame(records, columns=["student", "date", "totalHours", "blockHours", "blockActivities"])
+
+# print 
+print(df.head(5))
+
+# close session and driver
+session.close()
+driver.close()
+```
+
+### Explanation
+
+1.  Match and Sort Activities:
+
+-   MATCH (s:student {stuID_anon:"stu-10085720"})-\[:ATTENDS\]-\>(a:activity): Matches the specified student and all their attended activities.
+-   WITH s, a ORDER BY a.actStartDate, a.actStartTime: Sorts the activities by their start date and then by their start time within each date.
+
+2.  Calculate Total Hours and Group Activities into Blocks:
+
+-   WITH s, a.actStartDate AS Date, SUM(a.actDurationInMinutes) / 60.0 AS totalHours, ...: Calculates the total hours spent on activities for each date by summing the durations of all activities on that date and converting minutes to hours.
+-   REDUCE(blockInfo = \[\], activity IN COLLECT(a) \| ...): Groups activities into blocks based on time overlaps using a REDUCE function and a CASE expression.
+    -   It initialises an empty list blockInfo to store the blocks.
+    -   It iterates over the collected activities (COLLECT(a)).
+    -   For each activity:
+        -   If blockInfo is empty (first activity), it creates a new block with the activity.
+        -   Otherwise, it checks if the current activity overlaps with the last activity in the last block of blockInfo.
+            -   If there's an overlap, it adds the current activity to the last block.
+            -   If there's no overlap, it creates a new block with the current activity.
+
+3.  Calculate Block Hours and Number of Activities:
+
+-   UNWIND blocks AS block: Unwinds the list of blocks, processing each block individually.
+-   WITH s, Date, totalHours, blocks, REDUCE(blockHours = 0.0, activity IN block \| blockHours + activity.actDurationInMinutes) / 60.0 AS blockHours, SIZE(block) AS blockActivities: For each block, it calculates the total duration in hours (blockHours) by summing the durations of activities within the block and converting minutes to hours. It also calculates the number of activities in the block (blockActivities).
+
+4.  Return Aggregated Results:
+
+-   RETURN s.stuFullName_anon AS Student, Date, totalHours, MAX(blockHours) AS blockHours, MAX(blockActivities) AS blockActivities ORDER BY Date;: Returns the student's full name, the date, the total hours for the day, the maximum block hours across all blocks for that day, and the maximum number of activities within a single block for that day. The results are ordered by date.
+
+### Use case - more than 5 hours of activities in a single block
+
+```{python}
+from connect_to_neo4j_db import connect_to_neo4j
+from neo4j import GraphDatabase
+import pandas as pd
+
+# connect to Neo4j
+driver = connect_to_neo4j()
+
+# session
+session = driver.session()
+
+# run query (modified RETURN clause)
+query = """
+MATCH (s:student)-[:ATTENDS]->(a:activity)<-[:TEACHES]-(:staff) // Filter for teaching activities
+WITH s, a ORDER BY a.actStartDate, a.actStartTime
+WITH s, a.actStartDate AS date, 
+     SUM(a.actDurationInMinutes) / 60.0 AS totalHours,
+     REDUCE(
+         blockInfo = [],
+         activity IN COLLECT(a)
+         | CASE
+             WHEN blockInfo = [] THEN [[activity]]
+             ELSE CASE
+                     WHEN head(last(blockInfo)).actEndTime >= activity.actStartTime
+                         THEN blockInfo[..-1] + [last(blockInfo) + activity]
+                     ELSE blockInfo + [[activity]]
+                 END
+         END
+     ) AS blocks
+UNWIND blocks AS block
+WITH s, date, totalHours, blocks,
+     REDUCE(blockHours = 0.0, activity IN block | blockHours + activity.actDurationInMinutes) / 60.0 AS blockHours,
+     SIZE(block) AS blockActivities
+WHERE blockHours > 5 // Filter for blocks with more than 5 hours
+RETURN s.stuFullName_anon AS student, date, totalHours, 
+       blockHours,
+       blockActivities
+ORDER BY date;
+"""
+
+print("Running query...\n")
+result = session.run(query)
+
+#  list to hold records
+records = []
+for record in result:
+    records.append(record)
+
+# df
+df = pd.DataFrame(records, columns=["student", "date", "totalHours", "blockHours", "blockActivities"])
+
+# print 
+print(df.head(5))
+
+# close session and driver
+session.close()
+driver.close()
+```
+
+### Total hours per day
+
+```cypher
+MATCH (s:student )-[:ATTENDS]->(a:activity)
+WITH s, a.actStartDate AS Date, SUM(a.actDurationInMinutes) / 60.0 AS totalHours
+RETURN s.stuFullName_anon AS Student, Date, totalHours
+ORDER BY Date;
+```
+
+![Total hours per day](./images/cypher-hoursPerDay.png)
+
+### Longest consecutive block of activities per day
+
+```cypher
+
+MATCH (s:student {stuFullName_anon: "Susan Lopez"})-[:ATTENDS]->(a:activity {actStartDate: date("2022-09-27")})
+WITH s, a 
+ORDER BY a.actStartTime
+WITH s, COLLECT(a) AS activities
+WITH s, activities,
+     REDUCE(
+       state = {currentBlock: {duration: 0, start: null, end: null}, longestBlock: {duration: 0, start: null, end: null}},
+       activity IN activities |
+         CASE
+           WHEN state.currentBlock.end IS NULL OR 
+                activity.actStartTime > state.currentBlock.end
+           THEN {
+             currentBlock: {
+               duration: activity.actDurationInMinutes,
+               start: activity.actStartTime,
+               end: activity.actEndTime
+             },
+             longestBlock: 
+               CASE
+                 WHEN activity.actDurationInMinutes > state.longestBlock.duration
+                 THEN {
+                   duration: activity.actDurationInMinutes,
+                   start: activity.actStartTime,
+                   end: activity.actEndTime
+                 }
+                 ELSE state.longestBlock
+               END
+           }
+           ELSE {
+             currentBlock: {
+               duration: (activity.actEndTime.hour * 60 + activity.actEndTime.minute) - 
+                         (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute),
+               start: state.currentBlock.start,
+               end: activity.actEndTime
+             },
+             longestBlock: 
+               CASE
+                 WHEN ((activity.actEndTime.hour * 60 + activity.actEndTime.minute) - 
+                       (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute)) > state.longestBlock.duration
+                 THEN {
+                   duration: (activity.actEndTime.hour * 60 + activity.actEndTime.minute) - 
+                             (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute),
+                   start: state.currentBlock.start,
+                   end: activity.actEndTime
+                 }
+                 ELSE state.longestBlock
+               END
+           }
+         END
+     ) AS finalState
+RETURN
+  s.stuFullName_anon AS stuName,
+  activities[0].actStartDate AS date,
+  finalState.longestBlock.duration AS longestConsecutiveBlockDuration,
+  finalState.longestBlock.start AS blockStartTime,
+  finalState.longestBlock.end AS blockEndTime
+```
+
+
+The below finds the longest consecutive block in a day for a student:
+
+```{python}
+from connect_to_neo4j_db import connect_to_neo4j
+from neo4j import GraphDatabase
+import pandas as pd
+
+# connect to Neo4j
+driver = connect_to_neo4j()
+
+# session
+session = driver.session()
+
+# run query (modified RETURN clause)
+query = """
+MATCH (s:student {stuFullName_anon: "Susan Lopez"})-[:ATTENDS]->(a:activity{actStartDate: date("2022-09-27")})
+WITH s, a 
+ORDER BY a.actStartTime
+WITH s, COLLECT(a) AS activities
+WITH s, activities,
+   REDUCE(
+     state = {currentBlock: {duration: 0, start: null, end: null}, longestBlock: {duration: 0, start: null, end: null}},
+     activity IN activities |
+       CASE
+         WHEN state.currentBlock.end IS NULL OR 
+              activity.actStartTime > state.currentBlock.end
+         THEN {
+           currentBlock: {
+             duration: activity.actDurationInMinutes,
+             start: activity.actStartTime,
+             end: activity.actEndTime
+           },
+           longestBlock: 
+             CASE
+               WHEN activity.actDurationInMinutes > state.longestBlock.duration
+               THEN {
+                 duration: activity.actDurationInMinutes,
+                 start: activity.actStartTime,
+                 end: activity.actEndTime
+               }
+               ELSE state.longestBlock
+             END
+         }
+         ELSE {
+           currentBlock: {
+             duration: (activity.actEndTime.hour * 60 + activity.actEndTime.minute) - 
+                       (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute),
+             start: state.currentBlock.start,
+             end: activity.actEndTime
+           },
+           longestBlock: 
+             CASE
+               WHEN ((activity.actEndTime.hour * 60 + activity.actEndTime.minute) - 
+                     (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute)) > state.longestBlock.duration
+               THEN {
+                 duration: (activity.actEndTime.hour * 60 + activity.actEndTime.minute) - 
+                           (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute),
+                 start: state.currentBlock.start,
+                 end: activity.actEndTime
+               }
+               ELSE state.longestBlock
+             END
+         }
+       END
+   ) AS finalState
+RETURN
+s.stuFullName_anon AS student,
+activities[0].actStartDate AS date,
+finalState.longestBlock.duration AS longestConsecutiveBlockDuration,
+finalState.longestBlock.start AS blockStartTime,
+finalState.longestBlock.end AS blockEndTime
+"""
+
+print("Running query...\n")
+result = session.run(query)
+
+#  list to hold records
+records = []
+for record in result:
+  records.append(record)
+
+# df
+df = pd.DataFrame(records, columns=["student", "date", "longestConsecutiveBlockDuration", "blockStartTime", "blockEndTime"])
+
+# print 
+print(df.head(5))
+
+# close session and driver
+session.close()
+driver.close()
+```
+
+### Max hours in a day
+
+This query calculates the total hours spent on activities for each student on each day and returns the results ordered by date. This examples filters for students who have more than 7 hours of activities in a day.
+
+```cypher
+// sum of activity durations
+// does not account for simultaneous activities (clashes) - so could be inflated, e.g. 12.5 hour students
+
+MATCH (s:student)-[:ATTENDS]->(a:activity)
+WITH s, a.actStartDate AS Date, SUM(a.actDurationInMinutes) / 60.0 AS totalHours
+WHERE totalHours > 7 // Set  maximum here
+RETURN s.stuFullName_anon AS Student, Date, totalHours
+ORDER BY Date;
+```
+
+![Max hours in a day](./images/cypher-maxTotalDay.png)
+
+### Lunch breaks
+
+``` cypher
+
+MATCH (s:student)-[:ATTENDS]->(a:activity)
+WITH s, a
+ORDER BY a.actStartDate, a.actStartTime
+WITH s, COLLECT(a) AS activities
+UNWIND activities AS activity
+WITH s.stuFullName_anon AS Student, activity.actStartDate AS Date, time(activity.actStartTime) AS StartTime, time(activity.actEndTime) AS EndTime, duration.between(time('12:00'), time('14:00')).minutes AS BreakWindow_12_14
+WITH Student, Date, BreakWindow_12_14, COLLECT([StartTime, EndTime]) AS Activities
+UNWIND Activities AS activity
+WITH Student, Date, BreakWindow_12_14, activity[0] AS StartTime, activity[1] AS EndTime
+WITH Student, Date, BreakWindow_12_14,
+     CASE
+       WHEN StartTime >= time('14:00') OR EndTime <= time('12:00') THEN 0
+       WHEN StartTime < time('12:00') AND EndTime > time('14:00') THEN BreakWindow_12_14
+       WHEN StartTime >= time('12:00') AND StartTime < time('14:00') THEN duration.between(StartTime, time('14:00')).minutes
+       WHEN EndTime > time('12:00') AND EndTime <= time('14:00') THEN duration.between(time('12:00'), EndTime).minutes
+     END AS BookedDurationMinutes
+RETURN Student, Date, BreakWindow_12_14, BreakWindow_12_14 - SUM(BookedDurationMinutes) AS FreeTimeMinutes, SUM(BookedDurationMinutes) AS BookedTimeMinutes
+ORDER BY Date
+```
+
+![Lunch breaks](./images/cypher-lunchBreak.png)
+
+Interestingly, `Michael Johnson` has a negative lunch break. I quick look showed that there are actually two `Michael Johnsons` attending this class and they both have 30 minutes free time in the 2-hour lunch break window.
+
+Because the query was written using student name, it is incorrectly aggregating the two students into one:
+
+$$
+2 \text{ hour lunch window} - (1.5 \text{ hours/class} \times 2 \text{ classes}) = -1 \text{ hour}
+$$
+
+**Learning points and TODO:**
+
+-   Update query to use student ID
+-   Anonymisation function needs to be improved to avoid duplicated names

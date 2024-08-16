@@ -23,18 +23,21 @@
 - [x] update pipe files - comments, etc.
 
 - [x] copy all cypher queries to page and annotate
-- [ ] cypher query - QMD page
-  - [ ] cypher - clash QMD page
+- [x] cypher query - QMD page
+  - [x] cypher - clash QMD page
   - [ ] rewrite time model page with new images
+  - [ ] annotate and tidy up cypher query pages (spaces, etc.)
+  - [ ] add cypher query insights page -> future questions which can be answered
   
 - [ ] load demo archibus data
-  - [ ] room page
+  - [ ] room cypher page
   - [ ] reference tt quality penalty
 
   - [ ] draft tte quality section
   - [ ] draft conclusion section 
   - [ ] make list of work needed
 
+- [ ] perspectives and insights
 
 - [ ] dedication, thank you page - family colleagues supervisors
 - [ ] add word count to front page
@@ -47,7 +50,7 @@
 
 ## Cypher
 
-- [ ] student clash page - link
+
 - [ ] project video - opening doors and peaking through
 
 
@@ -70,20 +73,13 @@
 - [ ] add word count
 
 
-## cypher queries
-
-* dynamic node/relationship count query
-* what do students named 'aaron' have in common? (any other biodem)
-
-
-
 ## Later
 
 - [ ] clipchamp for video
 - [ ] quarto for presentation?
 - [ ] script for video - combination of presentation slides, demo and neo4j capabilities - leave on cliffhanger
 
-## yaml
+
 
 ## overall
 
@@ -94,7 +90,6 @@
 * write timetable-metrics section
 * add end-to-end example for I400 -> appendix
 * copy all cypher queries to a page
-* add pages to html and rerender
 * presentation / appendix
   * show slicing/range example
   
@@ -106,21 +101,6 @@
 
 
 
-
-## introduction
-
-
-
-
-https://www.sciencedirect.com/science/article/pii/S2667305323000789?via%3Dihub
-
-
-## graph data & model
-
-
-## references
-
-* packages/libraries
 
 
 # 2 minute video

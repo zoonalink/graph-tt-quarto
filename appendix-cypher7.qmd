@@ -1,0 +1,16 @@
+---
+title: "Rooms and Spaces"
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+---
+<br>
+
+Start from rooms in cypher-query-notes
+
+utilisation
+most popular rooms
+mapping rooms
+room types
