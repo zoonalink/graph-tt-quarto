@@ -89,8 +89,24 @@ website:
           text: Configuration
         - href: appendix-anonymise.qmd
           text: Anonymisation
-        - href: appendix-code.qmd
-          text: Code Gist
+        - text: Code 
+          menu:
+          - href: appendix-code.qmd
+            text: Code Gist
+          - href: appendix-code1-config.qmd
+            text: Config and Misc
+          - href: appendix-code2-sql.qmd
+            text: Extract-SQL
+          - href: appendix-code3-extract.qmd
+            text: Extract
+          - href: appendix-code4-gdrive.qmd
+            text: Google Drive Load
+          - href: appendix-code5-transform.qmd
+            text: Transform
+          - href: appendix-code6-load.qmd
+            text: Neo4j Load
+          
+          
         - href: references.qmd
           text: References
     right:
@@ -180,11 +196,27 @@ website:
             text: Configuration
           - href: appendix-anonymise.qmd
             text: Anonymisation
-          - href: appendix-code.qmd
-            text: Code Gist
+          - section: "Code"          
+            contents:
+              - href: appendix-code.qmd
+                text: Code Gist
+              - href: appendix-code1-config.qmd
+                text: Config and Misc
+              - href: appendix-code2-sql.qmd
+                text: Extract-SQL
+              - href: appendix-code3-extract.qmd
+                text: Extract
+              - href: appendix-code4-gdrive.qmd
+                text: Google Drive Load
+              - href: appendix-code5-transform.qmd
+                text: Transform
+              - href: appendix-code6-load.qmd
+                text: Neo4j Load         
           - href: references.qmd
             text: References
 
+
+         
 
   page-footer:
     left: "Copyright 2024, Petter Lövehagen"

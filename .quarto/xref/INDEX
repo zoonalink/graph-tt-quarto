@@ -170,5 +170,26 @@
   },
   "appendix-code.qmd": {
     "appendix-code.html": "4613c94b"
+  },
+  "appendix-cypher.qmd": {
+    "appendix-cypher.html": "432b1e5a"
+  },
+  "appendix-code1-config.qmd": {
+    "appendix-code1-config.html": "c01c6fe1"
+  },
+  "appendix-code2-sql.qmd": {
+    "appendix-code2-sql.html": "d5d778d1"
+  },
+  "appendix-code3-extract.qmd": {
+    "appendix-code3-extract.html": "b2df07e3"
+  },
+  "appendix-code4-gdrive.qmd": {
+    "appendix-code4-gdrive.html": "37adf18f"
+  },
+  "appendix-code5-transform.qmd": {
+    "appendix-code5-transform.html": "1e56e666"
+  },
+  "appendix-code6-load.qmd": {
+    "appendix-code6-load.html": "b2254806"
   }
 }

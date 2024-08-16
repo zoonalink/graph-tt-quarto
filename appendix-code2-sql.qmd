@@ -1,0 +1,23 @@
+---
+title: "Extract-SQL"
+---
+
+[**Graph Timetable - Quarto - SQL Queries**](https://gist.github.com/zoonalink/4ba9fa5bf75ac21c1537d8176ee5c700)
+
+1. create_temp_tables.sql
+2. node-activity-by-pos-temp.sql
+3. node-activityType-by-pos-temp.sql
+4. node-dept-all.sql
+5. node-module-by-pos-temp.sql
+6. node-pos-by-pos-temp.sql
+7. node-room-by-pos-temp.sql
+8. node-staff-by-pos-temp.sql
+9. node-student-by-pos-temp.sql
+10. rel-activity-module-by-pos-temp.sql
+11. rel-activity-room-by-pos-temp.sql
+12. rel-module-programme-by-pos-temp.sql
+13. rel-staff-activity-by-pos-temp.sql
+14. rel-student-activity-by-pos-temp.sql
+
+<script src="https://gist.github.com/zoonalink/4ba9fa5bf75ac21c1537d8176ee5c700.js"></script>
+<div class="gist-preview"></div> 

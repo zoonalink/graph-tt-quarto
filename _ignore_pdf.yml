@@ -42,6 +42,12 @@ book:
     - appendix-config.qmd
     - appendix-anonymise.qmd
     - appendix-code.qmd
+    - appendix-code1-config.qmd
+    - appendix-code2-sql.qmd
+    - appendix-code3-extract.qmd
+    - appendix-code4-gdrive.qmd
+    - appendix-code5-transform.qmd
+    - appendix-code6-load.qmd
     - appendix-supervisor.qmd
     - references.qmd
 

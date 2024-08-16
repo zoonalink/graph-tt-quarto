@@ -1,0 +1,13 @@
+---
+title: "Google Drive Load"
+---
+
+
+
+[**Graph Timetable - Quarto - Upload to Google Drive**](https://gist.github.com/zoonalink/450bff1a92d2efcde58ab4b9edc3e7ae)
+
+1. gdrive_upload
+2. google_drive_utils
+
+<script src="https://gist.github.com/zoonalink/450bff1a92d2efcde58ab4b9edc3e7ae.js"></script>
+

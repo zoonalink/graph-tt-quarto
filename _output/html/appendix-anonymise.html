@@ -63,7 +63,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./appendix-snippets.html" rel="next">
+<link href="./appendix-code.html" rel="next">
 <link href="./appendix-config.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -76,6 +76,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -502,12 +505,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Anonymisation</span></a>
   </div>
 </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Code Gists</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./appendix-snippets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Code Snippets</span></a>
+  <a href="./appendix-code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Code Gist</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-code1-config.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Config and Misc</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-code2-sql.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extract-SQL</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-code3-extract.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Extract</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-code4-gdrive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Google Drive Load</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-code5-transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Transform</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-code6-load.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Neo4j Load</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -546,26 +596,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>The following code snippet is shows how I anonymised personal data in a DataFrame using the <code>Faker</code> library.</p>
+<p>The code generates fake names, emails, and IDs for staff or student data based on the unique IDs in the extract DataFrame. The anonymised data is then merged back with the original DataFrame, and the original columns are removed.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./images/anon_pre.png" class="lightbox" data-glightbox="description: .lightbox-desc-1;title:Pre-anonymisation Extract;" data-gallery="anon" title="Pre-anonymisation Extract"><img src="./images/anon_pre.png" class="gallery-image-large img-fluid figure-img" alt="Pre-anonymisation Extract"></a></p>
+<figcaption>Pre-anonymisation Extract</figcaption>
+</figure>
 </div>
-<div class="callout-title-container flex-fill">
-TODO
+<p><br></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./images/anon_post.png" class="lightbox" data-glightbox="description: .lightbox-desc-2;title:Post-anonymisation Extract;" data-gallery="anon" title="Post-anonymisation Extract"><img src="./images/anon_post.png" class="gallery-image-large img-fluid figure-img" alt="Post-anonymisation Extract"></a></p>
+<figcaption>Post-anonymisation Extract</figcaption>
+</figure>
 </div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><p>wrtie a summary</p></li>
-<li><p>show before and after</p></li>
-<li><p>staff/student</p></li>
-<li><p>columns</p></li>
-<li><p>consistent changing - uses random seed to ensure</p></li>
-</ul>
-</div>
-</div>
-<div id="07a91969" class="cell">
+<p><br> <br></p>
+<div id="92a36177" class="cell">
 <details class="code-fold">
 <summary>Click to show code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
@@ -645,6 +692,14 @@ TODO
 </div>
 
 
+<div class="hidden" aria-hidden="true">
+<div class="glightbox-desc lightbox-desc-1">
+
+</div>
+<div class="glightbox-desc lightbox-desc-2">
+
+</div>
+</div>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1218,8 +1273,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./appendix-snippets.html" class="pagination-link" aria-label="Code Snippets">
-        <span class="nav-page-text">Code Snippets</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./appendix-code.html" class="pagination-link" aria-label="Code Gist">
+        <span class="nav-page-text">Code Gist</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1237,6 +1292,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"openEffect":"fade","closeEffect":"fade","selector":".lightbox","loop":false,"descPosition":"bottom"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

@@ -1,0 +1,17 @@
+---
+title: "Neo4j Load"
+---
+
+
+[**Graph Timetable - Quarto - Load**](https://gist.github.com/zoonalink/ce5e1f3e578a5eeed05144f3676af409)
+
+1. load_schema
+2. load_utils
+3. load_nodes
+4. load_relationships
+5. convert_properties
+6. set_display_properties
+7. load_main
+
+<script src="https://gist.github.com/zoonalink/ce5e1f3e578a5eeed05144f3676af409.js"></script>
+

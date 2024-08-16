@@ -1,20 +1,27 @@
 ---
 title: "Anonymisation"
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
 execute:
   enabled: false
 ---
-:::{.callout-warning}
-## TODO
 
-* wrtie a summary
-* show before and after
+The following code snippet is shows how I anonymised personal data in a DataFrame using the `Faker` library. 
 
-* staff/student
-* columns
-* consistent changing - uses random seed to ensure
+The code generates fake names, emails, and IDs for staff or student data based on the unique IDs in the extract DataFrame. The anonymised data is then merged back with the original DataFrame, and the original columns are removed.
 
-:::
 
+![Pre-anonymisation Extract](./images/anon_pre.png){.gallery-image-large group="anon" description=""}
+
+<br>
+
+![Post-anonymisation Extract](./images/anon_post.png){.gallery-image-large group="anon" description=""}
+
+<br>
+<br>
 
 ```{python}
 import random

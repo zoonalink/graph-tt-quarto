@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Graph Data Model for Timebling –  </title>
+<title>Extract –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./02-02b-early.html" rel="next">
-<link href="./02-01-comparison.html" rel="prev">
+<link href="./appendix-code4-gdrive.html" rel="next">
+<link href="./appendix-code2-sql.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -42,9 +42,6 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -248,7 +245,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-01-comparison.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-02-graph-timetable.html">Graph Data Model for Timetabling</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix-random-graph.html">Appendix &amp; References</a></li><li class="breadcrumb-item"><a href="./appendix-code.html">Code Gists</a></li><li class="breadcrumb-item"><a href="./appendix-code3-extract.html">Extract</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -311,13 +308,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text">Graph Data Model</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-01-comparison.html" class="sidebar-item-text sidebar-link">
@@ -326,7 +323,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-02-graph-timetable.html" class="sidebar-item-text sidebar-link active">
+  <a href="./02-02-graph-timetable.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Graph Data Model for Timetabling</span></a>
   </div>
 </li>
@@ -440,13 +437,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendix &amp; References</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-random-graph.html" class="sidebar-item-text sidebar-link">
@@ -473,13 +470,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
  <span class="menu-text">Code Gists</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-code.html" class="sidebar-item-text sidebar-link">
@@ -500,7 +497,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./appendix-code3-extract.html" class="sidebar-item-text sidebar-link">
+  <a href="./appendix-code3-extract.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Extract</span></a>
   </div>
 </li>
@@ -537,29 +534,20 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#an-iterative-approach" id="toc-an-iterative-approach" class="nav-link active" data-scroll-target="#an-iterative-approach">An Iterative Approach</a></li>
-  <li><a href="#core-nodes---building-blocks" id="toc-core-nodes---building-blocks" class="nav-link" data-scroll-target="#core-nodes---building-blocks">Core Nodes - Building Blocks</a></li>
-  <li><a href="#relationships---connecting-the-dots" id="toc-relationships---connecting-the-dots" class="nav-link" data-scroll-target="#relationships---connecting-the-dots">Relationships - Connecting the Dots</a></li>
-  <li><a href="#mvp-model" id="toc-mvp-model" class="nav-link" data-scroll-target="#mvp-model">MVP model</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-01-comparison.html">Graph Data Model</a></li><li class="breadcrumb-item"><a href="./02-02-graph-timetable.html">Graph Data Model for Timetabling</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix-random-graph.html">Appendix &amp; References</a></li><li class="breadcrumb-item"><a href="./appendix-code.html">Code Gists</a></li><li class="breadcrumb-item"><a href="./appendix-code3-extract.html">Extract</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Graph Data Model for Timebling</h1>
+<h1 class="title">Extract</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-body">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -571,153 +559,18 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Having discussed some advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling.</p>
-<section id="an-iterative-approach" class="level2">
-<h2 class="anchored" data-anchor-id="an-iterative-approach">An Iterative Approach</h2>
-<p>Due to flexibility, creating graph data models is an iterative process: design -&gt; build -&gt; test -&gt; review -&gt; revise -&gt; …and repeat. My first model was small in scope, incorporating <em>minimal</em> nodes and properties in an MVP<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> approach. Eventually, my expanded model was created in a cloud-instance of Neo4j Aura.</p>
-</section>
-<section id="core-nodes---building-blocks" class="level2">
-<h2 class="anchored" data-anchor-id="core-nodes---building-blocks">Core Nodes - Building Blocks</h2>
-<p>At its core, the timetable model revolves around four key entities represented as nodes:</p>
-<div class="table">
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Node</th>
-<th>Property</th>
-<th>Description</th>
-<th>Data Type</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Student</td>
-<td>firstName</td>
-<td>Legal first name</td>
-<td>string</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>lastName</td>
-<td>Legal last name</td>
-<td>string</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>studentID</td>
-<td>University identifier</td>
-<td>integer</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>splusID</td>
-<td>Timetable URN</td>
-<td>string</td>
-</tr>
-<tr class="odd">
-<td>Lecturer</td>
-<td>firstName</td>
-<td>First name</td>
-<td>string</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>lastName</td>
-<td>Last name</td>
-<td>string</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>staffID</td>
-<td>University identifier</td>
-<td>integer</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>splusID</td>
-<td>Timetable URN</td>
-<td>string</td>
-</tr>
-<tr class="odd">
-<td>Room</td>
-<td>name</td>
-<td>Room name</td>
-<td>string</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>splusID</td>
-<td>Timetable URN</td>
-<td>integer</td>
-</tr>
-<tr class="odd">
-<td>Activity</td>
-<td>name</td>
-<td>Activity name</td>
-<td>string</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>description</td>
-<td>Activity description</td>
-<td>string</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>startTime</td>
-<td>Scheduled start time</td>
-<td>datetime</td>
-</tr>
-<tr class="even">
-<td></td>
-<td>endTime</td>
-<td>Scheduled end time</td>
-<td>datetime</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td>date</td>
-<td>Date of activity</td>
-<td>date</td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="relationships---connecting-the-dots" class="level2">
-<h2 class="anchored" data-anchor-id="relationships---connecting-the-dots">Relationships - Connecting the Dots</h2>
-<p>The core nodes are interconnected through relationships that reflect the dynamics of a timetable:</p>
-<ul>
-<li>(Student)-<strong>[IS_ALLOCATED_TO]</strong>-&gt;(Activity)</li>
-<li>(Staff)-<strong>[TEACHES_ON]</strong>-&gt;(Activity)</li>
-<li>(Activity)-<strong>[TAKES_PLACE_IN]</strong>-&gt;(Room)</li>
-</ul>
-</section>
-<section id="mvp-model" class="level2">
-<h2 class="anchored" data-anchor-id="mvp-model">MVP model</h2>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="./images/v1-core-nodes-rels-prop.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Core Nodes and Properties"><img src="./images/v1-core-nodes-rels-prop.png" class="img-fluid figure-img" style="width:75.0%" alt="Core Nodes and Properties"></a></p>
-<figcaption>Core Nodes and Properties</figcaption>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="./images/poc1-import-interface.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Neo4j Interface showing basic nodes and properties"><img src="./images/poc1-import-interface.png" class="img-fluid figure-img" style="width:75.0%" alt="Neo4j Interface showing basic nodes and properties"></a></p>
-<figcaption>Neo4j Interface showing basic nodes and properties</figcaption>
-</figure>
-</div>
-
-
-</section>
-
-
-<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>Minimum Viable Product: “First, a definition: the minimum viable product is that version of a new product which allows a team to collect the maximum amount of validated learning about customers with the least effort or in other words building the most minimum version of their product that will still allow them to learn.” (Ries, 2024)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<p><a href="https://gist.github.com/zoonalink/d3bafb3100a162c50694be699bfc8e3f"><strong>Graph Timetable - Quarto - Extract</strong></a></p>
+<ol type="1">
+<li>temp_table_loader</li>
+<li>extract_sql_file</li>
+<li>extract_data</li>
+<li>extract_main</li>
 </ol>
-</section></div></main> <!-- /main -->
+<script src="https://gist.github.com/zoonalink/d3bafb3100a162c50694be699bfc8e3f.js"></script>
+
+
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1282,15 +1135,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-body">
+<nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="./02-01-comparison.html" class="pagination-link" aria-label="Graph vs Relational Data Models">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Graph vs Relational Data Models</span>
+      <a href="./appendix-code2-sql.html" class="pagination-link" aria-label="Extract-SQL">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Extract-SQL</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-02b-early.html" class="pagination-link" aria-label="Early Insights">
-        <span class="nav-page-text">Early Insights</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./appendix-code4-gdrive.html" class="pagination-link" aria-label="Google Drive Load">
+        <span class="nav-page-text">Google Drive Load</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1308,38 +1161,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"descPosition":"bottom","openEffect":"fade","closeEffect":"fade"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 

@@ -1,0 +1,16 @@
+---
+title: "Extract"
+---
+
+
+
+[**Graph Timetable - Quarto - Extract**](https://gist.github.com/zoonalink/d3bafb3100a162c50694be699bfc8e3f)
+
+1. temp_table_loader
+2. extract_sql_file
+3. extract_data
+4. extract_main
+
+<script src="https://gist.github.com/zoonalink/d3bafb3100a162c50694be699bfc8e3f.js"></script>
+
+

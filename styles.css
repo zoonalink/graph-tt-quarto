@@ -62,6 +62,15 @@
   float: left;
 }
 
+.gallery-image-large {
+  width: 75%; /* Adjust the width percentage as needed */
+  margin: 10px;
+  /* display: inline-block; /* Allow images to sit next to each other */
+  vertical-align: middle; /* Align images to the middle */
+  cursor: pointer; /* Change cursor to pointer to indicate clickability */
+  float: left;
+}
+
 ul {
   text-align: left; /* Force left alignment for unordered lists */
 }

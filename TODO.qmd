@@ -18,11 +18,15 @@
 - [x] load remaining programmes to neo4j
 
 - [x] send/share zip with xiaodong
+- [x] fix code gists page
+- [x] techstack page
+- [x] update pipe files - comments, etc.
 
 - [x] copy all cypher queries to page and annotate
 - [ ] cypher query - QMD page
   - [ ] cypher - clash QMD page
   - [ ] rewrite time model page with new images
+  
 - [ ] load demo archibus data
   - [ ] room page
   - [ ] reference tt quality penalty
@@ -31,6 +35,11 @@
   - [ ] draft conclusion section 
   - [ ] make list of work needed
 
+
+- [ ] dedication, thank you page - family colleagues supervisors
+- [ ] add word count to front page
+- [ ] video to front page - and video script
+- [ ] example supervisor notes
 
 - [ ] delete csv from online repo
 - [ ] check quarto repo for security issues
@@ -42,21 +51,17 @@
 - [ ] project video - opening doors and peaking through
 
 
-## Tuesday
 
 
 
 
-- [ ] add new html pages - 
-  - [ ] dedication, 
-  - [ ] cypher queries, 
-  - [x] techstack
+
 - [ ] explore graph 
   - [ ] write down interesting questions
   - [ ] screencapture interesting insights
-  - [ ] list of things to do
-  - [ ] delete unnatttached nodes?
-- [x] update pipe files - comments, etc.
+
+
+
 
 ## to check
 
@@ -82,9 +87,9 @@
 
 ## overall
 
-* add dedication page/section
-* appendix page with all timetable quality queries
-* appendix supervisor notes/pages
+
+
+
 * trim references page
 * write timetable-metrics section
 * add end-to-end example for I400 -> appendix
