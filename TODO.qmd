@@ -34,9 +34,10 @@
 
 **MONDAY**
 
-- [ ] draft tte quality section
-- [ ] draft conclusion section 
 - [ ] word count check - and adjust
+- [ ] draft tte quality section -> see notes and cypher query section
+- [ ] draft conclusion section 
+
 
 - [ ] add cypher query insights page -> future questions which can be answered
 
