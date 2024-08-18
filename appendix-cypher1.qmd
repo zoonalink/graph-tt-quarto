@@ -45,11 +45,11 @@ Where:
 -   `r` is the relationship variable
 -   `RELATIONSHIP_TYPE` is the type of relationship
 -   `->` represents the direction of the relationship
--   `MATCH` is used to find the nodes to connect
--   `WHERE` is used to filter the nodes
+-   `MATCH` is used to find the nodes to connect, optional
+-   `WHERE` is used to filter the nodes, optional
 -   `CREATE` is used to create the relationship
 -   `...` represents additional properties
--   `MATCH` and `WHERE` are optional and can be used to find and filter nodes before creating the relationship
+
 
 ### Example: Creating a Relationship Between a Student and an Activity
 
@@ -60,7 +60,11 @@ CREATE (s)-[r:ATTENDS]->(a)
 
 ## Relationships created after ETL
 
-The following examples were applied to the proof-of-concept graph database to create relationships after loading data into the graph.
+The following relationships were applied to my proof-of-concept graph after loading data using the ETL, using node properties.  Delete code also supplied below.
+
+:::{.callout-caution}
+Use code with caution, especially DELETE code. Run pattern matching and investigate results before committing to delete.
+:::
 
 ### (student)-\[REGISTERED_ON\]-\>(programme)
 

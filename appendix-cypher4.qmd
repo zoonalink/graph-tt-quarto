@@ -7,9 +7,11 @@ lightbox:
   loop: false
 ---
 
-This page contains a selection of count queries that are used to explore the graph database. The queries are designed to provide insights into the data and relationships between nodes. The queries can be run in a Neo4j browser or other Cypher-compatible interface.
+This page contains a selection of count queries used to explore the graph database. The queries are designed to provide insights into the data and relationships between nodes.  They can be considered starter queries which can be amended depending on the requirements. 
 
 ### Count all nodes - by label
+
+Below are two queries returning the same results - counts of nodes by node label.
 
 ```cypher
 // Count of nodes - row per node
@@ -38,6 +40,8 @@ RETURN studentCount, lecturerCount, roomCount, count(n) AS activityCount
 
 ### Count all relationships - by type
 
+The query below returns counts of relationships.  We can see that there are a significant amount of (student)-[]->(activity) relationships due to how we structured `activity` in the graph - that is, a separate node for each instance. 
+
 ```cypher
 // Count of relationships
 
@@ -54,6 +58,8 @@ RETURN attendsCount, teachesCount, occupiesCount, count(r) AS belongsCount
 
 
 ### Activity counts
+
+In this graph, an `activity` is an instance of an activity, that is, a unique combination of `name`, `date`, `start`, `end`, `location`, `staff`.  It means *a lot* of activities!
 
 ```cypher
 // Count of activities
@@ -82,9 +88,11 @@ RETURN DISTINCT a.actDayName AS dayName, count(a) AS activityCount
 
 ![](./images/cypher-act-days-count.png){.gallery-image group="cypher-act"}
 
+<br>
+
 ### Activity counts by time
 
-* Query run via Python
+The query below connects to the graph via python and returns the result - that is, the number of activities which start at 17:00.
 
 ```{python}
 from connect_to_neo4j_db import connect_to_neo4j
@@ -118,8 +126,8 @@ driver.close()
 
 ### Staff activity count
 
-* Query run via Python
-* First 5 records as Pandas DataFrame
+This query returns the first 5 rows of the query which counts activities by member of staff.  
+
 
 ```{python}
 from connect_to_neo4j_db import connect_to_neo4j

@@ -8,7 +8,9 @@ lightbox:
 ---
 <br>
 
-This page explore different graph data structures for the purposes of identifying student clashes.  It illustrates the inherent flexiblity of graph data structures and that thorough modelling and profiling of the data can lead to more efficient and effective queries.
+This page explore different graph data structures and queries for the purposes of identifying student clashes.  It illustrates the inherent flexiblity of graph databases and that thorough modelling and profiling of the data can lead to more efficient and effective queries. 
+
+Use-case is king when it comes to optimised databases and performant queries.
 
 ## Scenario
 
@@ -23,13 +25,13 @@ Each model below will use the same basic scenario:
   * Each activity is scheduled for several weeks
 * There are deliberate clashes between the activities to illustrate the concept of a student clash
 
-## Model 1 - Simple
+## Model 1 - Activity Occurrence
 
-This model is the one used in the data engineering proof-of-concept.  Each 'occurence' of an activity is a separate node.  This model is simple and easy to understand, but can be inefficient for certain queries.
+Each 'occurrence' of an activity is a separate node.  This model is simple and easy to understand, but proliferates nodes which lead to inefficient and complex queries.
 
 ### Create data
 
-```cypher
+```{cypher .scroll-cypher}
 // Create unique activity nodes (TestActivityModel1)
 CREATE (:TestActivityModel1 { actName: "ITGD", date: date("2024-08-06"), startTime: localtime("09:00:00"), endTime: localtime("11:00:00") })
 CREATE (:TestActivityModel1 { actName: "ITGD", date: date("2024-08-13"), startTime: localtime("09:00:00"), endTime: localtime("11:00:00") })
@@ -57,17 +59,18 @@ MERGE (s)-[:ATTENDS]->(a) ;
 ```
 ![Model 1](./images/cypher-clash1-model.png)
 
+To identify the clashes, this query can be run: 
 
-```cypher
+```{cypher .scroll-cypher}
 
 MATCH (s:TestStudentModel1)-[:ATTENDS]->(a1:TestActivityModel1)
 WITH s, a1
 MATCH (s)-[:ATTENDS]->(a2:TestActivityModel1) 
 WHERE a1 <> a2 
   AND a1.date = a2.date 
-  AND (a1.startTime < a2.endTime AND a1.endTime > a2.startTime)  // Correct overlap condition
-  AND NOT (a1.startTime = a2.endTime OR a1.endTime = a2.startTime) // Exclude "touching" cases
-  AND a1.actName < a2.actName  // This ensures only one direction of the pair is returned
+  AND (a1.startTime < a2.endTime AND a1.endTime > a2.startTime)  //  overlap condition
+  AND NOT (a1.startTime = a2.endTime OR a1.endTime = a2.startTime) // xxclude "touching" cases
+  AND a1.actName < a2.actName  // ensures only one direction of the pair is returned
 RETURN s.stuFirstName_anon AS Student, 
        a1.date AS ClashDate, 
        a1.actName AS Activity1, 
@@ -77,17 +80,23 @@ RETURN s.stuFirstName_anon AS Student,
 ORDER BY Student, ClashDate;
 ```
 
+Which correctly identifies Bob's clash: 
+
 ![Model 1 results](./images/cypher-clash1-result.png)
+
+One way of measuring and comparing query performance is to look at the `PROFILE` and `dbhits.`  In this instance there are 278 database accesses.
 
 ![Model 1 profile](./images/cypher-clash1-db-hits.png)
 
 ## Model 2 - Date and Time Nodes
 
-Model 2 uses a single node for each activity but has date and time nodes.  This model is more complex but can be more efficient for certain queries.
+Model 2 uses a single node for each activity but has date and time nodes.  This model is more complex in that there are more node labels, but can be more efficient for certain queries.
 
 ### Create data
 
-```cypher
+
+
+```{cypher .cypher-scroll}
 // Create unique time nodes
 CREATE (:TestStartTimeNode { time: localtime("09:00:00") })
 CREATE (:TestStartTimeNode { time: localtime("10:00:00") })
@@ -153,16 +162,18 @@ MERGE (s)-[:ATTENDS]->(a) ;
 
 ![Model 2](./images/cypher-clash2-model.png)
 
-```cypher
+To identify student clashes, this query can be run.
+
+```{cypher .cypher-scroll}
 MATCH (s:TestStudentModel2)-[:ATTENDS]->(a1:TestActivityModel2)-[:SCHEDULED_ON]->(d:TestDateNode)
 WITH s, a1, d
 MATCH (s)-[:ATTENDS]->(a2:TestActivityModel2)-[:SCHEDULED_ON]->(d) // Same date
 MATCH (a1)-[:STARTS_AT]->(st1:TestStartTimeNode)-[:ENDS_AT]->(et1:TestEndTimeNode) 
 MATCH (a2)-[:STARTS_AT]->(st2:TestStartTimeNode)-[:ENDS_AT]->(et2:TestEndTimeNode) 
 WHERE a1 <> a2 
-  AND (st1.time < et2.time AND et1.time > st2.time)  // Correct overlap condition
-  AND NOT (st1.time = et2.time OR et1.time = st2.time) // Exclude "touching" cases
-  AND a1.actName < a2.actName  // This ensures only one direction of the pair is returned
+  AND (st1.time < et2.time AND et1.time > st2.time)  //  overlap condition
+  AND NOT (st1.time = et2.time OR et1.time = st2.time) // xxclude "touching" cases
+  AND a1.actName < a2.actName  // ensures only one direction of the pair is returned
 RETURN  s.stuFirstName_anon AS Student, 
         d.date AS ClashDate, 
         a1.actName AS Activity1, 
@@ -172,16 +183,16 @@ RETURN  s.stuFirstName_anon AS Student,
 ORDER BY Student, ClashDate;
 ```
 
-The results are the same as Model 1, but the profile is different:
+The results are the same as Model 1, but the profile is different, with fewer `database accesses` (143):
 
 ![Model 2 profile](./images/cypher-clash2-db-hits.png)
 
 
 ## Model 3 - Date Nodes 
 
-Model 3 uses a single node for each activity and date - start and end times are properties of the activity.
+Model 3 uses a single node for each activity as well as date nodes - start and end times are properties of the activity.
 
-```cypher
+```{cypher .cypher-scroll}
 // Create unique date nodes
 CREATE (:TestDateNodeModel3 { date: date("2024-07-30") })
 CREATE (:TestDateNodeModel3 { date: date("2024-08-06") })
@@ -223,16 +234,16 @@ CREATE (s)-[:ATTENDS]->(a) ;
 
 ![Model 3](./images/cypher-clash3-model.png)
 
-The results are the same as Model 1 and Model 2, but the profile is different:
+The results are the same as Model 1 and Model 2, but the profile is different again with even fewer `database accesses` (58):
 
 ![Model 3 profile](./images/cypher-clash3-db-hits.png)
 
 
 ### Model 4 - 
 
-Model 4 uses a single node for each activity and date - start and end times are properties of the *relationship* between the activity and the date.
+Model 4 uses a single node for each activity and date - start and end times are now properties of the *relationship* between the activity and the date.
 
-```cypher
+```{cypher .cypher-scroll}
 // Create unique date nodes
 MERGE (:TestDateNodeModel4 { date: date("2024-07-30") })
 MERGE (:TestDateNodeModel4 { date: date("2024-08-06") })
@@ -276,10 +287,11 @@ MATCH (s:TestStudentModel4 { stuID_anon: "test-student-2" })
 MATCH (a:TestActivityModel4) WHERE a.actName IN ["ITGD", "Neo4j"]
 MERGE (s)-[:ATTENDS]->(a) ;
 ```
+
 ![Model 4](./images/cypher-clash4-model.png)
 
 
-The results are the same as Model 1, Model 2, and Model 3, but the profile is different:
+The results are again the same as Model 1, Model 2, and Model 3, but the profile is different with the most `database accesses` (293):
 
 ![Model 4 profile](./images/cypher-clash4-db-hits.png)
 
@@ -287,9 +299,11 @@ The results are the same as Model 1, Model 2, and Model 3, but the profile is di
 
 Each model has its own strengths and weaknesses.  The choice of model will depend on the specific requirements.  The more complex models can be more efficient for certain queries, but can also be more difficult to understand and maintain.  The simpler models are easier to understand and maintain, but can be less efficient for certain queries.
 
-Of the four tested, Model 3 was the most efficient in terms of database hits on the *very* small dataset used.  However, this may not be the case with larger datasets.  It is important to profile the queries and the data to determine the best model for the specific requirements.
+Of the four tested, Model 3 was the most efficient in terms of database hits on the *very* small test dataset used.  However, this may not be the case with larger datasets.  It is important to profile the queries and the data to determine the best model for the specific requirements.
 
 ## Delete Data
+
+The cypher below deletes all test data. 
 
 ### Model 1
 

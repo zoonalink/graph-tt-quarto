@@ -1,8 +1,8 @@
 ---
-title: "Code Gists"
+title: "ETL Code Gists"
 ---
 
-Complete code can be found in these Github gists or on the following pages.
+Complete code for the Data Pipeline can be found in these Github gists or on the following pages.
 
 
 [**Graph Timetable - Quarto - Config and Misc**](https://gist.github.com/zoonalink/818cae9f20db1f1417725a1f297ff061)

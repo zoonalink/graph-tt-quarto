@@ -2,13 +2,12 @@
 title: "Deleting Nodes and Relationships"
 ---
 
-## Deleting Nodes and Relationships
+<br>
+Deleting nodes and relationships, using the `DELETE` clause in Cypher, is an important operation in managing the graph database. 
 
-Deleting nodes and relationships is an important operation in managing the graph database. Nodes and relationships can be deleted using the `DELETE` clause in Cypher.
+## Deleting Nodes
 
-### Deleting Nodes
-
-Nodes can be deleted using the `DELETE` clause with the node variable. The general syntax for deleting a node is:
+The general syntax for deleting a node is:
 
 ```cypher
 MATCH (n:NodeLabel {propertyName: propertyValue})
@@ -32,9 +31,9 @@ MATCH (s:Student {studentID: '123456'})
 DELETE s
 ```
 
-### Deleting Relationships
+## Deleting Relationships
 
-Relationships can be deleted using the `DELETE` clause with the relationship variable. The general syntax for deleting a relationship is:
+The general syntax for deleting a relationship is:
 
 ```cypher
 MATCH (n1:NodeLabel1)-[r:RELATIONSHIP_TYPE]->(n2:NodeLabel2)
@@ -50,7 +49,7 @@ Where:
 - `DELETE` is used to delete the relationship
 - `MATCH` is used to find the relationship to delete
 - `...` represents additional properties
-- `MATCH` is used to find the relationship to delete
+
 
 ### Example: Deleting a Relationship Between a Student and an Activity
 

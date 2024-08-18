@@ -92,7 +92,7 @@ website:
         - text: ETL Code 
           menu:
           - href: appendix-code.qmd
-            text: Code Gist
+            text: ETL Code
           - href: appendix-code1-config.qmd
             text: Config and Misc
           - href: appendix-code2-sql.qmd
@@ -218,7 +218,7 @@ website:
           - section: "ETL Code"          
             contents:
               - href: appendix-code.qmd
-                text: Code Gist
+                text: ETL Code
               - href: appendix-code1-config.qmd
                 text: Config and Misc
               - href: appendix-code2-sql.qmd

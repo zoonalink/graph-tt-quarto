@@ -25,17 +25,20 @@
 - [x] copy all cypher queries to page and annotate
 - [x] cypher query - QMD page
   - [x] cypher - clash QMD page
-  - [ ] rewrite time model page with new images
   - [ ] annotate and tidy up cypher query pages (spaces, etc.)
   - [ ] add cypher query insights page -> future questions which can be answered
+- [ ] draft tte quality section
+- [ ] draft conclusion section 
+- [ ] README page - explaining html (index), word, pdf versions
+- [ ] update intro and objectives - three goals, sql-graph ETL, open door to insights, spec how timetable 'quality' can be formalised
+  - [ ] bulk is data engineering project - this is precursor which enables the other two objectives and future work
   
+- [ ] rewrite time model page with new images
 - [ ] load demo archibus data
   - [ ] room cypher page
   - [ ] reference tt quality penalty
 
-  - [ ] draft tte quality section
-  - [ ] draft conclusion section 
-  - [ ] make list of work needed
+- use Loom for video - embed. 
 
 - [ ] perspectives and insights
 

@@ -96,6 +96,10 @@ th {
   overflow: auto; 
 }
 
+.scroll-cypher {
+  max-height: 200px; /* Adjust as needed */
+  overflow-y: auto;
+}
 
 
 

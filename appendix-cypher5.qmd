@@ -8,9 +8,7 @@ lightbox:
 ---
 <br>
 
-Hard constraints in a timetabling context are generally rules or conditions which cannot be violated.  Violation would indicate non-viable timetable, e.g. a lecturer being scheduled to teach in two places simultaneously.
-
-In reality, hard constraints appear in timetables and are accepted with real-world workarounds.
+"Hard constraints" in a timetabling context are generally rules or conditions which cannot be violated.  Violation would indicate non-viable timetable, e.g. a lecturer being scheduled to teach in two places simultaneously.  In reality, hard constraints appear in timetables and are accepted with real-world workarounds.
 
 This page contains cypher queries that can be used to identify where a timetabling hard constraint has been violated.
 
@@ -18,14 +16,17 @@ Example hard constraints include:
 
 * **All Activities Scheduled**: Every lecture, tutorial, lab, etc., must have a designated time and place.
 * **No Room Conflicts (aka room clash)**: Two activities cannot be scheduled in the same room at the same time.
-* **No Staff Conflicts (aka staff clash)**: A staff member cannot be assigned to two activities or more occurring at the same datetime.
-* **No Student Conflicts (aka student clash)**: A student cannot be allocated to two or more activities which are scheduled at the same datetime.
-* **Staff Availability Respected**: Activities cannot be scheduled during a staff member's unavailable times (e.g., research days, meetings, unavailability pattern).
 * **Room Capacity Sufficient**: The room assigned to an activity must accommodate the expected number of students
+* **Person clashes**: People, that is staff and students, cannot be allocated to two or more activities occurring at the same time.
+  * **No Staff Conflicts (aka staff clash)**
+  * **No Student Conflicts (aka student clash)**
+* **Staff Availability Respected**: Activities cannot be scheduled during a staff member's unavailable times (e.g., research days, meetings, unavailability pattern).
 * **Curriculum Requirements Met**: Required courses must be offered at times when students can take them
 
 
 ### Unscheduled activities
+
+Unscheduled activities can be identified as follows. This query can be tweaked to also search for matches where the property equals '' - that is, a blank.
 
 ```cypher
 MATCH (a:activity)
@@ -36,6 +37,8 @@ RETURN a
 ```
 
 ### Room clashes
+
+Room or location clashes are where two or more activities are scheduled at the same datetime in the same space and this is not deliberate. These can be identified with the starter query below. The image clearly shows pairs of activities sharing one location.  In reality, I suspect that these are deliberate clashes. 
 
 ```cypher
 MATCH (a1:activity)-[r1:OCCUPIES]->(r:room)<-[r2:OCCUPIES]-(a2:activity)
@@ -48,6 +51,10 @@ WHERE a1.actStartDate = a2.actStartDate AND a1 <> a2
 RETURN a1, a2, r, r1, r2
 ```
 ![Room Clashes](./images/cypher-room-clash.png)
+
+
+The same results have been returned as a table.
+
 
 ```{python}
 from connect_to_neo4j_db import connect_to_neo4j
@@ -100,7 +107,7 @@ driver.close()
 
 ### Room capacity exceeded
 
-This query identifies activities where the number of students exceeds the room capacity.
+This query identifies activities where the number of students exceeds the room capacity. It includes an optional `WHERE` clause if looking at a specific date range.
 
 ```cypher
 MATCH (r:room)<-[r1:OCCUPIES]-(a:activity)<-[:ATTENDS]-(s:student)
@@ -110,6 +117,8 @@ WHERE numStudents > r.roomCapacity
 RETURN r, a.actStartDate, a.actName AS Activity, r.roomCapacity, numStudents - r.roomCapacity AS extraNeeded
 ORDER BY extraNeeded DESC
 ```
+
+These are the results in a dataframe: 
 
 ```{python}
 from connect_to_neo4j_db import connect_to_neo4j
@@ -157,9 +166,11 @@ driver.close()
 
 ### Student clashes
 
-This query identifies students who are scheduled to attend two or more activities at the same time.  However, it is not an efficient query.  This is an instance where the graph structure might make a significant difference to the query performance.
+This query identifies students who are scheduled to attend two or more activities at the same time.  Identifying clashes is a complex undertaking and it is one where the graph structure in terms of nodes, properties and relationships could potentially make a significant different to performance. 
 
-This page explores the student clash query in more detail: [Student Clashes](appendix-cypher5a.qmd)
+The reason for the complexity is that you need to look for overlapping times between two activities for each date, for each student.  The query to achieve this and the ensuing calculations will vary significantly depending on on the structure and syntax. 
+
+Because of this, I explored the student clash scenario in more detail here: [Student Clashes](appendix-cypher5a.qmd)
 
 ```cypher
 MATCH (s:student)-[:ATTENDS]->(a1:activity)

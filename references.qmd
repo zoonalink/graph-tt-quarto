@@ -83,6 +83,8 @@ Thomas, J.J., Khader, A.T. and Belaton, B. (2009) Visualization Techniques on th
 
 Webber, J., Eifrem, E. and Robinson, I. (2013) Graph Databases [online]. [Accessed 4 November 2023].
 
+Wikipedia contributors (2024) Cypher (query language) — Wikipedia, the free encyclopedia [online]. Available from: https://en.wikipedia.org/w/index.php?title=Cypher_(query_language)&oldid=1219736900.
+
 Wikipedia contributors (2024) NP-hardness — Wikipedia, the free encyclopedia [online]. Available from: https://en.wikipedia.org/w/index.php?title=NP-hardness&oldid=1236371945.
 
 Wikipedia contributors (2024) SQL Wikipedia, The Free Encyclopedia [online]. Available from: https://en.wikipedia.org/w/index.php?title=SQL&oldid=1238737606 [Accessed 11 August 2024].

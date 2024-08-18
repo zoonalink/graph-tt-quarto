@@ -8,10 +8,9 @@ lightbox:
 ---
 
 <br>
+Soft constraints in a timetabling context are (strong) preferences. They should be generally met and only violated when absolutely necessary, although there is an argument for a sliding scale of soft constraint adherence.
 
-Soft constraints in a timetabling context can be considered to be (strong) preferences. They should be generally met and only violated when absolutely necessary.
-
-For example, a member of staff may be unavailable on Fridays, generally, but at a push can be available. Other examples might include ensuring that students have an opportunity to eat lunch or minimising travel between distant locations.
+For example, a member of staff may be unavailable on Fridays, generally, but at a push can be available. Other examples might include ensuring that students have an opportunity to eat lunch by ensuring at least 30 minutes free time between 12:00-14:00 or minimising travel between activities..
 
 This page contains cypher queries that can be used to identify where a timetabling soft constraint has been violated.
 
@@ -24,6 +23,45 @@ Example soft constraints include:
 -   **Lunch Breaks:** Ensure students have sufficient time for lunch breaks.
 
 ### Minimal idle time
+
+Identifying time gaps between scheduled activities is very complex and requires several steps, clauses and comprehensions within a single query:
+
+* *grouping and sorting* - activities are grouped by student and date, and sorted within groups to establish the sequence
+* *gap calculation* - time difference between the end of one activity and the start of the next is calculated for consecutive pairs of activities within a day
+* *filtering and aggregation* - gaps are filtered based on threshold (e.g. 6 hours) and then the maximum gap for each day is identified
+* *data restructuring* - output is restructured.
+
+#### Cypher logic for identifying gaps
+
+The below is the logic for identifying gaps between activities, using an example student: 
+
+
+```{cypher .cypher-scroll}
+MATCH (s:student)-[:ATTENDS]->(a:activity)
+WHERE s.stuID_anon = "stu-10085720"
+AND a.actStartDate = date("2022-10-03")
+WITH s, a
+ORDER BY a.actStartTime
+
+// Collecting the start and end times of the activities
+WITH s, collect({start: a.actStartTime, end: a.actEndTime}) AS times
+
+// Calculating the gaps in minutes between consecutive activities
+WITH s, times, 
+     [i IN range(0, size(times)-2) | 
+      duration.between(times[i].end, times[i+1].start).minutes / 60.0] AS gaps
+
+// Finding the maximum gap
+RETURN s.stuID_anon AS student, times, gaps, reduce(maxGap = 0.0, gap IN gaps | CASE WHEN gap > maxGap THEN gap ELSE maxGap END) AS maxGap
+```
+
+
+![Example student with gaps between activities](./images/cypher-maxGap-example.png)
+
+
+#### Python code on graph
+
+The below code cell returns the first 5 rows where a 6 hour maximum gap has been violated. 
 
 ```{python}
 from connect_to_neo4j_db import connect_to_neo4j
@@ -44,19 +82,19 @@ WITH s, a
 ORDER BY s.stuFirstName_anon, a.actStartDate, a.actStartTime
 // Group activities by student and date
 WITH s, a.actStartDate AS date, collect({start: a.actStartTime, end: a.actEndTime, activity: a}) AS times
-// Calculating the gaps in hours between consecutive activities
+// calculating the gaps in hours between consecutive activities
 WITH s, date, times, 
      [i IN range(0, size(times)-2) | 
       {gap: duration.between(times[i].end, times[i+1].start).minutes / 60.0, 
        firstActivity: times[i].activity, 
        secondActivity: times[i+1].activity}] AS gaps
-// Filtering gaps based on a threshold of 6 hours
+// filtering gaps based on a threshold of 6 hours
 WITH s, date, gaps
 WHERE any(gapRecord IN gaps WHERE gapRecord.gap > 6.0)
 // Finding the maximum gap that exceeds the threshold
 WITH s, date, reduce(maxGap = {gap: 0.0, firstActivity: null, secondActivity: null}, gapRecord IN gaps | 
     CASE WHEN gapRecord.gap > maxGap.gap THEN gapRecord ELSE maxGap END) AS maxGapRecord
-// Group by student to remove duplications
+// group by student to remove duplications
 WITH s.stuID_anon AS student, 
      collect({date: date, 
               activity1: maxGapRecord.firstActivity.actName,
@@ -97,28 +135,9 @@ session.close()
 driver.close()
 ```
 
-``` cypher
-MATCH (s:student)-[:ATTENDS]->(a:activity)
-WHERE s.stuID_anon = "stu-10085720"
-AND a.actStartDate = date("2022-10-03")
-WITH s, a
-ORDER BY a.actStartTime
+#### Python to return total hours and block hours
 
-// Collecting the start and end times of the activities
-WITH s, collect({start: a.actStartTime, end: a.actEndTime}) AS times
-
-// Calculating the gaps in minutes between consecutive activities
-WITH s, times, 
-     [i IN range(0, size(times)-2) | 
-      duration.between(times[i].end, times[i+1].start).minutes / 60.0] AS gaps
-
-// Finding the maximum gap
-RETURN s.stuID_anon AS student, times, gaps, reduce(maxGap = 0.0, gap IN gaps | CASE WHEN gap > maxGap THEN gap ELSE maxGap END) AS maxGap
-```
-
-The above query illustrates the logic for identifying gaps between activities with the following results for an example student:
-
-![Example student with gaps between activities](./images/cypher-maxGap-example.png)
+Alternatively, we can amend the query to return, for each date and student combination, their total scheduled hours, maximum consecutive block hours and the number of activities within the continuous block. 
 
 ```{python}
 from connect_to_neo4j_db import connect_to_neo4j
@@ -133,7 +152,7 @@ session = driver.session()
 
 # run query (modified RETURN clause)
 query = """
-// Calculates - total hours, max block hours, max block activities per day 
+// calculates - total hours, max block hours, max block activities per day 
 // to be used for max block hours and max block activities per day
 // logic - example
 
@@ -182,35 +201,37 @@ session.close()
 driver.close()
 ```
 
-### Explanation
+##### Explanation
 
 1.  Match and Sort Activities:
 
--   MATCH (s:student {stuID_anon:"stu-10085720"})-\[:ATTENDS\]-\>(a:activity): Matches the specified student and all their attended activities.
--   WITH s, a ORDER BY a.actStartDate, a.actStartTime: Sorts the activities by their start date and then by their start time within each date.
+    -   MATCH (s:student {stuID_anon:"stu-10085720"})-\[:ATTENDS\]-\>(a:activity): Matches the specified student and all their attended activities.
+    -   WITH s, a ORDER BY a.actStartDate, a.actStartTime: Sorts the activities by their start date and then by their start time within each date.
 
 2.  Calculate Total Hours and Group Activities into Blocks:
 
--   WITH s, a.actStartDate AS Date, SUM(a.actDurationInMinutes) / 60.0 AS totalHours, ...: Calculates the total hours spent on activities for each date by summing the durations of all activities on that date and converting minutes to hours.
--   REDUCE(blockInfo = \[\], activity IN COLLECT(a) \| ...): Groups activities into blocks based on time overlaps using a REDUCE function and a CASE expression.
-    -   It initialises an empty list blockInfo to store the blocks.
-    -   It iterates over the collected activities (COLLECT(a)).
-    -   For each activity:
-        -   If blockInfo is empty (first activity), it creates a new block with the activity.
-        -   Otherwise, it checks if the current activity overlaps with the last activity in the last block of blockInfo.
-            -   If there's an overlap, it adds the current activity to the last block.
-            -   If there's no overlap, it creates a new block with the current activity.
+    -   WITH s, a.actStartDate AS Date, SUM(a.actDurationInMinutes) / 60.0 AS totalHours, ...: Calculates the total hours spent on activities for each date by summing the durations of all activities on that date and converting minutes to hours.
+    -   REDUCE(blockInfo = \[\], activity IN COLLECT(a) \| ...): Groups activities into blocks based on time overlaps using a REDUCE function and a CASE expression.
+        -   Initialises an empty list blockInfo to store the blocks.
+        -   Iterates over the collected activities (COLLECT(a)).
+        -   For each activity:
+            -   If blockInfo is empty (first activity), it creates a new block with the activity.
+            -   Otherwise, it checks if the current activity overlaps with the last activity in the last block of blockInfo.
+                -   If there's an overlap, it adds the current activity to the last block.
+                -   If there's no overlap, it creates a new block with the current activity.
 
 3.  Calculate Block Hours and Number of Activities:
 
--   UNWIND blocks AS block: Unwinds the list of blocks, processing each block individually.
--   WITH s, Date, totalHours, blocks, REDUCE(blockHours = 0.0, activity IN block \| blockHours + activity.actDurationInMinutes) / 60.0 AS blockHours, SIZE(block) AS blockActivities: For each block, it calculates the total duration in hours (blockHours) by summing the durations of activities within the block and converting minutes to hours. It also calculates the number of activities in the block (blockActivities).
+    -   UNWIND blocks AS block: Unwinds the list of blocks, processing each block individually.
+    -   WITH s, Date, totalHours, blocks, REDUCE(blockHours = 0.0, activity IN block \| blockHours + activity.actDurationInMinutes) / 60.0 AS blockHours, SIZE(block) AS blockActivities: For each block, it calculates the total duration in hours (blockHours) by summing the durations of activities within the block and converting minutes to hours. It also calculates the number of activities in the block (blockActivities).
 
 4.  Return Aggregated Results:
 
--   RETURN s.stuFullName_anon AS Student, Date, totalHours, MAX(blockHours) AS blockHours, MAX(blockActivities) AS blockActivities ORDER BY Date;: Returns the student's full name, the date, the total hours for the day, the maximum block hours across all blocks for that day, and the maximum number of activities within a single block for that day. The results are ordered by date.
+    -   RETURN s.stuFullName_anon AS Student, Date, totalHours, MAX(blockHours) AS blockHours, MAX(blockActivities) AS blockActivities ORDER BY Date;: Returns the student's full name, the date, the total hours for the day, the maximum block hours across all blocks for that day, and the maximum number of activities within a single block for that day. The results are ordered by date.
 
-### Use case - more than 5 hours of activities in a single block
+#### Example Use case - identifying students with 5+ hours in a single block
+
+This query returns the first 5 rows where a student has more than 5 consecutive scheduled hours on a date. 
 
 ```{python}
 from connect_to_neo4j_db import connect_to_neo4j
@@ -271,7 +292,9 @@ session.close()
 driver.close()
 ```
 
-### Total hours per day
+#### Total hours per day
+
+In contrast, calculating simple total hours per day is done as follows: 
 
 ```cypher
 MATCH (s:student )-[:ATTENDS]->(a:activity)
@@ -282,9 +305,11 @@ ORDER BY Date;
 
 ![Total hours per day](./images/cypher-hoursPerDay.png)
 
-### Longest consecutive block of activities per day
+#### Longest consecutive block of activities per day
 
-```cypher
+We can use the earlier cypher logic to identify the longest consecutive block of activities for a student, or student on a day, etc. 
+
+```{cypher .cypher-scroll}
 
 MATCH (s:student {stuFullName_anon: "Susan Lopez"})-[:ATTENDS]->(a:activity {actStartDate: date("2022-09-27")})
 WITH s, a 
@@ -344,6 +369,7 @@ RETURN
   finalState.longestBlock.end AS blockEndTime
 ```
 
+#### Example - longest consecutive block for 'Susan Lopez' on 2022-09-27
 
 The below finds the longest consecutive block in a day for a student:
 
@@ -439,7 +465,7 @@ driver.close()
 
 ### Max hours in a day
 
-This query calculates the total hours spent on activities for each student on each day and returns the results ordered by date. This examples filters for students who have more than 7 hours of activities in a day.
+This query calculates the total scheduled hours for each student on a day and returns the results ordered by date. This examples filters for students who have more than 7 hours of activities in a day.
 
 ```cypher
 // sum of activity durations
@@ -456,7 +482,9 @@ ORDER BY Date;
 
 ### Lunch breaks
 
-``` cypher
+It might be expected that a student (or staff) has a lunch break.  The cypher below calculates free and booked tie within a window, in this case 12:00 and 14:00.  It can be used to find students who do not have a lunch break or count the number of days that a student does not have a lunch break.  
+
+```{cypher .cypher-scroll}
 
 MATCH (s:student)-[:ATTENDS]->(a:activity)
 WITH s, a
@@ -480,15 +508,13 @@ ORDER BY Date
 
 ![Lunch breaks](./images/cypher-lunchBreak.png)
 
-Interestingly, `Michael Johnson` has a negative lunch break. I quick look showed that there are actually two `Michael Johnsons` attending this class and they both have 30 minutes free time in the 2-hour lunch break window.
+Interestingly, `Michael Johnson` has a negative lunch break! A quick look showed that there are actually two `Michael Johnsons` attending this class and they both have 30 minutes free time in the 2-hour lunch break window.
 
-Because the query was written using student name, it is incorrectly aggregating the two students into one:
+Because the query was written using student name, it is incorrectly aggregating the two students into one person as follows:
 
 $$
-2 \text{ hour lunch window} - (1.5 \text{ hours/class} \times 2 \text{ classes}) = -1 \text{ hour}
+2 \text{ hour lunch window} - (1.5 \text{ hours/class} \times 2 \text{ students}) = -1 \text{ hour}
 $$
 
-**Learning points and TODO:**
+To remedy this, the query can be updated to use student ID or a different unique identifier.  I would also like to update the anonymisation function in the ETL so that it does not duplicate names in the output. 
 
--   Update query to use student ID
--   Anonymisation function needs to be improved to avoid duplicated names

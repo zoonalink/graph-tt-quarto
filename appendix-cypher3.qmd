@@ -7,45 +7,26 @@ lightbox:
   loop: false
 ---
 <br>
-This page contains a selection general queries that are used to explore the graph database. The queries are designed to provide insights into the data and relationships between nodes. The queries can be run in a Neo4j browser or other Cypher-compatible interface.
+This page contains a *selection* general queries which can be used to explore the graph database. The queries are designed to provide insights into the data and relationships between nodes.
 
 ### List all nodes
 
-The following query lists all nodes in the graph:
+The following query lists all nodes in the graph.
+
+:::{.callout-caution}
+Consider size of graph and limits in settings before running this query.
+:::
 
 ```cypher
 MATCH (n)
 RETURN n
 ```
 
-![List All Nodes](./images/cypher-all-nodes.png)
-
-
-### node labels without relationships
-
-```cypher
-// Find node labels without relationships and their count
-
-MATCH (n)
-WHERE NOT EXISTS(()-[]-(n)) AND NOT EXISTS((n)-[]-())
-RETURN DISTINCT labels(n) AS nodeLabels, count(n) AS nodeCount
-```
-
-![Node labels without Relationships](./images/cypher-nodeLabels-no-rels.png)
-
-### nodes without relationships - aka orphans
-
-```cypher
-// Find nodes without relationships
-
-MATCH (n)
-WHERE NOT EXISTS(()-[]-(n)) AND NOT EXISTS((n)-[]-())
-RETURN n
-```
-![Nodes Without Relationships](./images/cypher-nodes-no-rels.png)
-
+![All Nodes](./images/cypher-all-nodes.png)
 
 ### datatype of property
+
+Properties in a graph have `datatypes` which will enable different operations and there for insights.  The query below returns the datatype of a node property.   
 
 ```cypher
 /* return datatype of actStartTime on activity node */
@@ -56,7 +37,9 @@ RETURN DISTINCT apoc.meta.cypher.type(a.actStartTime) as actStartTimeType
 ![Datatype of Property](./images/cypher-property-datatype.png)
 
 
-### unique property values
+### unique properties
+
+A node or relationship can potentially have many properties.  The query below lists the properties of a node - in this case, `activity.`
 
 ```cypher
 // List unique properties for a Node
@@ -70,7 +53,39 @@ RETURN COLLECT(DISTINCT propertyKey) AS propertyKeys
 ![Unique Property Values](./images/cypher-activity-properties.png)
 
 
+### node labels without relationships
+
+Graph databases are all about the relationships between nodes.  It can be useful identifying nodes without relationships as they could indicate a problem with the data, data loading mechanism or be the outliers you want to identify.  
+
+For example, in a timetabling scenario, we would expect all nodes to be related to another node.  However, we can see that several node labels are orphans.  In the proof-of-concept, these results are expected or deliberate, due to the source data.
+
+```cypher
+// Find node labels without relationships and their count
+
+MATCH (n)
+WHERE NOT EXISTS(()-[]-(n)) AND NOT EXISTS((n)-[]-())
+RETURN DISTINCT labels(n) AS nodeLabels, count(n) AS nodeCount
+```
+
+![Node labels without Relationships](./images/cypher-nodeLabels-no-rels.png)
+
+### nodes without relationships - aka orphans
+
+Instead of returning a count of nodes without relationships per node label we can return the nodes as a graph or a table:
+
+```cypher
+// Find nodes without relationships
+
+MATCH (n)
+WHERE NOT EXISTS(()-[]-(n)) AND NOT EXISTS((n)-[]-())
+RETURN n
+```
+![Nodes Without Relationships](./images/cypher-nodes-no-rels.png)
+
+
 ### students without activities 
+
+In the timetabling context, we would expect students to be allocated to activities.  It turns out that we have 219 students without activities.  A bit more investigation indidates that they are all from a particular programme of study run.
 
 ```cypher
 // Students without Activities
@@ -84,6 +99,8 @@ RETURN s
 
 ### activityType without activity
 
+Activities can have a `activity type` - the graph model could have `activity type` as a property or as a relationship.  The query below finds `activity type`without `activity.`  The decision may be to delete these orphaned nodes as they may cause problems with some calculations.  They would be created if they become required in the future. 
+
 ```cypher
 // Activities without Rooms
 
@@ -95,6 +112,8 @@ RETURN at;
 ![ActivityType Without Room](./images/cypher-actType-no-activity.png)
 
 ### activities without rooms
+
+The graph has over 1500 activity instances without rooms. Most of these will be deliberate - online, virtual sessions - but we may want to query the graph to identify those where a room is expected. 
 
 ```cypher
 // Activities without Rooms
