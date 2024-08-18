@@ -125,9 +125,20 @@ website:
             text: Soft Constraints
           - href: appendix-cypher7.qmd
             text: Rooms and Spaces
-          
+        - text: Supervision
+          menu:
+          - href: appendix-supervision.qmd
+          - text: Supervision
+          - href: appendix-supervision1.qmd
+          - text: Notes Example 1
+          - href: appendix-supervision2.qmd
+            text: Notes Example 2
+          - href: appendix-supervision3.qmd
+            text: Notes Example 3
         - href: references.qmd
           text: References
+        - href: acknowledgements.qmd
+          text: Acknowledgements
     right:
       - href: ./_output/pdf/Graph-Time.pdf
         text: PDF Version
@@ -251,8 +262,20 @@ website:
                 text: Soft Constraints
               - href: appendix-cypher7.qmd
                 text: Rooms and Spaces
+          - section: "Supervision"
+            contents:
+              - href: appendix-supervision.qmd
+              - text: Supervision
+              - href: appendix-supervision1.qmd
+              - text: Notes Example 1
+              - href: appendix-supervision2.qmd
+                text: Notes Example 2
+              - href: appendix-supervision3.qmd
+                text: Notes Example 3
           - href: references.qmd
             text: References
+          - href: acknowledgements.qmd
+            text: Acknowledgements
 
 
          

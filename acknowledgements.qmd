@@ -1,0 +1,37 @@
+---
+title: "Acknowledgement"
+lightbox:
+  match: auto
+  effect: fade
+  desc-position: bottom
+  loop: false
+execute:
+  enabled: false
+---
+
+First, I would like to express my gratitude to my supervisor, [Dr. Xiaodong Li](https://people.uwe.ac.uk/Person/XiaodongLi), for their guidance, support and feedback throughout this project.  They were particular helpful in keeping me focused and staying on topic, allowing me to incrementally achieve my goals.
+
+I extend my sincere thanks to the faculty and staff of the MSc Data Science programme for providing the environment and resources necessary for my project: 
+
+* [Dr Paul Matthews](https://people.uwe.ac.uk/Person/Paul2Matthews) - Course lead for MSc Data Science
+* [Prakash Chatterjee](https://people.uwe.ac.uk/Person/PrakashChatterjee) - Data Management Fundamentals
+  * Reintroduced the concept of graph databases and noSQL.
+* [Dr David Wyatt](https://people.uwe.ac.uk/Person/David2Wyatt) - Programming for Data Science
+  * Provided foundations of Python programming, Git version control, markdown.
+* [Dr Hisham Ihshaish](https://people.uwe.ac.uk/Person/HishamIhshaish) - Machine Learning and Predictive Analytics
+  * Introduced me to Machine Learning, marrying programming and statistics.
+* [Dr Deirdre Toher](https://scholar.google.co.uk/citations?user=2P4klJcAAAAJ&hl=en) - Advanced Statistics
+  * Pulled me through challenging statistitics, introduced me to Quarto (in an R context) and was generally very supportive over the years.  Now working for [Central Statistics Office](https://www.cso.ie/en/index.html) in Ireland. 
+* [Dr Jason Anquandah](https://people.uwe.ac.uk/Person/JasonAnquandah) - Interdisciplinary Group Project
+  * Supported me through the challenges of a group project.
+* [Dr Mahmoud Elbattah](https://people.uwe.ac.uk/Person/MahmoudElbattah) - Interdisciplinary Group Project
+  * * Supported me through the challenges of a group project.
+
+
+I am indebted to my colleagues in SDS for their support, camaraderie, intellectual discussions and willingness to share knowledge, expertise and time. I am especially grateful to my mentor, colleague, manager and friend, Esther Williams, who has supported me throughout this journey and others, always magnanimously sharing her wisdom and unwavering encouragement.
+
+Finally, I would like to thank my family and friends for their unwavering love and support throughout my graduate studies. Their encouragement and understanding have been invaluable in helping me navigate the challenges and celebrate the successes along the way.
+
+In the spirit of graphs...
+
+![Acknowledgement graph](./images/acknowledge.png)

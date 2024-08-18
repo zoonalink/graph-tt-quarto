@@ -1,0 +1,77 @@
+---
+title: "Weekly Update - 2024-07-08"
+---
+
+## Summary
+
+* This week has been primarily based on getting the ETL pipeline working. 
+* Some thought and planning about the overall project
+
+## Accomplishments
+
+* **Project Management** 
+  * Planned next 6 weeks - high level
+* **Data Collection:** 
+  * N/A
+* **Analysis / Wrangling:** 
+  * N/A
+* **Model Development:** 
+  * The ETL is (hopefully) production ready.
+* **Results:** 
+  * Functioning ETL which: 
+    * Extracts -> Filters -> Cleans -> Transforms -> Anonymises -> Uploads to Google Drive -> Loads to Neo4j
+    * Configurable, scalable, modular
+    * Logging, Error-handling
+
+## Next Steps
+
+### Weekly Goal: What is goal of week?
+
+- **Project Management** 
+  - Plan next six weeks - with tasks
+  - see [project-structure](../docs/notes/project-structure.ipynb)
+* **Data:** 
+  * Clear out database and repopulate
+  * Run ETL for some programme - e.g. UG maths, PG Data Sci, PG AI, PG cyber
+  * Consider Unit Tests
+* **Analysis / Wrangling:** 
+  * Develop and explore Cypher quality and violation queries
+  * see [queries](../docs/notes/queries.ipynb)
+* **Modeling:** 
+  * Consider different model of time as nodes (but probably will not develop)
+* **Writing**
+  * After ETL confirmation - fully documentation of code 
+    * Also write up into QMD doc
+    * Visualiation - Data Flow Diagram?
+  * Model section write up
+    * SQL data model
+    * Graph data model
+    * Visualisations
+    * see [code-critique](../docs/notes/code-critique.ipynb)
+  * Draft Intro
+    * Proof of concept
+    * Research question
+    * Domain
+
+
+## Issues/Blockers
+
+* **Technical:** 
+  * Main limitations are free Neo4j Aura software and other restrictions
+* **Methodological:**
+  * Need to think about what I want to deliver and how it looks
+
+
+## Post-Meeting Notes
+
+* **Key Decisions:** What were the main takeaways from meeting?
+  * I need to focus on making progress and think about what the final produce will be.
+* **Action Items:** What tasks do you need to complete?
+  * see above - write up sections, even if draft
+
+## Additional Notes
+
+* **Literature Review:**  Relevant papers read.
+* **Experiments:** If applicable, describe any experiments conducted.
+* **Code:** Embedding example snippets of code.
+

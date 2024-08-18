@@ -1,0 +1,71 @@
+---
+title: "Fortnightly Update - 2024-06-24"
+---
+
+## Summary
+
+Significant progress in the backend and more proof-of-concept in front end.
+
+## Accomplishments
+
+* **Project Management**
+  * [x] post supervisor meeting notes
+* **Data Collection:**
+  * [x] Anonymisation function for staff/student personal data developed and tested.
+  * [x] MSc Data Science cohort isolated into separate csv files
+  * [x] Data extraction pipeline designed, developed, tested.  This allows for extracting data filtered by programme on demand.
+    * modularised, scalable, configurable, efficient pipeline
+  * [x] Transformation pipeline (preprocessing, anonymising) 
+    * More than half way completed - same principles
+    * need to add staff, student, activity nodes and test outcomes
+    * need to add relationships and test.
+  * [x] Loading to Neo4j pipeline developed - suitable for version 1
+* **Analysis / Wrangling:**
+  * [x] More advanced cypher queries - constraint violation queries developed using cypher for version 1.  some are very complex.  more testing needed.
+  * [x] list of insights which can be derived
+* **Model Development:**
+  * [ ] Comparing different representations of time
+* **Results:** 
+* Pipeline development
+* Cypher queries for version 1
+* conversation with business owners to validate work
+
+## Next Steps
+
+### Weekly Goal: What is goal of next fortnight? 
+
+- write up and benchmark v1 notes
+- finish developing and testing pipeline:
+  - extract
+  - transform
+  - load
+- document pipeline - written and visual (mermaid?)
+- develop cypher queries for version 2
+- design (theory) timetable quality index
+- consider scaling dataset
+- start writing project notes
+
+
+## Issues/Blockers
+
+* **Technical:**
+  *  Digital certificates on machines preventing load
+  *  Neo4j Aura (free) limitations - loading issues
+  
+
+* **Methodological:** Concerns about approach or analysis?
+  * Spending a lot of time getting ETL 'right'
+  * Not sure about balance of project and what I will deliver at the end
+
+* **Data-Related:** Issues with data quality, access, or quantity?
+  * Working on pipelines which will mean I can scale accordingly (within constraints of free instance)
+
+## Post-Meeting Notes
+
+My superviser and I spoke about where I am at in the project at the moment and next steps.  We discussed what I am attempting to do and why, including graph data structures, proof-of-concept, etc. and that it is becoming a data engineering project.  I stated that my timeline lookes to complete a robust data ETL pipeline by the middle of July, with a view to shifting towards more work within Neo4j from the end of July to the middle of August. 
+
+We agreed to meet in two weeks.
+
+
+
+

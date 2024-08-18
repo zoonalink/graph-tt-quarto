@@ -25,24 +25,135 @@
 - [x] copy all cypher queries to page and annotate
 - [x] cypher query - QMD page
   - [x] cypher - clash QMD page
-  - [ ] annotate and tidy up cypher query pages (spaces, etc.)
-  - [ ] add cypher query insights page -> future questions which can be answered
+  - [x] annotate and tidy up cypher query pages (spaces, etc.)
+  
+
+- [x] dedication, thank you page - family colleagues supervisors
+- [x] supervisor notes page
+- [x] check other requirements and add
+
+**MONDAY**
+
 - [ ] draft tte quality section
 - [ ] draft conclusion section 
-- [ ] README page - explaining html (index), word, pdf versions
+- [ ] word count check - and adjust
+
+- [ ] add cypher query insights page -> future questions which can be answered
+
 - [ ] update intro and objectives - three goals, sql-graph ETL, open door to insights, spec how timetable 'quality' can be formalised
   - [ ] bulk is data engineering project - this is precursor which enables the other two objectives and future work
-  
+
+**TUESDAY**
+
 - [ ] rewrite time model page with new images
 - [ ] load demo archibus data
   - [ ] room cypher page
   - [ ] reference tt quality penalty
 
-- use Loom for video - embed. 
+- [ ] rerender html
+- [ ] redo quarto for pdf and word
+- [ ] render word and pdf
+  - [ ] fix word doc
+  - [ ] fix pdf doc
+- 
+- [ ] README page - explaining html (index), word, pdf versions
+  - [ ] html folder
+  - [ ] docs folder for word and pdf
+  - [ ] README in root explaining how this works -> designed to be viewed as a website (open ./html/index.html) -> also available as a word or pdf doc.  Github repo available here.  Any problems, contact me.
+
+**WEDNESDAY**
+
+- loom video
+
+  
+
+
+
+Learning OutcomesLearning Outcomes
+The learning outcomes for the project are set out below. When you have completed the module, you should be able to:
+Identify a research problem and scope research to suitably investigate it
+Synthesise and critically evaluate recent research having a direct bearing on the problem space
+Design and implement a technology solution or practical/analytical investigation to a high standard, with aspects of novelty and personal innovation.
+Select and apply appropriate and contemporary best-of-breed tools, techniques and theoretical models
+Critically and reflexively evaluate the outcome and personal performance to standards of research quality (validity, reliability) and professional competence.
+Embody an ethical approach to research conduct in a specialist area in computer science
+Communicate research outcomes and learning effectively to specialist and non-specialist audiences
+
+
+Criterion
+Percent
+Poor/Fail (<50)
+Good (50-59)
+Very Good / Merit (60-69)
+Excellent / Distinction (70+)
+Rationale, Scope and Objectives
+5
+
+Very clear, SMART and research-based; convincing rationale.  Well addressed aims and objectives.
+Novelty and Innovation
+10
+
+Highly innovative / creative. Substantial personal interpretation of the material and methods.  Project is relevant, up to date and using current techniques / Excellent demonstration of problem-solving skills.
+Literature Review and Academic Content
+20
+Relevant, state-of-the-art literature understood and critically reviewed; Exceptional breadth & depth of academic content, understood & applied
+Design and Approach & User requirements
+15
+Clear use of theory and appropriate process methodologies (e.g. test-driven design / reproducibility / model validation); highly suited to research objectives / Extensive, evidence-based user needs assessment
+Implementation
+15
+Interface or analytical outputs clear, sophisticated and error free; objectives fully met or surpassed
+Ethical Consideration and Approach
+10
+
+Clear and well-informed consideration of ethical issues with demonstrated impact on project approach and outputs
+Evaluation and Reflection, evidence of planning and management
+15
+
+Structured, rigorous evaluation; Deep and honest reflection.  Excellent use made of feedback and supervision meetings; clear records kept and evidence supplied.
+Presentation, Organisation, Documentation & Attribution
+10
+
+Logical layout of sections and narrative; Grammar and spelling correct; Accurate and complete referencing; Clear commenting of own code; Clear attribution of others' code
+
+Viva
+ 	 	 	 	 
+Criterion
+Percent
+Poor/Fail (<50)
+Good (50-59)
+Very Good / Merit (60-69)
+Excellent / Distinction (70+)
+Ability to demonstrate the artifact
+50
+
+Excellent demonstration of the artifact, discussion of issues and knowledge of the subject area.
+Able to answer questions and discuss the project
+50
+
+Excellent understanding of the topic area; clear and nuanced awareness of the scope and limitations of the project outcomes
+
+
+- [ ]use Loom for video - embed. 
+  - a long time ago, i worked as a timetabler.  it was challenging, rewarding, frustrating, interesting, sometimes at the same time. 
+  - timetabling is a vry complex university function which involves requirements gathering, data structuring, rules and constraints, solutionising, optimising against objectives...
+  - only to release a timetable and wait for the complaints.  
+  - the reality is that no news is good news, but you will hear about the things which are not good. 
+  - and this is right.  the timetable is central to students' and staff experience at university.  it dictates where they need to be when, doing what.  when it is not favourable, you will know.
+  - but what is a good timetable?  how do you know? 
+  - this is at the heart of this project.  
+  - university timetables are traditionally stored in highly structured, relational databases. 
+  - given the highly relational nature of timetabling data - students attend classes, staff teach activities, activities belong to modules, modules contribute to programmes, activities take place in rooms, rooms are located in buildings, etc. 
+  - I hypothesise that graph databases could answer timetabling use cases, in particular around gaining insight into timetable quality.
+- my project has three parts:
+  - 1. it is a data engineering prject - I have built an end-to-end ETL which extracts, transforms and loads timetabling data from SQL to Neo4j graph.  this involves modeling and documenting graph data structures suitable for timetables.
+  - 2. this opens the door to exploring timetables using cypher querying language.  I have created proof-of-concept queries which query the database and provide insights to different personas - academic, planning, administrative staff.  I develop queries which identify where timetabling constraints have been violated such as - clashes, where a room is double booked, or maximum consecutive hours, or long gaps between activities or no lunch break.
+  - 3. and i discuss how these could be used to derive a timetable quality score - an independent score based on penalties which takes the emotion out of timetables and provides a measurable, comparable quality index which can be used to compare individual or cohort timetables, or even whole year timebables.
+  - This project is foundational and intended to be built on - it demonstrates the potential of restructuring timetables into graph and discovering insight. 
 
 - [ ] perspectives and insights
 
-- [ ] dedication, thank you page - family colleagues supervisors
+
 - [ ] add word count to front page
 - [ ] video to front page - and video script
 - [ ] example supervisor notes

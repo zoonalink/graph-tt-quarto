@@ -1,0 +1,10 @@
+---
+title: "Supervision"
+---
+
+Project supervision was undertaken by Dr. Xiaodong Li who was very supportive and made himself available to me in-person and by email, etc.  
+
+In general, we met for 30-60 minutes every fortnight where I presented progress, issues/blockers, planned next steps, etc. and we discussed the project in general.  Dr. Li was very engaged and helpful and I am indebted to his supervision.  Following each meeting, I wrote up notes.  
+
+I have shared a few examples in the following pages.  Please note that links within these pages will not necessarily work as they point to working files and repositories.
+
