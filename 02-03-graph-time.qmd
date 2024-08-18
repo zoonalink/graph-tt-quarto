@@ -54,7 +54,7 @@ Option 1 addresses this by creating nodes for each unique combination of `name`,
 -   Each node has `date`, `startTime`, `endTime` properties
 -   Only `date` is different between each node.
 
-```         
+```{cypher .cypher-scroll}       
 (Activity {Name: "ITGD", Date: "2024-01-03", StartTime: "09:00", EndTime: "11:00"}) 
 (Activity {Name: "ITGD", Date: "2024-01-10", StartTime: "09:00", EndTime: "11:00"}) 
 ... 
@@ -92,7 +92,7 @@ Option 2 creates a *single activity* node but also additional `date` and `time` 
 
 <br>
 
-```         
+```{cypher .cypher-scroll}         
 (Activity {Name: "ITGD"})
     -[:SCHEDULED_ON]-> (Date {date: "2024-01-03"})
     -[:SCHEDULED_ON]-> (Date {date: "2024-01-10"})
@@ -131,7 +131,7 @@ Option 3 creates a single activity but instead of individual start and end time 
     -   `Activity` -[:TAKES_PLACE_DURING]-> `timeBlock 09:30-10:00` (11 relationships) 
     -   ...
   
-```
+```{cypher .cypher-scroll}
 (Activity {Name: "ITGD"}) 
     -[:SCHEDULED_ON]-> (Date {date: "2024-01-03"}) 
     -[:SCHEDULED_ON]-> (Date {date: "2024-01-10"})
@@ -140,7 +140,6 @@ Option 3 creates a single activity but instead of individual start and end time 
     -[:TAKES_PLACE_DURING]-> (TimeBlock {timeBlock: "09:30-10:00"})
     -[:TAKES_PLACE_DURING]-> (Timeblock {timeBlock: "10:00-10:30"}) 
     -[:TAKES_PLACE_DURING]-> (Timeblock {timeBlock: "10:30-11:00"})
-
 ```         
 
 **Pros**:
@@ -154,14 +153,17 @@ Option 3 creates a single activity but instead of individual start and end time 
 -   **Potential for High Node Codes**: Lots of `TimeBlocks` if using small intervals
 -   **Less flexibile**: Timeblocks are not dynamic.
 
-### Option: Variations
+### Variations
 
 **StartTime and Duration**: This option simplifies the model by representing time using only `StartTime` and `DurationInMinutes` properties on the `Activity` node, omitting explicit `EndTime` nodes. This approach is suitable for duration based queries but it is limiting in that it is more difficult to query events occurring at specific times, overlapping time ranges or on end-times.
 
-**Dynamic TimeBlocks**: This variation does not pre-create timeblocks based on a set interval (e.g. 30 minutes). They are created dynamically as required by the data and what already exists. For example, activities at 09:00-11:00, 10:30-11:30 and 11:00-12:00 would require these TimeBlocks:
-```
+**Time Chains**: This option retains date and time nodes, but instead of having relationships from activity, the nodes are chained:  `activity` -> `startTime` -> `endTime`.
 
-(Timeblock {name: "09:00-11:00", start: 09:00, end: 11:00, duration:120}) (Timeblock {name: "10:30-11:30", start: 10:30, end: 11:30, duration:60}) (Timeblock {name: "11:00-12:00", start: 11:00, end: 12:00, duration:60}) \`\`\`
+**Dynamic TimeBlocks**: This variation does not pre-create timeblocks based on a set interval (e.g. 30 minutes). They are created dynamically as required by the data and what already exists. For example, activities at 09:00-11:00, 10:30-11:30 and 11:00-12:00 would require these TimeBlocks:
+
+```{cypher}
+(Timeblock {name: "09:00-11:00", start: 09:00, end: 11:00, duration:120}) (Timeblock {name: "10:30-11:30", start: 10:30, end: 11:30, duration:60}) (Timeblock {name: "11:00-12:00", start: 11:00, end: 12:00, duration:60})
+```
 
 ### Summary
 
@@ -174,4 +176,6 @@ Option 3 creates a single activity but instead of individual start and end time 
 
 : Option summary
 
-Given the proof-of-concept scope of this project, I chose to proceed with Option 1. While this approach can lead to node proliferation, it offers the most straightforward implementation for exploring fundamental time-based queries and insights. It also acts as an easy jumping off point for exploring any of the other options.
+Given the proof-of-concept scope of this project, I chose to proceed with Option 1. While this approach can lead to node proliferation, it offers the most straightforward implementation for exploring fundamental time-based queries and insights. It also acts as an easy jumping off point for exploring any of the other options.[^2]
+
+[^2]: Some of the above variations are explored in [Appendix-Student Clashes](appendix-cypher5a.qmd)

@@ -24,7 +24,7 @@ Even with this basic model, we can easily extract valuable insights, for example
 
 **Busiest location overall**
 
-```{cypher}
+```{cypher .cypher-scroll}
 MATCH (r:Room)<-[:TAKES_PLACE_IN]-(a:Activity)
 WITH r, sum(a.duration) AS totalDuration
 RETURN r.name AS Room, totalDuration
@@ -34,7 +34,7 @@ LIMIT 1
 
 **Busiest location for a specific time**
 
-```{cypher}
+```{cypher .cypher-scroll}
 MATCH (r:Room)<-[:TAKES_PLACE_IN]-(a:Activity)
 WHERE a.startTime = "11:00" 
 WITH r, count(a) AS activityCount
@@ -45,7 +45,7 @@ LIMIT 1
 
 **Students with below/above average hours**
 
-```{cypher}
+```{cypher .cypher-scroll}
 // Calculate program averages and standard deviations
 MATCH (s:Student)-[:IS_ALLOCATED_TO]->(a:Activity)
 WITH s.prog AS programme, AVG(a.duration) AS avgDuration, STDEV(a.duration) AS stdDev

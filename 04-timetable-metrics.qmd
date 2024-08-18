@@ -2,6 +2,20 @@
 title: "Timetable Metrics" 
 ---
 
+* intro / segue into timetable metrics.
+* link to cypher queries for basic analysis, basic understanding
+* but to understand quality and measurable quality, we need to be able to define what we mean
+* my idea is to develop a timetable metric, index which is quantifiable and measurable and comparable 
+* but also flexible and adaptable to organisational needs and priorities - it is tweakable
+* describe general idea of penalties and positivies to get a score - details are to be determined
+* but the general concept is that every student (or staff, or programme) - timetabling object can have a quality score/measure
+* for simplicity, we can imagine starting with a score of 100 - which is either neutral.  the score can increase (with positive metrics) and decrease when penalised.  
+* mentions hard and soft constraints before - these are examples of what would be used to calculate the score
+* everyone has a lunch break is either rewarded or not penalised
+* no clashes is the minimum, so a clash should be a penalty
+* long days are a penalty etc.
+* can add other datasets like room locations to calculate distances and travel time (see cypher page)
+* 
 
 ## Timetable Quality Metrics and Insights
 

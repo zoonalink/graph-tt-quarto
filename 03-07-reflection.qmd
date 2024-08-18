@@ -23,3 +23,5 @@ While often frustrating, these challenges have also provided valuable learning o
 4. **View obstacles as learning opportunities**: Embrace continuous learning and see challenges as chances to grow. Invest time in understanding the right technologies and approaches, particularly focusing on modularisation.
 
 5. **Celebrate incremental progress**: Recognise and appreciate small achievements throughout the development process. This helps maintain motivation and provides a clearer sense of overall progress.
+
+The next section will start looking at the newly transferred data in the graph database.
