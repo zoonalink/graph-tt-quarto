@@ -183,7 +183,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Neo4j Load</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./03-07-reflection.html">
+    <a class="dropdown-item" href="./03-07-reflections.html">
  <span class="dropdown-text">Reflection</span></a>
   </li>  
     </ul>
@@ -400,7 +400,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-07-reflection.html" class="sidebar-item-text sidebar-link">
+  <a href="./03-07-reflections.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reflection</span></a>
   </div>
 </li>
@@ -480,7 +480,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Code Gist</span></a>
+ <span class="menu-text">ETL Code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -586,10 +586,57 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Supervision</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Supervision</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weekly Update - 10 June 2024</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Notes Example 1</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes Example 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes Example 3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
       </ul>
@@ -678,11 +725,10 @@ CREATE (n1)-[r:RELATIONSHIP_TYPE]-&gt;(n2)</code></pre>
 <li><code>r</code> is the relationship variable</li>
 <li><code>RELATIONSHIP_TYPE</code> is the type of relationship</li>
 <li><code>-&gt;</code> represents the direction of the relationship</li>
-<li><code>MATCH</code> is used to find the nodes to connect</li>
-<li><code>WHERE</code> is used to filter the nodes</li>
+<li><code>MATCH</code> is used to find the nodes to connect, optional</li>
+<li><code>WHERE</code> is used to filter the nodes, optional</li>
 <li><code>CREATE</code> is used to create the relationship</li>
 <li><code>...</code> represents additional properties</li>
-<li><code>MATCH</code> and <code>WHERE</code> are optional and can be used to find and filter nodes before creating the relationship</li>
 </ul>
 <section id="example-creating-a-relationship-between-a-student-and-an-activity" class="level3">
 <h3 class="anchored" data-anchor-id="example-creating-a-relationship-between-a-student-and-an-activity">Example: Creating a Relationship Between a Student and an Activity</h3>
@@ -692,7 +738,20 @@ CREATE (s)-[r:ATTENDS]-&gt;(a)</code></pre>
 </section>
 <section id="relationships-created-after-etl" class="level2">
 <h2 class="anchored" data-anchor-id="relationships-created-after-etl">Relationships created after ETL</h2>
-<p>The following examples were applied to the proof-of-concept graph database to create relationships after loading data into the graph.</p>
+<p>The following relationships were applied to my proof-of-concept graph after loading data using the ETL, using node properties. Delete code also supplied below.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use code with caution, especially DELETE code. Run pattern matching and investigate results before committing to delete.</p>
+</div>
+</div>
 <section id="student-registered_on-programme" class="level3">
 <h3 class="anchored" data-anchor-id="student-registered_on-programme">(student)-[REGISTERED_ON]-&gt;(programme)</h3>
 <pre class="cypher"><code>

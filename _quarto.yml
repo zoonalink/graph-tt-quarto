@@ -68,7 +68,7 @@ website:
             text: Google Drive Load
           - href: 03-06b-load.qmd
             text: Neo4j Load
-          - href: 03-07-reflection.qmd
+          - href: 03-07-reflections.qmd
             text: Reflection
       - href: 04-timetable-metrics.qmd
         text: Timetable Metrics
@@ -206,7 +206,7 @@ website:
             text: Google Drive Load
           - href: 03-06b-load.qmd
             text: Neo4j Load
-          - href: 03-07-reflection.qmd
+          - href: 03-07-reflections.qmd
             text: Reflection
       - href: 04-timetable-metrics.qmd
         text: Timetable Metrics

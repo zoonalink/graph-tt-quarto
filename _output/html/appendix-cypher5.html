@@ -220,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Neo4j Load</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./03-07-reflection.html">
+    <a class="dropdown-item" href="./03-07-reflections.html">
  <span class="dropdown-text">Reflection</span></a>
   </li>  
     </ul>
@@ -437,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-07-reflection.html" class="sidebar-item-text sidebar-link">
+  <a href="./03-07-reflections.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reflection</span></a>
   </div>
 </li>
@@ -517,7 +517,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Code Gist</span></a>
+ <span class="menu-text">ETL Code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -623,10 +623,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Supervision</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Supervision</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weekly Update - 10 June 2024</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Notes Example 1</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes Example 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes Example 3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
       </ul>
@@ -671,21 +718,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p><br></p>
-<p>Hard constraints in a timetabling context are generally rules or conditions which cannot be violated. Violation would indicate non-viable timetable, e.g.&nbsp;a lecturer being scheduled to teach in two places simultaneously.</p>
-<p>In reality, hard constraints appear in timetables and are accepted with real-world workarounds.</p>
+<p>“Hard constraints” in a timetabling context are generally rules or conditions which cannot be violated. Violation would indicate non-viable timetable, e.g.&nbsp;a lecturer being scheduled to teach in two places simultaneously. In reality, hard constraints appear in timetables and are accepted with real-world workarounds.</p>
 <p>This page contains cypher queries that can be used to identify where a timetabling hard constraint has been violated.</p>
 <p>Example hard constraints include:</p>
 <ul>
 <li><strong>All Activities Scheduled</strong>: Every lecture, tutorial, lab, etc., must have a designated time and place.</li>
 <li><strong>No Room Conflicts (aka room clash)</strong>: Two activities cannot be scheduled in the same room at the same time.</li>
-<li><strong>No Staff Conflicts (aka staff clash)</strong>: A staff member cannot be assigned to two activities or more occurring at the same datetime.</li>
-<li><strong>No Student Conflicts (aka student clash)</strong>: A student cannot be allocated to two or more activities which are scheduled at the same datetime.</li>
-<li><strong>Staff Availability Respected</strong>: Activities cannot be scheduled during a staff member’s unavailable times (e.g., research days, meetings, unavailability pattern).</li>
 <li><strong>Room Capacity Sufficient</strong>: The room assigned to an activity must accommodate the expected number of students</li>
+<li><strong>Person clashes</strong>: People, that is staff and students, cannot be allocated to two or more activities occurring at the same time.
+<ul>
+<li><strong>No Staff Conflicts (aka staff clash)</strong></li>
+<li><strong>No Student Conflicts (aka student clash)</strong></li>
+</ul></li>
+<li><strong>Staff Availability Respected</strong>: Activities cannot be scheduled during a staff member’s unavailable times (e.g., research days, meetings, unavailability pattern).</li>
 <li><strong>Curriculum Requirements Met</strong>: Required courses must be offered at times when students can take them</li>
 </ul>
 <section id="unscheduled-activities" class="level3">
 <h3 class="anchored" data-anchor-id="unscheduled-activities">Unscheduled activities</h3>
+<p>Unscheduled activities can be identified as follows. This query can be tweaked to also search for matches where the property equals ’’ - that is, a blank.</p>
 <pre class="cypher"><code>MATCH (a:activity)
 WHERE a.actStartDate IS NULL 
 OR a.actStartTime IS NULL 
@@ -694,6 +744,7 @@ RETURN a</code></pre>
 </section>
 <section id="room-clashes" class="level3">
 <h3 class="anchored" data-anchor-id="room-clashes">Room clashes</h3>
+<p>Room or location clashes are where two or more activities are scheduled at the same datetime in the same space and this is not deliberate. These can be identified with the starter query below. The image clearly shows pairs of activities sharing one location. In reality, I suspect that these are deliberate clashes.</p>
 <pre class="cypher"><code>MATCH (a1:activity)-[r1:OCCUPIES]-&gt;(r:room)&lt;-[r2:OCCUPIES]-(a2:activity)
 WHERE a1.actStartDate = a2.actStartDate AND a1 &lt;&gt; a2
     AND (
@@ -708,7 +759,8 @@ RETURN a1, a2, r, r1, r2</code></pre>
 <figcaption>Room Clashes</figcaption>
 </figure>
 </div>
-<div id="40d01902" class="cell" data-execution_count="1">
+<p>The same results have been returned as a table.</p>
+<div id="b81fd792" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to show code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
@@ -760,7 +812,7 @@ RETURN a1, a2, r, r1, r2</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Connecting to Neo4j database....
-Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x000001FD6F8F2290&gt;
+Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x000001D74F457B90&gt;
 Running query...
 
                           activity1                         activity2  \
@@ -797,14 +849,15 @@ Running query...
 </section>
 <section id="room-capacity-exceeded" class="level3">
 <h3 class="anchored" data-anchor-id="room-capacity-exceeded">Room capacity exceeded</h3>
-<p>This query identifies activities where the number of students exceeds the room capacity.</p>
+<p>This query identifies activities where the number of students exceeds the room capacity. It includes an optional <code>WHERE</code> clause if looking at a specific date range.</p>
 <pre class="cypher"><code>MATCH (r:room)&lt;-[r1:OCCUPIES]-(a:activity)&lt;-[:ATTENDS]-(s:student)
 //WHERE a.Date &gt;= date("2022-01-01") AND a.Date &lt;= date("2022-06-30") 
 WITH r, a, count(s) as numStudents
 WHERE numStudents &gt; r.roomCapacity
 RETURN r, a.actStartDate, a.actName AS Activity, r.roomCapacity, numStudents - r.roomCapacity AS extraNeeded
 ORDER BY extraNeeded DESC</code></pre>
-<div id="b080c7d4" class="cell" data-execution_count="2">
+<p>These are the results in a dataframe:</p>
+<div id="1dd90a26" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Click to show code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
@@ -850,7 +903,7 @@ ORDER BY extraNeeded DESC</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Connecting to Neo4j database....
-Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x000001FD6F912650&gt;
+Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x000001D750FF12D0&gt;
 Running query...
 
 Printing first 5 records...
@@ -866,8 +919,9 @@ Printing first 5 records...
 </section>
 <section id="student-clashes" class="level3">
 <h3 class="anchored" data-anchor-id="student-clashes">Student clashes</h3>
-<p>This query identifies students who are scheduled to attend two or more activities at the same time. However, it is not an efficient query. This is an instance where the graph structure might make a significant difference to the query performance.</p>
-<p>This page explores the student clash query in more detail: <a href="./appendix-cypher5a.html">Student Clashes</a></p>
+<p>This query identifies students who are scheduled to attend two or more activities at the same time. Identifying clashes is a complex undertaking and it is one where the graph structure in terms of nodes, properties and relationships could potentially make a significant different to performance.</p>
+<p>The reason for the complexity is that you need to look for overlapping times between two activities for each date, for each student. The query to achieve this and the ensuing calculations will vary significantly depending on on the structure and syntax.</p>
+<p>Because of this, I explored the student clash scenario in more detail here: <a href="./appendix-cypher5a.html">Student Clashes</a></p>
 <pre class="cypher"><code>MATCH (s:student)-[:ATTENDS]-&gt;(a1:activity)
 WITH s, a1
 MATCH (s)-[:ATTENDS]-&gt;(a2:activity)&nbsp;
@@ -1484,7 +1538,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"openEffect":"fade","selector":".lightbox","closeEffect":"fade","descPosition":"bottom","loop":false});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"descPosition":"bottom","closeEffect":"fade","openEffect":"fade"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

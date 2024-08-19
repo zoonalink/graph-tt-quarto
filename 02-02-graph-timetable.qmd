@@ -10,11 +10,13 @@ lightbox:
    
 ---
 
-Having discussed some advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling.
+Having discussed advantages of graph databases for representing interconnected data, this section delves into the specifics of a proposed graph data model tailored for university timetabling.
 
 ## An Iterative Approach
 
-Due to flexibility, creating graph data models is an iterative process: design -> build -> test -> review -> revise -\> ...and repeat. My first model was small in scope, incorporating *minimal* nodes and properties in an MVP[^4] approach.  Eventually, my expanded model was created in a cloud-instance of Neo4j Aura.
+Due to flexibility, creating graph data models is an iterative process: design -> build -> test -> review -> revise -\> ...and repeat. 
+
+My first model was small in scope, incorporating *minimal* nodes and properties in an MVP[^4] approach.  Eventually, my expanded model was created in a cloud-instance of Neo4j Aura.
 
 ## Core Nodes - Building Blocks
 

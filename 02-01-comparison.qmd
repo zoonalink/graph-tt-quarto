@@ -39,13 +39,13 @@ This node-and-edge structure inherently reflects how timetabling elements connec
 -   **Natural Representation**: Graph databases visually and conceptually mirror the relationships inherent in timetables, making them easier to understand and query.
 -   **Relationship-Centric Queries**: Graph databases are optimised for traversing and analysing relationships. Queries that would require multiple joins in a relational database often become significantly simpler and faster in a graph database.
 -   **Flexibility**: The schema-less or schema-optional nature of most graph databases allows for greater flexibility in data modeling. New entities or relationships can be added effortlessly without impacting existing structures or queries (Nan and Bai, 2019; Webber, Eifrem and Robinson, 2013).
--   
+
 
 ## Comparing queries
 
 **Example Insight**: Find all students attending a specific lecturer's class in a particular building
 
-Representative queries have been written in SQL and Cypher to find this insight.  The SQL query is much longer and requires six joins, each coming at a computational cost.  In contrast, the Cypher query pattern is much simpler - written in one line (MATCH pattern). 
+Representative queries have been written in SQL and Cypher to find this insight.  The SQL query is much longer and requires six joins, each coming at a computational cost.  
 
 ### SQL Query
 
@@ -63,6 +63,8 @@ WHERE ast.[StaffId] = 'StaffID'
 ```
 
 ### Cypher Query 
+
+In contrast, the Cypher query pattern is much simpler - written in one line (MATCH pattern). The query is more intuitive and easier to understand, especially for those unfamiliar with the database schema.
 
 ```{cypher}
 

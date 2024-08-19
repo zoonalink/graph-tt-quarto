@@ -215,5 +215,23 @@
   },
   "appendix-cypher6.qmd": {
     "appendix-cypher6.html": "f9ff6f3b"
+  },
+  "acknowledgements.qmd": {
+    "acknowledgements.html": "1f034183"
+  },
+  "appendix-supervision.qmd": {
+    "appendix-supervision.html": "c23eaa57"
+  },
+  "appendix-supervision1.qmd": {
+    "appendix-supervision1.html": "51b90193"
+  },
+  "appendix-supervision2.qmd": {
+    "appendix-supervision2.html": "4aa19a3f"
+  },
+  "appendix-supervision3.qmd": {
+    "appendix-supervision3.html": "4ee076c1"
+  },
+  "03-07-reflections.qmd": {
+    "03-07-reflections.html": "c1e03c25"
   }
 }

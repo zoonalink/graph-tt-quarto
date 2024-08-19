@@ -183,7 +183,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Neo4j Load</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./03-07-reflection.html">
+    <a class="dropdown-item" href="./03-07-reflections.html">
  <span class="dropdown-text">Reflection</span></a>
   </li>  
     </ul>
@@ -400,7 +400,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-07-reflection.html" class="sidebar-item-text sidebar-link">
+  <a href="./03-07-reflections.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reflection</span></a>
   </div>
 </li>
@@ -480,7 +480,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Code Gist</span></a>
+ <span class="menu-text">ETL Code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -586,10 +586,57 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Supervision</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Supervision</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weekly Update - 10 June 2024</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Notes Example 1</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes Example 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes Example 3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
       </ul>
@@ -604,11 +651,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#deleting-nodes-and-relationships" id="toc-deleting-nodes-and-relationships" class="nav-link active" data-scroll-target="#deleting-nodes-and-relationships">Deleting Nodes and Relationships</a>
+  <li><a href="#deleting-nodes" id="toc-deleting-nodes" class="nav-link active" data-scroll-target="#deleting-nodes">Deleting Nodes</a>
   <ul class="collapse">
-  <li><a href="#deleting-nodes" id="toc-deleting-nodes" class="nav-link" data-scroll-target="#deleting-nodes">Deleting Nodes</a></li>
   <li><a href="#example-deleting-a-student-node" id="toc-example-deleting-a-student-node" class="nav-link" data-scroll-target="#example-deleting-a-student-node">Example: Deleting a Student Node</a></li>
-  <li><a href="#deleting-relationships" id="toc-deleting-relationships" class="nav-link" data-scroll-target="#deleting-relationships">Deleting Relationships</a></li>
+  </ul></li>
+  <li><a href="#deleting-relationships" id="toc-deleting-relationships" class="nav-link" data-scroll-target="#deleting-relationships">Deleting Relationships</a>
+  <ul class="collapse">
   <li><a href="#example-deleting-a-relationship-between-a-student-and-an-activity" id="toc-example-deleting-a-relationship-between-a-student-and-an-activity" class="nav-link" data-scroll-target="#example-deleting-a-relationship-between-a-student-and-an-activity">Example: Deleting a Relationship Between a Student and an Activity</a></li>
   </ul></li>
   </ul>
@@ -636,12 +684,10 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="deleting-nodes-and-relationships" class="level2">
-<h2 class="anchored" data-anchor-id="deleting-nodes-and-relationships">Deleting Nodes and Relationships</h2>
-<p>Deleting nodes and relationships is an important operation in managing the graph database. Nodes and relationships can be deleted using the <code>DELETE</code> clause in Cypher.</p>
-<section id="deleting-nodes" class="level3">
-<h3 class="anchored" data-anchor-id="deleting-nodes">Deleting Nodes</h3>
-<p>Nodes can be deleted using the <code>DELETE</code> clause with the node variable. The general syntax for deleting a node is:</p>
+<p><br> Deleting nodes and relationships, using the <code>DELETE</code> clause in Cypher, is an important operation in managing the graph database.</p>
+<section id="deleting-nodes" class="level2">
+<h2 class="anchored" data-anchor-id="deleting-nodes">Deleting Nodes</h2>
+<p>The general syntax for deleting a node is:</p>
 <pre class="cypher"><code>MATCH (n:NodeLabel {propertyName: propertyValue})
 DELETE n</code></pre>
 <p>Where:</p>
@@ -654,15 +700,15 @@ DELETE n</code></pre>
 <li><code>MATCH</code> is used to find the node to delete</li>
 <li><code>...</code> represents additional properties</li>
 </ul>
-</section>
 <section id="example-deleting-a-student-node" class="level3">
 <h3 class="anchored" data-anchor-id="example-deleting-a-student-node">Example: Deleting a Student Node</h3>
 <pre class="cypher"><code>MATCH (s:Student {studentID: '123456'})
 DELETE s</code></pre>
 </section>
-<section id="deleting-relationships" class="level3">
-<h3 class="anchored" data-anchor-id="deleting-relationships">Deleting Relationships</h3>
-<p>Relationships can be deleted using the <code>DELETE</code> clause with the relationship variable. The general syntax for deleting a relationship is:</p>
+</section>
+<section id="deleting-relationships" class="level2">
+<h2 class="anchored" data-anchor-id="deleting-relationships">Deleting Relationships</h2>
+<p>The general syntax for deleting a relationship is:</p>
 <pre class="cypher"><code>MATCH (n1:NodeLabel1)-[r:RELATIONSHIP_TYPE]-&gt;(n2:NodeLabel2)
 DELETE r</code></pre>
 <p>Where:</p>
@@ -674,9 +720,7 @@ DELETE r</code></pre>
 <li><code>DELETE</code> is used to delete the relationship</li>
 <li><code>MATCH</code> is used to find the relationship to delete</li>
 <li><code>...</code> represents additional properties</li>
-<li><code>MATCH</code> is used to find the relationship to delete</li>
 </ul>
-</section>
 <section id="example-deleting-a-relationship-between-a-student-and-an-activity" class="level3">
 <h3 class="anchored" data-anchor-id="example-deleting-a-relationship-between-a-student-and-an-activity">Example: Deleting a Relationship Between a Student and an Activity</h3>
 <pre class="cypher"><code>MATCH (s:Student {studentID: '123456'})-[r:ATTENDS]-&gt;(a:Activity {activityID: '789'})

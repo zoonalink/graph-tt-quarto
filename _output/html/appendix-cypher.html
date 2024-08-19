@@ -217,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Neo4j Load</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./03-07-reflection.html">
+    <a class="dropdown-item" href="./03-07-reflections.html">
  <span class="dropdown-text">Reflection</span></a>
   </li>  
     </ul>
@@ -434,7 +434,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-07-reflection.html" class="sidebar-item-text sidebar-link">
+  <a href="./03-07-reflections.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reflection</span></a>
   </div>
 </li>
@@ -514,7 +514,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Code Gist</span></a>
+ <span class="menu-text">ETL Code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -620,10 +620,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Supervision</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Supervision</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weekly Update - 10 June 2024</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Notes Example 1</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes Example 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes Example 3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
       </ul>
@@ -668,11 +715,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><br> These pages collate the Cypher queries used in the development of this prototype. The queries are grouped by the type of operation they perform, such as creating nodes, relationships, or querying the graph. The queries are presented in a format that can be copied and pasted directly into a Neo4j browser or other Cypher-compatible interface.</p>
-<p>They represent a starting point for further exploration and development of the graph database. The queries are not exhaustive, and there are many more possibilities for querying and analysing the data.</p>
+<p><br> These pages collate Cypher<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> queries used in the development of this project. The queries are grouped by the type of operation they perform, such as creating nodes, relationships, or querying the graph. The queries are presented in a format that can be copied and pasted directly into a Neo4j browser or other Cypher-compatible interface.</p>
+<p>They represent a <em>starting point</em> for further exploration and development of the graph database. The queries are not exhaustive, and there are many more possibilities for querying and analysing the data.</p>
 <section id="constraints" class="level2">
 <h2 class="anchored" data-anchor-id="constraints">Constraints</h2>
-<p>Constraints in Neo4j are used to enforce rules on the graph data, such as ensuring that certain properties are unique or that nodes have specific properties. Constraints can be used to maintain data integrity and prevent duplicate or inconsistent data.</p>
+<p>Constraints in Neo4j are used to enforce rules on the graph data, such as ensuring that certain properties are unique or that nodes have specific properties. Constraints can be used to maintain data integrity and prevent duplicate or inconsistent data. For example, we would want to enforce uniqueness constraints on most nodes and relationships, so that we do not duplicate students or allocations, etc.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./images/cypher-constraint.png" class="img-fluid figure-img"></p>
@@ -682,9 +729,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="indexes" class="level2">
 <h2 class="anchored" data-anchor-id="indexes">Indexes</h2>
-<p>Indexes in Neo4j are used to speed up queries by allowing the database to quickly locate nodes or relationships based on a property value.</p>
-<p>Search performance indexes include <code>RANGE</code>, <code>FULLTEXT</code>, and <code>POINT</code>. Range indexes are the default and support most queries. Text indexes, like FULLTEXT, are used for <code>string</code> based searches and optimised for queries containing operators like <code>CONTAINS</code> or <code>STARTS WITH</code>. Point indexes are used for spatial queries and are optimised for <code>latitude</code> and <code>longitude</code> properties.</p>
-<div id="f74db2b0" class="cell" data-execution_count="1">
+<p>Indexes in Neo4j are used to speed up queries by allowing the database to quickly locate nodes or relationships based on a property value. They will depend heavily on graph structure and specific use-cases. For example, if performing regular seaches on <code>(activity{actStartTime})</code> it is probably beneficial to create an index on this property.</p>
+<p>Search performance indexes include <code>RANGE</code>, <code>FULLTEXT</code>, and <code>POINT</code>. Range indexes are the default and support most queries. Text indexes, like <code>FULLTEXT</code>, are used for <code>string</code> based searches and optimised for queries containing operators like <code>CONTAINS</code> or <code>STARTS WITH</code>. Point indexes are used for spatial queries and are optimised for <code>latitude</code> and <code>longitude</code> properties.</p>
+<p><strong>Indexes in Graph</strong></p>
+<div id="b1614f99" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to show code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
@@ -707,18 +755,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Connecting to Neo4j database....
-Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x000001765A81DC10&gt;
+Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x000001E5084CBC10&gt;
 Running query...
 
 &lt;Record id=7 name='activity_clash_index' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actStartDate', 'actStartTime', 'actEndTime'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
 &lt;Record id=19 name='graphid_demoRoom_uniq' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['demoRoom'] properties=['graphid'] indexProvider='range-1.0' owningConstraint='graphid_demoRoom_uniq' lastRead=neo4j.time.DateTime(2024, 8, 15, 18, 24, 22, 793000000, tzinfo=&lt;UTC&gt;) readCount=8952&gt;
 &lt;Record id=4 name='index_12b79beb' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actEndTime'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
 &lt;Record id=6 name='index_207d313' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['id'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
-&lt;Record id=8 name='index_241bd22f' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['room'] properties=['roomName'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 15, 18, 40, 6, 645000000, tzinfo=&lt;UTC&gt;) readCount=106&gt;
+&lt;Record id=8 name='index_241bd22f' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['room'] properties=['roomName'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 16, 16, 39, 5, 156000000, tzinfo=&lt;UTC&gt;) readCount=114&gt;
 &lt;Record id=9 name='index_2d375d70' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['room'] properties=['roomLatitude'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 15, 18, 40, 6, 645000000, tzinfo=&lt;UTC&gt;) readCount=107&gt;
-&lt;Record id=0 name='index_343aff4e' state='ONLINE' populationPercent=100.0 type='LOOKUP' entityType='NODE' labelsOrTypes=None properties=None indexProvider='token-lookup-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 16, 16, 29, 0, 798000000, tzinfo=&lt;UTC&gt;) readCount=116673&gt;
+&lt;Record id=0 name='index_343aff4e' state='ONLINE' populationPercent=100.0 type='LOOKUP' entityType='NODE' labelsOrTypes=None properties=None indexProvider='token-lookup-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 16, 17, 9, 38, 432000000, tzinfo=&lt;UTC&gt;) readCount=116983&gt;
 &lt;Record id=10 name='index_43c5c824' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['room'] properties=['roomLongitude'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 15, 18, 40, 6, 646000000, tzinfo=&lt;UTC&gt;) readCount=106&gt;
-&lt;Record id=2 name='index_6acb9a84' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actStartDate'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 16, 16, 26, 1, 459000000, tzinfo=&lt;UTC&gt;) readCount=89&gt;
+&lt;Record id=2 name='index_6acb9a84' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actStartDate'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 16, 16, 46, 39, 929000000, tzinfo=&lt;UTC&gt;) readCount=91&gt;
 &lt;Record id=5 name='index_7ade165f' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actModSplusID'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 15, 18, 40, 6, 638000000, tzinfo=&lt;UTC&gt;) readCount=148&gt;
 &lt;Record id=1 name='index_f7700477' state='ONLINE' populationPercent=100.0 type='LOOKUP' entityType='RELATIONSHIP' labelsOrTypes=None properties=None indexProvider='token-lookup-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 15, 13, 53, 33, 557000000, tzinfo=&lt;UTC&gt;) readCount=134&gt;
 &lt;Record id=3 name='index_f86013e' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actStartTime'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
@@ -733,6 +781,7 @@ Running query...
 </div>
 <section id="creating-indexes" class="level3">
 <h3 class="anchored" data-anchor-id="creating-indexes">Creating Indexes</h3>
+<p>This is the general syntax for creating an INDEX and some examples.</p>
 <pre class="cypher"><code>// General syntax
 CREATE INDEX FOR (n:NodeLabel) ON (n.propertyName)
 
@@ -756,7 +805,13 @@ CREATE SPATIAL INDEX demoroom_location_index FOR (r:room) ON (r.location)</code>
 </section>
 </section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>“<strong>Cypher</strong>&nbsp;is a&nbsp;declarative&nbsp;graph query language that allows for expressive and efficient data querying in a property graph” (Wikipedia contributors, 2024)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

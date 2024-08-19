@@ -16,4 +16,4 @@ Timetables can make or break a university - they shape the *daily* experiences o
 * **Diversity of Needs**: Different organisational units (colleges, faculties, schools, departments) have varying requirements and preferences.
 * **Optimisation Goals**: Timetablers must balance efficiency, fairness, and quality of education.
 
-While traditional studies on "timetabling" focus heavily on generating or optimising feasible timetables (Bonutti et al., 2012; Ceschia, Di Gaspero and Schaerf, 2023; Rudová, Müller and Murray, 2011) – ensuring no clashes or rule violations – this project explores a different facet: how analysing those timetables can lead to deeper insights and ultimately, improved quality for all stakeholders.
+While traditional studies on "timetabling" focus heavily on generating or optimising feasible timetables (Bonutti et al., 2012; Ceschia, Di Gaspero and Schaerf, 2023; Rudová, Müller and Murray, 2011) – ensuring no clashes or rule violations – this project explores a different facet: how analysing scheduled timetables can lead to deeper insights and ultimately, improved quality for all stakeholders.

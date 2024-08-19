@@ -220,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Neo4j Load</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./03-07-reflection.html">
+    <a class="dropdown-item" href="./03-07-reflections.html">
  <span class="dropdown-text">Reflection</span></a>
   </li>  
     </ul>
@@ -437,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-07-reflection.html" class="sidebar-item-text sidebar-link">
+  <a href="./03-07-reflections.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reflection</span></a>
   </div>
 </li>
@@ -517,7 +517,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Code Gist</span></a>
+ <span class="menu-text">ETL Code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -623,10 +623,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Supervision</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Supervision</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weekly Update - 10 June 2024</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Notes Example 1</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes Example 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes Example 3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
       </ul>
@@ -671,9 +718,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This page contains a selection of count queries that are used to explore the graph database. The queries are designed to provide insights into the data and relationships between nodes. The queries can be run in a Neo4j browser or other Cypher-compatible interface.</p>
+<p>This page contains a selection of count queries used to explore the graph database. The queries are designed to provide insights into the data and relationships between nodes. They can be considered starter queries which can be amended depending on the requirements.</p>
 <section id="count-all-nodes---by-label" class="level3">
 <h3 class="anchored" data-anchor-id="count-all-nodes---by-label">Count all nodes - by label</h3>
+<p>Below are two queries returning the same results - counts of nodes by node label.</p>
 <pre class="cypher"><code>// Count of nodes - row per node
 
 UNWIND ["student", "staff", "room", "activity"] AS label
@@ -705,6 +753,7 @@ RETURN studentCount, lecturerCount, roomCount, count(n) AS activityCount</code><
 </section>
 <section id="count-all-relationships---by-type" class="level3">
 <h3 class="anchored" data-anchor-id="count-all-relationships---by-type">Count all relationships - by type</h3>
+<p>The query below returns counts of relationships. We can see that there are a significant amount of (student)-[]-&gt;(activity) relationships due to how we structured <code>activity</code> in the graph - that is, a separate node for each instance.</p>
 <pre class="cypher"><code>// Count of relationships
 
 MATCH ()-[r:ATTENDS]-&gt;()
@@ -724,6 +773,7 @@ RETURN attendsCount, teachesCount, occupiesCount, count(r) AS belongsCount</code
 </section>
 <section id="activity-counts" class="level3">
 <h3 class="anchored" data-anchor-id="activity-counts">Activity counts</h3>
+<p>In this graph, an <code>activity</code> is an instance of an activity, that is, a unique combination of <code>name</code>, <code>date</code>, <code>start</code>, <code>end</code>, <code>location</code>, <code>staff</code>. It means <em>a lot</em> of activities!</p>
 <pre class="cypher"><code>// Count of activities
 
 MATCH (a:activity)
@@ -739,13 +789,12 @@ RETURN DISTINCT a.actDayName AS dayName, count(a) AS activityCount</code></pre>
 <p><a href="./images/cypher-act-count.png" class="lightbox" data-gallery="cypher-act"><img src="./images/cypher-act-count.png" class="gallery-image img-fluid"></a></p>
 <p><a href="./images/cypher-act-day-count.png" class="lightbox" data-gallery="cypher-act"><img src="./images/cypher-act-day-count.png" class="gallery-image img-fluid"></a></p>
 <p><a href="./images/cypher-act-days-count.png" class="lightbox" data-gallery="cypher-act"><img src="./images/cypher-act-days-count.png" class="gallery-image img-fluid"></a></p>
+<p><br></p>
 </section>
 <section id="activity-counts-by-time" class="level3">
 <h3 class="anchored" data-anchor-id="activity-counts-by-time">Activity counts by time</h3>
-<ul>
-<li>Query run via Python</li>
-</ul>
-<div id="71ce86b1" class="cell" data-execution_count="1">
+<p>The query below connects to the graph via python and returns the result - that is, the number of activities which start at 17:00.</p>
+<div id="3b455bb3" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to show code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
@@ -777,7 +826,7 @@ RETURN DISTINCT a.actDayName AS dayName, count(a) AS activityCount</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Connecting to Neo4j database....
-Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x0000024C33367F10&gt;
+Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x0000013C39F3EF90&gt;
 Running query...
 
 &lt;Record activitiesStartingAt5pm=172&gt;</code></pre>
@@ -786,11 +835,8 @@ Running query...
 </section>
 <section id="staff-activity-count" class="level3">
 <h3 class="anchored" data-anchor-id="staff-activity-count">Staff activity count</h3>
-<ul>
-<li>Query run via Python</li>
-<li>First 5 records as Pandas DataFrame</li>
-</ul>
-<div id="ff966fdc" class="cell" data-execution_count="2">
+<p>This query returns the first 5 rows of the query which counts activities by member of staff.</p>
+<div id="adef5f47" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Click to show code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
@@ -831,7 +877,7 @@ Running query...
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Connecting to Neo4j database....
-Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x0000024C33399F10&gt;
+Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x0000013C3BADE490&gt;
 Running query...
 
         staffName  activityCount
@@ -1437,7 +1483,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"fade","openEffect":"fade","loop":false,"descPosition":"bottom","selector":".lightbox"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"fade","selector":".lightbox","descPosition":"bottom","openEffect":"fade","loop":false});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

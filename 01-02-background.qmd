@@ -4,31 +4,29 @@ title: Background and Motivation
 
 ## Personal
 
-I accidentally slipped into the world of timetabling many years ago.  I grappled with the complexities of timetable generation and optimisation,  and battled with trying to balance competing, but conflicting demands like maximising room utilisation **AND** adhering to staff working patterns **AND** producing a 'decent' timetable for the students.  
-
-Following this, I worked as a timetabling data manager, where my view needed to be broader.  These experiences exposed me to the intricacies of the data, systems and processes as well as the intense pressures faced by timetabling teams.  
+Many years ago I grappled with the complexities of timetable generation and optimisation, and battled with trying to balance competing, but conflicting demands like maximising room utilisation **and** adhering to staff working patterns **and** producing a 'decent' timetable for the students.  It is an *unwinnable* battle.
 
 These experiences and challenges left an indelible mark - highlighting the need for robust tools and metrics to understand and assess timetable quality - a factor which is often overshadowed by the pursuit of mere *feasibility.*
 
-For my final project, I wanted to explore a real problem and work towards delivering a real solution.  I deliberately wanted to engage in a practical project.
+This project is the result of a *deliberate clash* of my professional experiences and data science learning where I aim to deliver a practical solution to a real-world problem.
 
 ## Research Gap: Bridging Theory and Practice
 
-Much current research into university timetabling centres on combinatorial optimisation (Chen et al., 2021), that is using various sophisticated techniques designed to efficiently generate feasible solutions given a set of constraints.  The computationally-driven optimisation research is often referred to as the university course timetabing problem (UCTTP) and is categorised as NP-hard[^1], meaning finding the absolute "best" timetable is exceptionally challenging (Babaei, Karimpour and Hadidi, 2015; Herres and Schmitz, 2021; Wikipedia contributors, 2024). 
+Much current research into university timetabling centres on combinatorial optimisation (Chen et al., 2021), that is using various sophisticated techniques designed to efficiently generate feasible solutions given a set of constraints.  This computationally-driven optimisation research is often referred to as the university course timetabing problem (UCTTP) and is categorised as NP-hard[^1], meaning finding the absolute "best" timetable is exceptionally challenging (Babaei, Karimpour and Hadidi, 2015; Herres and Schmitz, 2021; Wikipedia contributors, 2024). 
 
-Consequently, significant effort has been dedicated to developing algorithms like constraint programming (Holm et al., 2022) and local search techniques such as Tabu Search and simulated annealing (Oude Vrielink et al., 2019), aiming to create workable timetables within reasonable timeframes.
+Consequently, significant effort has been dedicated to developing algorithms like constraint programming (Holm et al., 2022) and local search techniques such as Tabu Search and simulated annealing (Oude Vrielink et al., 2019), aiming to create workable timetables within reasonable timeframes.  While crucial for advancing algorithmic development, these idealised scenarios[^2] do not fully capture the dynamic complexity of real-world university timetabling. 
 
-While crucial for advancing algorithmic development, these idealised scenarios[^2] do not fully capture the dynamic complexity of real-world university timetabling. Universities grapple with constantly shifting demands: fluctuating student populations, evolving institutional preferences, resource limitations, and the ever-present need to balance diverse stakeholder needs. These complexities extend beyond simply finding a feasible solution – they necessitate tools to understand the trade-offs inherent in any timetable, enabling informed decisions about which "good" outcomes to prioritise (Lindahl, 2017). 
+Universities grapple with constantly shifting demands: fluctuating student populations, evolving institutional preferences, resource limitations, and the ever-present need to balance diverse stakeholder needs. These complexities extend beyond simply finding a feasible solution – they necessitate tools to understand the trade-offs inherent in any timetable, enabling informed decisions about which "good" outcomes to prioritise (Lindahl, 2017). 
 
-## The hypothesis...Enter Graphs
+## The hypothesis...Enter the Graph
 
 This is where I believe graph data structures *could offer unique potential*.
 
 Timetables are inherently about relationships: curriculum linked to lecturers, students connected through shared modules, rooms associated with specific times and capacities. Graph databases excel in this domain, offering a way to unlock insights hidden within the complex web of a university timetable.
 
-While algorithms excel at generating optimised solutions, there remains a gap in post-generation analysis – e.g. the ability to delve into a timetable's nuanced impacts on student and staff experience. Despite the acknowledged importance of factors like room allocation and teaching period distribution, traditional optimisation-focused approaches lack the tools to explore these relationships in depth (Ceschia, Di Gaspero and Schaerf, 2023; Lindahl, 2017; Rudová, Müller and Murray, 2011), particularly in a real-world scenario.
+While algorithms generate optimised solutions, there remains a gap in post-generation analysis – e.g. the ability to delve into a timetable's nuanced impacts on student and staff experience. Despite the acknowledged importance and impact of factors like room allocation and teaching period distribution, traditional optimisation-focused approaches lack the tools to explore these relationships in depth (Ceschia, Di Gaspero and Schaerf, 2023; Lindahl, 2017; Rudová, Müller and Murray, 2011), particularly in a real-world scenario.
 
-This potential for deeper analysis motivates this exploration of graph data structures for enhancing timetable understanding and, ultimately, improving timetable quality for all stakeholders.
+This potential for deeper analysis motivates the exploration of graph data structures for enhancing timetable understanding and, ultimately, improving timetable quality for all stakeholders.
 
 
 [^1]: "In [computational complexity theory](https://en.wikipedia.org/wiki/Computational_complexity_theory "Computational complexity theory"), a computational problem *H* is called **NP-hard** if, for every problem *L* which can be solved in [non-deterministic polynomial-time](https://en.wikipedia.org/wiki/NP_(complexity) "NP (complexity)"), there is a [polynomial-time reduction](https://en.wikipedia.org/wiki/Polynomial_time_reduction "Polynomial time reduction") from *L* to *H*." (Wikipedia contributors, 2024)

@@ -7,7 +7,7 @@ lightbox:
   loop: false
 ---
 
-One of the most challenging aspects of university timetabling is defining what constitutes a "good" timetable. Despite best efforts, it is virtually impossible to deliver universal satisfaction from a university timetable. The quality of a timetable is inherently subjective and varies among stakeholders depending on their preferences and demands on their time.
+One of the most challenging aspects of university timetabling is defining what constitutes a "good" timetable. Despite best efforts, it is virtually impossible to deliver universal satisfaction from a university timetable. The quality of a timetable is inherently subjective and varies among stakeholders depending on their preferences and the demands on their time.
 
 Based on surveys across various institutions, students typically prioritise (Dowland, 2018; Norman, 2022):
 
@@ -19,22 +19,24 @@ Based on surveys across various institutions, students typically prioritise (Dow
 -   Effective communication of any changes
 -   Balanced distribution of classes
 
-The above are easy-to-measure deliverables but they do not address what a 'good' timetable looks like; individual stakeholders often have conflicting priorities:
+The above are easy-to-measure deliverables but they do not address what a 'good' timetable should look like; individual stakeholders often have conflicting priorities:
 
--   Students may prefer learning times that align with their personal commitments (e.g. part-time employment or travel)
--   Academic staff may prefer teaching times that align with their research or personal commitments.
--   Administrators might focus on efficient resource utilisation and institutional sustainability.
--   Organisational units may have specific needs for specialised rooms or equipment.
+-   **Students** may prefer learning times that align with their personal commitments (e.g. part-time employment or travel)
+-   **Academic staff** may prefer teaching times that align with their research or personal commitments.
+-   **Administrators** might focus on efficient resource utilisation and institutional sustainability.
+-   **Organisational units** may have specific needs for specialised rooms or equipment.
 
 This divergence in preferences and the complex interplay of constraints make it challenging to define and achieve a universally "good" timetable (Lindahl et al., 2018). It is this complexity that sets the stage for this project.
 
 ## Consider these timetables:
 
--   The first timetable is evenly spread over five days. Tuesday afternoons are heavily scheduled; activities take place over lunch.
--   The second timetable has two days free of activities (Wednesday and Thursday). Monday has a single activity at 18:00-19:00.
--   The third timetable has activities on five days. There are large gaps between activities on Tuesday and Wednesday.
+-   The first timetable is evenly spread over five days. 
+-   The second timetable has two days free of activities.
+-   The third timetable has activities on five days, with gaps.
 
-Which timetable is better? Is any of them 'good'? The answer is *it depends!* or *none of them!*  (Click to enlarge)
+Which timetable is better? Is any of them 'good'? The answer is *it depends!* or *none of them!*  
+
+(Click to enlarge)
 
 
 ![](./images/timetable-week-full.png){.gallery-image group="gallery" description="Evenly spread over 5 days.  Tuesday afternoons are heavily scheduled; activities take place over lunch"}

@@ -2,18 +2,28 @@
 title: Project Aims and Scope
 ---
 
-The primary aim of this project is to investigate the viability of using graph data structures for enhanced timetabling analytics and reporting. 
+The primary aim of this project is to **investigate the viability of using graph data structures** for enhanced timetabling analytics and reporting. 
 
-Objectives include: 
+### Objectives include: 
 
 1. Designing an **extensible, system-agnostic graph data model** for university timetables
 2. Developing a **configurable ETL** (extract, transform, load) pipeline to transition from relational to graph database representations of timetables
 3. Discussing how **graph-based approaches to timetabling analysis** could contribute to measuring and improving timetable quality.
 
-In order to achieve these objectives, I will implement and evaluate a set of proof-of-concept analytical metrics which leverage the graph data model whilst discussing  performance capabilities (and limitations) against traditional relational approaches.
+In order to achieve these objectives, I implement and evaluate a set of proof-of-concept analytical metrics which leverage the graph data model whilst discussing  performance capabilities (and limitations) against traditional relational approaches.
 
+It is important to note that this project is positioned as a proof-of-concept and exploratory study. 
 
-It is important to note that this project is positioned as a proof-of-concept and exploratory study. I will not be reinventing a full-scale timetabling system or attempt to optimise real-time timetable generation. Instead, the scope is limited to demonstrating the potential of graph-based approaches in the analysis of university timetables.  This is a data engineering project which opens the door for future analytical work. 
+I will **not**:
+
+* reinvent a full-scale timetabling system 
+* attempt to optimise real-time timetable generation
+  
+I will: 
+
+* focus on the data engineering aspects of transitioning from relational to graph data models
+* demonstrate the potential of graph-based approaches in the analysis of university timetables
+* provide a foundation for future analytical work.
 
 Let's graph!
 

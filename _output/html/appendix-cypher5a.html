@@ -186,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Neo4j Load</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./03-07-reflection.html">
+    <a class="dropdown-item" href="./03-07-reflections.html">
  <span class="dropdown-text">Reflection</span></a>
   </li>  
     </ul>
@@ -403,7 +403,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-07-reflection.html" class="sidebar-item-text sidebar-link">
+  <a href="./03-07-reflections.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reflection</span></a>
   </div>
 </li>
@@ -483,7 +483,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Code Gist</span></a>
+ <span class="menu-text">ETL Code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -589,10 +589,57 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Supervision</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Supervision</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weekly Update - 10 June 2024</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Notes Example 1</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes Example 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes Example 3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
       </ul>
@@ -608,7 +655,7 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#scenario" id="toc-scenario" class="nav-link active" data-scroll-target="#scenario">Scenario</a></li>
-  <li><a href="#model-1---simple" id="toc-model-1---simple" class="nav-link" data-scroll-target="#model-1---simple">Model 1 - Simple</a>
+  <li><a href="#model-1---activity-occurrence" id="toc-model-1---activity-occurrence" class="nav-link" data-scroll-target="#model-1---activity-occurrence">Model 1 - Activity Occurrence</a>
   <ul class="collapse">
   <li><a href="#create-data" id="toc-create-data" class="nav-link" data-scroll-target="#create-data">Create data</a></li>
   </ul></li>
@@ -616,10 +663,7 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#create-data-1" id="toc-create-data-1" class="nav-link" data-scroll-target="#create-data-1">Create data</a></li>
   </ul></li>
-  <li><a href="#model-3---date-nodes" id="toc-model-3---date-nodes" class="nav-link" data-scroll-target="#model-3---date-nodes">Model 3 - Date Nodes</a>
-  <ul class="collapse">
-  <li><a href="#model-4--" id="toc-model-4--" class="nav-link" data-scroll-target="#model-4--">Model 4 -</a></li>
-  </ul></li>
+  <li><a href="#model-3---date-nodes" id="toc-model-3---date-nodes" class="nav-link" data-scroll-target="#model-3---date-nodes">Model 3 - Date Nodes</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   <li><a href="#delete-data" id="toc-delete-data" class="nav-link" data-scroll-target="#delete-data">Delete Data</a>
   <ul class="collapse">
@@ -654,7 +698,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><br></p>
-<p>This page explore different graph data structures for the purposes of identifying student clashes. It illustrates the inherent flexiblity of graph data structures and that thorough modelling and profiling of the data can lead to more efficient and effective queries.</p>
+<p>This page explore different graph data structures and queries for the purposes of identifying student clashes. It illustrates the inherent flexiblity of graph databases and that thorough modelling and profiling of the data can lead to more efficient and effective queries.</p>
+<p>Use-case is king when it comes to optimised databases and performant queries.</p>
 <section id="scenario" class="level2">
 <h2 class="anchored" data-anchor-id="scenario">Scenario</h2>
 <p>Each model below will use the same basic scenario:</p>
@@ -671,50 +716,37 @@ ul.task-list li input[type="checkbox"] {
 <li>There are deliberate clashes between the activities to illustrate the concept of a student clash</li>
 </ul>
 </section>
-<section id="model-1---simple" class="level2">
-<h2 class="anchored" data-anchor-id="model-1---simple">Model 1 - Simple</h2>
-<p>This model is the one used in the data engineering proof-of-concept. Each ‘occurence’ of an activity is a separate node. This model is simple and easy to understand, but can be inefficient for certain queries.</p>
+<section id="model-1---activity-occurrence" class="level2">
+<h2 class="anchored" data-anchor-id="model-1---activity-occurrence">Model 1 - Activity Occurrence</h2>
+<p>Each ‘occurrence’ of an activity is a separate node. This model is simple and easy to understand, but proliferates nodes which lead to inefficient and complex queries.</p>
 <section id="create-data" class="level3">
 <h3 class="anchored" data-anchor-id="create-data">Create data</h3>
-<pre class="cypher"><code>// Create unique activity nodes (TestActivityModel1)
-CREATE (:TestActivityModel1 { actName: "ITGD", date: date("2024-08-06"), startTime: localtime("09:00:00"), endTime: localtime("11:00:00") })
-CREATE (:TestActivityModel1 { actName: "ITGD", date: date("2024-08-13"), startTime: localtime("09:00:00"), endTime: localtime("11:00:00") })
-CREATE (:TestActivityModel1 { actName: "ITGD", date: date("2024-08-20"), startTime: localtime("09:00:00"), endTime: localtime("11:00:00") })
-CREATE (:TestActivityModel1 { actName: "ITGD", date: date("2024-08-27"), startTime: localtime("09:00:00"), endTime: localtime("11:00:00") })
-CREATE (:TestActivityModel1 { actName: "ITGD", date: date("2024-09-03"), startTime: localtime("09:00:00"), endTime: localtime("11:00:00") })
-CREATE (:TestActivityModel1 { actName: "Neo4j", date: date("2024-07-30"), startTime: localtime("10:00:00"), endTime: localtime("11:00:00") })
-CREATE (:TestActivityModel1 { actName: "Neo4j", date: date("2024-08-13"), startTime: localtime("10:00:00"), endTime: localtime("11:00:00") })
-CREATE (:TestActivityModel1 { actName: "Neo4j", date: date("2024-08-27"), startTime: localtime("10:00:00"), endTime: localtime("11:00:00") })
-CREATE (:TestActivityModel1 { actName: "TigerDb", date: date("2024-08-06"), startTime: localtime("11:00:00"), endTime: localtime("12:00:00") })
-CREATE (:TestActivityModel1 { actName: "TigerDb", date: date("2024-08-13"), startTime: localtime("11:00:00"), endTime: localtime("12:00:00") });
+<p>```{cypher .scroll-cypher} // Create unique activity nodes (TestActivityModel1) CREATE (:TestActivityModel1 { actName: “ITGD”, date: date(“2024-08-06”), startTime: localtime(“09:00:00”), endTime: localtime(“11:00:00”) }) CREATE (:TestActivityModel1 { actName: “ITGD”, date: date(“2024-08-13”), startTime: localtime(“09:00:00”), endTime: localtime(“11:00:00”) }) CREATE (:TestActivityModel1 { actName: “ITGD”, date: date(“2024-08-20”), startTime: localtime(“09:00:00”), endTime: localtime(“11:00:00”) }) CREATE (:TestActivityModel1 { actName: “ITGD”, date: date(“2024-08-27”), startTime: localtime(“09:00:00”), endTime: localtime(“11:00:00”) }) CREATE (:TestActivityModel1 { actName: “ITGD”, date: date(“2024-09-03”), startTime: localtime(“09:00:00”), endTime: localtime(“11:00:00”) }) CREATE (:TestActivityModel1 { actName: “Neo4j”, date: date(“2024-07-30”), startTime: localtime(“10:00:00”), endTime: localtime(“11:00:00”) }) CREATE (:TestActivityModel1 { actName: “Neo4j”, date: date(“2024-08-13”), startTime: localtime(“10:00:00”), endTime: localtime(“11:00:00”) }) CREATE (:TestActivityModel1 { actName: “Neo4j”, date: date(“2024-08-27”), startTime: localtime(“10:00:00”), endTime: localtime(“11:00:00”) }) CREATE (:TestActivityModel1 { actName: “TigerDb”, date: date(“2024-08-06”), startTime: localtime(“11:00:00”), endTime: localtime(“12:00:00”) }) CREATE (:TestActivityModel1 { actName: “TigerDb”, date: date(“2024-08-13”), startTime: localtime(“11:00:00”), endTime: localtime(“12:00:00”) });</p>
+<p>// Create unique student nodes (TestStudentModel1) CREATE (:TestStudentModel1 { stuFirstName_anon: “Alice”, stuID_anon: “test-student-1” }) CREATE (:TestStudentModel1 { stuFirstName_anon: “Bob”, stuID_anon: “test-student-2” });</p>
+<p>// Create ATTENDS relationships (one student attends all TigerDb and Neo4j) MATCH (s:TestStudentModel1 { stuID_anon: “test-student-1” }) MATCH (a:TestActivityModel1) WHERE a.actName IN [“TigerDb”, “Neo4j”] CREATE (s)-[:ATTENDS]-&gt;(a);</p>
+<p>MATCH (s:TestStudentModel1 { stuID_anon: “test-student-2” }) MATCH (a:TestActivityModel1) WHERE a.actName IN [“ITGD”, “Neo4j”] MERGE (s)-[:ATTENDS]-&gt;(a) ;</p>
+<pre><code>
 
-// Create unique student nodes (TestStudentModel1)
-CREATE (:TestStudentModel1 { stuFirstName_anon: "Alice", stuID_anon: "test-student-1" })
-CREATE (:TestStudentModel1 { stuFirstName_anon: "Bob", stuID_anon: "test-student-2" });
 
-// Create ATTENDS relationships (one student attends all TigerDb and Neo4j)
-MATCH (s:TestStudentModel1 { stuID_anon: "test-student-1" })
-MATCH (a:TestActivityModel1) WHERE a.actName IN ["TigerDb", "Neo4j"]
-CREATE (s)-[:ATTENDS]-&gt;(a);
 
-MATCH (s:TestStudentModel1 { stuID_anon: "test-student-2" })
-MATCH (a:TestActivityModel1) WHERE a.actName IN ["ITGD", "Neo4j"]
-MERGE (s)-[:ATTENDS]-&gt;(a) ;</code></pre>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="./images/cypher-clash1-model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Model 1"><img src="./images/cypher-clash1-model.png" class="img-fluid figure-img" alt="Model 1"></a></p>
-<figcaption>Model 1</figcaption>
-</figure>
-</div>
-<pre class="cypher"><code>
+![Model 1](./images/cypher-clash1-model.png)
+
+To identify the clashes, this query can be run: 
+
+
+
+
+
+```{cypher .scroll-cypher}
+
 MATCH (s:TestStudentModel1)-[:ATTENDS]-&gt;(a1:TestActivityModel1)
 WITH s, a1
 MATCH (s)-[:ATTENDS]-&gt;(a2:TestActivityModel1) 
 WHERE a1 &lt;&gt; a2 
   AND a1.date = a2.date 
-  AND (a1.startTime &lt; a2.endTime AND a1.endTime &gt; a2.startTime)  // Correct overlap condition
-  AND NOT (a1.startTime = a2.endTime OR a1.endTime = a2.startTime) // Exclude "touching" cases
-  AND a1.actName &lt; a2.actName  // This ensures only one direction of the pair is returned
+  AND (a1.startTime &lt; a2.endTime AND a1.endTime &gt; a2.startTime)  //  overlap condition
+  AND NOT (a1.startTime = a2.endTime OR a1.endTime = a2.startTime) // xxclude "touching" cases
+  AND a1.actName &lt; a2.actName  // ensures only one direction of the pair is returned
 RETURN s.stuFirstName_anon AS Student, 
        a1.date AS ClashDate, 
        a1.actName AS Activity1, 
@@ -722,15 +754,17 @@ RETURN s.stuFirstName_anon AS Student,
        a2.actName AS Activity2, 
        a2.startTime + "-" + a2.endTime AS Timeslot2
 ORDER BY Student, ClashDate;</code></pre>
+<p>Which correctly identifies Bob’s clash:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./images/cypher-clash1-result.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Model 1 results"><img src="./images/cypher-clash1-result.png" class="img-fluid figure-img" alt="Model 1 results"></a></p>
+<p><a href="./images/cypher-clash1-result.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Model 1 results"><img src="./images/cypher-clash1-result.png" class="img-fluid figure-img" alt="Model 1 results"></a></p>
 <figcaption>Model 1 results</figcaption>
 </figure>
 </div>
+<p>One way of measuring and comparing query performance is to look at the <code>PROFILE</code> and <code>dbhits.</code> In this instance there are 278 database accesses.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./images/cypher-clash1-db-hits.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Model 1 profile"><img src="./images/cypher-clash1-db-hits.png" class="img-fluid figure-img" alt="Model 1 profile"></a></p>
+<p><a href="./images/cypher-clash1-db-hits.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Model 1 profile"><img src="./images/cypher-clash1-db-hits.png" class="img-fluid figure-img" alt="Model 1 profile"></a></p>
 <figcaption>Model 1 profile</figcaption>
 </figure>
 </div>
@@ -738,85 +772,41 @@ ORDER BY Student, ClashDate;</code></pre>
 </section>
 <section id="model-2---date-and-time-nodes" class="level2">
 <h2 class="anchored" data-anchor-id="model-2---date-and-time-nodes">Model 2 - Date and Time Nodes</h2>
-<p>Model 2 uses a single node for each activity but has date and time nodes. This model is more complex but can be more efficient for certain queries.</p>
+<p>Model 2 uses a single node for each activity but has date and time nodes. This model is more complex in that there are more node labels, but can be more efficient for certain queries.</p>
 <section id="create-data-1" class="level3">
 <h3 class="anchored" data-anchor-id="create-data-1">Create data</h3>
-<pre class="cypher"><code>// Create unique time nodes
-CREATE (:TestStartTimeNode { time: localtime("09:00:00") })
-CREATE (:TestStartTimeNode { time: localtime("10:00:00") })
-CREATE (:TestStartTimeNode { time: localtime("11:00:00") })
-CREATE (:TestEndTimeNode { time: localtime("11:00:00") })
-CREATE (:TestEndTimeNode { time: localtime("12:00:00") })
+<p>```{cypher .cypher-scroll} // Create unique time nodes CREATE (:TestStartTimeNode { time: localtime(“09:00:00”) }) CREATE (:TestStartTimeNode { time: localtime(“10:00:00”) }) CREATE (:TestStartTimeNode { time: localtime(“11:00:00”) }) CREATE (:TestEndTimeNode { time: localtime(“11:00:00”) }) CREATE (:TestEndTimeNode { time: localtime(“12:00:00”) })</p>
+<p>// Create unique date nodes CREATE (:TestDateNode { date: date(“2024-07-30”) }) CREATE (:TestDateNode { date: date(“2024-08-06”) }) CREATE (:TestDateNode { date: date(“2024-08-13”) }) CREATE (:TestDateNode { date: date(“2024-08-20”) }) CREATE (:TestDateNode { date: date(“2024-08-27”) }) CREATE (:TestDateNode { date: date(“2024-09-03”) })</p>
+<p>// Create activity nodes CREATE (:TestActivityModel2 { actName: “ITGD” }) CREATE (:TestActivityModel2 { actName: “Neo4j” }) CREATE (:TestActivityModel2 { actName: “TigerDb” });</p>
+<p>// Connect ITGD to dates and times (using MERGE) MATCH (a:TestActivityModel2 { actName: “ITGD” }) MATCH (d:TestDateNode) WHERE d.date IN [date(“2024-08-06”), date(“2024-08-13”), date(“2024-08-20”), date(“2024-08-27”), date(“2024-09-03”)] MERGE (a)-[:SCHEDULED_ON]-&gt;(d) WITH a MATCH (st:TestStartTimeNode { time: localtime(“09:00:00”) }) MATCH (et:TestEndTimeNode { time: localtime(“11:00:00”) }) MERGE (a)-[:STARTS_AT]-&gt;(st) MERGE (st)-[:ENDS_AT]-&gt;(et);</p>
+<p>// Connect Neo4j to dates and times (adjust dates/times and use MERGE) MATCH (a:TestActivityModel2 { actName: “Neo4j” }) MATCH (d:TestDateNode) WHERE d.date IN [date(“2024-07-30”), date(“2024-08-13”), date(“2024-08-27”)] MERGE (a)-[:SCHEDULED_ON]-&gt;(d) WITH a MATCH (st:TestStartTimeNode { time: localtime(“10:00:00”) }) MATCH (et:TestEndTimeNode { time: localtime(“11:00:00”) }) MERGE (a)-[:STARTS_AT]-&gt;(st) MERGE (st)-[:ENDS_AT]-&gt;(et);</p>
+<p>// Connect TigerDb to dates and times (adjust dates/times and use MERGE) MATCH (a:TestActivityModel2 { actName: “TigerDb” }) MATCH (d:TestDateNode) WHERE d.date IN [date(“2024-08-06”), date(“2024-08-13”)] MERGE (a)-[:SCHEDULED_ON]-&gt;(d) WITH a MATCH (st:TestStartTimeNode { time: localtime(“11:00:00”) }) MATCH (et:TestEndTimeNode { time: localtime(“12:00:00”) }) MERGE (a)-[:STARTS_AT]-&gt;(st) MERGE (st)-[:ENDS_AT]-&gt;(et);</p>
+<p>// Create Students and ATTENDS relationships (same as Model 1) CREATE (:TestStudentModel2 { stuFirstName_anon: “Alice”, stuID_anon: “test-student-1” }) CREATE (:TestStudentModel2 { stuFirstName_anon: “Bob”, stuID_anon: “test-student-2” });</p>
+<p>MATCH (s:TestStudentModel2 { stuID_anon: “test-student-1” }) MATCH (a:TestActivityModel2) WHERE a.actName IN [“TigerDb”, “Neo4j”] CREATE (s)-[:ATTENDS]-&gt;(a);</p>
+<p>MATCH (s:TestStudentModel2 { stuID_anon: “test-student-2” }) MATCH (a:TestActivityModel2) WHERE a.actName IN [“ITGD”, “Neo4j”] MERGE (s)-[:ATTENDS]-&gt;(a) ;</p>
+<pre><code>
 
-// Create unique date nodes
-CREATE (:TestDateNode { date: date("2024-07-30") })
-CREATE (:TestDateNode { date: date("2024-08-06") })
-CREATE (:TestDateNode { date: date("2024-08-13") })
-CREATE (:TestDateNode { date: date("2024-08-20") })
-CREATE (:TestDateNode { date: date("2024-08-27") })
-CREATE (:TestDateNode { date: date("2024-09-03") })
 
-// Create activity nodes
-CREATE (:TestActivityModel2 { actName: "ITGD" })
-CREATE (:TestActivityModel2 { actName: "Neo4j" })
-CREATE (:TestActivityModel2 { actName: "TigerDb" });
 
-// Connect ITGD to dates and times (using MERGE)
-MATCH (a:TestActivityModel2 { actName: "ITGD" })
-MATCH (d:TestDateNode) WHERE d.date IN [date("2024-08-06"), date("2024-08-13"), date("2024-08-20"), date("2024-08-27"), date("2024-09-03")]
-MERGE (a)-[:SCHEDULED_ON]-&gt;(d)
-WITH a
-MATCH (st:TestStartTimeNode { time: localtime("09:00:00") })
-MATCH (et:TestEndTimeNode { time: localtime("11:00:00") })
-MERGE (a)-[:STARTS_AT]-&gt;(st)
-MERGE (st)-[:ENDS_AT]-&gt;(et);
 
-// Connect Neo4j to dates and times (adjust dates/times and use MERGE)
-MATCH (a:TestActivityModel2 { actName: "Neo4j" })
-MATCH (d:TestDateNode) WHERE d.date IN [date("2024-07-30"), date("2024-08-13"), date("2024-08-27")]
-MERGE (a)-[:SCHEDULED_ON]-&gt;(d)
-WITH a
-MATCH (st:TestStartTimeNode { time: localtime("10:00:00") })
-MATCH (et:TestEndTimeNode { time: localtime("11:00:00") })
-MERGE (a)-[:STARTS_AT]-&gt;(st)
-MERGE (st)-[:ENDS_AT]-&gt;(et);
+![Model 2](./images/cypher-clash2-model.png)
 
-// Connect TigerDb to dates and times (adjust dates/times and use MERGE)
-MATCH (a:TestActivityModel2 { actName: "TigerDb" })
-MATCH (d:TestDateNode) WHERE d.date IN [date("2024-08-06"), date("2024-08-13")]
-MERGE (a)-[:SCHEDULED_ON]-&gt;(d)
-WITH a
-MATCH (st:TestStartTimeNode { time: localtime("11:00:00") })
-MATCH (et:TestEndTimeNode { time: localtime("12:00:00") })
-MERGE (a)-[:STARTS_AT]-&gt;(st)
-MERGE (st)-[:ENDS_AT]-&gt;(et);
+To identify student clashes, this query can be run.
 
-// Create Students and ATTENDS relationships (same as Model 1)
-CREATE (:TestStudentModel2 { stuFirstName_anon: "Alice", stuID_anon: "test-student-1" })
-CREATE (:TestStudentModel2 { stuFirstName_anon: "Bob", stuID_anon: "test-student-2" });
 
-MATCH (s:TestStudentModel2 { stuID_anon: "test-student-1" })
-MATCH (a:TestActivityModel2) WHERE a.actName IN ["TigerDb", "Neo4j"]
-CREATE (s)-[:ATTENDS]-&gt;(a);
 
-MATCH (s:TestStudentModel2 { stuID_anon: "test-student-2" })
-MATCH (a:TestActivityModel2) WHERE a.actName IN ["ITGD", "Neo4j"]
-MERGE (s)-[:ATTENDS]-&gt;(a) ;</code></pre>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="./images/cypher-clash2-model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Model 2"><img src="./images/cypher-clash2-model.png" class="img-fluid figure-img" alt="Model 2"></a></p>
-<figcaption>Model 2</figcaption>
-</figure>
-</div>
-<pre class="cypher"><code>MATCH (s:TestStudentModel2)-[:ATTENDS]-&gt;(a1:TestActivityModel2)-[:SCHEDULED_ON]-&gt;(d:TestDateNode)
+
+
+```{cypher .cypher-scroll}
+MATCH (s:TestStudentModel2)-[:ATTENDS]-&gt;(a1:TestActivityModel2)-[:SCHEDULED_ON]-&gt;(d:TestDateNode)
 WITH s, a1, d
 MATCH (s)-[:ATTENDS]-&gt;(a2:TestActivityModel2)-[:SCHEDULED_ON]-&gt;(d) // Same date
 MATCH (a1)-[:STARTS_AT]-&gt;(st1:TestStartTimeNode)-[:ENDS_AT]-&gt;(et1:TestEndTimeNode) 
 MATCH (a2)-[:STARTS_AT]-&gt;(st2:TestStartTimeNode)-[:ENDS_AT]-&gt;(et2:TestEndTimeNode) 
 WHERE a1 &lt;&gt; a2 
-  AND (st1.time &lt; et2.time AND et1.time &gt; st2.time)  // Correct overlap condition
-  AND NOT (st1.time = et2.time OR et1.time = st2.time) // Exclude "touching" cases
-  AND a1.actName &lt; a2.actName  // This ensures only one direction of the pair is returned
+  AND (st1.time &lt; et2.time AND et1.time &gt; st2.time)  //  overlap condition
+  AND NOT (st1.time = et2.time OR et1.time = st2.time) // xxclude "touching" cases
+  AND a1.actName &lt; a2.actName  // ensures only one direction of the pair is returned
 RETURN  s.stuFirstName_anon AS Student, 
         d.date AS ClashDate, 
         a1.actName AS Activity1, 
@@ -824,10 +814,10 @@ RETURN  s.stuFirstName_anon AS Student,
         a2.actName AS Activity2,
         st2.time + "-" + et2.time AS Timeslot2
 ORDER BY Student, ClashDate;</code></pre>
-<p>The results are the same as Model 1, but the profile is different:</p>
+<p>The results are the same as Model 1, but the profile is different, with fewer <code>database accesses</code> (143):</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./images/cypher-clash2-db-hits.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Model 2 profile"><img src="./images/cypher-clash2-db-hits.png" class="img-fluid figure-img" alt="Model 2 profile"></a></p>
+<p><a href="./images/cypher-clash2-db-hits.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Model 2 profile"><img src="./images/cypher-clash2-db-hits.png" class="img-fluid figure-img" alt="Model 2 profile"></a></p>
 <figcaption>Model 2 profile</figcaption>
 </figure>
 </div>
@@ -835,61 +825,37 @@ ORDER BY Student, ClashDate;</code></pre>
 </section>
 <section id="model-3---date-nodes" class="level2">
 <h2 class="anchored" data-anchor-id="model-3---date-nodes">Model 3 - Date Nodes</h2>
-<p>Model 3 uses a single node for each activity and date - start and end times are properties of the activity.</p>
-<pre class="cypher"><code>// Create unique date nodes
-CREATE (:TestDateNodeModel3 { date: date("2024-07-30") })
-CREATE (:TestDateNodeModel3 { date: date("2024-08-06") })
-CREATE (:TestDateNodeModel3 { date: date("2024-08-13") })
-CREATE (:TestDateNodeModel3 { date: date("2024-08-20") })
-CREATE (:TestDateNodeModel3 { date: date("2024-08-27") })
-CREATE (:TestDateNodeModel3 { date: date("2024-09-03") })
+<p>Model 3 uses a single node for each activity as well as date nodes - start and end times are properties of the activity.</p>
+<p>```{cypher .cypher-scroll} // Create unique date nodes CREATE (:TestDateNodeModel3 { date: date(“2024-07-30”) }) CREATE (:TestDateNodeModel3 { date: date(“2024-08-06”) }) CREATE (:TestDateNodeModel3 { date: date(“2024-08-13”) }) CREATE (:TestDateNodeModel3 { date: date(“2024-08-20”) }) CREATE (:TestDateNodeModel3 { date: date(“2024-08-27”) }) CREATE (:TestDateNodeModel3 { date: date(“2024-09-03”) })</p>
+<p>// Create activity nodes with start/end times as properties CREATE (:TestActivityModel3 { actName: “ITGD”, startTime: localtime(“09:00:00”), endTime: localtime(“11:00:00”) }) CREATE (:TestActivityModel3 { actName: “Neo4j”, startTime: localtime(“10:00:00”), endTime: localtime(“11:00:00”) }) CREATE (:TestActivityModel3 { actName: “TigerDb”, startTime: localtime(“11:00:00”), endTime: localtime(“12:00:00”) });</p>
+<p>// Connect Activities to Dates (using MERGE) MATCH (a:TestActivityModel3 { actName: “ITGD” }) MATCH (d:TestDateNodeModel3) WHERE d.date IN [date(“2024-08-06”), date(“2024-08-13”), date(“2024-08-20”), date(“2024-08-27”), date(“2024-09-03”)] MERGE (a)-[:SCHEDULED_ON]-&gt;(d);</p>
+<p>MATCH (a:TestActivityModel3 { actName: “Neo4j” }) MATCH (d:TestDateNodeModel3) WHERE d.date IN [date(“2024-07-30”), date(“2024-08-13”), date(“2024-08-27”)] MERGE (a)-[:SCHEDULED_ON]-&gt;(d);</p>
+<p>MATCH (a:TestActivityModel3 { actName: “TigerDb” }) MATCH (d:TestDateNodeModel3) WHERE d.date IN [date(“2024-08-06”), date(“2024-08-13”)] MERGE (a)-[:SCHEDULED_ON]-&gt;(d);</p>
+<p>// Create Students and ATTENDS relationships CREATE (:TestStudentModel3 { stuFirstName_anon: “Alice”, stuID_anon: “test-student-1” }) CREATE (:TestStudentModel3 { stuFirstName_anon: “Bob”, stuID_anon: “test-student-2” });</p>
+<p>MATCH (s:TestStudentModel3 { stuID_anon: “test-student-1” }) MATCH (a:TestActivityModel3) WHERE a.actName IN [“TigerDb”, “Neo4j”] CREATE (s)-[:ATTENDS]-&gt;(a) ;</p>
+<p>MATCH (s:TestStudentModel3 { stuID_anon: “test-student-2” }) MATCH (a:TestActivityModel3) WHERE a.actName IN [“ITGD”, “Neo4j”] CREATE (s)-[:ATTENDS]-&gt;(a) ;</p>
+<pre><code>
 
-// Create activity nodes with start/end times as properties
-CREATE (:TestActivityModel3 { actName: "ITGD", startTime: localtime("09:00:00"), endTime: localtime("11:00:00") })
-CREATE (:TestActivityModel3 { actName: "Neo4j", startTime: localtime("10:00:00"), endTime: localtime("11:00:00") })
-CREATE (:TestActivityModel3 { actName: "TigerDb", startTime: localtime("11:00:00"), endTime: localtime("12:00:00") });
 
-// Connect Activities to Dates (using MERGE)
-MATCH (a:TestActivityModel3 { actName: "ITGD" })
-MATCH (d:TestDateNodeModel3) WHERE d.date IN [date("2024-08-06"), date("2024-08-13"), date("2024-08-20"), date("2024-08-27"), date("2024-09-03")]
-MERGE (a)-[:SCHEDULED_ON]-&gt;(d);
 
-MATCH (a:TestActivityModel3 { actName: "Neo4j" })
-MATCH (d:TestDateNodeModel3) WHERE d.date IN [date("2024-07-30"), date("2024-08-13"), date("2024-08-27")]
-MERGE (a)-[:SCHEDULED_ON]-&gt;(d);
 
-MATCH (a:TestActivityModel3 { actName: "TigerDb" })
-MATCH (d:TestDateNodeModel3) WHERE d.date IN [date("2024-08-06"), date("2024-08-13")]
-MERGE (a)-[:SCHEDULED_ON]-&gt;(d);
+![Model 3](./images/cypher-clash3-model.png)
 
-// Create Students and ATTENDS relationships
-CREATE (:TestStudentModel3 { stuFirstName_anon: "Alice", stuID_anon: "test-student-1" })
-CREATE (:TestStudentModel3 { stuFirstName_anon: "Bob", stuID_anon: "test-student-2" });
+The results are the same as Model 1 and Model 2, but the profile is different again with even fewer `database accesses` (58):
 
-MATCH (s:TestStudentModel3 { stuID_anon: "test-student-1" })
-MATCH (a:TestActivityModel3) WHERE a.actName IN ["TigerDb", "Neo4j"]
-CREATE (s)-[:ATTENDS]-&gt;(a) ;
+![Model 3 profile](./images/cypher-clash3-db-hits.png)
 
-MATCH (s:TestStudentModel3 { stuID_anon: "test-student-2" })
-MATCH (a:TestActivityModel3) WHERE a.actName IN ["ITGD", "Neo4j"]
-CREATE (s)-[:ATTENDS]-&gt;(a) ;</code></pre>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="./images/cypher-clash3-model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Model 3"><img src="./images/cypher-clash3-model.png" class="img-fluid figure-img" alt="Model 3"></a></p>
-<figcaption>Model 3</figcaption>
-</figure>
-</div>
-<p>The results are the same as Model 1 and Model 2, but the profile is different:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="./images/cypher-clash3-db-hits.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Model 3 profile"><img src="./images/cypher-clash3-db-hits.png" class="img-fluid figure-img" alt="Model 3 profile"></a></p>
-<figcaption>Model 3 profile</figcaption>
-</figure>
-</div>
-<section id="model-4--" class="level3">
-<h3 class="anchored" data-anchor-id="model-4--">Model 4 -</h3>
-<p>Model 4 uses a single node for each activity and date - start and end times are properties of the <em>relationship</em> between the activity and the date.</p>
-<pre class="cypher"><code>// Create unique date nodes
+
+### Model 4 - 
+
+Model 4 uses a single node for each activity and date - start and end times are now properties of the *relationship* between the activity and the date.
+
+
+
+
+
+```{cypher .cypher-scroll}
+// Create unique date nodes
 MERGE (:TestDateNodeModel4 { date: date("2024-07-30") })
 MERGE (:TestDateNodeModel4 { date: date("2024-08-06") })
 MERGE (:TestDateNodeModel4 { date: date("2024-08-13") })
@@ -933,26 +899,26 @@ MATCH (a:TestActivityModel4) WHERE a.actName IN ["ITGD", "Neo4j"]
 MERGE (s)-[:ATTENDS]-&gt;(a) ;</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./images/cypher-clash4-model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Model 4"><img src="./images/cypher-clash4-model.png" class="img-fluid figure-img" alt="Model 4"></a></p>
+<p><a href="./images/cypher-clash4-model.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Model 4"><img src="./images/cypher-clash4-model.png" class="img-fluid figure-img" alt="Model 4"></a></p>
 <figcaption>Model 4</figcaption>
 </figure>
 </div>
-<p>The results are the same as Model 1, Model 2, and Model 3, but the profile is different:</p>
+<p>The results are again the same as Model 1, Model 2, and Model 3, but the profile is different with the most <code>database accesses</code> (293):</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./images/cypher-clash4-db-hits.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Model 4 profile"><img src="./images/cypher-clash4-db-hits.png" class="img-fluid figure-img" alt="Model 4 profile"></a></p>
+<p><a href="./images/cypher-clash4-db-hits.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Model 4 profile"><img src="./images/cypher-clash4-db-hits.png" class="img-fluid figure-img" alt="Model 4 profile"></a></p>
 <figcaption>Model 4 profile</figcaption>
 </figure>
 </div>
 </section>
-</section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>Each model has its own strengths and weaknesses. The choice of model will depend on the specific requirements. The more complex models can be more efficient for certain queries, but can also be more difficult to understand and maintain. The simpler models are easier to understand and maintain, but can be less efficient for certain queries.</p>
-<p>Of the four tested, Model 3 was the most efficient in terms of database hits on the <em>very</em> small dataset used. However, this may not be the case with larger datasets. It is important to profile the queries and the data to determine the best model for the specific requirements.</p>
+<p>Of the four tested, Model 3 was the most efficient in terms of database hits on the <em>very</em> small test dataset used. However, this may not be the case with larger datasets. It is important to profile the queries and the data to determine the best model for the specific requirements.</p>
 </section>
 <section id="delete-data" class="level2">
 <h2 class="anchored" data-anchor-id="delete-data">Delete Data</h2>
+<p>The cypher below deletes all test data.</p>
 <section id="model-1" class="level3">
 <h3 class="anchored" data-anchor-id="model-1">Model 1</h3>
 <pre class="cypher"><code>// Delete all TestActivityModel1 nodes
@@ -1578,7 +1544,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"fade","openEffect":"fade","selector":".lightbox","loop":false,"descPosition":"bottom"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"closeEffect":"fade","descPosition":"bottom","openEffect":"fade"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

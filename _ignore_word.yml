@@ -7,18 +7,14 @@ book:
   chapters:
     - index.qmd
     - 01-01a-introduction.qmd
-    #- 01-01b-timetable.qmd
     - 01-02-background.qmd
     - 01-03-good-timetable.qmd
     - 01-04-project.qmd
-    #- 02-00-graph-model.qmd
     - 02-01-comparison.qmd
     - 02-02-graph-timetable.qmd
     - 02-02b-early.qmd
     - 02-02c-expand.qmd
-    #- 02-02c-challenge-oppos.qmd
     - 02-03-graph-time.qmd
-    #- 02-04-challenge-oppos.qmd
     - 03-01-overview.qmd
     - 03-02-approach.qmd
     - 03-03-config.qmd
@@ -26,7 +22,7 @@ book:
     - 03-05-transform.qmd
     - 03-06a-load.qmd
     - 03-06b-load.qmd
-    - 03-07-reflection.qmd
+    - 03-07-reflections.qmd
     - 04-timetable-metrics.qmd
     - 05-future-opportunities.qmd
     - 06-conclusion.qmd
@@ -35,8 +31,28 @@ book:
     - appendix-config.qmd
     - appendix-anonymise.qmd
     - appendix-code.qmd
-    - appendix-supervisor.qmd
+    - appendix-code1-config.qmd
+    - appendix-code2-sql.qmd
+    - appendix-code3-extract.qmd
+    - appendix-code4-gdrive.qmd
+    - appendix-code5-transform.qmd
+    - appendix-code6-load.qmd
+    - appendix-cypher.qmd
+    - appendix-cypher1.qmd
+    - appendix-cypher2.qmd
+    - appendix-cypher3.qmd
+    - appendix-cypher4.qmd
+    - appendix-cypher5.qmd
+    - appendix-cypher5a.qmd
+    - appendix-cypher6.qmd
+    - appendix-cypher7.qmd
+    - appendix-supervision.qmd
+    - appendix-supervision1.qmd
+    - appendix-supervision2.qmd
+    - appendix-supervision3.qmd
     - references.qmd
+    - acknowledgements.qmd
+
 
 format:
   wordcount-docx:

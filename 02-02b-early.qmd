@@ -7,9 +7,7 @@ lightbox:
   effect: fade
   desc-position: bottom
   loop: false
-
 ---
-
 
 ## Unveiling Basic Patterns
 
@@ -22,19 +20,25 @@ Even with this basic model, we can easily extract valuable insights, for example
 
 ### Example code
 
-**Busiest location overall**
+**Busiest locations overall**
 
-```{cypher .cypher-scroll}
-MATCH (r:Room)<-[:TAKES_PLACE_IN]-(a:Activity)
-WITH r, sum(a.duration) AS totalDuration
-RETURN r.name AS Room, totalDuration
-ORDER BY totalDuration DESC
-LIMIT 1
+```{cypher .scroll-cypher}
+MATCH (r:room)<-[:OCCUPIES]-(a:activity)
+WITH r, sum(a.actDuration)/60 AS totalDurationInHours
+RETURN r.roomName AS Room, r.roomCapacity AS Capacity, r.roomType AS Type, totalDurationInHours
+ORDER BY totalDurationInHours DESC
+LIMIT 3
 ```
+
+| Room    | Capacity | Type     | totalDurationInHours |
+|---------|----------|----------|----------------------|
+| 2Q12 FR | 25       | PC LAB   | 21                   |
+| 4Q69 FR | 36       | PC LAB   | 19                   |
+| 3E11 FR | 48       | TEACHING | 18                   |
 
 **Busiest location for a specific time**
 
-```{cypher .cypher-scroll}
+```{cypher .scroll-cypher}
 MATCH (r:Room)<-[:TAKES_PLACE_IN]-(a:Activity)
 WHERE a.startTime = "11:00" 
 WITH r, count(a) AS activityCount
@@ -45,7 +49,7 @@ LIMIT 1
 
 **Students with below/above average hours**
 
-```{cypher .cypher-scroll}
+```{cypher .scroll-cypher}
 // Calculate program averages and standard deviations
 MATCH (s:Student)-[:IS_ALLOCATED_TO]->(a:Activity)
 WITH s.prog AS programme, AVG(a.duration) AS avgDuration, STDEV(a.duration) AS stdDev
@@ -61,4 +65,3 @@ WHERE totalDuration < avgDuration - (0.1 * avgDuration) OR totalDuration > avgDu
 RETURN studentID, programme, totalDuration, avgDuration, stdDev 
 ORDER BY programme, totalDuration DESC
 ```
-

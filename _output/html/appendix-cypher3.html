@@ -186,7 +186,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Neo4j Load</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./03-07-reflection.html">
+    <a class="dropdown-item" href="./03-07-reflections.html">
  <span class="dropdown-text">Reflection</span></a>
   </li>  
     </ul>
@@ -403,7 +403,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-07-reflection.html" class="sidebar-item-text sidebar-link">
+  <a href="./03-07-reflections.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reflection</span></a>
   </div>
 </li>
@@ -483,7 +483,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Code Gist</span></a>
+ <span class="menu-text">ETL Code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -589,10 +589,57 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Supervision</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Supervision</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weekly Update - 10 June 2024</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Notes Example 1</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes Example 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes Example 3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
       </ul>
@@ -608,10 +655,10 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#list-all-nodes" id="toc-list-all-nodes" class="nav-link active" data-scroll-target="#list-all-nodes">List all nodes</a></li>
+  <li><a href="#datatype-of-property" id="toc-datatype-of-property" class="nav-link" data-scroll-target="#datatype-of-property">datatype of property</a></li>
+  <li><a href="#unique-properties" id="toc-unique-properties" class="nav-link" data-scroll-target="#unique-properties">unique properties</a></li>
   <li><a href="#node-labels-without-relationships" id="toc-node-labels-without-relationships" class="nav-link" data-scroll-target="#node-labels-without-relationships">node labels without relationships</a></li>
   <li><a href="#nodes-without-relationships---aka-orphans" id="toc-nodes-without-relationships---aka-orphans" class="nav-link" data-scroll-target="#nodes-without-relationships---aka-orphans">nodes without relationships - aka orphans</a></li>
-  <li><a href="#datatype-of-property" id="toc-datatype-of-property" class="nav-link" data-scroll-target="#datatype-of-property">datatype of property</a></li>
-  <li><a href="#unique-property-values" id="toc-unique-property-values" class="nav-link" data-scroll-target="#unique-property-values">unique property values</a></li>
   <li><a href="#students-without-activities" id="toc-students-without-activities" class="nav-link" data-scroll-target="#students-without-activities">students without activities</a></li>
   <li><a href="#activitytype-without-activity" id="toc-activitytype-without-activity" class="nav-link" data-scroll-target="#activitytype-without-activity">activityType without activity</a></li>
   <li><a href="#activities-without-rooms" id="toc-activities-without-rooms" class="nav-link" data-scroll-target="#activities-without-rooms">activities without rooms</a></li>
@@ -640,62 +687,49 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><br> This page contains a selection general queries that are used to explore the graph database. The queries are designed to provide insights into the data and relationships between nodes. The queries can be run in a Neo4j browser or other Cypher-compatible interface.</p>
+<p><br> This page contains a <em>selection</em> general queries which can be used to explore the graph database. The queries are designed to provide insights into the data and relationships between nodes.</p>
 <section id="list-all-nodes" class="level3">
 <h3 class="anchored" data-anchor-id="list-all-nodes">List all nodes</h3>
-<p>The following query lists all nodes in the graph:</p>
+<p>The following query lists all nodes in the graph.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Consider size of graph and limits in settings before running this query.</p>
+</div>
+</div>
 <pre class="cypher"><code>MATCH (n)
 RETURN n</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./images/cypher-all-nodes.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="List All Nodes"><img src="./images/cypher-all-nodes.png" class="img-fluid figure-img" alt="List All Nodes"></a></p>
-<figcaption>List All Nodes</figcaption>
-</figure>
-</div>
-</section>
-<section id="node-labels-without-relationships" class="level3">
-<h3 class="anchored" data-anchor-id="node-labels-without-relationships">node labels without relationships</h3>
-<pre class="cypher"><code>// Find node labels without relationships and their count
-
-MATCH (n)
-WHERE NOT EXISTS(()-[]-(n)) AND NOT EXISTS((n)-[]-())
-RETURN DISTINCT labels(n) AS nodeLabels, count(n) AS nodeCount</code></pre>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="./images/cypher-nodeLabels-no-rels.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Node labels without Relationships"><img src="./images/cypher-nodeLabels-no-rels.png" class="img-fluid figure-img" alt="Node labels without Relationships"></a></p>
-<figcaption>Node labels without Relationships</figcaption>
-</figure>
-</div>
-</section>
-<section id="nodes-without-relationships---aka-orphans" class="level3">
-<h3 class="anchored" data-anchor-id="nodes-without-relationships---aka-orphans">nodes without relationships - aka orphans</h3>
-<pre class="cypher"><code>// Find nodes without relationships
-
-MATCH (n)
-WHERE NOT EXISTS(()-[]-(n)) AND NOT EXISTS((n)-[]-())
-RETURN n</code></pre>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="./images/cypher-nodes-no-rels.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Nodes Without Relationships"><img src="./images/cypher-nodes-no-rels.png" class="img-fluid figure-img" alt="Nodes Without Relationships"></a></p>
-<figcaption>Nodes Without Relationships</figcaption>
+<p><a href="./images/cypher-all-nodes.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="All Nodes"><img src="./images/cypher-all-nodes.png" class="img-fluid figure-img" alt="All Nodes"></a></p>
+<figcaption>All Nodes</figcaption>
 </figure>
 </div>
 </section>
 <section id="datatype-of-property" class="level3">
 <h3 class="anchored" data-anchor-id="datatype-of-property">datatype of property</h3>
+<p>Properties in a graph have <code>datatypes</code> which will enable different operations and there for insights. The query below returns the datatype of a node property.</p>
 <pre class="cypher"><code>/* return datatype of actStartTime on activity node */
 
 MATCH (a:activity)
 RETURN DISTINCT apoc.meta.cypher.type(a.actStartTime) as actStartTimeType</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./images/cypher-property-datatype.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Datatype of Property"><img src="./images/cypher-property-datatype.png" class="img-fluid figure-img" alt="Datatype of Property"></a></p>
+<p><a href="./images/cypher-property-datatype.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Datatype of Property"><img src="./images/cypher-property-datatype.png" class="img-fluid figure-img" alt="Datatype of Property"></a></p>
 <figcaption>Datatype of Property</figcaption>
 </figure>
 </div>
 </section>
-<section id="unique-property-values" class="level3">
-<h3 class="anchored" data-anchor-id="unique-property-values">unique property values</h3>
+<section id="unique-properties" class="level3">
+<h3 class="anchored" data-anchor-id="unique-properties">unique properties</h3>
+<p>A node or relationship can potentially have many properties. The query below lists the properties of a node - in this case, <code>activity.</code></p>
 <pre class="cypher"><code>// List unique properties for a Node
 
 MATCH (a:activity)
@@ -704,13 +738,45 @@ RETURN COLLECT(DISTINCT propertyKey) AS propertyKeys
 //RETURN DISTINCT propertyKey as propertyKeys</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./images/cypher-activity-properties.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Unique Property Values"><img src="./images/cypher-activity-properties.png" class="img-fluid figure-img" alt="Unique Property Values"></a></p>
+<p><a href="./images/cypher-activity-properties.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Unique Property Values"><img src="./images/cypher-activity-properties.png" class="img-fluid figure-img" alt="Unique Property Values"></a></p>
 <figcaption>Unique Property Values</figcaption>
+</figure>
+</div>
+</section>
+<section id="node-labels-without-relationships" class="level3">
+<h3 class="anchored" data-anchor-id="node-labels-without-relationships">node labels without relationships</h3>
+<p>Graph databases are all about the relationships between nodes. It can be useful identifying nodes without relationships as they could indicate a problem with the data, data loading mechanism or be the outliers you want to identify.</p>
+<p>For example, in a timetabling scenario, we would expect all nodes to be related to another node. However, we can see that several node labels are orphans. In the proof-of-concept, these results are expected or deliberate, due to the source data.</p>
+<pre class="cypher"><code>// Find node labels without relationships and their count
+
+MATCH (n)
+WHERE NOT EXISTS(()-[]-(n)) AND NOT EXISTS((n)-[]-())
+RETURN DISTINCT labels(n) AS nodeLabels, count(n) AS nodeCount</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./images/cypher-nodeLabels-no-rels.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Node labels without Relationships"><img src="./images/cypher-nodeLabels-no-rels.png" class="img-fluid figure-img" alt="Node labels without Relationships"></a></p>
+<figcaption>Node labels without Relationships</figcaption>
+</figure>
+</div>
+</section>
+<section id="nodes-without-relationships---aka-orphans" class="level3">
+<h3 class="anchored" data-anchor-id="nodes-without-relationships---aka-orphans">nodes without relationships - aka orphans</h3>
+<p>Instead of returning a count of nodes without relationships per node label we can return the nodes as a graph or a table:</p>
+<pre class="cypher"><code>// Find nodes without relationships
+
+MATCH (n)
+WHERE NOT EXISTS(()-[]-(n)) AND NOT EXISTS((n)-[]-())
+RETURN n</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./images/cypher-nodes-no-rels.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Nodes Without Relationships"><img src="./images/cypher-nodes-no-rels.png" class="img-fluid figure-img" alt="Nodes Without Relationships"></a></p>
+<figcaption>Nodes Without Relationships</figcaption>
 </figure>
 </div>
 </section>
 <section id="students-without-activities" class="level3">
 <h3 class="anchored" data-anchor-id="students-without-activities">students without activities</h3>
+<p>In the timetabling context, we would expect students to be allocated to activities. It turns out that we have 219 students without activities. A bit more investigation indidates that they are all from a particular programme of study run.</p>
 <pre class="cypher"><code>// Students without Activities
 MATCH (s:student)
 WHERE NOT (s)-[:ATTENDS]-&gt;()
@@ -724,6 +790,7 @@ RETURN s</code></pre>
 </section>
 <section id="activitytype-without-activity" class="level3">
 <h3 class="anchored" data-anchor-id="activitytype-without-activity">activityType without activity</h3>
+<p>Activities can have a <code>activity type</code> - the graph model could have <code>activity type</code> as a property or as a relationship. The query below finds <code>activity type</code>without <code>activity.</code> The decision may be to delete these orphaned nodes as they may cause problems with some calculations. They would be created if they become required in the future.</p>
 <pre class="cypher"><code>// Activities without Rooms
 
 MATCH (at:activityType)
@@ -738,6 +805,7 @@ RETURN at;</code></pre>
 </section>
 <section id="activities-without-rooms" class="level3">
 <h3 class="anchored" data-anchor-id="activities-without-rooms">activities without rooms</h3>
+<p>The graph has over 1500 activity instances without rooms. Most of these will be deliberate - online, virtual sessions - but we may want to query the graph to identify those where a room is expected.</p>
 <pre class="cypher"><code>// Activities without Rooms
 
 MATCH (a:activity)
@@ -1344,7 +1412,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"openEffect":"fade","descPosition":"bottom","selector":".lightbox","closeEffect":"fade","loop":false});
+<script>var lightboxQuarto = GLightbox({"openEffect":"fade","closeEffect":"fade","selector":".lightbox","loop":false,"descPosition":"bottom"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

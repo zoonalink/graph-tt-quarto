@@ -220,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Neo4j Load</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./03-07-reflection.html">
+    <a class="dropdown-item" href="./03-07-reflections.html">
  <span class="dropdown-text">Reflection</span></a>
   </li>  
     </ul>
@@ -437,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-07-reflection.html" class="sidebar-item-text sidebar-link">
+  <a href="./03-07-reflections.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reflection</span></a>
   </div>
 </li>
@@ -517,7 +517,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Code Gist</span></a>
+ <span class="menu-text">ETL Code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -623,10 +623,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text">Supervision</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Supervision</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Supervision</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weekly Update - 10 June 2024</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+ <span class="menu-text">Notes Example 1</span>
+  </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes Example 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-supervision3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes Example 3</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
       </ul>
@@ -665,19 +712,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The code generates fake names, emails, and IDs for staff or student data based on the unique IDs in the extract DataFrame. The anonymised data is then merged back with the original DataFrame, and the original columns are removed.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./images/anon_pre.png" class="lightbox" data-gallery="anon" data-glightbox="description: .lightbox-desc-1;title:Pre-anonymisation Extract;" title="Pre-anonymisation Extract"><img src="./images/anon_pre.png" class="gallery-image-large img-fluid figure-img" alt="Pre-anonymisation Extract"></a></p>
+<p><a href="./images/anon_pre.png" class="lightbox" data-glightbox="description: .lightbox-desc-1;title:Pre-anonymisation Extract;" data-gallery="anon" title="Pre-anonymisation Extract"><img src="./images/anon_pre.png" class="gallery-image-large img-fluid figure-img" alt="Pre-anonymisation Extract"></a></p>
 <figcaption>Pre-anonymisation Extract</figcaption>
 </figure>
 </div>
 <p><br></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./images/anon_post.png" class="lightbox" data-gallery="anon" data-glightbox="description: .lightbox-desc-2;title:Post-anonymisation Extract;" title="Post-anonymisation Extract"><img src="./images/anon_post.png" class="gallery-image-large img-fluid figure-img" alt="Post-anonymisation Extract"></a></p>
+<p><a href="./images/anon_post.png" class="lightbox" data-glightbox="description: .lightbox-desc-2;title:Post-anonymisation Extract;" data-gallery="anon" title="Post-anonymisation Extract"><img src="./images/anon_post.png" class="gallery-image-large img-fluid figure-img" alt="Post-anonymisation Extract"></a></p>
 <figcaption>Post-anonymisation Extract</figcaption>
 </figure>
 </div>
 <p><br> <br></p>
-<div id="5011953f" class="cell">
+<div id="8600527f" class="cell">
 <details class="code-fold">
 <summary>Click to show code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random</span>
@@ -1338,8 +1385,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./appendix-code.html" class="pagination-link" aria-label="Code Gist">
-        <span class="nav-page-text">Code Gist</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./appendix-code.html" class="pagination-link" aria-label="ETL Code">
+        <span class="nav-page-text">ETL Code</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1357,7 +1404,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"fade","loop":false,"descPosition":"bottom","closeEffect":"fade"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"fade","loop":false,"descPosition":"bottom","selector":".lightbox","openEffect":"fade"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
