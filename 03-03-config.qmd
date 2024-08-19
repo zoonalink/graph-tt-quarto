@@ -2,29 +2,19 @@
 title: "Configuration and Logging"
 ---
 
-I centralised configuration parameters into python scripts to allow the user to manage different aspects of the ETL pipeline.  The configuration options are as a result of both initial design and discovery during development.  
-
-For example, each time I set an option during prototyping, I considered whether they should be config parameters - weighing up development cost versus value (in a proof-of-concept scope).  In general, I aimed for an *automatic* and *dynamic
-
-When I set options during prototyping and testing, I considered whether these are worth parameterising in the ETL by weighing up cost versus value within a proof-of-concept scope.  In general, my design is set up to run *automatically* or *dynamically* with well structured data, but I included options to override these settings.
-
+Configuration and logging are essential components of the ETL pipeline.  Config allows the user to manage different aspects of the ETL pipeline, while logging provides a record of the pipeline's execution.  They emerged from initial design and from discovering during development. 
 
 ### Main Configuration options
 
-A YAML file containing configuration options can be viewed in the [Appendix](appendix-config.qmd).
-
-General settings include being able to filter which data to extract by way of a list of award codes.  Folders and filepaths (local and Google Drive) are created dynamically, although there are override options.
-
-Credentials to SQL databases, Neo4j instances and Google drives are stored securely via environment variables or `keyring` secure storage. 
-
-Additional data sources can be added to the graph database - that is, timetabling data can be augmented within non-timetabling data.  In the proof-of-concept, I added additional location data by merging with the master data source to get latitude, longitude, square meterage, etc.
-
+* Configuration parameters are centralised in Python scripts.
+* The design primarily aims for automatic and dynamic operation with well-structured data, but includes override options.
+* A YAML file ([Appendix-config](appendix-config.qmd)) holds configuration options, including general settings for filtering data extraction, dynamic folder/filepath creation, and secure credential storage.
+* Config also controls options for validation, data augementation and graph structures (nodes, relationships) to be created.
 
 ### Logging
 
-Each module has its own log file which can be expanded or contracted, as ndeeded.
-
-Options include customising the log level (DEBUG, INFO, WARNING, ERROR, CRITICAL).  
+* Each module has its own log file with customisable log level (DEBUG, INFO, WARNING, ERROR, CRITICAL).
+* Timing function which tracks and stores various execution and elapsed times with a view to optimising performance or identifying bottlenecks. 
 
 #### Example Extract Log
 
@@ -132,8 +122,6 @@ C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-projec
 </pre>
 
 
-As part of the logging functionality, I created a timing function which tracks and stores various execution and elapsed times with a view to optimising performance or identifying bottlenecks in future development. 
-
 
 #### Example Process Log
 
@@ -151,7 +139,7 @@ As part of the logging functionality, I created a timing function which tracks a
 2024-07-11 13:31:24,294 - INFO - process_main - Function process_activity took 0.10 seconds
 </pre>
 
-Logging also summarises loading results as can be seen in the snippet below.
+
 
 #### Example Load Log
 

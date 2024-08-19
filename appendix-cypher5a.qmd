@@ -31,7 +31,7 @@ Each 'occurrence' of an activity is a separate node.  This model is simple and e
 
 ### Create data
 
-```{cypher .scroll-cypher}
+```{cypher}{.scroll-cypher}
 // Create unique activity nodes (TestActivityModel1)
 CREATE (:TestActivityModel1 { actName: "ITGD", date: date("2024-08-06"), startTime: localtime("09:00:00"), endTime: localtime("11:00:00") })
 CREATE (:TestActivityModel1 { actName: "ITGD", date: date("2024-08-13"), startTime: localtime("09:00:00"), endTime: localtime("11:00:00") })
@@ -57,11 +57,12 @@ MATCH (s:TestStudentModel1 { stuID_anon: "test-student-2" })
 MATCH (a:TestActivityModel1) WHERE a.actName IN ["ITGD", "Neo4j"]
 MERGE (s)-[:ATTENDS]->(a) ;
 ```
+
 ![Model 1](./images/cypher-clash1-model.png)
 
 To identify the clashes, this query can be run: 
 
-```{cypher .scroll-cypher}
+```{cypher}{.scroll-cypher}
 
 MATCH (s:TestStudentModel1)-[:ATTENDS]->(a1:TestActivityModel1)
 WITH s, a1
@@ -96,7 +97,7 @@ Model 2 uses a single node for each activity but has date and time nodes.  This 
 
 
 
-```{cypher .cypher-scroll}
+```{cypher}{.scroll-cypher}
 // Create unique time nodes
 CREATE (:TestStartTimeNode { time: localtime("09:00:00") })
 CREATE (:TestStartTimeNode { time: localtime("10:00:00") })
@@ -164,7 +165,7 @@ MERGE (s)-[:ATTENDS]->(a) ;
 
 To identify student clashes, this query can be run.
 
-```{cypher .cypher-scroll}
+```{cypher}{.scroll-cypher}
 MATCH (s:TestStudentModel2)-[:ATTENDS]->(a1:TestActivityModel2)-[:SCHEDULED_ON]->(d:TestDateNode)
 WITH s, a1, d
 MATCH (s)-[:ATTENDS]->(a2:TestActivityModel2)-[:SCHEDULED_ON]->(d) // Same date
@@ -192,7 +193,7 @@ The results are the same as Model 1, but the profile is different, with fewer `d
 
 Model 3 uses a single node for each activity as well as date nodes - start and end times are properties of the activity.
 
-```{cypher .cypher-scroll}
+```{cypher}{.scroll-cypher}
 // Create unique date nodes
 CREATE (:TestDateNodeModel3 { date: date("2024-07-30") })
 CREATE (:TestDateNodeModel3 { date: date("2024-08-06") })
@@ -243,7 +244,7 @@ The results are the same as Model 1 and Model 2, but the profile is different ag
 
 Model 4 uses a single node for each activity and date - start and end times are now properties of the *relationship* between the activity and the date.
 
-```{cypher .cypher-scroll}
+```{cypher}{.scroll-cypher}
 // Create unique date nodes
 MERGE (:TestDateNodeModel4 { date: date("2024-07-30") })
 MERGE (:TestDateNodeModel4 { date: date("2024-08-06") })

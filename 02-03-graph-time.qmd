@@ -2,11 +2,9 @@
 title: Graphing Time
 ---
 
-The biggest challenge I encountered when translating timetables into graph data structures involved temporal elements - that is, start and end times, dates, weeks, recurrences, durations, etc. Whether a data element is a node or a property of a node, or perhaps both is relatively trivial to model and test and depends heavily on use cases.
+The biggest challenge I encountered when translating timetables into graph data involved temporal elements - that is, `start` and `end times`, `dates`, `weeks`, `recurrences`, `durations`, etc. While the basic model successfully captured the core entities and relationships, it lacked the necessary detail to perform meaningful time-based analysis.
 
-Time, on the other hand, is complicated, especially when you want to write aggregation queries on time elements e.g. total taught hours on campus on a Wednesday at 11:00 for student X across the whole year.
-
-While the conceptual flexibility of graphs is appealing, finding the optimal balance between efficient representation, query performance, and data redundancy requires careful consideration. This section details some challenges encountered and the approach taken for the proof-of-concept.
+The flexibility of graph databases is appealing but finding the optimal balance between efficient representation, query performance, and data redundancy requires careful consideration. This section details some challenges encountered and the approach taken for the proof-of-concept.
 
 ## The Problem of Normalised Time
 
@@ -20,7 +18,7 @@ Traditional relational databases often store timetable information in a highly n
 
 ## Exploring Potential Solutions
 
-Several time modelling approaches were explored to explore these challenges, each with its own trade-offs.
+Several time modelling approaches were considered, each with its own trade-offs.
 
 To illustrate this, let's explore using a fictional example - `Introduction to Graph Databases` - focusing on the `lecture`:
 
@@ -34,13 +32,13 @@ To illustrate this, let's explore using a fictional example - `Introduction to G
 
 ### Option 0: Proof-of-concept activity
 
-The basic model creates nodes for each activity as they exist in the relational database. This simple approach is perfectly acceptable but makes any time based calculations difficult because each activity node can represent a different number of occurrences because of the week ranges.
+The basic model creates nodes for each activity *exactly* as they exist in the relational database. This simple approach is perfectly acceptable but makes any time based calculations difficult because each activity node can represent a different number of occurrences due to the week ranges.
 
-This in turn means you cannot simply COUNT each activity "equally" - for example, row one above has 11 instances, each of two hours. The second and third rows have four instances, each of three hours. Calculating aggregations, finding clashes and similar is very challenging.
+This in turn means you cannot simply COUNT each activity "equally" - for example, the lecture has 11 instances, each of two hours. The seminars have four instances, each of three hours. Calculating aggregations, finding clashes and similar is very challenging.
 
 ![Basic example of Graphing Normalised Activities](./images/time-option0.png)
 
-If we assume that all students attend the lecture and one of the seminars, some students have a clash in week 7 (Wednesday 10:00-11:00) - this is very difficult to identify and isolate in a highly normalised dataset.
+If we assume that each student attends the lecture and one of the seminars, some students have a clash in week 7 (Wednesday 10:00-11:00) - this is very difficult to identify and isolate in a highly normalised dataset.
 
 ### Option 1: Unique Activity Nodes
 
@@ -54,7 +52,7 @@ Option 1 addresses this by creating nodes for each unique combination of `name`,
 -   Each node has `date`, `startTime`, `endTime` properties
 -   Only `date` is different between each node.
 
-```{cypher .cypher-scroll}       
+```{cypher}{.scroll-cypher}       
 (Activity {Name: "ITGD", Date: "2024-01-03", StartTime: "09:00", EndTime: "11:00"}) 
 (Activity {Name: "ITGD", Date: "2024-01-10", StartTime: "09:00", EndTime: "11:00"}) 
 ... 
@@ -63,16 +61,16 @@ Option 1 addresses this by creating nodes for each unique combination of `name`,
 
 **Pros**:
 
--   **Conceptual Simplicity**: Easy to understand and implement.
--   **Direct Time Representation**: Time is directly associated with each activity instance.
+-   *Conceptual Simplicity*: Easy to understand and implement.
+-   *Direct Time Representation*: Time is directly associated with each activity instance.
 
 **Cons**:
 
--   **Node Proliferation**: Leads to a high volume of nodes, potentially impacting performance with large datasets.
+-   *Node Proliferation*: Leads to a high volume of nodes, potentially impacting performance with large datasets.
 
 **Use Case dependent**
 
--   **Time-Based Queries**: Answering questions about time patterns or conflicts requires traversing numerous nodes and relationships. Some queries will benefit - e.g. identifying clashes which may only occur in a specific week, others will become more complex as de-normalised data needs to be re-aggregated.
+-   *Time-Based Queries*: Answering questions about time patterns or conflicts requires traversing numerous nodes and relationships. Some queries will benefit - e.g. identifying clashes which may only occur in a specific week, others will become more complex as de-normalised data needs to be re-aggregated.
 
 ### Option 2: Date and Time Nodes
 
@@ -85,14 +83,14 @@ Option 2 creates a *single activity* node but also additional `date` and `time` 
 -   1 Activity node
 -   11 Date nodes - shared by ALL activities on those dates.
 -   2 Time nodes (09:00 and 11:00) - shared by ALL activities on those times!
--   **Additional Relationships**
+-   *Additional Relationships*
     -   Activity -[:SCHEDULED_ON]-> Date (11 relationships)
     -   Activity -[:STARTS_AT]-> Time (11 relationships to 09:00)
     -   Activity -[:ENDS_AT]-> Time (11 relationships to 11:00)
 
 <br>
 
-```{cypher .cypher-scroll}         
+```{cypher}{.scroll-cypher}         
 (Activity {Name: "ITGD"})
     -[:SCHEDULED_ON]-> (Date {date: "2024-01-03"})
     -[:SCHEDULED_ON]-> (Date {date: "2024-01-10"})
@@ -105,14 +103,14 @@ Option 2 creates a *single activity* node but also additional `date` and `time` 
 
 **Pros**:
 
--   **Increased Flexibility**: Facilitates queries across time ranges and aggregations across time slots.
--   **Reduced Redundancy**: Avoids replicating time information for activities occurring on the same date and time.
--   **Lower Node Count**: Potentially fewer nodes overall compared to Option 1 as `date` and `time` nodes are shared with all activities in the database.
+-   *Increased Flexibility*: Facilitates queries across time ranges and aggregations across time slots.
+-   *Reduced Redundancy*: Avoids replicating time information for activities occurring on the same date and time.
+-   *Lower Node Count*: Potentially fewer nodes overall compared to Option 1 as `date` and `time` nodes are shared with all activities in the database.
 
 **Cons**:
 
--   **Increased Model Complexity**: Requires managing relationships between Activity, Date, and Time nodes.
--   **Potential Performance Overhead**: Querying might involve traversing multiple relationships, impacting efficiency.
+-   *Increased Model Complexity*: Requires managing relationships between Activity, Date, and Time nodes.
+-   *Potential Performance Overhead*: Querying might involve traversing multiple relationships, impacting efficiency.
 
 ### Option 3: Date and Time Block Nodes
 
@@ -125,13 +123,13 @@ Option 3 creates a single activity but instead of individual start and end time 
 -   1 Activity node
 -   11 Date nodes
 -   4 Timeblock nodes (09:00-09:30, etc.) - shared by ALL activities on those times!
--   **Additional Relationships**
+-   *Additional Relationships*
     -   `Activity` -[:SCHEDULED_ON]-> `Date` (11 relationships)
     -   `Activity` -[:TAKES_PLACE_DURING]-> `timeBlock 09:00-09:30` (11 relationships)
     -   `Activity` -[:TAKES_PLACE_DURING]-> `timeBlock 09:30-10:00` (11 relationships) 
     -   ...
   
-```{cypher .cypher-scroll}
+```{cypher}{.scroll-cypher}
 (Activity {Name: "ITGD"}) 
     -[:SCHEDULED_ON]-> (Date {date: "2024-01-03"}) 
     -[:SCHEDULED_ON]-> (Date {date: "2024-01-10"})
@@ -144,26 +142,30 @@ Option 3 creates a single activity but instead of individual start and end time 
 
 **Pros**:
 
--   **Granular Time Representation**: Enables analysis at specific time intervals
--   **Easier Time Calculations**: Duration is encoded and allows for easy calculations.
+-   *Granular Time Representation*: Enables analysis at specific time intervals
+-   *Easier Time Calculations*: Duration is encoded and allows for easy calculations.
 
 **Cons**:
 
--   **Potential for Data Sparsity**: Some time blocks might be sparsely populated, leading to storage inefficiencies.
--   **Potential for High Node Codes**: Lots of `TimeBlocks` if using small intervals
--   **Less flexibile**: Timeblocks are not dynamic.
+-   *Potential for Data Sparsity*: Some time blocks might be sparsely populated, leading to storage inefficiencies.
+-   *Potential for High Node Codes*: Lots of `TimeBlocks` if using small intervals
+-   *Less flexibile*: Timeblocks are not dynamic.
 
 ### Variations
 
+
 **StartTime and Duration**: This option simplifies the model by representing time using only `StartTime` and `DurationInMinutes` properties on the `Activity` node, omitting explicit `EndTime` nodes. This approach is suitable for duration based queries but it is limiting in that it is more difficult to query events occurring at specific times, overlapping time ranges or on end-times.
+
+```{cypher .scroll-cypher}
+(Timeblock {name: "09:00-11:00", start: 09:00, end: 11:00, duration:120}) (Timeblock {name: "10:30-11:30", start: 10:30, end: 11:30, duration:60}) (Timeblock {name: "11:00-12:00", start: 11:00, end: 12:00, duration:60})
+```
 
 **Time Chains**: This option retains date and time nodes, but instead of having relationships from activity, the nodes are chained:  `activity` -> `startTime` -> `endTime`.
 
+**Time as Relationship Property**: This option stores time information as properties on the relationship between `Activity` and `Date` nodes. This approach is more compact but can be less intuitive and may limit the ability to query based on time.
+
 **Dynamic TimeBlocks**: This variation does not pre-create timeblocks based on a set interval (e.g. 30 minutes). They are created dynamically as required by the data and what already exists. For example, activities at 09:00-11:00, 10:30-11:30 and 11:00-12:00 would require these TimeBlocks:
 
-```{cypher}
-(Timeblock {name: "09:00-11:00", start: 09:00, end: 11:00, duration:120}) (Timeblock {name: "10:30-11:30", start: 10:30, end: 11:30, duration:60}) (Timeblock {name: "11:00-12:00", start: 11:00, end: 12:00, duration:60})
-```
 
 ### Summary
 

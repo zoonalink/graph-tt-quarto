@@ -36,6 +36,7 @@
 
 - [ ] word count check - and adjust
 - [ ] draft tte quality section -> see notes and cypher query section
+- 
 - [ ] draft conclusion section 
 
 

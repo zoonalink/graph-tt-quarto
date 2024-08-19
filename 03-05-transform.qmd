@@ -3,7 +3,7 @@ title: "Transformation"
 ---
 
 
-`Transform` picks up from where `extract` finished by using the extracted csv files as the source.
+TRANSFORM picks up where EXTRACT finished by using the extracted csv files as the source.
 
 ```{dot}
 digraph transform {

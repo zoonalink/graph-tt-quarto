@@ -732,7 +732,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Indexes in Neo4j are used to speed up queries by allowing the database to quickly locate nodes or relationships based on a property value. They will depend heavily on graph structure and specific use-cases. For example, if performing regular seaches on <code>(activity{actStartTime})</code> it is probably beneficial to create an index on this property.</p>
 <p>Search performance indexes include <code>RANGE</code>, <code>FULLTEXT</code>, and <code>POINT</code>. Range indexes are the default and support most queries. Text indexes, like <code>FULLTEXT</code>, are used for <code>string</code> based searches and optimised for queries containing operators like <code>CONTAINS</code> or <code>STARTS WITH</code>. Point indexes are used for spatial queries and are optimised for <code>latitude</code> and <code>longitude</code> properties.</p>
 <p><strong>Indexes in Graph</strong></p>
-<div id="b1614f99" class="cell" data-execution_count="1">
+<div id="6c6d3d7f" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to show code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
@@ -755,21 +755,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Connecting to Neo4j database....
-Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x000001E5084CBC10&gt;
+Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x00000208C9874690&gt;
 Running query...
 
 &lt;Record id=7 name='activity_clash_index' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actStartDate', 'actStartTime', 'actEndTime'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
 &lt;Record id=19 name='graphid_demoRoom_uniq' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['demoRoom'] properties=['graphid'] indexProvider='range-1.0' owningConstraint='graphid_demoRoom_uniq' lastRead=neo4j.time.DateTime(2024, 8, 15, 18, 24, 22, 793000000, tzinfo=&lt;UTC&gt;) readCount=8952&gt;
 &lt;Record id=4 name='index_12b79beb' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actEndTime'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
 &lt;Record id=6 name='index_207d313' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['id'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
-&lt;Record id=8 name='index_241bd22f' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['room'] properties=['roomName'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 16, 16, 39, 5, 156000000, tzinfo=&lt;UTC&gt;) readCount=114&gt;
+&lt;Record id=8 name='index_241bd22f' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['room'] properties=['roomName'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 19, 9, 31, 24, 907000000, tzinfo=&lt;UTC&gt;) readCount=122&gt;
 &lt;Record id=9 name='index_2d375d70' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['room'] properties=['roomLatitude'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 15, 18, 40, 6, 645000000, tzinfo=&lt;UTC&gt;) readCount=107&gt;
-&lt;Record id=0 name='index_343aff4e' state='ONLINE' populationPercent=100.0 type='LOOKUP' entityType='NODE' labelsOrTypes=None properties=None indexProvider='token-lookup-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 16, 17, 9, 38, 432000000, tzinfo=&lt;UTC&gt;) readCount=116983&gt;
+&lt;Record id=0 name='index_343aff4e' state='ONLINE' populationPercent=100.0 type='LOOKUP' entityType='NODE' labelsOrTypes=None properties=None indexProvider='token-lookup-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 19, 16, 28, 19, 533000000, tzinfo=&lt;UTC&gt;) readCount=117374&gt;
 &lt;Record id=10 name='index_43c5c824' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['room'] properties=['roomLongitude'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 15, 18, 40, 6, 646000000, tzinfo=&lt;UTC&gt;) readCount=106&gt;
-&lt;Record id=2 name='index_6acb9a84' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actStartDate'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 16, 16, 46, 39, 929000000, tzinfo=&lt;UTC&gt;) readCount=91&gt;
+&lt;Record id=2 name='index_6acb9a84' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actStartDate'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 19, 9, 32, 0, 575000000, tzinfo=&lt;UTC&gt;) readCount=92&gt;
 &lt;Record id=5 name='index_7ade165f' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actModSplusID'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 15, 18, 40, 6, 638000000, tzinfo=&lt;UTC&gt;) readCount=148&gt;
 &lt;Record id=1 name='index_f7700477' state='ONLINE' populationPercent=100.0 type='LOOKUP' entityType='RELATIONSHIP' labelsOrTypes=None properties=None indexProvider='token-lookup-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 15, 13, 53, 33, 557000000, tzinfo=&lt;UTC&gt;) readCount=134&gt;
-&lt;Record id=3 name='index_f86013e' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actStartTime'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
+&lt;Record id=3 name='index_f86013e' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actStartTime'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 19, 14, 27, 24, 263000000, tzinfo=&lt;UTC&gt;) readCount=16&gt;
 &lt;Record id=18 name='lat_demoRoom' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['demoRoom'] properties=['lat'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
 &lt;Record id=17 name='lon_demoRoom' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['demoRoom'] properties=['lon'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
 &lt;Record id=16 name='rm_cat_demoRoom' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['demoRoom'] properties=['rm_cat'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
@@ -782,7 +782,7 @@ Running query...
 <section id="creating-indexes" class="level3">
 <h3 class="anchored" data-anchor-id="creating-indexes">Creating Indexes</h3>
 <p>This is the general syntax for creating an INDEX and some examples.</p>
-<pre class="cypher"><code>// General syntax
+<pre class="{cypher} scroll-cypher"><code>// General syntax
 CREATE INDEX FOR (n:NodeLabel) ON (n.propertyName)
 
 // Examples

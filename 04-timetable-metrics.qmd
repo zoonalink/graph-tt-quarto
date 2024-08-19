@@ -17,19 +17,46 @@ title: "Timetable Metrics"
 * can add other datasets like room locations to calculate distances and travel time (see cypher page)
 * 
 
-## Timetable Quality Metrics and Insights
-
-### 4.1 Defining Timetable Quality
-
-### 4.2 Implemented Metrics
-* Constraint violations (max hours per day, days per week, lunch breaks, etc.)
-* Distance-based metrics using room properties
-
-### 4.3 Aggregation Methods
-* Student-level, programme-level, and other relevant groupings
-
-### 4.4 Cypher Queries for Metric Calculation
-* Example queries with explanations
-
-### 4.5 Visualization of Results
-* Bloom visualisations or other relevant charts
+Timetable Quality Metrics and Insights
+4.1 Defining Timetable Quality
+The inherent complexity of timetabling, with its competing objectives and subjective evaluations, often makes it difficult to objectively assess the quality of a timetable. As discussed in the introduction, there is no universally agreed-upon definition of a "good" timetable, as it is often a balancing act between satisfying hard constraints (e.g. avoiding clashes) and optimising for softer constraints (e.g. minimising travel time). This section explores how graph databases can help us move beyond anecdotal evidence and subjective opinions towards a more data-driven understanding of timetable quality.
+4.2 Towards a Quantifiable Measure
+By leveraging the power of graph databases, we propose the development of a timetable quality index. This index would serve as a quantifiable and measurable score reflecting the overall "goodness" of a timetable, both at individual and aggregate levels. This score would be based on a flexible and adaptable system of penalties and rewards tied to specific metrics, allowing institutions to tailor the index to their unique needs and priorities.
+4.3 Implemented Metrics
+The foundation of this quality index lies in defining and calculating specific metrics that capture various aspects of timetable quality. Here are some examples:
+Constraint violations: As previously discussed, hard constraints (e.g., maximum hours per day, days per week, lunch breaks, etc.) are essential for a functional timetable. Violations of these constraints would result in penalties to the score.
+Distance-based metrics: By incorporating room location data, we can calculate travel distances and times between activities. Long travel times or back-to-back activities in distant locations would incur penalties.
+Resource Utilisation: Metrics related to room utilisation, such as occupancy rates and frequency of use, can provide insights into the efficient allocation of space. Low utilisation rates could be penalized, encouraging more effective use of resources.
+Activity Characteristics: Factors like activity clashes, oversubscription rates, and room suitability (size, type) can impact student experience. Penalties can be assigned based on the severity of these issues.
+4.4 Aggregation Methods
+The flexibility of the graph database allows for the aggregation of these individual metrics into meaningful scores at different levels:
+Student-level: Each student node can have a quality score reflecting their individual timetable experience based on assigned activities and associated penalties.
+Programme-level: By aggregating student scores within a programme, we gain insights into the overall quality experienced by students in that programme.
+Other groupings: Scores can be aggregated at various levels, such as by department, room type, or time slot, to identify potential areas for improvement.
+4.5 Cypher Queries for Metric Calculation
+[Insert relevant Cypher queries showcasing how to calculate specific metrics, like travel time between activities, constraint violations, or room utilisation.]
+For example, the following query identifies students with back-to-back activities in different buildings, highlighting a potential travel time issue:
+// Identify students with back-to-back activities in different buildings
+MATCH (s:Student)-[:ATTENDS]->(a1:Activity)-[:NEXT]->(a2:Activity)
+WHERE a1.endTime = a2.startTime AND a1.building <> a2.building
+RETURN s.name, a1.name, a2.name, a1.building, a2.building
+Use code with caution.
+Cypher
+4.6 Penalty and Reward System
+The quality score for each node (student, programme, room, etc.) can be calculated using a system of penalties and rewards. Starting with a baseline score, penalties are subtracted and rewards added based on the specific metrics calculated. The weighting of these penalties and rewards can be adjusted to reflect institutional priorities. For example:
+No lunch break: -5 points
+Back-to-back activities in different buildings: -3 points per instance
+Activity clash: -10 points
+Room at full capacity: -2 points
+High room utilisation rate: +2 points
+4.7 Visualisation of Results
+The calculated scores and underlying metrics can be effectively visualised using various techniques:
+Bloom visualisations: These can provide an intuitive overview of timetable quality across different programmes, time slots, or other groupings.
+Charts and dashboards: Bar charts, line graphs, and heatmaps can be used to display and compare scores, identify trends, and track changes over time.
+4.8 Benefits and Future Development
+By implementing this timetable quality index, institutions can gain valuable insights into the strengths and weaknesses of their timetables, moving beyond subjective opinions to data-driven decision making.
+This proof-of-concept lays the groundwork for further development and exploration. Future work could involve:
+Refining the weighting system for penalties and rewards based on stakeholder feedback and institutional priorities.
+Incorporating additional datasets, such as student preferences or transportation schedules, to enhance the accuracy and granularity of the quality index.
+Developing interactive dashboards that allow users to explore timetable data, simulate changes, and assess their impact on the quality score.
+Ultimately, this approach has the potential to transform the way timetables are designed, evaluated, and optimised, leading to improved student and staff satisfaction, efficient resource allocation, and a more data-driven approach to academic scheduling.

@@ -36,7 +36,7 @@ Identifying time gaps between scheduled activities is very complex and requires 
 The below is the logic for identifying gaps between activities, using an example student: 
 
 
-```{cypher .cypher-scroll}
+```{cypher}{.scroll-cypher}
 MATCH (s:student)-[:ATTENDS]->(a:activity)
 WHERE s.stuID_anon = "stu-10085720"
 AND a.actStartDate = date("2022-10-03")
@@ -296,7 +296,7 @@ driver.close()
 
 In contrast, calculating simple total hours per day is done as follows: 
 
-```cypher
+```{cypher}{.scroll-cypher}
 MATCH (s:student )-[:ATTENDS]->(a:activity)
 WITH s, a.actStartDate AS Date, SUM(a.actDurationInMinutes) / 60.0 AS totalHours
 RETURN s.stuFullName_anon AS Student, Date, totalHours
@@ -309,7 +309,7 @@ ORDER BY Date;
 
 We can use the earlier cypher logic to identify the longest consecutive block of activities for a student, or student on a day, etc. 
 
-```{cypher .cypher-scroll}
+```{cypher}{.scroll-cypher}
 
 MATCH (s:student {stuFullName_anon: "Susan Lopez"})-[:ATTENDS]->(a:activity {actStartDate: date("2022-09-27")})
 WITH s, a 
@@ -467,7 +467,7 @@ driver.close()
 
 This query calculates the total scheduled hours for each student on a day and returns the results ordered by date. This examples filters for students who have more than 7 hours of activities in a day.
 
-```cypher
+```{cypher}{.scroll-cypher}
 // sum of activity durations
 // does not account for simultaneous activities (clashes) - so could be inflated, e.g. 12.5 hour students
 
@@ -484,7 +484,7 @@ ORDER BY Date;
 
 It might be expected that a student (or staff) has a lunch break.  The cypher below calculates free and booked tie within a window, in this case 12:00 and 14:00.  It can be used to find students who do not have a lunch break or count the number of days that a student does not have a lunch break.  
 
-```{cypher .cypher-scroll}
+```{cypher}{.scroll-cypher}
 
 MATCH (s:student)-[:ATTENDS]->(a:activity)
 WITH s, a

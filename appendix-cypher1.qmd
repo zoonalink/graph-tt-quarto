@@ -8,7 +8,7 @@ title: "Creating Nodes and Relationships"
 
 Nodes are created using the `CREATE` clause in Cypher. The general syntax for creating a node is:
 
-``` cypher
+```{cypher}{.scroll-cypher}
 CREATE (n:NodeLabel {propertyName: propertyValue, ...})
 ```
 
@@ -22,7 +22,7 @@ Where:
 
 ### Example: Creating a Student Node
 
-``` cypher
+```{cypher}{.scroll-cypher}
 CREATE (s:Student {studentID: '123456', studentName: 'Alice'...})
 ```
 
@@ -30,7 +30,7 @@ CREATE (s:Student {studentID: '123456', studentName: 'Alice'...})
 
 Relationships are created using the `CREATE` clause in Cypher. The general syntax for creating a relationship is:
 
-``` cypher
+```{cypher}{.scroll-cypher}
 MATCH (n1:NodeLabel1), (n2:NodeLabel2)
 WHERE n1.propertyName = propertyValue1 AND n2.propertyName = propertyValue2
 CREATE (n1)-[r:RELATIONSHIP_TYPE]->(n2)
@@ -53,7 +53,7 @@ Where:
 
 ### Example: Creating a Relationship Between a Student and an Activity
 
-``` cypher
+```{cypher}{.scroll-cypher}
 MATCH (s:Student {studentID: '123456'}), (a:Activity {activityID: '789'})
 CREATE (s)-[r:ATTENDS]->(a)
 ```
@@ -68,7 +68,7 @@ Use code with caution, especially DELETE code. Run pattern matching and investig
 
 ### (student)-\[REGISTERED_ON\]-\>(programme)
 
-``` cypher
+```{cypher}{.scroll-cypher}
 
 // Create REGISTERED_ON relationship between student and programme nodes
 
@@ -80,7 +80,7 @@ WHERE s.stuProgSplusID = p.posSplusID
 MERGE (s)-[:REGISTERED_ON]->(p)
 ```
 
-``` cypher
+```{cypher}{.scroll-cypher}
 // Delete REGISTERED_ON relationships
 MATCH (:student)-[r:REGISTERED_ON]->(:programme)
 DELETE r
@@ -88,7 +88,7 @@ DELETE r
 
 ### (student)-\[ENROLLED_ON\]-\>(module)
 
-``` cypher
+```{cypher}{.scroll-cypher}
 // Create ENROLLED_ON relationship between students and modules 
 
 // Match student, activity, and module nodes based on ATTEND and BELONGS_TO relationships
@@ -98,7 +98,7 @@ MATCH (s:student)-[:ATTENDS]->(a:activity)-[:BELONGS_TO]->(m:module)
 MERGE (s)-[:ENROLLED_ON]->(m)
 ```
 
-``` cypher
+```{cypher}{.scroll-cypher}
 // Delete ENROLLED_ON relationships
 MATCH (:student)-[r:ENROLLED_ON]->(:module)
 DELETE r
@@ -106,7 +106,7 @@ DELETE r
 
 ### (activity)-\[HAS_TYPE\]-\>(activity_type)
 
-``` cypher
+```{cypher}{.scroll-cypher}
 // Create HAS_TYPE relationship between activity and activityType nodes
 
 // Match activity and activityType nodes based on matching properties
@@ -117,7 +117,7 @@ WHERE a.actTypeName = at.actTypeDescription
 MERGE (a)-[:HAS_TYPE]->(at)
 ```
 
-``` cypher
+```{cypher}{.scroll-cypher}
 // Find activities without an activityType
 
 MATCH (a:activity)
@@ -125,7 +125,7 @@ WHERE NOT EXISTS ((a)-[:HAS_TYPE]->(:activityType))
 RETURN a
 ```
 
-``` cypher
+```{cypher}{.scroll-cypher}
 // Delete HAS_TYPE relationships between activity and activityType nodes
 
 MATCH (a:activity)-[r:HAS_TYPE]->(at:activityType)
@@ -134,7 +134,7 @@ DELETE r
 
 ### (module)-\[HAS_OWNING_DEPT\]-\>(department)
 
-``` cypher
+```{cypher}{.scroll-cypher}
 // Create HAS_OWNING_DEPT relationship between module and department nodes
 
 // Match module and department nodes based on matching properties
@@ -145,7 +145,7 @@ WHERE m.modDepartment = d.deptName
 MERGE (m)-[:HAS_OWNING_DEPT]->(d)
 ```
 
-``` cypher
+```{cypher}{.scroll-cypher}
 // Delete HAS_OWNING_DEPT relationships between module and department nodes
 
 MATCH (m:module)-[r:HAS_OWNING_DEPT]->(d:department)
@@ -154,7 +154,7 @@ DELETE r
 
 ### (programme)-\[HAS_OWNING_DEPT\]-\>(department)
 
-``` cypher
+```{cypher}{.scroll-cypher}
 // Create HAS_OWNING_DEPT relationship between programme and department nodes
 
 // Match programme and department nodes based on matching properties
@@ -165,7 +165,7 @@ WHERE p.posDepartment = d.deptName
 MERGE (p)-[:HAS_OWNING_DEPT]->(d)
 ```
 
-``` cypher
+```{cypher}{.scroll-cypher}
 // Delete HAS_OWNING_DEPT relationships between programme and department nodes
 
 MATCH (p:programme)-[r:HAS_OWNING_DEPT]->(d:department)

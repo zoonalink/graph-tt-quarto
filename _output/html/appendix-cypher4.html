@@ -722,7 +722,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="count-all-nodes---by-label" class="level3">
 <h3 class="anchored" data-anchor-id="count-all-nodes---by-label">Count all nodes - by label</h3>
 <p>Below are two queries returning the same results - counts of nodes by node label.</p>
-<pre class="cypher"><code>// Count of nodes - row per node
+<pre class="{cypher} scroll-cypher"><code>// Count of nodes - row per node
 
 UNWIND ["student", "staff", "room", "activity"] AS label
 MATCH (n)
@@ -734,7 +734,7 @@ RETURN label, count(n) AS count</code></pre>
 <figcaption>Count All Nodes</figcaption>
 </figure>
 </div>
-<pre class="cypher"><code>// Count of nodes - single row
+<pre class="{cypher} scroll-cypher"><code>// Count of nodes - single row
 
 MATCH (n:student)
 WITH count(n) AS studentCount
@@ -754,7 +754,7 @@ RETURN studentCount, lecturerCount, roomCount, count(n) AS activityCount</code><
 <section id="count-all-relationships---by-type" class="level3">
 <h3 class="anchored" data-anchor-id="count-all-relationships---by-type">Count all relationships - by type</h3>
 <p>The query below returns counts of relationships. We can see that there are a significant amount of (student)-[]-&gt;(activity) relationships due to how we structured <code>activity</code> in the graph - that is, a separate node for each instance.</p>
-<pre class="cypher"><code>// Count of relationships
+<pre class="{cypher} scroll-cypher"><code>// Count of relationships
 
 MATCH ()-[r:ATTENDS]-&gt;()
 WITH count(r) AS attendsCount
@@ -794,7 +794,7 @@ RETURN DISTINCT a.actDayName AS dayName, count(a) AS activityCount</code></pre>
 <section id="activity-counts-by-time" class="level3">
 <h3 class="anchored" data-anchor-id="activity-counts-by-time">Activity counts by time</h3>
 <p>The query below connects to the graph via python and returns the result - that is, the number of activities which start at 17:00.</p>
-<div id="3b455bb3" class="cell" data-execution_count="1">
+<div id="4d2e2b4d" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to show code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
@@ -826,7 +826,7 @@ RETURN DISTINCT a.actDayName AS dayName, count(a) AS activityCount</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Connecting to Neo4j database....
-Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x0000013C39F3EF90&gt;
+Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x000001971C754790&gt;
 Running query...
 
 &lt;Record activitiesStartingAt5pm=172&gt;</code></pre>
@@ -836,7 +836,7 @@ Running query...
 <section id="staff-activity-count" class="level3">
 <h3 class="anchored" data-anchor-id="staff-activity-count">Staff activity count</h3>
 <p>This query returns the first 5 rows of the query which counts activities by member of staff.</p>
-<div id="adef5f47" class="cell" data-execution_count="2">
+<div id="88e7e5c7" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Click to show code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
@@ -877,7 +877,7 @@ Running query...
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Connecting to Neo4j database....
-Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x0000013C3BADE490&gt;
+Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x00000197372BE610&gt;
 Running query...
 
         staffName  activityCount
@@ -1483,7 +1483,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"fade","selector":".lightbox","descPosition":"bottom","openEffect":"fade","loop":false});
+<script>var lightboxQuarto = GLightbox({"openEffect":"fade","loop":false,"selector":".lightbox","descPosition":"bottom","closeEffect":"fade"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

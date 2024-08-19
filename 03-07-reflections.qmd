@@ -2,13 +2,15 @@
 title: "Reflections"
 ---
 
-From the outset, I was wary that this data engineering project is too ambitious in both scale and scope.  However, the reality of its magnitude became increasingly apparent as development progressed. 
+I was always wary that the data engineering portion of my project might be too ambitious in both scale and scope.  However, the reality of its magnitude became increasingly apparent. 
 
-Yet, despite my initial awareness, I found myself continually expanding the project's boundaries, often pushing for a "gold-plated" solution rather than acknowledging when certain aspects were "good enough." This tendency towards scope creep, while driven by a desire for excellence, has significantly increased the project's complexity and time requirements.
+Yet, despite my initial awareness, I found myself continually expanding the project's boundaries, often pushing for a "gold-plated" solution rather than acknowledging when certain aspects were "good enough."[^1] This tendency towards scope creep, while driven by a desire for excellence, has significantly increased the project's complexity and time requirements.
 
-The learning curve has been exceptionally steep. I've had to rapidly acquire proficiency in a diverse range of technologies and tools: Python, Neo4j, Google APIs, Quarto, and GraphViz. This intensive learning process, while challenging, has also been incredibly rewarding.  My technical toolkit has expanded far beyond my initial expectations - but this also contributed to the continuously expanding scope, as each new skill opened possibilities for further enhancement and the necessitry for on-the-fly troubleshooting. 
+[^1:] As my manager often needs to remind me...
 
-Unexpected challenges have been a constant companion throughout this process. From deleted servers and access issues to discrepancies between development environments (such as missing certificates), I've encountered a wide array of unforeseen obstacles. These issues have necessitated the development of strong troubleshooting skills and a flexible approach to problem-solving. 
+The learning curve has been exceptionally steep. I've had to rapidly acquire proficiency in a diverse range of technologies and tools: Python, Neo4j, Google APIs, Quarto, and GraphViz. This intensive learning process, while challenging, has also been incredibly rewarding.  My technical toolkit has expanded far beyond my initial expectations - but this also contributed to the continuously expanding scope, as each new skill opened possibilities for further enhancement and the necessity for on-the-fly troubleshooting. 
+
+Unexpected challenges have been a constant companion. From deleted servers and databases to access issues to discrepancies between development environments (such as missing certificates), I've encountered a wide array of unforeseen obstacles. These issues have necessitated the development of strong troubleshooting skills and a flexible approach to problem-solving. 
 
 While often frustrating, these challenges have also provided valuable learning opportunities, pushing me to deepen my understanding of the systems and technologies I'm working with.
 

@@ -691,13 +691,129 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <section id="example-code" class="level3">
 <h3 class="anchored" data-anchor-id="example-code">Example code</h3>
-<p><strong>Busiest location overall</strong></p>
-<p><code>{cypher .cypher-scroll} MATCH (r:Room)&lt;-[:TAKES_PLACE_IN]-(a:Activity) WITH r, sum(a.duration) AS totalDuration RETURN r.name AS Room, totalDuration ORDER BY totalDuration DESC LIMIT 1</code></p>
+<p><strong>Busiest locations overall</strong></p>
+<p><code>{cypher .scroll-cypher} MATCH (r:room)&lt;-[:OCCUPIES]-(a:activity) WITH r, sum(a.actDuration)/60 AS totalDurationInHours RETURN r.roomName AS Room, r.roomCapacity AS Capacity, r.roomType AS Type, totalDurationInHours ORDER BY totalDurationInHours DESC LIMIT 3</code></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Room</th>
+<th>Capacity</th>
+<th>Type</th>
+<th>totalDurationInHours</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2Q12 FR</td>
+<td>25</td>
+<td>PC LAB</td>
+<td>21</td>
+</tr>
+<tr class="even">
+<td>4Q69 FR</td>
+<td>36</td>
+<td>PC LAB</td>
+<td>19</td>
+</tr>
+<tr class="odd">
+<td>3E11 FR</td>
+<td>48</td>
+<td>TEACHING</td>
+<td>18</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Busiest location for a specific time</strong></p>
-<p><code>{cypher .cypher-scroll} MATCH (r:Room)&lt;-[:TAKES_PLACE_IN]-(a:Activity) WHERE a.startTime = "11:00"  WITH r, count(a) AS activityCount RETURN r.name AS Room, activityCount ORDER BY activityCount DESC LIMIT 1</code></p>
+<pre class="{cypher} scroll-cypher"><code>MATCH (r:room)&lt;-[:OCCUPIES]-(a:activity)
+WHERE a.actStartTime = localtime({hour:9, minute:0, second:0}) 
+WITH r, count(a) AS Count, a.actStartTime AS StartTime
+RETURN r.roomName AS Room, Count, StartTime
+ORDER BY Count DESC
+LIMIT 3</code></pre>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Room</th>
+<th>Count</th>
+<th>StartTime</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2Q12 FR</td>
+<td>86</td>
+<td>09:00:00</td>
+</tr>
+<tr class="even">
+<td>3E28 FR</td>
+<td>50</td>
+<td>09:00:00</td>
+</tr>
+<tr class="odd">
+<td>3E11 FR</td>
+<td>49</td>
+<td>09:00:00</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Students with below/above average hours</strong></p>
-<p>```{cypher .cypher-scroll} // Calculate program averages and standard deviations MATCH (s:Student)-[:IS_ALLOCATED_TO]-&gt;(a:Activity) WITH s.prog AS programme, AVG(a.duration) AS avgDuration, STDEV(a.duration) AS stdDev GROUP BY programme</p>
-<p>// Identify students outside the 10% margin MATCH (s:Student)-[:IS_ALLOCATED_TO]-&gt;(a:Activity) WITH s.studentID AS studentID, s.prog AS program, SUM(a.duration) AS totalDuration MATCH (avgData) WHERE avgData.programme = programme WITH studentID, programme, totalDuration, avgData.avgDuration AS avgDuration, avgData.stdDev AS stdDev WHERE totalDuration &lt; avgDuration - (0.1 * avgDuration) OR totalDuration &gt; avgDuration + (0.1 * avgDuration) RETURN studentID, programme, totalDuration, avgDuration, stdDev ORDER BY programme, totalDuration DESC ```</p>
+<p>This query returns students and whether they have more or less scheduled time on their timetable compared to the programme cohort average. The cut-off is based on average +/- 10% but can also be written using standard deviation.</p>
+<pre class="{cypher} scroll-cypher"><code>MATCH (s:student)-[:ATTENDS]-&gt;(a:activity)
+WITH s.stuProgName AS progName, s.stuID_anon AS studentID, SUM(a.actDurationInMinutes) AS studentTotalDuration
+WITH progName, 
+     AVG(studentTotalDuration) / 60 AS progAverageHoursPerStudent, 
+     collect({studentID: studentID, studentTotalHours: studentTotalDuration / 60}) AS studentsData
+UNWIND studentsData AS studentData
+RETURN progName, 
+       progAverageHoursPerStudent,
+       studentData.studentID AS studentID, 
+       studentData.studentTotalHours AS studentTotalHours, 
+       CASE 
+           WHEN studentData.studentTotalHours &lt; (progAverageHoursPerStudent * 0.9) THEN 'Below Average'
+           WHEN studentData.studentTotalHours &gt; (progAverageHoursPerStudent * 1.1) THEN 'Above Average'
+           ELSE 'Average'
+       END AS compare</code></pre>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>progName</th>
+<th>progAverageHoursPerStudent</th>
+<th>studentID</th>
+<th>studentTotalHours</th>
+<th>compare</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“Maths NS”</td>
+<td>274.7692307692308</td>
+<td>“stu-23442558”</td>
+<td>361</td>
+<td>“Above Average”</td>
+</tr>
+<tr class="even">
+<td>“Maths NS”</td>
+<td>274.7692307692308</td>
+<td>“stu-91911371”</td>
+<td>126</td>
+<td>“Below Average”</td>
+</tr>
+<tr class="odd">
+<td>“Maths NS”</td>
+<td>274.7692307692308</td>
+<td>“stu-75224499”</td>
+<td>251</td>
+<td>“Average”</td>
+</tr>
+</tbody>
+</table>
 
 
 </section>

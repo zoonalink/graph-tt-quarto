@@ -736,7 +736,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="unscheduled-activities" class="level3">
 <h3 class="anchored" data-anchor-id="unscheduled-activities">Unscheduled activities</h3>
 <p>Unscheduled activities can be identified as follows. This query can be tweaked to also search for matches where the property equals ’’ - that is, a blank.</p>
-<pre class="cypher"><code>MATCH (a:activity)
+<pre class="{cypher} scroll-cypher"><code>MATCH (a:activity)
 WHERE a.actStartDate IS NULL 
 OR a.actStartTime IS NULL 
 OR a.actEndTime IS NULL
@@ -745,7 +745,7 @@ RETURN a</code></pre>
 <section id="room-clashes" class="level3">
 <h3 class="anchored" data-anchor-id="room-clashes">Room clashes</h3>
 <p>Room or location clashes are where two or more activities are scheduled at the same datetime in the same space and this is not deliberate. These can be identified with the starter query below. The image clearly shows pairs of activities sharing one location. In reality, I suspect that these are deliberate clashes.</p>
-<pre class="cypher"><code>MATCH (a1:activity)-[r1:OCCUPIES]-&gt;(r:room)&lt;-[r2:OCCUPIES]-(a2:activity)
+<pre class="{cypher} scroll-cypher"><code>MATCH (a1:activity)-[r1:OCCUPIES]-&gt;(r:room)&lt;-[r2:OCCUPIES]-(a2:activity)
 WHERE a1.actStartDate = a2.actStartDate AND a1 &lt;&gt; a2
     AND (
         (a1.actStartTime &lt;= a2.actStartTime AND a1.actEndTime &gt; a2.actStartTime)
@@ -760,7 +760,7 @@ RETURN a1, a2, r, r1, r2</code></pre>
 </figure>
 </div>
 <p>The same results have been returned as a table.</p>
-<div id="b81fd792" class="cell" data-execution_count="1">
+<div id="d29c5b3e" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to show code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
@@ -812,7 +812,7 @@ RETURN a1, a2, r, r1, r2</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Connecting to Neo4j database....
-Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x000001D74F457B90&gt;
+Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x000001F8E9828410&gt;
 Running query...
 
                           activity1                         activity2  \
@@ -850,14 +850,14 @@ Running query...
 <section id="room-capacity-exceeded" class="level3">
 <h3 class="anchored" data-anchor-id="room-capacity-exceeded">Room capacity exceeded</h3>
 <p>This query identifies activities where the number of students exceeds the room capacity. It includes an optional <code>WHERE</code> clause if looking at a specific date range.</p>
-<pre class="cypher"><code>MATCH (r:room)&lt;-[r1:OCCUPIES]-(a:activity)&lt;-[:ATTENDS]-(s:student)
+<pre class="{cypher} scroll-cypher"><code>MATCH (r:room)&lt;-[r1:OCCUPIES]-(a:activity)&lt;-[:ATTENDS]-(s:student)
 //WHERE a.Date &gt;= date("2022-01-01") AND a.Date &lt;= date("2022-06-30") 
 WITH r, a, count(s) as numStudents
 WHERE numStudents &gt; r.roomCapacity
 RETURN r, a.actStartDate, a.actName AS Activity, r.roomCapacity, numStudents - r.roomCapacity AS extraNeeded
 ORDER BY extraNeeded DESC</code></pre>
 <p>These are the results in a dataframe:</p>
-<div id="1dd90a26" class="cell" data-execution_count="2">
+<div id="2b8ec025" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Click to show code</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
@@ -903,7 +903,7 @@ ORDER BY extraNeeded DESC</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Connecting to Neo4j database....
-Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x000001D750FF12D0&gt;
+Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x000001F8843F2050&gt;
 Running query...
 
 Printing first 5 records...
@@ -922,7 +922,7 @@ Printing first 5 records...
 <p>This query identifies students who are scheduled to attend two or more activities at the same time. Identifying clashes is a complex undertaking and it is one where the graph structure in terms of nodes, properties and relationships could potentially make a significant different to performance.</p>
 <p>The reason for the complexity is that you need to look for overlapping times between two activities for each date, for each student. The query to achieve this and the ensuing calculations will vary significantly depending on on the structure and syntax.</p>
 <p>Because of this, I explored the student clash scenario in more detail here: <a href="./appendix-cypher5a.html">Student Clashes</a></p>
-<pre class="cypher"><code>MATCH (s:student)-[:ATTENDS]-&gt;(a1:activity)
+<pre class="{cypher} scroll-cypher"><code>MATCH (s:student)-[:ATTENDS]-&gt;(a1:activity)
 WITH s, a1
 MATCH (s)-[:ATTENDS]-&gt;(a2:activity)&nbsp;
 WHERE a1 &lt;&gt; a2&nbsp;
@@ -1538,7 +1538,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","loop":false,"descPosition":"bottom","closeEffect":"fade","openEffect":"fade"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"fade","descPosition":"bottom","loop":false,"openEffect":"fade","selector":".lightbox"});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

@@ -768,97 +768,108 @@ window.Quarto = {
 <section id="cypher-logic-for-identifying-gaps" class="level4">
 <h4 class="anchored" data-anchor-id="cypher-logic-for-identifying-gaps">Cypher logic for identifying gaps</h4>
 <p>The below is the logic for identifying gaps between activities, using an example student:</p>
-<p>```{cypher .cypher-scroll} MATCH (s:student)-[:ATTENDS]-&gt;(a:activity) WHERE s.stuID_anon = “stu-10085720” AND a.actStartDate = date(“2022-10-03”) WITH s, a ORDER BY a.actStartTime</p>
-<p>// Collecting the start and end times of the activities WITH s, collect({start: a.actStartTime, end: a.actEndTime}) AS times</p>
-<p>// Calculating the gaps in minutes between consecutive activities WITH s, times, [i IN range(0, size(times)-2) | duration.between(times[i].end, times[i+1].start).minutes / 60.0] AS gaps</p>
-<p>// Finding the maximum gap RETURN s.stuID_anon AS student, times, gaps, reduce(maxGap = 0.0, gap IN gaps | CASE WHEN gap &gt; maxGap THEN gap ELSE maxGap END) AS maxGap</p>
-<pre><code>
-
-
-
-
-
-![Example student with gaps between activities](./images/cypher-maxGap-example.png)
-
-
-#### Python code on graph
-
-The below code cell returns the first 5 rows where a 6 hour maximum gap has been violated. 
-
-::: {#de5ff398 .cell execution_count=1}
-``` {.python .cell-code}
-from connect_to_neo4j_db import connect_to_neo4j
-from neo4j import GraphDatabase
-import pandas as pd
-
-# connect to Neo4j
-driver = connect_to_neo4j()
-
-# session
-session = driver.session()
-
-# run query (modified RETURN clause)
-query = """
-// students with gaps between activities
-MATCH (s:student)-[:ATTENDS]-&gt;(a:activity)
+<pre class="{cypher} scroll-cypher"><code>MATCH (s:student)-[:ATTENDS]-&gt;(a:activity)
+WHERE s.stuID_anon = "stu-10085720"
+AND a.actStartDate = date("2022-10-03")
 WITH s, a
-ORDER BY s.stuFirstName_anon, a.actStartDate, a.actStartTime
-// Group activities by student and date
-WITH s, a.actStartDate AS date, collect({start: a.actStartTime, end: a.actEndTime, activity: a}) AS times
-// calculating the gaps in hours between consecutive activities
-WITH s, date, times, 
+ORDER BY a.actStartTime
+
+// Collecting the start and end times of the activities
+WITH s, collect({start: a.actStartTime, end: a.actEndTime}) AS times
+
+// Calculating the gaps in minutes between consecutive activities
+WITH s, times, 
      [i IN range(0, size(times)-2) | 
-      {gap: duration.between(times[i].end, times[i+1].start).minutes / 60.0, 
-       firstActivity: times[i].activity, 
-       secondActivity: times[i+1].activity}] AS gaps
-// filtering gaps based on a threshold of 6 hours
-WITH s, date, gaps
-WHERE any(gapRecord IN gaps WHERE gapRecord.gap &gt; 6.0)
-// Finding the maximum gap that exceeds the threshold
-WITH s, date, reduce(maxGap = {gap: 0.0, firstActivity: null, secondActivity: null}, gapRecord IN gaps | 
-    CASE WHEN gapRecord.gap &gt; maxGap.gap THEN gapRecord ELSE maxGap END) AS maxGapRecord
-// group by student to remove duplications
-WITH s.stuID_anon AS student, 
-     collect({date: date, 
-              activity1: maxGapRecord.firstActivity.actName,
-              activity1_time: maxGapRecord.firstActivity.actStartTime + "-" + maxGapRecord.firstActivity.actEndTime,
-              activity2: maxGapRecord.secondActivity.actName,
-              activity2_time: maxGapRecord.secondActivity.actStartTime + "-" + maxGapRecord.secondActivity.actEndTime,
-              maxGapInHours: maxGapRecord.gap}) AS gapRecords
-// Unwind the collected records
-UNWIND gapRecords AS record
-// Returning the result
-RETURN student, 
-       record.date AS date,
-       record.activity1 AS activity1, 
-       record.activity1_time AS activity1_time,
-       record.activity2 AS activity2,
-       record.activity2_time AS activity2_time,
-       record.maxGapInHours AS maxGapInHours
-ORDER BY student, date
-"""
+      duration.between(times[i].end, times[i+1].start).minutes / 60.0] AS gaps
 
-print("Running query...\n")
-result = session.run(query)
-
-#  list to hold records
-records = []
-for record in result:
-    records.append(record)
-
-# df
-df = pd.DataFrame(records, columns=["student", "date", "activity1", "activity1_time", 
-                                   "activity2", "activity2_time", "maxGapInHours"])
-
-# print 
-print(df.head(5))
-
-# close session and driver
-session.close()
-driver.close()</code></pre>
+// Finding the maximum gap
+RETURN s.stuID_anon AS student, times, gaps, reduce(maxGap = 0.0, gap IN gaps | CASE WHEN gap &gt; maxGap THEN gap ELSE maxGap END) AS maxGap</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./images/cypher-maxGap-example.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Example student with gaps between activities"><img src="./images/cypher-maxGap-example.png" class="img-fluid figure-img" alt="Example student with gaps between activities"></a></p>
+<figcaption>Example student with gaps between activities</figcaption>
+</figure>
+</div>
+</section>
+<section id="python-code-on-graph" class="level4">
+<h4 class="anchored" data-anchor-id="python-code-on-graph">Python code on graph</h4>
+<p>The below code cell returns the first 5 rows where a 6 hour maximum gap has been violated.</p>
+<div id="26311ff7" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Click to show code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> neo4j <span class="im">import</span> GraphDatabase</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># connect to Neo4j</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>driver <span class="op">=</span> connect_to_neo4j()</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># session</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> driver.session()</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># run query (modified RETURN clause)</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="st">// students with gaps between activities</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="st">MATCH (s:student)-[:ATTENDS]-&gt;(a:activity)</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, a</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY s.stuFirstName_anon, a.actStartDate, a.actStartTime</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="st">// Group activities by student and date</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, a.actStartDate AS date, collect({start: a.actStartTime, end: a.actEndTime, activity: a}) AS times</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="st">// calculating the gaps in hours between consecutive activities</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, date, times, </span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="st">     [i IN range(0, size(times)-2) | </span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="st">      {gap: duration.between(times[i].end, times[i+1].start).minutes / 60.0, </span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="st">       firstActivity: times[i].activity, </span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="st">       secondActivity: times[i+1].activity}] AS gaps</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="st">// filtering gaps based on a threshold of 6 hours</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, date, gaps</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE any(gapRecord IN gaps WHERE gapRecord.gap &gt; 6.0)</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="st">// Finding the maximum gap that exceeds the threshold</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, date, reduce(maxGap = {gap: 0.0, firstActivity: null, secondActivity: null}, gapRecord IN gaps | </span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="st">    CASE WHEN gapRecord.gap &gt; maxGap.gap THEN gapRecord ELSE maxGap END) AS maxGapRecord</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="st">// group by student to remove duplications</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s.stuID_anon AS student, </span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="st">     collect({date: date, </span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="st">              activity1: maxGapRecord.firstActivity.actName,</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="st">              activity1_time: maxGapRecord.firstActivity.actStartTime + "-" + maxGapRecord.firstActivity.actEndTime,</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="st">              activity2: maxGapRecord.secondActivity.actName,</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="st">              activity2_time: maxGapRecord.secondActivity.actStartTime + "-" + maxGapRecord.secondActivity.actEndTime,</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="st">              maxGapInHours: maxGapRecord.gap}) AS gapRecords</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="st">// Unwind the collected records</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="st">UNWIND gapRecords AS record</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="st">// Returning the result</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="st">RETURN student, </span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="st">       record.date AS date,</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="st">       record.activity1 AS activity1, </span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="st">       record.activity1_time AS activity1_time,</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="st">       record.activity2 AS activity2,</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="st">       record.activity2_time AS activity2_time,</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="st">       record.maxGapInHours AS maxGapInHours</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY student, date</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running query...</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> session.run(query)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="co">#  list to hold records</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>records <span class="op">=</span> []</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> record <span class="kw">in</span> result:</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    records.append(record)</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="co"># df</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(records, columns<span class="op">=</span>[<span class="st">"student"</span>, <span class="st">"date"</span>, <span class="st">"activity1"</span>, <span class="st">"activity1_time"</span>, </span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"activity2"</span>, <span class="st">"activity2_time"</span>, <span class="st">"maxGapInHours"</span>])</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="co"># print </span></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head(<span class="dv">5</span>))</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="co"># close session and driver</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>session.close()</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>driver.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Connecting to Neo4j database....
-Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x0000024EF75EAA50&gt;
+Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x000002661E8B76D0&gt;
 Running query...
 
         student        date                 activity1     activity1_time  \
@@ -875,77 +886,77 @@ Running query...
 3  UFCFES-30-1 L2_oc/01 &lt;32&gt;  17:30:00-19:00:00            7.5  
 4  UFCFES-30-1 L2_oc/01 &lt;33&gt;  17:30:00-19:00:00            7.5  </code></pre>
 </div>
-<p>:::</p>
+</div>
 </section>
 <section id="python-to-return-total-hours-and-block-hours" class="level4">
 <h4 class="anchored" data-anchor-id="python-to-return-total-hours-and-block-hours">Python to return total hours and block hours</h4>
 <p>Alternatively, we can amend the query to return, for each date and student combination, their total scheduled hours, maximum consecutive block hours and the number of activities within the continuous block.</p>
-<div id="087e33f4" class="cell" data-execution_count="2">
+<div id="b116eeee" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Click to show code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> neo4j <span class="im">import</span> GraphDatabase</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># connect to Neo4j</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>driver <span class="op">=</span> connect_to_neo4j()</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># session</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> driver.session()</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># run query (modified RETURN clause)</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="st">// calculates - total hours, max block hours, max block activities per day </span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="st">// to be used for max block hours and max block activities per day</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="st">// logic - example</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="st">MATCH (s:student {stuID_anon:"stu-10085720"})-[:ATTENDS]-&gt;(a:activity)</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, a ORDER BY a.actStartDate, a.actStartTime</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, a.actStartDate AS date, </span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="st">     SUM(a.actDurationInMinutes) / 60.0 AS totalHours,</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="st">     REDUCE(</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="st">        blockInfo = [],</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="st">        activity IN COLLECT(a)</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="st">        | CASE</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="st">            WHEN blockInfo = [] THEN [[activity]]</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="st">            ELSE CASE</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="st">                   WHEN head(last(blockInfo)).actEndTime &gt;= activity.actStartTime</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="st">                     THEN blockInfo[..-1] + [last(blockInfo) + activity]</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="st">                   ELSE blockInfo + [[activity]]</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="st">                 END</span></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="st">          END</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="st">     ) AS blocks</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="st">UNWIND blocks AS block</span></span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, date, totalHours, blocks,</span></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="st">     REDUCE(blockHours = 0.0, activity IN block | blockHours + activity.actDurationInMinutes) / 60.0 AS blockHours,</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="st">     SIZE(block) AS blockActivities</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="st">RETURN s.stuFullName_anon AS student, date, totalHours, </span></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="st">       MAX(blockHours) AS blockHours,</span></span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="st">       MAX(blockActivities) AS blockActivities</span></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY date;</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running query...</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> session.run(query)</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="co">#  list to hold records</span></span>
-<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>records <span class="op">=</span> []</span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> record <span class="kw">in</span> result:</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    records.append(record)</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="co"># df</span></span>
-<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(records, columns<span class="op">=</span>[<span class="st">"student"</span>, <span class="st">"date"</span>, <span class="st">"totalHours"</span>, <span class="st">"blockHours"</span>, <span class="st">"blockActivities"</span>])</span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="co"># print </span></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head(<span class="dv">5</span>))</span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="co"># close session and driver</span></span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>session.close()</span>
-<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>driver.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> neo4j <span class="im">import</span> GraphDatabase</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># connect to Neo4j</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>driver <span class="op">=</span> connect_to_neo4j()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># session</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> driver.session()</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># run query (modified RETURN clause)</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="st">// calculates - total hours, max block hours, max block activities per day </span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="st">// to be used for max block hours and max block activities per day</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="st">// logic - example</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="st">MATCH (s:student {stuID_anon:"stu-10085720"})-[:ATTENDS]-&gt;(a:activity)</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, a ORDER BY a.actStartDate, a.actStartTime</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, a.actStartDate AS date, </span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="st">     SUM(a.actDurationInMinutes) / 60.0 AS totalHours,</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="st">     REDUCE(</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="st">        blockInfo = [],</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="st">        activity IN COLLECT(a)</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="st">        | CASE</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="st">            WHEN blockInfo = [] THEN [[activity]]</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="st">            ELSE CASE</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="st">                   WHEN head(last(blockInfo)).actEndTime &gt;= activity.actStartTime</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="st">                     THEN blockInfo[..-1] + [last(blockInfo) + activity]</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="st">                   ELSE blockInfo + [[activity]]</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="st">                 END</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="st">          END</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="st">     ) AS blocks</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="st">UNWIND blocks AS block</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, date, totalHours, blocks,</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="st">     REDUCE(blockHours = 0.0, activity IN block | blockHours + activity.actDurationInMinutes) / 60.0 AS blockHours,</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="st">     SIZE(block) AS blockActivities</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="st">RETURN s.stuFullName_anon AS student, date, totalHours, </span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="st">       MAX(blockHours) AS blockHours,</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="st">       MAX(blockActivities) AS blockActivities</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY date;</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running query...</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> session.run(query)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co">#  list to hold records</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>records <span class="op">=</span> []</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> record <span class="kw">in</span> result:</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>    records.append(record)</span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="co"># df</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(records, columns<span class="op">=</span>[<span class="st">"student"</span>, <span class="st">"date"</span>, <span class="st">"totalHours"</span>, <span class="st">"blockHours"</span>, <span class="st">"blockActivities"</span>])</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="co"># print </span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head(<span class="dv">5</span>))</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="co"># close session and driver</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>session.close()</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>driver.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Connecting to Neo4j database....
-Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x0000024EF7A47DD0&gt;
+Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x000002661ED434D0&gt;
 Running query...
 
        student        date  totalHours  blockHours  blockActivities
@@ -997,69 +1008,69 @@ Running query...
 <section id="example-use-case---identifying-students-with-5-hours-in-a-single-block" class="level4">
 <h4 class="anchored" data-anchor-id="example-use-case---identifying-students-with-5-hours-in-a-single-block">Example Use case - identifying students with 5+ hours in a single block</h4>
 <p>This query returns the first 5 rows where a student has more than 5 consecutive scheduled hours on a date.</p>
-<div id="7c2bf50d" class="cell" data-execution_count="3">
+<div id="45cec64d" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Click to show code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> neo4j <span class="im">import</span> GraphDatabase</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># connect to Neo4j</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>driver <span class="op">=</span> connect_to_neo4j()</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># session</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> driver.session()</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># run query (modified RETURN clause)</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="st">MATCH (s:student)-[:ATTENDS]-&gt;(a:activity)&lt;-[:TEACHES]-(:staff) // Filter for teaching activities</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, a ORDER BY a.actStartDate, a.actStartTime</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, a.actStartDate AS date, </span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="st">     SUM(a.actDurationInMinutes) / 60.0 AS totalHours,</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="st">     REDUCE(</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="st">         blockInfo = [],</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="st">         activity IN COLLECT(a)</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="st">         | CASE</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="st">             WHEN blockInfo = [] THEN [[activity]]</span></span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="st">             ELSE CASE</span></span>
-<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a><span class="st">                     WHEN head(last(blockInfo)).actEndTime &gt;= activity.actStartTime</span></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="st">                         THEN blockInfo[..-1] + [last(blockInfo) + activity]</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a><span class="st">                     ELSE blockInfo + [[activity]]</span></span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a><span class="st">                 END</span></span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a><span class="st">         END</span></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="st">     ) AS blocks</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="st">UNWIND blocks AS block</span></span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, date, totalHours, blocks,</span></span>
-<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a><span class="st">     REDUCE(blockHours = 0.0, activity IN block | blockHours + activity.actDurationInMinutes) / 60.0 AS blockHours,</span></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="st">     SIZE(block) AS blockActivities</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE blockHours &gt; 5 // Filter for blocks with more than 5 hours</span></span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="st">RETURN s.stuFullName_anon AS student, date, totalHours, </span></span>
-<span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a><span class="st">       blockHours,</span></span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a><span class="st">       blockActivities</span></span>
-<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY date;</span></span>
-<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-40"><a href="#cb5-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running query...</span><span class="ch">\n</span><span class="st">"</span>)</span>
-<span id="cb5-41"><a href="#cb5-41" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> session.run(query)</span>
-<span id="cb5-42"><a href="#cb5-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a><span class="co">#  list to hold records</span></span>
-<span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>records <span class="op">=</span> []</span>
-<span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> record <span class="kw">in</span> result:</span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a>    records.append(record)</span>
-<span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a><span class="co"># df</span></span>
-<span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(records, columns<span class="op">=</span>[<span class="st">"student"</span>, <span class="st">"date"</span>, <span class="st">"totalHours"</span>, <span class="st">"blockHours"</span>, <span class="st">"blockActivities"</span>])</span>
-<span id="cb5-50"><a href="#cb5-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-51"><a href="#cb5-51" aria-hidden="true" tabindex="-1"></a><span class="co"># print </span></span>
-<span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head(<span class="dv">5</span>))</span>
-<span id="cb5-53"><a href="#cb5-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-54"><a href="#cb5-54" aria-hidden="true" tabindex="-1"></a><span class="co"># close session and driver</span></span>
-<span id="cb5-55"><a href="#cb5-55" aria-hidden="true" tabindex="-1"></a>session.close()</span>
-<span id="cb5-56"><a href="#cb5-56" aria-hidden="true" tabindex="-1"></a>driver.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> neo4j <span class="im">import</span> GraphDatabase</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># connect to Neo4j</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>driver <span class="op">=</span> connect_to_neo4j()</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># session</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> driver.session()</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># run query (modified RETURN clause)</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="st">MATCH (s:student)-[:ATTENDS]-&gt;(a:activity)&lt;-[:TEACHES]-(:staff) // Filter for teaching activities</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, a ORDER BY a.actStartDate, a.actStartTime</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, a.actStartDate AS date, </span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="st">     SUM(a.actDurationInMinutes) / 60.0 AS totalHours,</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="st">     REDUCE(</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="st">         blockInfo = [],</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="st">         activity IN COLLECT(a)</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="st">         | CASE</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="st">             WHEN blockInfo = [] THEN [[activity]]</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="st">             ELSE CASE</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="st">                     WHEN head(last(blockInfo)).actEndTime &gt;= activity.actStartTime</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="st">                         THEN blockInfo[..-1] + [last(blockInfo) + activity]</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="st">                     ELSE blockInfo + [[activity]]</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="st">                 END</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="st">         END</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="st">     ) AS blocks</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="st">UNWIND blocks AS block</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, date, totalHours, blocks,</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="st">     REDUCE(blockHours = 0.0, activity IN block | blockHours + activity.actDurationInMinutes) / 60.0 AS blockHours,</span></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="st">     SIZE(block) AS blockActivities</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE blockHours &gt; 5 // Filter for blocks with more than 5 hours</span></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="st">RETURN s.stuFullName_anon AS student, date, totalHours, </span></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="st">       blockHours,</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="st">       blockActivities</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY date;</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running query...</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> session.run(query)</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="co">#  list to hold records</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>records <span class="op">=</span> []</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> record <span class="kw">in</span> result:</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    records.append(record)</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="co"># df</span></span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(records, columns<span class="op">=</span>[<span class="st">"student"</span>, <span class="st">"date"</span>, <span class="st">"totalHours"</span>, <span class="st">"blockHours"</span>, <span class="st">"blockActivities"</span>])</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="co"># print </span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head(<span class="dv">5</span>))</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="co"># close session and driver</span></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>session.close()</span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>driver.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Connecting to Neo4j database....
-Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x0000024EF7640F90&gt;
+Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x000002661E9179D0&gt;
 Running query...
 
              student        date  totalHours  blockHours  blockActivities
@@ -1074,13 +1085,13 @@ Running query...
 <section id="total-hours-per-day" class="level4">
 <h4 class="anchored" data-anchor-id="total-hours-per-day">Total hours per day</h4>
 <p>In contrast, calculating simple total hours per day is done as follows:</p>
-<pre class="cypher"><code>MATCH (s:student )-[:ATTENDS]-&gt;(a:activity)
+<pre class="{cypher} scroll-cypher"><code>MATCH (s:student )-[:ATTENDS]-&gt;(a:activity)
 WITH s, a.actStartDate AS Date, SUM(a.actDurationInMinutes) / 60.0 AS totalHours
 RETURN s.stuFullName_anon AS Student, Date, totalHours
 ORDER BY Date;</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./images/cypher-hoursPerDay.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Total hours per day"><img src="./images/cypher-hoursPerDay.png" class="img-fluid figure-img" alt="Total hours per day"></a></p>
+<p><a href="./images/cypher-hoursPerDay.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Total hours per day"><img src="./images/cypher-hoursPerDay.png" class="img-fluid figure-img" alt="Total hours per day"></a></p>
 <figcaption>Total hours per day</figcaption>
 </figure>
 </div>
@@ -1088,109 +1099,161 @@ ORDER BY Date;</code></pre>
 <section id="longest-consecutive-block-of-activities-per-day" class="level4">
 <h4 class="anchored" data-anchor-id="longest-consecutive-block-of-activities-per-day">Longest consecutive block of activities per day</h4>
 <p>We can use the earlier cypher logic to identify the longest consecutive block of activities for a student, or student on a day, etc.</p>
-<p>```{cypher .cypher-scroll}</p>
-<p>MATCH (s:student {stuFullName_anon: “Susan Lopez”})-[:ATTENDS]-&gt;(a:activity {actStartDate: date(“2022-09-27”)}) WITH s, a ORDER BY a.actStartTime WITH s, COLLECT(a) AS activities WITH s, activities, REDUCE( state = {currentBlock: {duration: 0, start: null, end: null}, longestBlock: {duration: 0, start: null, end: null}}, activity IN activities | CASE WHEN state.currentBlock.end IS NULL OR activity.actStartTime &gt; state.currentBlock.end THEN { currentBlock: { duration: activity.actDurationInMinutes, start: activity.actStartTime, end: activity.actEndTime }, longestBlock: CASE WHEN activity.actDurationInMinutes &gt; state.longestBlock.duration THEN { duration: activity.actDurationInMinutes, start: activity.actStartTime, end: activity.actEndTime } ELSE state.longestBlock END } ELSE { currentBlock: { duration: (activity.actEndTime.hour * 60 + activity.actEndTime.minute) - (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute), start: state.currentBlock.start, end: activity.actEndTime }, longestBlock: CASE WHEN ((activity.actEndTime.hour * 60 + activity.actEndTime.minute) - (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute)) &gt; state.longestBlock.duration THEN { duration: (activity.actEndTime.hour * 60 + activity.actEndTime.minute) - (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute), start: state.currentBlock.start, end: activity.actEndTime } ELSE state.longestBlock END } END ) AS finalState RETURN s.stuFullName_anon AS stuName, activities[0].actStartDate AS date, finalState.longestBlock.duration AS longestConsecutiveBlockDuration, finalState.longestBlock.start AS blockStartTime, finalState.longestBlock.end AS blockEndTime</p>
-<pre><code>
-
-
-
-
-#### Example - longest consecutive block for 'Susan Lopez' on 2022-09-27
-
-The below finds the longest consecutive block in a day for a student:
-
-::: {#d78c7efd .cell execution_count=4}
-``` {.python .cell-code}
-from connect_to_neo4j_db import connect_to_neo4j
-from neo4j import GraphDatabase
-import pandas as pd
-
-# connect to Neo4j
-driver = connect_to_neo4j()
-
-# session
-session = driver.session()
-
-# run query (modified RETURN clause)
-query = """
-MATCH (s:student {stuFullName_anon: "Susan Lopez"})-[:ATTENDS]-&gt;(a:activity{actStartDate: date("2022-09-27")})
+<pre class="{cypher} scroll-cypher"><code>
+MATCH (s:student {stuFullName_anon: "Susan Lopez"})-[:ATTENDS]-&gt;(a:activity {actStartDate: date("2022-09-27")})
 WITH s, a 
 ORDER BY a.actStartTime
 WITH s, COLLECT(a) AS activities
 WITH s, activities,
-   REDUCE(
-     state = {currentBlock: {duration: 0, start: null, end: null}, longestBlock: {duration: 0, start: null, end: null}},
-     activity IN activities |
-       CASE
-         WHEN state.currentBlock.end IS NULL OR 
-              activity.actStartTime &gt; state.currentBlock.end
-         THEN {
-           currentBlock: {
-             duration: activity.actDurationInMinutes,
-             start: activity.actStartTime,
-             end: activity.actEndTime
-           },
-           longestBlock: 
-             CASE
-               WHEN activity.actDurationInMinutes &gt; state.longestBlock.duration
-               THEN {
-                 duration: activity.actDurationInMinutes,
-                 start: activity.actStartTime,
-                 end: activity.actEndTime
-               }
-               ELSE state.longestBlock
-             END
-         }
-         ELSE {
-           currentBlock: {
-             duration: (activity.actEndTime.hour * 60 + activity.actEndTime.minute) - 
-                       (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute),
-             start: state.currentBlock.start,
-             end: activity.actEndTime
-           },
-           longestBlock: 
-             CASE
-               WHEN ((activity.actEndTime.hour * 60 + activity.actEndTime.minute) - 
-                     (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute)) &gt; state.longestBlock.duration
-               THEN {
-                 duration: (activity.actEndTime.hour * 60 + activity.actEndTime.minute) - 
-                           (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute),
-                 start: state.currentBlock.start,
-                 end: activity.actEndTime
-               }
-               ELSE state.longestBlock
-             END
-         }
-       END
-   ) AS finalState
+     REDUCE(
+       state = {currentBlock: {duration: 0, start: null, end: null}, longestBlock: {duration: 0, start: null, end: null}},
+       activity IN activities |
+         CASE
+           WHEN state.currentBlock.end IS NULL OR 
+                activity.actStartTime &gt; state.currentBlock.end
+           THEN {
+             currentBlock: {
+               duration: activity.actDurationInMinutes,
+               start: activity.actStartTime,
+               end: activity.actEndTime
+             },
+             longestBlock: 
+               CASE
+                 WHEN activity.actDurationInMinutes &gt; state.longestBlock.duration
+                 THEN {
+                   duration: activity.actDurationInMinutes,
+                   start: activity.actStartTime,
+                   end: activity.actEndTime
+                 }
+                 ELSE state.longestBlock
+               END
+           }
+           ELSE {
+             currentBlock: {
+               duration: (activity.actEndTime.hour * 60 + activity.actEndTime.minute) - 
+                         (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute),
+               start: state.currentBlock.start,
+               end: activity.actEndTime
+             },
+             longestBlock: 
+               CASE
+                 WHEN ((activity.actEndTime.hour * 60 + activity.actEndTime.minute) - 
+                       (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute)) &gt; state.longestBlock.duration
+                 THEN {
+                   duration: (activity.actEndTime.hour * 60 + activity.actEndTime.minute) - 
+                             (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute),
+                   start: state.currentBlock.start,
+                   end: activity.actEndTime
+                 }
+                 ELSE state.longestBlock
+               END
+           }
+         END
+     ) AS finalState
 RETURN
-s.stuFullName_anon AS student,
-activities[0].actStartDate AS date,
-finalState.longestBlock.duration AS longestConsecutiveBlockDuration,
-finalState.longestBlock.start AS blockStartTime,
-finalState.longestBlock.end AS blockEndTime
-"""
-
-print("Running query...\n")
-result = session.run(query)
-
-#  list to hold records
-records = []
-for record in result:
-  records.append(record)
-
-# df
-df = pd.DataFrame(records, columns=["student", "date", "longestConsecutiveBlockDuration", "blockStartTime", "blockEndTime"])
-
-# print 
-print(df.head(5))
-
-# close session and driver
-session.close()
-driver.close()</code></pre>
+  s.stuFullName_anon AS stuName,
+  activities[0].actStartDate AS date,
+  finalState.longestBlock.duration AS longestConsecutiveBlockDuration,
+  finalState.longestBlock.start AS blockStartTime,
+  finalState.longestBlock.end AS blockEndTime</code></pre>
+</section>
+<section id="example---longest-consecutive-block-for-susan-lopez-on-2022-09-27" class="level4">
+<h4 class="anchored" data-anchor-id="example---longest-consecutive-block-for-susan-lopez-on-2022-09-27">Example - longest consecutive block for ‘Susan Lopez’ on 2022-09-27</h4>
+<p>The below finds the longest consecutive block in a day for a student:</p>
+<div id="7c349abc" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Click to show code</summary>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> neo4j <span class="im">import</span> GraphDatabase</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># connect to Neo4j</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>driver <span class="op">=</span> connect_to_neo4j()</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="co"># session</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>session <span class="op">=</span> driver.session()</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># run query (modified RETURN clause)</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>query <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="st">MATCH (s:student {stuFullName_anon: "Susan Lopez"})-[:ATTENDS]-&gt;(a:activity{actStartDate: date("2022-09-27")})</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, a </span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY a.actStartTime</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, COLLECT(a) AS activities</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="st">WITH s, activities,</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="st">   REDUCE(</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="st">     state = {currentBlock: {duration: 0, start: null, end: null}, longestBlock: {duration: 0, start: null, end: null</span><span class="sc">}}</span><span class="st">,</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="st">     activity IN activities |</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="st">       CASE</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="st">         WHEN state.currentBlock.end IS NULL OR </span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="st">              activity.actStartTime &gt; state.currentBlock.end</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="st">         THEN {</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="st">           currentBlock: {</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a><span class="st">             duration: activity.actDurationInMinutes,</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="st">             start: activity.actStartTime,</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a><span class="st">             end: activity.actEndTime</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="st">           },</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="st">           longestBlock: </span></span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="st">             CASE</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a><span class="st">               WHEN activity.actDurationInMinutes &gt; state.longestBlock.duration</span></span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a><span class="st">               THEN {</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="st">                 duration: activity.actDurationInMinutes,</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="st">                 start: activity.actStartTime,</span></span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="st">                 end: activity.actEndTime</span></span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="st">               }</span></span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="st">               ELSE state.longestBlock</span></span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a><span class="st">             END</span></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a><span class="st">         }</span></span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a><span class="st">         ELSE {</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a><span class="st">           currentBlock: {</span></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="st">             duration: (activity.actEndTime.hour * 60 + activity.actEndTime.minute) - </span></span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a><span class="st">                       (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute),</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a><span class="st">             start: state.currentBlock.start,</span></span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a><span class="st">             end: activity.actEndTime</span></span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a><span class="st">           },</span></span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a><span class="st">           longestBlock: </span></span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a><span class="st">             CASE</span></span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a><span class="st">               WHEN ((activity.actEndTime.hour * 60 + activity.actEndTime.minute) - </span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a><span class="st">                     (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute)) &gt; state.longestBlock.duration</span></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a><span class="st">               THEN {</span></span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a><span class="st">                 duration: (activity.actEndTime.hour * 60 + activity.actEndTime.minute) - </span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a><span class="st">                           (state.currentBlock.start.hour * 60 + state.currentBlock.start.minute),</span></span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a><span class="st">                 start: state.currentBlock.start,</span></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a><span class="st">                 end: activity.actEndTime</span></span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a><span class="st">               }</span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a><span class="st">               ELSE state.longestBlock</span></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a><span class="st">             END</span></span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a><span class="st">         }</span></span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a><span class="st">       END</span></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a><span class="st">   ) AS finalState</span></span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a><span class="st">RETURN</span></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a><span class="st">s.stuFullName_anon AS student,</span></span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a><span class="st">activities[0].actStartDate AS date,</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a><span class="st">finalState.longestBlock.duration AS longestConsecutiveBlockDuration,</span></span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a><span class="st">finalState.longestBlock.start AS blockStartTime,</span></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a><span class="st">finalState.longestBlock.end AS blockEndTime</span></span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Running query...</span><span class="ch">\n</span><span class="st">"</span>)</span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> session.run(query)</span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a><span class="co">#  list to hold records</span></span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>records <span class="op">=</span> []</span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> record <span class="kw">in</span> result:</span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a>  records.append(record)</span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="co"># df</span></span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(records, columns<span class="op">=</span>[<span class="st">"student"</span>, <span class="st">"date"</span>, <span class="st">"longestConsecutiveBlockDuration"</span>, <span class="st">"blockStartTime"</span>, <span class="st">"blockEndTime"</span>])</span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a><span class="co"># print </span></span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head(<span class="dv">5</span>))</span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-85"><a href="#cb10-85" aria-hidden="true" tabindex="-1"></a><span class="co"># close session and driver</span></span>
+<span id="cb10-86"><a href="#cb10-86" aria-hidden="true" tabindex="-1"></a>session.close()</span>
+<span id="cb10-87"><a href="#cb10-87" aria-hidden="true" tabindex="-1"></a>driver.close()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Connecting to Neo4j database....
-Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x0000024EF7616E10&gt;
+Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x000002661E942FD0&gt;
 Running query...
 
        student        date  longestConsecutiveBlockDuration  \
@@ -1199,13 +1262,13 @@ Running query...
        blockStartTime        blockEndTime  
 0  13:00:00.000000000  18:00:00.000000000  </code></pre>
 </div>
-<p>:::</p>
+</div>
 </section>
 </section>
 <section id="max-hours-in-a-day" class="level3">
 <h3 class="anchored" data-anchor-id="max-hours-in-a-day">Max hours in a day</h3>
 <p>This query calculates the total scheduled hours for each student on a day and returns the results ordered by date. This examples filters for students who have more than 7 hours of activities in a day.</p>
-<pre class="cypher"><code>// sum of activity durations
+<pre class="{cypher} scroll-cypher"><code>// sum of activity durations
 // does not account for simultaneous activities (clashes) - so could be inflated, e.g. 12.5 hour students
 
 MATCH (s:student)-[:ATTENDS]-&gt;(a:activity)
@@ -1215,7 +1278,7 @@ RETURN s.stuFullName_anon AS Student, Date, totalHours
 ORDER BY Date;</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./images/cypher-maxTotalDay.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Max hours in a day"><img src="./images/cypher-maxTotalDay.png" class="img-fluid figure-img" alt="Max hours in a day"></a></p>
+<p><a href="./images/cypher-maxTotalDay.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Max hours in a day"><img src="./images/cypher-maxTotalDay.png" class="img-fluid figure-img" alt="Max hours in a day"></a></p>
 <figcaption>Max hours in a day</figcaption>
 </figure>
 </div>
@@ -1223,11 +1286,28 @@ ORDER BY Date;</code></pre>
 <section id="lunch-breaks" class="level3">
 <h3 class="anchored" data-anchor-id="lunch-breaks">Lunch breaks</h3>
 <p>It might be expected that a student (or staff) has a lunch break. The cypher below calculates free and booked tie within a window, in this case 12:00 and 14:00. It can be used to find students who do not have a lunch break or count the number of days that a student does not have a lunch break.</p>
-<p>```{cypher .cypher-scroll}</p>
-<p>MATCH (s:student)-[:ATTENDS]-&gt;(a:activity) WITH s, a ORDER BY a.actStartDate, a.actStartTime WITH s, COLLECT(a) AS activities UNWIND activities AS activity WITH s.stuFullName_anon AS Student, activity.actStartDate AS Date, time(activity.actStartTime) AS StartTime, time(activity.actEndTime) AS EndTime, duration.between(time(‘12:00’), time(‘14:00’)).minutes AS BreakWindow_12_14 WITH Student, Date, BreakWindow_12_14, COLLECT([StartTime, EndTime]) AS Activities UNWIND Activities AS activity WITH Student, Date, BreakWindow_12_14, activity[0] AS StartTime, activity[1] AS EndTime WITH Student, Date, BreakWindow_12_14, CASE WHEN StartTime &gt;= time(‘14:00’) OR EndTime &lt;= time(‘12:00’) THEN 0 WHEN StartTime &lt; time(‘12:00’) AND EndTime &gt; time(‘14:00’) THEN BreakWindow_12_14 WHEN StartTime &gt;= time(‘12:00’) AND StartTime &lt; time(‘14:00’) THEN duration.between(StartTime, time(‘14:00’)).minutes WHEN EndTime &gt; time(‘12:00’) AND EndTime &lt;= time(‘14:00’) THEN duration.between(time(‘12:00’), EndTime).minutes END AS BookedDurationMinutes RETURN Student, Date, BreakWindow_12_14, BreakWindow_12_14 - SUM(BookedDurationMinutes) AS FreeTimeMinutes, SUM(BookedDurationMinutes) AS BookedTimeMinutes ORDER BY Date ```</p>
+<pre class="{cypher} scroll-cypher"><code>
+MATCH (s:student)-[:ATTENDS]-&gt;(a:activity)
+WITH s, a
+ORDER BY a.actStartDate, a.actStartTime
+WITH s, COLLECT(a) AS activities
+UNWIND activities AS activity
+WITH s.stuFullName_anon AS Student, activity.actStartDate AS Date, time(activity.actStartTime) AS StartTime, time(activity.actEndTime) AS EndTime, duration.between(time('12:00'), time('14:00')).minutes AS BreakWindow_12_14
+WITH Student, Date, BreakWindow_12_14, COLLECT([StartTime, EndTime]) AS Activities
+UNWIND Activities AS activity
+WITH Student, Date, BreakWindow_12_14, activity[0] AS StartTime, activity[1] AS EndTime
+WITH Student, Date, BreakWindow_12_14,
+     CASE
+       WHEN StartTime &gt;= time('14:00') OR EndTime &lt;= time('12:00') THEN 0
+       WHEN StartTime &lt; time('12:00') AND EndTime &gt; time('14:00') THEN BreakWindow_12_14
+       WHEN StartTime &gt;= time('12:00') AND StartTime &lt; time('14:00') THEN duration.between(StartTime, time('14:00')).minutes
+       WHEN EndTime &gt; time('12:00') AND EndTime &lt;= time('14:00') THEN duration.between(time('12:00'), EndTime).minutes
+     END AS BookedDurationMinutes
+RETURN Student, Date, BreakWindow_12_14, BreakWindow_12_14 - SUM(BookedDurationMinutes) AS FreeTimeMinutes, SUM(BookedDurationMinutes) AS BookedTimeMinutes
+ORDER BY Date</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="./images/cypher-lunchBreak.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Lunch breaks"><img src="./images/cypher-lunchBreak.png" class="img-fluid figure-img" alt="Lunch breaks"></a></p>
+<p><a href="./images/cypher-lunchBreak.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Lunch breaks"><img src="./images/cypher-lunchBreak.png" class="img-fluid figure-img" alt="Lunch breaks"></a></p>
 <figcaption>Lunch breaks</figcaption>
 </figure>
 </div>
@@ -1832,7 +1912,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"fade","loop":false,"descPosition":"bottom","closeEffect":"fade"});
+<script>var lightboxQuarto = GLightbox({"closeEffect":"fade","selector":".lightbox","openEffect":"fade","descPosition":"bottom","loop":false});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

@@ -28,7 +28,7 @@ Example hard constraints include:
 
 Unscheduled activities can be identified as follows. This query can be tweaked to also search for matches where the property equals '' - that is, a blank.
 
-```cypher
+```{cypher}{.scroll-cypher}
 MATCH (a:activity)
 WHERE a.actStartDate IS NULL 
 OR a.actStartTime IS NULL 
@@ -40,7 +40,7 @@ RETURN a
 
 Room or location clashes are where two or more activities are scheduled at the same datetime in the same space and this is not deliberate. These can be identified with the starter query below. The image clearly shows pairs of activities sharing one location.  In reality, I suspect that these are deliberate clashes. 
 
-```cypher
+```{cypher}{.scroll-cypher}
 MATCH (a1:activity)-[r1:OCCUPIES]->(r:room)<-[r2:OCCUPIES]-(a2:activity)
 WHERE a1.actStartDate = a2.actStartDate AND a1 <> a2
     AND (
@@ -50,6 +50,7 @@ WHERE a1.actStartDate = a2.actStartDate AND a1 <> a2
     )
 RETURN a1, a2, r, r1, r2
 ```
+
 ![Room Clashes](./images/cypher-room-clash.png)
 
 
@@ -109,7 +110,7 @@ driver.close()
 
 This query identifies activities where the number of students exceeds the room capacity. It includes an optional `WHERE` clause if looking at a specific date range.
 
-```cypher
+```{cypher}{.scroll-cypher}
 MATCH (r:room)<-[r1:OCCUPIES]-(a:activity)<-[:ATTENDS]-(s:student)
 //WHERE a.Date >= date("2022-01-01") AND a.Date <= date("2022-06-30") 
 WITH r, a, count(s) as numStudents
@@ -172,7 +173,7 @@ The reason for the complexity is that you need to look for overlapping times bet
 
 Because of this, I explored the student clash scenario in more detail here: [Student Clashes](appendix-cypher5a.qmd)
 
-```cypher
+```{cypher}{.scroll-cypher}
 MATCH (s:student)-[:ATTENDS]->(a1:activity)
 WITH s, a1
 MATCH (s)-[:ATTENDS]->(a2:activity) 

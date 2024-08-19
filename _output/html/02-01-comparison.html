@@ -730,14 +730,13 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Natural Representation</strong>: Graph databases visually and conceptually mirror the relationships inherent in timetables, making them easier to understand and query.</li>
 <li><strong>Relationship-Centric Queries</strong>: Graph databases are optimised for traversing and analysing relationships. Queries that would require multiple joins in a relational database often become significantly simpler and faster in a graph database.</li>
 <li><strong>Flexibility</strong>: The schema-less or schema-optional nature of most graph databases allows for greater flexibility in data modeling. New entities or relationships can be added effortlessly without impacting existing structures or queries (Nan and Bai, 2019; Webber, Eifrem and Robinson, 2013).</li>
-<li></li>
 </ul>
 </section>
 </section>
 <section id="comparing-queries" class="level2">
 <h2 class="anchored" data-anchor-id="comparing-queries">Comparing queries</h2>
 <p><strong>Example Insight</strong>: Find all students attending a specific lecturer’s class in a particular building</p>
-<p>Representative queries have been written in SQL and Cypher to find this insight. The SQL query is much longer and requires six joins, each coming at a computational cost. In contrast, the Cypher query pattern is much simpler - written in one line (MATCH pattern).</p>
+<p>Representative queries have been written in SQL and Cypher to find this insight. The SQL query is much longer and requires six joins, each coming at a computational cost.</p>
 <section id="sql-query" class="level3">
 <h3 class="anchored" data-anchor-id="sql-query">SQL Query</h3>
 <pre class="{sql}"><code>SELECT DISTINCT ss.[FirstName], ss.[LastName], ss.[Email]
@@ -753,6 +752,7 @@ WHERE ast.[StaffId] = 'StaffID'
 </section>
 <section id="cypher-query" class="level3">
 <h3 class="anchored" data-anchor-id="cypher-query">Cypher Query</h3>
+<p>In contrast, the Cypher query pattern is much simpler - written in one line (MATCH pattern). The query is more intuitive and easier to understand, especially for those unfamiliar with the database schema.</p>
 <pre class="{cypher}"><code>
 MATCH (s:Student)-[:ATTENDS]-&gt;(a:Activity)&lt;-[:TEACHES_ON]-(st:Staff), 
       (a:Activity)-[:TAKES_PLACE_IN]-&gt;(r:Room)

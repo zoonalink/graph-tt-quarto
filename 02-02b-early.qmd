@@ -38,30 +38,45 @@ LIMIT 3
 
 **Busiest location for a specific time**
 
-```{cypher .scroll-cypher}
-MATCH (r:Room)<-[:TAKES_PLACE_IN]-(a:Activity)
-WHERE a.startTime = "11:00" 
-WITH r, count(a) AS activityCount
-RETURN r.name AS Room, activityCount
-ORDER BY activityCount DESC
-LIMIT 1 
+```{cypher}{.scroll-cypher}
+MATCH (r:room)<-[:OCCUPIES]-(a:activity)
+WHERE a.actStartTime = localtime({hour:9, minute:0, second:0}) 
+WITH r, count(a) AS Count, a.actStartTime AS StartTime
+RETURN r.roomName AS Room, Count, StartTime
+ORDER BY Count DESC
+LIMIT 3
 ```
+
+| Room    | Count | StartTime |
+|---------|-------|-----------|
+| 2Q12 FR | 86    | 09:00:00  |
+| 3E28 FR | 50    | 09:00:00  |
+| 3E11 FR | 49    | 09:00:00  |
 
 **Students with below/above average hours**
 
-```{cypher .scroll-cypher}
-// Calculate program averages and standard deviations
-MATCH (s:Student)-[:IS_ALLOCATED_TO]->(a:Activity)
-WITH s.prog AS programme, AVG(a.duration) AS avgDuration, STDEV(a.duration) AS stdDev
-GROUP BY programme
+This query returns students and whether they have more or less scheduled time on their timetable compared to the programme cohort average. The cut-off is based on average +/- 10% but can also be written using standard deviation.
 
-// Identify students outside the 10% margin 
-MATCH (s:Student)-[:IS_ALLOCATED_TO]->(a:Activity)
-WITH s.studentID AS studentID, s.prog AS program, SUM(a.duration) AS totalDuration
-MATCH (avgData)
-WHERE avgData.programme = programme
-WITH studentID, programme, totalDuration, avgData.avgDuration AS avgDuration, avgData.stdDev AS stdDev
-WHERE totalDuration < avgDuration - (0.1 * avgDuration) OR totalDuration > avgDuration + (0.1 * avgDuration)
-RETURN studentID, programme, totalDuration, avgDuration, stdDev 
-ORDER BY programme, totalDuration DESC
+```{cypher}{.scroll-cypher}
+MATCH (s:student)-[:ATTENDS]->(a:activity)
+WITH s.stuProgName AS progName, s.stuID_anon AS studentID, SUM(a.actDurationInMinutes) AS studentTotalDuration
+WITH progName, 
+     AVG(studentTotalDuration) / 60 AS progAverageHoursPerStudent, 
+     collect({studentID: studentID, studentTotalHours: studentTotalDuration / 60}) AS studentsData
+UNWIND studentsData AS studentData
+RETURN progName, 
+       progAverageHoursPerStudent,
+       studentData.studentID AS studentID, 
+       studentData.studentTotalHours AS studentTotalHours, 
+       CASE 
+           WHEN studentData.studentTotalHours < (progAverageHoursPerStudent * 0.9) THEN 'Below Average'
+           WHEN studentData.studentTotalHours > (progAverageHoursPerStudent * 1.1) THEN 'Above Average'
+           ELSE 'Average'
+       END AS compare
 ```
+
+| progName | progAverageHoursPerStudent | studentID | studentTotalHours | compare |
+|----|----|----|----|----|
+| "Maths NS" | 274.7692307692308 | "stu-23442558" | 361 | "Above Average" |
+| "Maths NS" | 274.7692307692308 | "stu-91911371" | 126 | "Below Average" |
+| "Maths NS" | 274.7692307692308 | "stu-75224499" | 251 | "Average" |

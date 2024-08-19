@@ -696,7 +696,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="creating-nodes" class="level2">
 <h2 class="anchored" data-anchor-id="creating-nodes">Creating Nodes</h2>
 <p>Nodes are created using the <code>CREATE</code> clause in Cypher. The general syntax for creating a node is:</p>
-<pre class="cypher"><code>CREATE (n:NodeLabel {propertyName: propertyValue, ...})</code></pre>
+<pre class="{cypher} scroll-cypher"><code>CREATE (n:NodeLabel {propertyName: propertyValue, ...})</code></pre>
 <p>Where:</p>
 <ul>
 <li><code>n</code> is the node variable</li>
@@ -707,13 +707,13 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <section id="example-creating-a-student-node" class="level3">
 <h3 class="anchored" data-anchor-id="example-creating-a-student-node">Example: Creating a Student Node</h3>
-<pre class="cypher"><code>CREATE (s:Student {studentID: '123456', studentName: 'Alice'...})</code></pre>
+<pre class="{cypher} scroll-cypher"><code>CREATE (s:Student {studentID: '123456', studentName: 'Alice'...})</code></pre>
 </section>
 </section>
 <section id="creating-relationships" class="level2">
 <h2 class="anchored" data-anchor-id="creating-relationships">Creating Relationships</h2>
 <p>Relationships are created using the <code>CREATE</code> clause in Cypher. The general syntax for creating a relationship is:</p>
-<pre class="cypher"><code>MATCH (n1:NodeLabel1), (n2:NodeLabel2)
+<pre class="{cypher} scroll-cypher"><code>MATCH (n1:NodeLabel1), (n2:NodeLabel2)
 WHERE n1.propertyName = propertyValue1 AND n2.propertyName = propertyValue2
 CREATE (n1)-[r:RELATIONSHIP_TYPE]-&gt;(n2)</code></pre>
 <p>Where:</p>
@@ -732,7 +732,7 @@ CREATE (n1)-[r:RELATIONSHIP_TYPE]-&gt;(n2)</code></pre>
 </ul>
 <section id="example-creating-a-relationship-between-a-student-and-an-activity" class="level3">
 <h3 class="anchored" data-anchor-id="example-creating-a-relationship-between-a-student-and-an-activity">Example: Creating a Relationship Between a Student and an Activity</h3>
-<pre class="cypher"><code>MATCH (s:Student {studentID: '123456'}), (a:Activity {activityID: '789'})
+<pre class="{cypher} scroll-cypher"><code>MATCH (s:Student {studentID: '123456'}), (a:Activity {activityID: '789'})
 CREATE (s)-[r:ATTENDS]-&gt;(a)</code></pre>
 </section>
 </section>
@@ -754,7 +754,7 @@ Caution
 </div>
 <section id="student-registered_on-programme" class="level3">
 <h3 class="anchored" data-anchor-id="student-registered_on-programme">(student)-[REGISTERED_ON]-&gt;(programme)</h3>
-<pre class="cypher"><code>
+<pre class="{cypher} scroll-cypher"><code>
 // Create REGISTERED_ON relationship between student and programme nodes
 
 // Match student and programme nodes based on matching properties
@@ -763,26 +763,26 @@ WHERE s.stuProgSplusID = p.posSplusID
 
 // Create REGISTERED_ON relationship
 MERGE (s)-[:REGISTERED_ON]-&gt;(p)</code></pre>
-<pre class="cypher"><code>// Delete REGISTERED_ON relationships
+<pre class="{cypher} scroll-cypher"><code>// Delete REGISTERED_ON relationships
 MATCH (:student)-[r:REGISTERED_ON]-&gt;(:programme)
 DELETE r</code></pre>
 </section>
 <section id="student-enrolled_on-module" class="level3">
 <h3 class="anchored" data-anchor-id="student-enrolled_on-module">(student)-[ENROLLED_ON]-&gt;(module)</h3>
-<pre class="cypher"><code>// Create ENROLLED_ON relationship between students and modules 
+<pre class="{cypher} scroll-cypher"><code>// Create ENROLLED_ON relationship between students and modules 
 
 // Match student, activity, and module nodes based on ATTEND and BELONGS_TO relationships
 MATCH (s:student)-[:ATTENDS]-&gt;(a:activity)-[:BELONGS_TO]-&gt;(m:module)
 
 // Create ENROLLED_ON relationship
 MERGE (s)-[:ENROLLED_ON]-&gt;(m)</code></pre>
-<pre class="cypher"><code>// Delete ENROLLED_ON relationships
+<pre class="{cypher} scroll-cypher"><code>// Delete ENROLLED_ON relationships
 MATCH (:student)-[r:ENROLLED_ON]-&gt;(:module)
 DELETE r</code></pre>
 </section>
 <section id="activity-has_type-activity_type" class="level3">
 <h3 class="anchored" data-anchor-id="activity-has_type-activity_type">(activity)-[HAS_TYPE]-&gt;(activity_type)</h3>
-<pre class="cypher"><code>// Create HAS_TYPE relationship between activity and activityType nodes
+<pre class="{cypher} scroll-cypher"><code>// Create HAS_TYPE relationship between activity and activityType nodes
 
 // Match activity and activityType nodes based on matching properties
 MATCH (a:activity), (at:activityType)
@@ -790,19 +790,19 @@ WHERE a.actTypeName = at.actTypeDescription
 
 // Create HAS_TYPE relationship
 MERGE (a)-[:HAS_TYPE]-&gt;(at)</code></pre>
-<pre class="cypher"><code>// Find activities without an activityType
+<pre class="{cypher} scroll-cypher"><code>// Find activities without an activityType
 
 MATCH (a:activity)
 WHERE NOT EXISTS ((a)-[:HAS_TYPE]-&gt;(:activityType))
 RETURN a</code></pre>
-<pre class="cypher"><code>// Delete HAS_TYPE relationships between activity and activityType nodes
+<pre class="{cypher} scroll-cypher"><code>// Delete HAS_TYPE relationships between activity and activityType nodes
 
 MATCH (a:activity)-[r:HAS_TYPE]-&gt;(at:activityType)
 DELETE r</code></pre>
 </section>
 <section id="module-has_owning_dept-department" class="level3">
 <h3 class="anchored" data-anchor-id="module-has_owning_dept-department">(module)-[HAS_OWNING_DEPT]-&gt;(department)</h3>
-<pre class="cypher"><code>// Create HAS_OWNING_DEPT relationship between module and department nodes
+<pre class="{cypher} scroll-cypher"><code>// Create HAS_OWNING_DEPT relationship between module and department nodes
 
 // Match module and department nodes based on matching properties
 MATCH (m:module), (d:department)
@@ -810,14 +810,14 @@ WHERE m.modDepartment = d.deptName
 
 // Create HAS_OWNING_DEPT relationship
 MERGE (m)-[:HAS_OWNING_DEPT]-&gt;(d)</code></pre>
-<pre class="cypher"><code>// Delete HAS_OWNING_DEPT relationships between module and department nodes
+<pre class="{cypher} scroll-cypher"><code>// Delete HAS_OWNING_DEPT relationships between module and department nodes
 
 MATCH (m:module)-[r:HAS_OWNING_DEPT]-&gt;(d:department)
 DELETE r</code></pre>
 </section>
 <section id="programme-has_owning_dept-department" class="level3">
 <h3 class="anchored" data-anchor-id="programme-has_owning_dept-department">(programme)-[HAS_OWNING_DEPT]-&gt;(department)</h3>
-<pre class="cypher"><code>// Create HAS_OWNING_DEPT relationship between programme and department nodes
+<pre class="{cypher} scroll-cypher"><code>// Create HAS_OWNING_DEPT relationship between programme and department nodes
 
 // Match programme and department nodes based on matching properties
 MATCH (p:programme), (d:department)
@@ -825,7 +825,7 @@ WHERE p.posDepartment = d.deptName
 
 // Create HAS_OWNING_DEPT relationship
 MERGE (p)-[:HAS_OWNING_DEPT]-&gt;(d)</code></pre>
-<pre class="cypher"><code>// Delete HAS_OWNING_DEPT relationships between programme and department nodes
+<pre class="{cypher} scroll-cypher"><code>// Delete HAS_OWNING_DEPT relationships between programme and department nodes
 
 MATCH (p:programme)-[r:HAS_OWNING_DEPT]-&gt;(d:department)
 DELETE r</code></pre>

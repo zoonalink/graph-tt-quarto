@@ -34,6 +34,7 @@ Properties in a graph have `datatypes` which will enable different operations an
 MATCH (a:activity)
 RETURN DISTINCT apoc.meta.cypher.type(a.actStartTime) as actStartTimeType
 ```
+
 ![Datatype of Property](./images/cypher-property-datatype.png)
 
 
@@ -80,6 +81,7 @@ MATCH (n)
 WHERE NOT EXISTS(()-[]-(n)) AND NOT EXISTS((n)-[]-())
 RETURN n
 ```
+
 ![Nodes Without Relationships](./images/cypher-nodes-no-rels.png)
 
 
@@ -122,4 +124,5 @@ MATCH (a:activity)
 WHERE NOT (a)-[]->(:room)
 RETURN a;
 ```
+
 ![Activities Without Rooms](./images/cypher-activity-no-room.png)

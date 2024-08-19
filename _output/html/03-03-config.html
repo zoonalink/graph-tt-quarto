@@ -678,20 +678,22 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>I centralised configuration parameters into python scripts to allow the user to manage different aspects of the ETL pipeline. The configuration options are as a result of both initial design and discovery during development.</p>
-<p>For example, each time I set an option during prototyping, I considered whether they should be config parameters - weighing up development cost versus value (in a proof-of-concept scope). In general, I aimed for an <em>automatic</em> and *dynamic</p>
-<p>When I set options during prototyping and testing, I considered whether these are worth parameterising in the ETL by weighing up cost versus value within a proof-of-concept scope. In general, my design is set up to run <em>automatically</em> or <em>dynamically</em> with well structured data, but I included options to override these settings.</p>
+<p>Configuration and logging are essential components of the ETL pipeline. Config allows the user to manage different aspects of the ETL pipeline, while logging provides a record of the pipeline’s execution. They emerged from initial design and from discovering during development.</p>
 <section id="main-configuration-options" class="level3">
 <h3 class="anchored" data-anchor-id="main-configuration-options">Main Configuration options</h3>
-<p>A YAML file containing configuration options can be viewed in the <a href="./appendix-config.html">Appendix</a>.</p>
-<p>General settings include being able to filter which data to extract by way of a list of award codes. Folders and filepaths (local and Google Drive) are created dynamically, although there are override options.</p>
-<p>Credentials to SQL databases, Neo4j instances and Google drives are stored securely via environment variables or <code>keyring</code> secure storage.</p>
-<p>Additional data sources can be added to the graph database - that is, timetabling data can be augmented within non-timetabling data. In the proof-of-concept, I added additional location data by merging with the master data source to get latitude, longitude, square meterage, etc.</p>
+<ul>
+<li>Configuration parameters are centralised in Python scripts.</li>
+<li>The design primarily aims for automatic and dynamic operation with well-structured data, but includes override options.</li>
+<li>A YAML file (<a href="./appendix-config.html">Appendix-config</a>) holds configuration options, including general settings for filtering data extraction, dynamic folder/filepath creation, and secure credential storage.</li>
+<li>Config also controls options for validation, data augementation and graph structures (nodes, relationships) to be created.</li>
+</ul>
 </section>
 <section id="logging" class="level3">
 <h3 class="anchored" data-anchor-id="logging">Logging</h3>
-<p>Each module has its own log file which can be expanded or contracted, as ndeeded.</p>
-<p>Options include customising the log level (DEBUG, INFO, WARNING, ERROR, CRITICAL).</p>
+<ul>
+<li>Each module has its own log file with customisable log level (DEBUG, INFO, WARNING, ERROR, CRITICAL).</li>
+<li>Timing function which tracks and stores various execution and elapsed times with a view to optimising performance or identifying bottlenecks.</li>
+</ul>
 <section id="example-extract-log" class="level4">
 <h4 class="anchored" data-anchor-id="example-extract-log">Example Extract Log</h4>
 <pre style="max-height: 200px; overflow-y: auto;">Setting up logger: extract
@@ -794,7 +796,6 @@ C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-projec
 2024-07-11 13:28:34,416 - INFO - gdrive_upload - Found existing folder: relationship
 2024-07-11 13:28:35,565 - INFO - gdrive_upload - File rel-activity_activityType-processed.csv uploaded to Google Drive folder ID: 1w_ea6ETzRcdYz71crLxL9khjLrEfcbuH
 </pre>
-<p>As part of the logging functionality, I created a timing function which tracks and stores various execution and elapsed times with a view to optimising performance or identifying bottlenecks in future development.</p>
 </section>
 <section id="example-process-log" class="level4">
 <h4 class="anchored" data-anchor-id="example-process-log">Example Process Log</h4>
@@ -810,7 +811,6 @@ C:\Users\pho-lovehagen\OneDrive - UWE Bristol\Personal\data-science\graph-projec
 2024-07-11 13:31:24,294 - INFO - process_main - Function process_student took 8.76 seconds
 2024-07-11 13:31:24,294 - INFO - process_main - Function process_activity took 0.10 seconds
 </pre>
-<p>Logging also summarises loading results as can be seen in the snippet below.</p>
 </section>
 <section id="example-load-log" class="level4">
 <h4 class="anchored" data-anchor-id="example-load-log">Example Load Log</h4>

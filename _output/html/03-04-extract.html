@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -686,7 +652,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#sql-example" id="toc-sql-example" class="nav-link active" data-scroll-target="#sql-example">SQL example</a></li>
-  <li><a href="#extract_main.py-snippet" id="toc-extract_main.py-snippet" class="nav-link" data-scroll-target="#extract_main.py-snippet">extract_main.py snippet</a></li>
+  <li><a href="#snippet-extract_data.py" id="toc-snippet-extract_data.py" class="nav-link" data-scroll-target="#snippet-extract_data.py">Snippet: extract_data.py</a></li>
   </ul>
 </nav>
     </div>
@@ -801,78 +767,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figcaption>
 Extract
 </figcaption>
-<p><code>Extract</code> starts by securely connecting to the specified SQL database using encrypted credentials stored with <a href="https://pypi.org/project/keyring/">keyring</a>. The combination of <code>configuration</code> and <code>SQL scripts</code> determine which data will be extracted by filtering based on programme(s) of study and specifying which nodes, relationships and properties to extract. Additional options include specifying <code>chunk size</code> if extracting signficicant amounts of data, for example.</p>
+<p><br></p>
+<p>EXTRACT starts by securely connecting to the specified SQL database using encrypted credentials stored with <a href="https://pypi.org/project/keyring/">keyring</a>. The combination of <code>configuration</code> and <code>SQL scripts</code> determine which data will be extracted by filtering based on programme(s) of study and specifying which nodes, relationships and properties to extract. Additional options include specifying <code>chunk size</code> if extracting signficicant amounts of data, for example.</p>
 <p>The process performs basic validation at every step ensuring secure connection before running SQL SELECT statements and storing extracted data as local csv files.</p>
 <section id="sql-example" class="level3">
 <h3 class="anchored" data-anchor-id="sql-example">SQL example</h3>
-<div id="da1c1b63" class="cell">
-<details class="code-fold">
-<summary>Click to show code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>SELECT DISTINCT a.[Id] AS actSplusID,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>     CONCAT(a.[Id], <span class="st">'-'</span>, adt.[Week], <span class="st">'-'</span>, adt.[Day]) AS actGraphID,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>     a.[Name] AS actName,</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>     a.[Description] AS actDescription,</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>     a.[DepartmentId] AS actDeptSPlusID,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>     adt.[StartDateTime] AS actStartDateTime,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>     adt.[EndDateTime] AS actEndDateTime,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>     adt.[Week] AS actWeekNum,</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>     adt.[Occurrence] AS actOccurrence,</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>     a.[ModuleId] AS actModSplusID,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>     a.[ScheduledDay] AS actScheduledDay,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>     a.[StartDate] AS actFirstActivityDate,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>     a.[EndDate] AS actLastActivityDate,</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>     a.[PlannedSize] AS actPlannedSize,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>     a.[RealSize] AS actRealSize,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>     a.[Duration] AS actDuration,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>     a.[DurationInMinutes] AS actDurationInMinutes,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>     a.[NumberOfOccurrences] AS actNumberOfOccurrences,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>     a.[WeekPattern] AS actWeekPattern,</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>     a.[ActivityTypeId] AS actActivityTypeSplusID,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>     a.[WhenScheduled] AS actWhenScheduled,</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>     a.[IsJtaParent],</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>     a.[IsJtaChild],</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>     a.[IsVariantParent],</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>     a.[IsVariantChild]</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>FROM <span class="co">##TempActivity a</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>INNER JOIN <span class="co">##TempActivityDateTime adt ON a.[Id] = adt.[ActivityID];</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
+<pre class="{sql} scroll-cypher"><code>SELECT DISTINCT a.[Id] AS actSplusID,
+     CONCAT(a.[Id], '-', adt.[Week], '-', adt.[Day]) AS actGraphID,
+     a.[Name] AS actName,
+     a.[Description] AS actDescription,
+     a.[DepartmentId] AS actDeptSPlusID,
+     adt.[StartDateTime] AS actStartDateTime,
+     adt.[EndDateTime] AS actEndDateTime,
+     adt.[Week] AS actWeekNum,
+     adt.[Occurrence] AS actOccurrence,
+     a.[ModuleId] AS actModSplusID,
+     a.[ScheduledDay] AS actScheduledDay,
+     a.[StartDate] AS actFirstActivityDate,
+     a.[EndDate] AS actLastActivityDate,
+     a.[PlannedSize] AS actPlannedSize,
+     a.[RealSize] AS actRealSize,
+     a.[Duration] AS actDuration,
+     a.[DurationInMinutes] AS actDurationInMinutes,
+     a.[NumberOfOccurrences] AS actNumberOfOccurrences,
+     a.[WeekPattern] AS actWeekPattern,
+     a.[ActivityTypeId] AS actActivityTypeSplusID,
+     a.[WhenScheduled] AS actWhenScheduled,
+     a.[IsJtaParent],
+     a.[IsJtaChild],
+     a.[IsVariantParent],
+     a.[IsVariantChild]
+FROM ##TempActivity a
+INNER JOIN ##TempActivityDateTime adt ON a.[Id] = adt.[ActivityID];</code></pre>
 </section>
-<section id="extract_main.py-snippet" class="level3">
-<h3 class="anchored" data-anchor-id="extract_main.py-snippet">extract_main.py snippet</h3>
-<div id="9c12e1ec" class="cell">
-<details class="code-fold">
-<summary>Click to show code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract_main.py</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> logger_config <span class="im">import</span> extract_logger</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> extract_data <span class="im">import</span> main <span class="im">as</span> extract_main</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> config <span class="im">import</span> EXTRACT_DIR, HOSTKEYS, CHUNK_SIZE</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> utils <span class="im">import</span> execution_times</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> run_extraction():</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    extract_logger.info(<span class="st">"Starting data extraction process"</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    extract_logger.info(<span class="ss">f"Output Directory: </span><span class="sc">{</span>EXTRACT_DIR<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    extract_logger.info(<span class="ss">f"Hostkeys: </span><span class="sc">{</span>HOSTKEYS<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    extract_logger.info(<span class="ss">f"Chunksize: </span><span class="sc">{</span>CHUNK_SIZE<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        extract_main()</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> e:</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        extract_logger.exception(<span class="st">"An error occurred during data extraction:"</span>)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">finally</span>:</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        extract_logger.info(<span class="st">"Data extraction completed."</span>)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>   </span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Log the execution times</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    extract_logger.info(<span class="st">"Extraction Time Summary:"</span>)</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> func_name, exec_time <span class="kw">in</span> execution_times.items():</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        extract_logger.info(<span class="ss">f"Function </span><span class="sc">{</span>func_name<span class="sc">}</span><span class="ss"> took </span><span class="sc">{</span>exec_time<span class="sc">:.2f}</span><span class="ss"> seconds"</span>)</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">"__main__"</span>:</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    run_extraction()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
+<section id="snippet-extract_data.py" class="level3">
+<h3 class="anchored" data-anchor-id="snippet-extract_data.py">Snippet: extract_data.py</h3>
+<pre class="{python} scroll-cypher"><code>#| eval: false
+# extract_main.py
+from logger_config import extract_logger
+from extract_data import main as extract_main
+from config import EXTRACT_DIR, HOSTKEYS, CHUNK_SIZE
+from utils import execution_times
+
+def run_extraction():
+    extract_logger.info("Starting data extraction process")
+    extract_logger.info(f"Output Directory: {EXTRACT_DIR}")
+    extract_logger.info(f"Hostkeys: {HOSTKEYS}")
+    extract_logger.info(f"Chunksize: {CHUNK_SIZE}")
+
+    try:
+        extract_main()
+    except Exception as e:
+        extract_logger.exception("An error occurred during data extraction:")
+    finally:
+        extract_logger.info("Data extraction completed.")
+
+   
+    # Log the execution times
+    extract_logger.info("Extraction Time Summary:")
+    for func_name, exec_time in execution_times.items():
+        extract_logger.info(f"Function {func_name} took {exec_time:.2f} seconds")
+
+
+if __name__ == "__main__":
+    run_extraction()</code></pre>
 
 
 </section>

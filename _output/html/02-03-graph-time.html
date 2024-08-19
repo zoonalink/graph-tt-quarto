@@ -686,9 +686,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The biggest challenge I encountered when translating timetables into graph data structures involved temporal elements - that is, start and end times, dates, weeks, recurrences, durations, etc. Whether a data element is a node or a property of a node, or perhaps both is relatively trivial to model and test and depends heavily on use cases.</p>
-<p>Time, on the other hand, is complicated, especially when you want to write aggregation queries on time elements e.g.&nbsp;total taught hours on campus on a Wednesday at 11:00 for student X across the whole year.</p>
-<p>While the conceptual flexibility of graphs is appealing, finding the optimal balance between efficient representation, query performance, and data redundancy requires careful consideration. This section details some challenges encountered and the approach taken for the proof-of-concept.</p>
+<p>The biggest challenge I encountered when translating timetables into graph data involved temporal elements - that is, <code>start</code> and <code>end times</code>, <code>dates</code>, <code>weeks</code>, <code>recurrences</code>, <code>durations</code>, etc. While the basic model successfully captured the core entities and relationships, it lacked the necessary detail to perform meaningful time-based analysis.</p>
+<p>The flexibility of graph databases is appealing but finding the optimal balance between efficient representation, query performance, and data redundancy requires careful consideration. This section details some challenges encountered and the approach taken for the proof-of-concept.</p>
 <section id="the-problem-of-normalised-time" class="level2">
 <h2 class="anchored" data-anchor-id="the-problem-of-normalised-time">The Problem of Normalised Time</h2>
 <p>Traditional relational databases often store timetable information in a highly normalised<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> format, condensing recurring events into single rows with date ranges, week patterns, or lists of occurrences. While efficient for storage and basic display, this approach severely hinders analysis, especially when aiming to:</p>
@@ -700,7 +699,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="exploring-potential-solutions" class="level2">
 <h2 class="anchored" data-anchor-id="exploring-potential-solutions">Exploring Potential Solutions</h2>
-<p>Several time modelling approaches were explored to explore these challenges, each with its own trade-offs.</p>
+<p>Several time modelling approaches were considered, each with its own trade-offs.</p>
 <p>To illustrate this, let’s explore using a fictional example - <code>Introduction to Graph Databases</code> - focusing on the <code>lecture</code>:</p>
 <table class="caption-top table">
 <caption>Example Source Data (Relational)</caption>
@@ -751,15 +750,15 @@ ul.task-list li input[type="checkbox"] {
 </table>
 <section id="option-0-proof-of-concept-activity" class="level3">
 <h3 class="anchored" data-anchor-id="option-0-proof-of-concept-activity">Option 0: Proof-of-concept activity</h3>
-<p>The basic model creates nodes for each activity as they exist in the relational database. This simple approach is perfectly acceptable but makes any time based calculations difficult because each activity node can represent a different number of occurrences because of the week ranges.</p>
-<p>This in turn means you cannot simply COUNT each activity “equally” - for example, row one above has 11 instances, each of two hours. The second and third rows have four instances, each of three hours. Calculating aggregations, finding clashes and similar is very challenging.</p>
+<p>The basic model creates nodes for each activity <em>exactly</em> as they exist in the relational database. This simple approach is perfectly acceptable but makes any time based calculations difficult because each activity node can represent a different number of occurrences due to the week ranges.</p>
+<p>This in turn means you cannot simply COUNT each activity “equally” - for example, the lecture has 11 instances, each of two hours. The seminars have four instances, each of three hours. Calculating aggregations, finding clashes and similar is very challenging.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./images/time-option0.png" class="img-fluid figure-img"></p>
 <figcaption>Basic example of Graphing Normalised Activities</figcaption>
 </figure>
 </div>
-<p>If we assume that all students attend the lecture and one of the seminars, some students have a clash in week 7 (Wednesday 10:00-11:00) - this is very difficult to identify and isolate in a highly normalised dataset.</p>
+<p>If we assume that each student attends the lecture and one of the seminars, some students have a clash in week 7 (Wednesday 10:00-11:00) - this is very difficult to identify and isolate in a highly normalised dataset.</p>
 </section>
 <section id="option-1-unique-activity-nodes" class="level3">
 <h3 class="anchored" data-anchor-id="option-1-unique-activity-nodes">Option 1: Unique Activity Nodes</h3>
@@ -776,19 +775,22 @@ ul.task-list li input[type="checkbox"] {
 <li>Each node has <code>date</code>, <code>startTime</code>, <code>endTime</code> properties</li>
 <li>Only <code>date</code> is different between each node.</li>
 </ul>
-<p><code>{cypher .cypher-scroll}        (Activity {Name: "ITGD", Date: "2024-01-03", StartTime: "09:00", EndTime: "11:00"})  (Activity {Name: "ITGD", Date: "2024-01-10", StartTime: "09:00", EndTime: "11:00"})  ...  (Activity {Name: "ITGD", Date: "2024-03-20", StartTime: "09:00", EndTime: "11:00"})</code></p>
+<pre class="{cypher} scroll-cypher"><code>(Activity {Name: "ITGD", Date: "2024-01-03", StartTime: "09:00", EndTime: "11:00"}) 
+(Activity {Name: "ITGD", Date: "2024-01-10", StartTime: "09:00", EndTime: "11:00"}) 
+... 
+(Activity {Name: "ITGD", Date: "2024-03-20", StartTime: "09:00", EndTime: "11:00"})</code></pre>
 <p><strong>Pros</strong>:</p>
 <ul>
-<li><strong>Conceptual Simplicity</strong>: Easy to understand and implement.</li>
-<li><strong>Direct Time Representation</strong>: Time is directly associated with each activity instance.</li>
+<li><em>Conceptual Simplicity</em>: Easy to understand and implement.</li>
+<li><em>Direct Time Representation</em>: Time is directly associated with each activity instance.</li>
 </ul>
 <p><strong>Cons</strong>:</p>
 <ul>
-<li><strong>Node Proliferation</strong>: Leads to a high volume of nodes, potentially impacting performance with large datasets.</li>
+<li><em>Node Proliferation</em>: Leads to a high volume of nodes, potentially impacting performance with large datasets.</li>
 </ul>
 <p><strong>Use Case dependent</strong></p>
 <ul>
-<li><strong>Time-Based Queries</strong>: Answering questions about time patterns or conflicts requires traversing numerous nodes and relationships. Some queries will benefit - e.g.&nbsp;identifying clashes which may only occur in a specific week, others will become more complex as de-normalised data needs to be re-aggregated.</li>
+<li><em>Time-Based Queries</em>: Answering questions about time patterns or conflicts requires traversing numerous nodes and relationships. Some queries will benefit - e.g.&nbsp;identifying clashes which may only occur in a specific week, others will become more complex as de-normalised data needs to be re-aggregated.</li>
 </ul>
 </section>
 <section id="option-2-date-and-time-nodes" class="level3">
@@ -805,7 +807,7 @@ ul.task-list li input[type="checkbox"] {
 <li>1 Activity node</li>
 <li>11 Date nodes - shared by ALL activities on those dates.</li>
 <li>2 Time nodes (09:00 and 11:00) - shared by ALL activities on those times!</li>
-<li><strong>Additional Relationships</strong>
+<li><em>Additional Relationships</em>
 <ul>
 <li>Activity -[:SCHEDULED_ON]-&gt; Date (11 relationships)</li>
 <li>Activity -[:STARTS_AT]-&gt; Time (11 relationships to 09:00)</li>
@@ -813,18 +815,23 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 </ul>
 <p><br></p>
-<p><code>{cypher .cypher-scroll}          (Activity {Name: "ITGD"})     -[:SCHEDULED_ON]-&gt; (Date {date: "2024-01-03"})     -[:SCHEDULED_ON]-&gt; (Date {date: "2024-01-10"})     ...     -[:STARTS_AT]-&gt; (Time {time: "09:00"})      -[:ENDS_AT]-&gt; (Time {time: "11:00"})</code></p>
+<pre class="{cypher} scroll-cypher"><code>(Activity {Name: "ITGD"})
+    -[:SCHEDULED_ON]-&gt; (Date {date: "2024-01-03"})
+    -[:SCHEDULED_ON]-&gt; (Date {date: "2024-01-10"})
+    ...
+    -[:STARTS_AT]-&gt; (Time {time: "09:00"}) 
+    -[:ENDS_AT]-&gt; (Time {time: "11:00"})</code></pre>
 <p><strong>Key point</strong>: Relationships encode which activity happens when.</p>
 <p><strong>Pros</strong>:</p>
 <ul>
-<li><strong>Increased Flexibility</strong>: Facilitates queries across time ranges and aggregations across time slots.</li>
-<li><strong>Reduced Redundancy</strong>: Avoids replicating time information for activities occurring on the same date and time.</li>
-<li><strong>Lower Node Count</strong>: Potentially fewer nodes overall compared to Option 1 as <code>date</code> and <code>time</code> nodes are shared with all activities in the database.</li>
+<li><em>Increased Flexibility</em>: Facilitates queries across time ranges and aggregations across time slots.</li>
+<li><em>Reduced Redundancy</em>: Avoids replicating time information for activities occurring on the same date and time.</li>
+<li><em>Lower Node Count</em>: Potentially fewer nodes overall compared to Option 1 as <code>date</code> and <code>time</code> nodes are shared with all activities in the database.</li>
 </ul>
 <p><strong>Cons</strong>:</p>
 <ul>
-<li><strong>Increased Model Complexity</strong>: Requires managing relationships between Activity, Date, and Time nodes.</li>
-<li><strong>Potential Performance Overhead</strong>: Querying might involve traversing multiple relationships, impacting efficiency.</li>
+<li><em>Increased Model Complexity</em>: Requires managing relationships between Activity, Date, and Time nodes.</li>
+<li><em>Potential Performance Overhead</em>: Querying might involve traversing multiple relationships, impacting efficiency.</li>
 </ul>
 </section>
 <section id="option-3-date-and-time-block-nodes" class="level3">
@@ -841,7 +848,7 @@ ul.task-list li input[type="checkbox"] {
 <li>1 Activity node</li>
 <li>11 Date nodes</li>
 <li>4 Timeblock nodes (09:00-09:30, etc.) - shared by ALL activities on those times!</li>
-<li><strong>Additional Relationships</strong>
+<li><em>Additional Relationships</em>
 <ul>
 <li><code>Activity</code> -[:SCHEDULED_ON]-&gt; <code>Date</code> (11 relationships)</li>
 <li><code>Activity</code> -[:TAKES_PLACE_DURING]-&gt; <code>timeBlock 09:00-09:30</code> (11 relationships)</li>
@@ -849,25 +856,33 @@ ul.task-list li input[type="checkbox"] {
 <li>…</li>
 </ul></li>
 </ul>
-<p><code>{cypher .cypher-scroll} (Activity {Name: "ITGD"})      -[:SCHEDULED_ON]-&gt; (Date {date: "2024-01-03"})      -[:SCHEDULED_ON]-&gt; (Date {date: "2024-01-10"})     ...     -[:TAKES_PLACE_DURING]-&gt; (TimeBlock {timeBlock: "09:00-09:30"})      -[:TAKES_PLACE_DURING]-&gt; (TimeBlock {timeBlock: "09:30-10:00"})     -[:TAKES_PLACE_DURING]-&gt; (Timeblock {timeBlock: "10:00-10:30"})      -[:TAKES_PLACE_DURING]-&gt; (Timeblock {timeBlock: "10:30-11:00"})</code></p>
+<pre class="{cypher} scroll-cypher"><code>(Activity {Name: "ITGD"}) 
+    -[:SCHEDULED_ON]-&gt; (Date {date: "2024-01-03"}) 
+    -[:SCHEDULED_ON]-&gt; (Date {date: "2024-01-10"})
+    ...
+    -[:TAKES_PLACE_DURING]-&gt; (TimeBlock {timeBlock: "09:00-09:30"}) 
+    -[:TAKES_PLACE_DURING]-&gt; (TimeBlock {timeBlock: "09:30-10:00"})
+    -[:TAKES_PLACE_DURING]-&gt; (Timeblock {timeBlock: "10:00-10:30"}) 
+    -[:TAKES_PLACE_DURING]-&gt; (Timeblock {timeBlock: "10:30-11:00"})</code></pre>
 <p><strong>Pros</strong>:</p>
 <ul>
-<li><strong>Granular Time Representation</strong>: Enables analysis at specific time intervals</li>
-<li><strong>Easier Time Calculations</strong>: Duration is encoded and allows for easy calculations.</li>
+<li><em>Granular Time Representation</em>: Enables analysis at specific time intervals</li>
+<li><em>Easier Time Calculations</em>: Duration is encoded and allows for easy calculations.</li>
 </ul>
 <p><strong>Cons</strong>:</p>
 <ul>
-<li><strong>Potential for Data Sparsity</strong>: Some time blocks might be sparsely populated, leading to storage inefficiencies.</li>
-<li><strong>Potential for High Node Codes</strong>: Lots of <code>TimeBlocks</code> if using small intervals</li>
-<li><strong>Less flexibile</strong>: Timeblocks are not dynamic.</li>
+<li><em>Potential for Data Sparsity</em>: Some time blocks might be sparsely populated, leading to storage inefficiencies.</li>
+<li><em>Potential for High Node Codes</em>: Lots of <code>TimeBlocks</code> if using small intervals</li>
+<li><em>Less flexibile</em>: Timeblocks are not dynamic.</li>
 </ul>
 </section>
 <section id="variations" class="level3">
 <h3 class="anchored" data-anchor-id="variations">Variations</h3>
 <p><strong>StartTime and Duration</strong>: This option simplifies the model by representing time using only <code>StartTime</code> and <code>DurationInMinutes</code> properties on the <code>Activity</code> node, omitting explicit <code>EndTime</code> nodes. This approach is suitable for duration based queries but it is limiting in that it is more difficult to query events occurring at specific times, overlapping time ranges or on end-times.</p>
+<p><code>{cypher .scroll-cypher} (Timeblock {name: "09:00-11:00", start: 09:00, end: 11:00, duration:120}) (Timeblock {name: "10:30-11:30", start: 10:30, end: 11:30, duration:60}) (Timeblock {name: "11:00-12:00", start: 11:00, end: 12:00, duration:60})</code></p>
 <p><strong>Time Chains</strong>: This option retains date and time nodes, but instead of having relationships from activity, the nodes are chained: <code>activity</code> -&gt; <code>startTime</code> -&gt; <code>endTime</code>.</p>
+<p><strong>Time as Relationship Property</strong>: This option stores time information as properties on the relationship between <code>Activity</code> and <code>Date</code> nodes. This approach is more compact but can be less intuitive and may limit the ability to query based on time.</p>
 <p><strong>Dynamic TimeBlocks</strong>: This variation does not pre-create timeblocks based on a set interval (e.g.&nbsp;30 minutes). They are created dynamically as required by the data and what already exists. For example, activities at 09:00-11:00, 10:30-11:30 and 11:00-12:00 would require these TimeBlocks:</p>
-<pre class="{cypher}"><code>(Timeblock {name: "09:00-11:00", start: 09:00, end: 11:00, duration:120}) (Timeblock {name: "10:30-11:30", start: 10:30, end: 11:30, duration:60}) (Timeblock {name: "11:00-12:00", start: 11:00, end: 12:00, duration:60})</code></pre>
 </section>
 <section id="summary" class="level3">
 <h3 class="anchored" data-anchor-id="summary">Summary</h3>

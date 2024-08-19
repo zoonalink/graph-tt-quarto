@@ -10,9 +10,8 @@ lightbox:
 
 ---
 
-## Towards Richer Insights
 
-The true power of the graph model lies in its extensibility. Introducing additional nodes and properties allows for a more comprehensive representation and enables more sophisticated analysis.  The graph model will depend on desired use cases and performance requirements. 
+The true power of the graph model lies in its extensibility. Introducing additional nodes and properties allows for a more comprehensive representation and enables more sophisticated analysis.  The resulting graph model will depend on desired use cases and performance requirements but the following are some potential expansions to the basic model:
 
 ### Potential Expansions:
 
@@ -20,7 +19,7 @@ The true power of the graph model lies in its extensibility. Introducing additio
 -   **Curriculum Data**: Incorporate modules and programmes to understand the interconnectedness of courses and student enrolment patterns.
 -   **Activity Types**: Differentiate between lectures, seminars, labs, etc., for a more granular analysis of teaching and learning activities.
 -   **Activity Delivery**: Understand teaching delivery (virtual, in-person, hybrid, drop-in).
--   **Student Attributes**: Add properties like "international student" or "first-year student" to explore potential student clusters.
+-   **Student Attributes**: Add properties like "international student", "reasonable adjustment flag", "first-year student".
 
 The below image (click to enlarge) shows a graph model augmented with additional data contained within the timetable database.  It is much richer and therefore more complex, but this allows for richer analysis.
 

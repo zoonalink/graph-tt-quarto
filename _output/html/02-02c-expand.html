@@ -654,10 +654,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#towards-richer-insights" id="toc-towards-richer-insights" class="nav-link active" data-scroll-target="#towards-richer-insights">Towards Richer Insights</a>
-  <ul class="collapse">
-  <li><a href="#potential-expansions" id="toc-potential-expansions" class="nav-link" data-scroll-target="#potential-expansions">Potential Expansions:</a></li>
-  </ul></li>
+  <li><a href="#potential-expansions" id="toc-potential-expansions" class="nav-link active" data-scroll-target="#potential-expansions">Potential Expansions:</a></li>
   </ul>
 </nav>
     </div>
@@ -683,9 +680,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="towards-richer-insights" class="level2">
-<h2 class="anchored" data-anchor-id="towards-richer-insights">Towards Richer Insights</h2>
-<p>The true power of the graph model lies in its extensibility. Introducing additional nodes and properties allows for a more comprehensive representation and enables more sophisticated analysis. The graph model will depend on desired use cases and performance requirements.</p>
+<p>The true power of the graph model lies in its extensibility. Introducing additional nodes and properties allows for a more comprehensive representation and enables more sophisticated analysis. The resulting graph model will depend on desired use cases and performance requirements but the following are some potential expansions to the basic model:</p>
 <section id="potential-expansions" class="level3">
 <h3 class="anchored" data-anchor-id="potential-expansions">Potential Expansions:</h3>
 <ul>
@@ -693,7 +688,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Curriculum Data</strong>: Incorporate modules and programmes to understand the interconnectedness of courses and student enrolment patterns.</li>
 <li><strong>Activity Types</strong>: Differentiate between lectures, seminars, labs, etc., for a more granular analysis of teaching and learning activities.</li>
 <li><strong>Activity Delivery</strong>: Understand teaching delivery (virtual, in-person, hybrid, drop-in).</li>
-<li><strong>Student Attributes</strong>: Add properties like “international student” or “first-year student” to explore potential student clusters.</li>
+<li><strong>Student Attributes</strong>: Add properties like “international student”, “reasonable adjustment flag”, “first-year student”.</li>
 </ul>
 <p>The below image (click to enlarge) shows a graph model augmented with additional data contained within the timetable database. It is much richer and therefore more complex, but this allows for richer analysis.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -704,7 +699,6 @@ ul.task-list li input[type="checkbox"] {
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1298,7 +1292,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"fade","descPosition":"bottom","openEffect":"fade","loop":false});
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"fade","closeEffect":"fade","selector":".lightbox","loop":false});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {

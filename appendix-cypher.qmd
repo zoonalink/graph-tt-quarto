@@ -48,7 +48,7 @@ for record in result:
 
 This is the general syntax for creating an INDEX and some examples. 
 
-``` cypher
+```{cypher}{.scroll-cypher}
 // General syntax
 CREATE INDEX FOR (n:NodeLabel) ON (n.propertyName)
 

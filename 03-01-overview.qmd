@@ -2,7 +2,7 @@
 title: "Data Engineering Overview"
 ---
 
-A significant proportion of my project has been the development and implementation of a data pipeline which efficiently and securely transfers selected university timetabling data from a relational database ([MS SQL](https://www.microsoft.com/en-us/sql-server/sql-server-2019)) to a graph database ([Neo4j](https://neo4j.com/)), enabling advanced analytics and insights. 
+A main objective of my project is the development of a data pipeline which efficiently and securely transfers selected university timetabling data from a relational database ([MS SQL](https://www.microsoft.com/en-us/sql-server/sql-server-2019)) to a graph database ([Neo4j](https://neo4j.com/)).
 
 This section provides an overview of the pipeline architecture, fundamental design principles, implementation approach and key learning takeaways.
 
@@ -58,20 +58,20 @@ digraph Overview {
 
 ## Design Principles
 
-Several best practices in data handling, processing, and database management were incorporated in developing this ETL: 
+Several "best practices" in data handling, processing, and database management were incorporated in developing this ETL. The data pipeline is built on several core design principles: 
 
 ![Design Principles](./images/design-principles-graph.png){.small-image}
 
-The data pipeline is built on several core design principles.  I started with a strong sense of what I wanted to build - a modular, scalable, secure and configurable design - however, what *exactly* this meant was discovered during the development process.  
+I started with a strong sense of what I wanted to build - a modular, scalable, secure and configurable design - however, what *exactly* this meant was only discovered during the development process.  
 
-Given the project constraints - time, word-limits, resources, data, technology - it is fair to say that compromises were made.  That said, it was important that the final artefact is one that can be developed further, potentially with specific business use cases. 
+Given project constraints - deadline, word-limits, resources, data, technology - it is fair to say that compromises were made.  That said, it was important that the final artefact is one that can be developed further for specific business use-cases. 
 
 ### Security and Data Protection
 
 ![](./images/designSecure.png){.smaller-image fig-alt="Security, Access, Anonymisation"}
 
 * Secure access controls
-* Data anonymisation
+* [Data anonymisation](appendix-anonymise.qmd)
 * Controlled handling of personally identifiable information
 
 ### Modularity, Scalability and Automation
@@ -103,15 +103,11 @@ The pipeline was developed using an iterative approach, allowing for continuous 
 
 Crucial aspects of the implementation include:
 
-* **Technology Stack**: Python for data processing, MS SQL for source data, Neo4j for the target graph database.  See [Appendix](appendix-tech-stack.qmd) for more details.
+* **Technology Stack**: Python for data processing, MS SQL for source data, Neo4j for the target graph database.  See [Technology Stack](appendix-tech-stack.qmd) for more details.
 * **Cloud Integration**: Utilisation of Google Drive for intermediate storage, compatible with Neo4j Aura.
 * **Validation**: Implemented at various stages to ensure data integrity and fitness for processing.
 * **Testing**: Continuous simulated unit testing to ensure that components are behaving as expected.
 
 ## Upcoming Sections
 
-The following sections will delve into the specific implementation details of each stage in the pipeline, demonstrating how these principles are put into practice.
-
-I will explore the iterative development process, configuration management, extraction techniques, transformation processes, loading strategies, and automation workflows. 
-
-Finally, I will reflect on lessons learned and potential future enhancements to the data engineering components.
+The following sections will delve into specific implementation details of each stage, demonstrating how these principles are put into practice, before reflecting on lessons learned and potential future enhancements.

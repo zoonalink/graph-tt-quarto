@@ -682,8 +682,8 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>I followed an interative, agile-inspired approach when developing the data pipeline, despite being a team of one. This allowed for flexibility, continuous improvement and the opportunity to adapt to new insights during the process (Beck, K., et al.&nbsp;2001).</p>
-<p>The bulk of my effort was spent <em>prototyping</em>, <em>testing</em> and <em>reviewing</em> with each iteration resulting in a new challenge, issue, opportunity and less frequently, success.</p>
+<p>I followed an interative, agile-inspired approach despite being a team of one. This method allowed for flexibility, continuous improvement and the opportunity to adapt to new insights during the process (Beck, K., et al.&nbsp;2001).</p>
+<p>The bulk of my effort was spent <em>prototyping</em>, <em>testing</em> and <em>reviewing</em> with each iteration resulting in a new challenge, issue, or opportunity.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="./images/iteration.png" class="medium-image img-fluid figure-img"></p>
@@ -692,12 +692,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="initial-planning-and-requirements-gathering" class="level3">
 <h3 class="anchored" data-anchor-id="initial-planning-and-requirements-gathering">Initial Planning and Requirements Gathering</h3>
-<p>The development cycle began with initial high-level planning and requirements gathering, where I imagined how each stage should work, trying to bear in mind future-proofing and repeatability principles.</p>
+<p>The development cycle began with initial high-level planning and requirements gathering, where I imagined how each stage <em>should</em> work, trying to bear in mind future-proofing and repeatability principles.</p>
 <p>I defined core functionality for each module (extraction, transformation, loading) and outlined initial technical requirements and constraints. The planning documentation was maintained in Quarto and markdown files in a centralised repository for project information.</p>
 </section>
 <section id="prototyping" class="level3">
 <h3 class="anchored" data-anchor-id="prototyping">Prototyping</h3>
-<p>Following the initial planning, rapid prototyping was undertaken for each module:</p>
+<p>Following initial planning, rapid prototyping was undertaken for each module:</p>
 <ul>
 <li>SQL prototyping for data extraction queries</li>
 <li>Python prototyping for data transformation and processing logic</li>
@@ -707,7 +707,6 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="component-based-development-and-testing" class="level3">
 <h3 class="anchored" data-anchor-id="component-based-development-and-testing">Component-Based Development and Testing</h3>
-<p>Development proceeded with a focus on individual components:</p>
 <ul>
 <li>Each module (extraction, transformation, loading) was developed separately with a view to distinct “handovers”</li>
 <li>An iterative, component-based testing approach was employed</li>
@@ -720,11 +719,11 @@ ul.task-list li input[type="checkbox"] {
 <p>As components reached a (more) stable state, they were integrated and reviewed:</p>
 <ul>
 <li>Components were combined to form larger functional units</li>
-<li>Integrated functionality was occasionally demonstrated to subject matter experts (operational timetablers, data manager)</li>
+<li>Integrated functionality was occasionally demonstrated to subject matter experts (e.g.&nbsp;data manager)</li>
 <li>Feedback was gathered on functionality, usability, and alignment with requirements</li>
 </ul>
 <p>Insights gained from reviews, demonstrations and ongoing development were continuously fed back into the process. New requirements or modifications were documented, for example updates to SQL SELECT statements and data model interpretations.</p>
-<p>With each new piece of information or change, decisions were required and made - but not always the right ones!</p>
+<p>Each change required decisions - but I did not always make the right ones!</p>
 </section>
 <section id="version-validation-and-documentation" class="level3">
 <h3 class="anchored" data-anchor-id="version-validation-and-documentation">Version Validation and Documentation</h3>
@@ -732,15 +731,15 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>End-to-end validation of the entire pipeline was performed.</li>
 <li>Results were documented in notebooks, including opportunities for improvement.</li>
-<li>Any bugs or opportunities were logged for the next iteration.</li>
+<li>Bugs and opportunities were logged for future iterations.</li>
 </ul>
 </section>
 <section id="continuous-learning-and-adaptation" class="level3">
 <h3 class="anchored" data-anchor-id="continuous-learning-and-adaptation">Continuous Learning and Adaptation</h3>
 <p>Learning and adaptation became central to the project. Each iteration brought new insights, often through trial and error and certainly through unintended consequences or unforeseen complications. Early challenges included the need to modularise components <em><em>before</em></em> they became unmanageable and resisting the temptation to make overly ambitious changes. With practice, I became better at recognising when refactoring was necessary.</p>
 <p>Developing the ETL was not a linear journey. There were many moments of frustration, periods of seemingly endless, painstaking troubleshooting, and a constant battle against the urge to over-deliver. Yet, with each stumble, the process itself became more refined, transforming into a powerful tool for identifying and resolving issues.</p>
-<p>While the core MVP (minimum viable product) requirements remained relatively stable (I set them after all!), the iterative approach empowered me to seize opportunities for enhancement. Each chance to modularise, parameterise, or fine-tune sparked an almost compulsive drive for improvement, pushing the pipeline beyond its initial scope.</p>
-<p>This dedication to continuous refinement, while time-consuming, ultimately resulted in a robust, flexible solution that can adapt (relatively) gracefully to unforeseen challenges and serve as the starting point for future opportunities.</p>
+<p>While core MVP (minimum viable product) requirements remained relatively stable (<em>I set them after all!</em>), iterating allowed me to seize opportunities for enhancement. Each chance to modularise, parameterise, or fine-tune sparked an almost compulsive drive for improvement, pushing the pipeline beyond its initial scope.</p>
+<p>Ultimately it all resulted in a robust, flexible solution that can adapt (relatively) gracefully to unforeseen challenges and serve as the starting point for future opportunities.</p>
 
 
 </section>

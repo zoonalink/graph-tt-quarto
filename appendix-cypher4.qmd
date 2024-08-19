@@ -13,7 +13,7 @@ This page contains a selection of count queries used to explore the graph databa
 
 Below are two queries returning the same results - counts of nodes by node label.
 
-```cypher
+```{cypher}{.scroll-cypher}
 // Count of nodes - row per node
 
 UNWIND ["student", "staff", "room", "activity"] AS label
@@ -21,9 +21,10 @@ MATCH (n)
 WHERE label IN labels(n)
 RETURN label, count(n) AS count
 ```
+
 ![Count All Nodes](./images/cypher-node-count1.png)
 
-```cypher
+```{cypher}{.scroll-cypher}
 // Count of nodes - single row
 
 MATCH (n:student)
@@ -35,6 +36,7 @@ WITH studentCount, lecturerCount, count(n) AS roomCount
 MATCH (n:activity)
 RETURN studentCount, lecturerCount, roomCount, count(n) AS activityCount
 ```
+
 ![Count All Nodes](./images/cypher-node-count2.png)
 
 
@@ -42,7 +44,7 @@ RETURN studentCount, lecturerCount, roomCount, count(n) AS activityCount
 
 The query below returns counts of relationships.  We can see that there are a significant amount of (student)-[]->(activity) relationships due to how we structured `activity` in the graph - that is, a separate node for each instance. 
 
-```cypher
+```{cypher}{.scroll-cypher}
 // Count of relationships
 
 MATCH ()-[r:ATTENDS]->()
@@ -54,6 +56,7 @@ WITH attendsCount, teachesCount, count(r) AS occupiesCount
 MATCH ()-[r:BELONGS_TO]->()
 RETURN attendsCount, teachesCount, occupiesCount, count(r) AS belongsCount
 ```
+
 ![Count All Relationships](./images/cypher-rel-count.png)
 
 
