@@ -8,9 +8,73 @@ lightbox:
 ---
 <br>
 
+
+1. imported locations from file
+
+![imported locations from file](./images/demoRoom-import.png)
+
+2. load cypher
+
+```{cypher}{scroll-cypher}
+UNWIND $nodeRecords AS nodeRecord
+WITH *
+WHERE NOT nodeRecord.`graphid` IN $idsToSkip AND NOT nodeRecord.`graphid` IS NULL
+MERGE (n: `demoRoom` { `graphid`: nodeRecord.`graphid` })
+SET n.`#rm.bl_id` = nodeRecord.`#rm.bl_id`
+SET n.`fl_id` = toInteger(trim(nodeRecord.`fl_id`))
+SET n.`rm_id` = nodeRecord.`rm_id`
+SET n.`rm_type` = nodeRecord.`rm_type`
+SET n.`dp_id` = nodeRecord.`dp_id`
+SET n.`bu_id` = nodeRecord.`bu_id`
+SET n.`rm_std` = nodeRecord.`rm_std`
+SET n.`rm_use` = nodeRecord.`rm_use`
+SET n.`site_id` = nodeRecord.`site_id`
+SET n.`dv_id` = nodeRecord.`dv_id`
+SET n.`asb_risk` = nodeRecord.`asb_risk`
+SET n.`rm_cat` = nodeRecord.`rm_cat`
+SET n.`lon` = toFloat(trim(nodeRecord.`lon`))
+SET n.`lat` = toFloat(trim(nodeRecord.`lat`))
+SET n.`roomHostKey` = nodeRecord.`roomHostKey`;
+```
+
+
+![](./images/demoRoom-FR.png)
+![](./images/demoRoom-FR-zoom.png)
+![](./images/demoRoom-FR-CITY.png)
+
 Start from rooms in cypher-query-notes
 
 utilisation
 most popular rooms
 mapping rooms
 room types
+
+
+
+Understanding the issue
+
+Building coordinates often use a local or custom coordinate system that might not align well with the default geographic coordinate system (latitude and longitude) used in the Coordinate layout.
+This mismatch can result in the coordinates appearing clustered or overlapping, making it difficult to visualize the spatial relationships between your rooms.
+Possible Solutions:
+
+Transform Coordinates
+If you know the transformation parameters between your building coordinate system and a standard geographic coordinate system (e.g., UTM, State Plane), you can use Cypher queries or external tools to convert your building coordinates into latitude and longitude before visualizing them in the Coordinate layout.
+Use a Cartesian Coordinate System
+If you're primarily interested in the relative positions of the rooms within the building, and not their absolute geographic location, you can use a Cartesian coordinate system (x, y) instead of latitude and longitude.
+You can either:
+Store your building coordinates directly as x and y properties on your nodes.
+Convert your building coordinates into x and y values using Cypher queries or external tools.
+In the Coordinate layout settings, select the appropriate x and y properties for visualization.
+Experiment with Different Projections
+While Neo4j Bloom/Browser might have limited projection options, you could explore exporting your data to a dedicated mapping or GIS tool that supports various projections.
+This would allow you to experiment with different projections to find one that best visualizes the spatial relationships between your rooms based on their building coordinates
+Important considerations:
+
+Accuracy: The choice of coordinate system or projection should depend on the level of accuracy required for your visualization and analysis.
+Data Transformation: Converting coordinates between different systems might introduce some level of distortion or error.
+Tool Compatibility: Ensure that the chosen coordinate system or projection is supported by the visualization tool you're using.
+Example (using Cartesian coordinates)
+
+Assuming your demoRoom nodes have building_x and building_y properties representing their building coordinates, you can visualize them in the Coordinate layout as follows:
+
+In the Coordinate layout settings, select building_x for the X-axis and building_y for the Y-axis
