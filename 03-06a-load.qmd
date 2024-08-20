@@ -2,7 +2,7 @@
 title: "Google Load"
 ---
 
-The free cloud instance of Neo4j (Aura) requires that csv files are stored in [public cloud storage](https://neo4j.com/docs/aura/aurads/importing-data/load-csv/) like Google Drive or Dropbox.  
+The free cloud instance of Neo4j (Aura) requires that csv files are stored in [public cloud storage](https://neo4j.com/docs/aura/aurads/importing-data/load-csv/) like Google Drive or Dropbox.
 
 Therefore, my project requires an intermediary step.
 
@@ -38,11 +38,13 @@ digraph google_drive_storage {
 
 ```
 
-File storage and directories are controlled via Config.  I created a publicly shared folder in Google drive which contains all project csvs:
+File storage and directories are controlled via Config. I created a publicly shared folder in Google drive which contains all project csvs:
 
-/- root: Google Drive folder
-  /- hostkeys (automatically created, unless override)
-    /- nodes
-    /- relationships
+```
+- root: Google Drive folder
+  - hostkeys (automatically created, unless override) 
+    - nodes
+    - relationships
+```
 
-![Screenshot of Google Drive: note that files were created by Google API](./images/google-drive-node.png)
+![Screenshot of Google Drive foler and files for MSc Data Science (INB112): note that files were created by Google API](./images/google-drive-node.png)

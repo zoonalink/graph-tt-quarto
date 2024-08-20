@@ -1,0 +1,45 @@
+---
+title: "ETL Summary"
+---
+
+For the proof-of-concept, the following programmes and associated data (students, staff, modules, activities, rooms, etc.) were extracted from the source system and transformed before being loaded into a Neo4j cloud instance.
+
+The table below summarises the time taken for each programme.
+
+| pos | level | hostkey | count | extract & process | gdrive | neo4j |
+|------------------|---------|---------|---------|---------|---------|---------|
+| Artificial Intelligence | PG | I400 | 16 | 26.8s | 26.1s | 2m 50.6s |
+| Data Science | PG | INB112 | 206 | 57.6s | 26.5s | 1m 35.1s |
+| Mathematics | UG | G90D | 103 | 38.8s | 25.5s | 6m 12.9s |
+| Computer Science | UG | I10J | 431 | 1m 9.8s | 24.1s | 11m 16.1s |
+| Computer Science | UG | G500 | 45 | 30s | 24.4s | 2m 9.5s |
+| Cyber Security and Digital Forensics | UG | G4H4 | 271 | 57.4s | 51.9s | 6m 36.3s |
+| Cyber Security | PG | I900 | 216 | 45.7s | 25.9s | 3m 7.5s |
+| Information Management | PG | P110 | 42 | 17.2s | 25.8s | 1m 35.1s |
+| Information Technology | PG | G56A12 | 174 | 28.3s | 25.8s | 2m 22.3s |
+
+The largest programme (Computer Science) took just over 1 minute to extract and process and 11 minutes to load into Neo4j. The Google Load consistently took \~25 seconds regardless of file sizes.
+
+![Computer Science (I10J) - Department-Programme-Students](./images/I10J-pos.png)
+
+![Computer Science (I10J) - Department-Programme-Modules](./images/I10J-screenshot.png)
+
+However, the current graph model creates a **significant** amount of relationships between nodes:
+
+| node/relationship | count |
+|-------------------|-------|
+| programme (n)     | 4     |
+| department (n)    | 1     |
+| hasOwningDept (r) | 4     |
+| student (n)       | 413   |
+| registeredOn (r)  | 413   |
+| module (n)        | 11    |
+| enrolledOn (r)    | 1048  |
+| activity (n)      | 1847  |
+| attends (r)       | 65493 |
+| staff (n)         | 23    |
+| teaches (r)       | 538   |
+| room (n)          | 32    |
+| occupies (r)      | 462   |
+| activityType (n)  | 15    |
+| hasType (r)       | 1847  |

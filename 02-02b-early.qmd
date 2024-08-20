@@ -22,13 +22,7 @@ Even with this basic model, we can easily extract valuable insights, for example
 
 **Busiest locations overall**
 
-```{cypher .scroll-cypher}
-MATCH (r:room)<-[:OCCUPIES]-(a:activity)
-WITH r, sum(a.actDuration)/60 AS totalDurationInHours
-RETURN r.roomName AS Room, r.roomCapacity AS Capacity, r.roomType AS Type, totalDurationInHours
-ORDER BY totalDurationInHours DESC
-LIMIT 3
-```
+`{cypher}{.scroll-cypher} MATCH (r:room)<-[:OCCUPIES]-(a:activity) WITH r, sum(a.actDuration)/60 AS totalDurationInHours RETURN r.roomName AS Room, r.roomCapacity AS Capacity, r.roomType AS Type, totalDurationInHours ORDER BY totalDurationInHours DESC LIMIT 3`
 
 | Room    | Capacity | Type     | totalDurationInHours |
 |---------|----------|----------|----------------------|
@@ -38,14 +32,7 @@ LIMIT 3
 
 **Busiest location for a specific time**
 
-```{cypher}{.scroll-cypher}
-MATCH (r:room)<-[:OCCUPIES]-(a:activity)
-WHERE a.actStartTime = localtime({hour:9, minute:0, second:0}) 
-WITH r, count(a) AS Count, a.actStartTime AS StartTime
-RETURN r.roomName AS Room, Count, StartTime
-ORDER BY Count DESC
-LIMIT 3
-```
+`{cypher}{.scroll-cypher} MATCH (r:room)<-[:OCCUPIES]-(a:activity) WHERE a.actStartTime = localtime({hour:9, minute:0, second:0})  WITH r, count(a) AS Count, a.actStartTime AS StartTime RETURN r.roomName AS Room, Count, StartTime ORDER BY Count DESC LIMIT 3`
 
 | Room    | Count | StartTime |
 |---------|-------|-----------|
@@ -55,28 +42,26 @@ LIMIT 3
 
 **Students with below/above average hours**
 
-This query returns students and whether they have more or less scheduled time on their timetable compared to the programme cohort average. The cut-off is based on average +/- 10% but can also be written using standard deviation.
+This query returns students and whether they have more or less scheduled time on their timetable compared to the programme cohort average.\[\^1\]
 
-```{cypher}{.scroll-cypher}
-MATCH (s:student)-[:ATTENDS]->(a:activity)
-WITH s.stuProgName AS progName, s.stuID_anon AS studentID, SUM(a.actDurationInMinutes) AS studentTotalDuration
-WITH progName, 
-     AVG(studentTotalDuration) / 60 AS progAverageHoursPerStudent, 
-     collect({studentID: studentID, studentTotalHours: studentTotalDuration / 60}) AS studentsData
-UNWIND studentsData AS studentData
-RETURN progName, 
-       progAverageHoursPerStudent,
-       studentData.studentID AS studentID, 
-       studentData.studentTotalHours AS studentTotalHours, 
-       CASE 
-           WHEN studentData.studentTotalHours < (progAverageHoursPerStudent * 0.9) THEN 'Below Average'
-           WHEN studentData.studentTotalHours > (progAverageHoursPerStudent * 1.1) THEN 'Above Average'
-           ELSE 'Average'
-       END AS compare
-```
+\[\^1:\] The average is calculated based on the total duration of activities attended by each student. The below/above average classification is based on a 10% deviation from the average. Alternative approaches have been used to define the average and the deviation threshold including median values and standard deviations.
+
+`{cypher}{.scroll-cypher} MATCH (s:student)-[:ATTENDS]->(a:activity) WITH s.stuProgName AS progName, s.stuID_anon AS studentID, SUM(a.actDurationInMinutes) AS studentTotalDuration WITH progName,       AVG(studentTotalDuration) / 60 AS progAverageHoursPerStudent,       collect({studentID: studentID, studentTotalHours: studentTotalDuration / 60}) AS studentsData UNWIND studentsData AS studentData RETURN progName,         progAverageHoursPerStudent,        studentData.studentID AS studentID,         studentData.studentTotalHours AS studentTotalHours,         CASE             WHEN studentData.studentTotalHours < (progAverageHoursPerStudent * 0.9) THEN 'Below Average'            WHEN studentData.studentTotalHours > (progAverageHoursPerStudent * 1.1) THEN 'Above Average'            ELSE 'Average'        END AS compare`
 
 | progName | progAverageHoursPerStudent | studentID | studentTotalHours | compare |
-|----|----|----|----|----|
+|---------------|---------------|---------------|---------------|---------------|
 | "Maths NS" | 274.7692307692308 | "stu-23442558" | 361 | "Above Average" |
 | "Maths NS" | 274.7692307692308 | "stu-91911371" | 126 | "Below Average" |
 | "Maths NS" | 274.7692307692308 | "stu-75224499" | 251 | "Average" |
+
+: Using Percentage
+
+When using standard deviation (1SD) the same three students have a different outcome. This is primarily due to the exceptionally large standard deviation. This is because students on this version of the programme could be trailing modules and either attending significantly more or less activity, making the range very large.
+
+| progName | progAverageHoursPerStudent | progStDevHoursPerStudent | studentID | studentTotalHours | compare |
+|----|----|----|----|----|----|
+| "Maths NS" | 274.7692307692308 | 118.81231781219205 | "stu-23442558" | 361 | "Average" |
+| "Maths NS" | 274.7692307692308 | 118.81231781219205 | "stu-91911371" | 126 | "Below Average" |
+| "Maths NS" | 274.7692307692308 | 118.81231781219205 | "stu-42997469" | 251 | "Below Average" |
+
+: Using Standard Deviation

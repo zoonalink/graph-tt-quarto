@@ -4,33 +4,28 @@ title: "ETL Code Gists"
 
 Complete code for the Data Pipeline can be found in these Github gists or on the following pages.
 
+**GitHub Gists:**
 
 [**Graph Timetable - Quarto - Config and Misc**](https://gist.github.com/zoonalink/818cae9f20db1f1417725a1f297ff061)
 
-
-
-
 [**Graph Timetable - Quarto - SQL Queries**](https://gist.github.com/zoonalink/4ba9fa5bf75ac21c1537d8176ee5c700)
-
-
-
 
 [**Graph Timetable - Quarto - Extract**](https://gist.github.com/zoonalink/d3bafb3100a162c50694be699bfc8e3f)
 
-
-
 [**Graph Timetable - Quarto - Transform**](https://gist.github.com/zoonalink/125673550192ff7515628b7d00879114)
-
-
 
 [**Graph Timetable - Quarto - Upload to Google Drive**](https://gist.github.com/zoonalink/450bff1a92d2efcde58ab4b9edc3e7ae)
 
-
 [**Graph Timetable - Quarto - Load**](https://gist.github.com/zoonalink/ce5e1f3e578a5eeed05144f3676af409)
 
+[**Graph Timetable - Quarto - Config and Misc**](https://gist.github.com/zoonalink/818cae9f20db1f1417725a1f297ff061)
 
+[**Graph Timetable - Quarto - SQL Queries**](https://gist.github.com/zoonalink/4ba9fa5bf75ac21c1537d8176ee5c700)
 
+[**Graph Timetable - Quarto - Extract**](https://gist.github.com/zoonalink/d3bafb3100a162c50694be699bfc8e3f)
 
+[**Graph Timetable - Quarto - Transform**](https://gist.github.com/zoonalink/125673550192ff7515628b7d00879114)
 
+[**Graph Timetable - Quarto - Upload to Google Drive**](https://gist.github.com/zoonalink/450bff1a92d2efcde58ab4b9edc3e7ae)
 
-
+[**Graph Timetable - Quarto - Load**](https://gist.github.com/zoonalink/ce5e1f3e578a5eeed05144f3676af409)

@@ -165,6 +165,7 @@ driver.close()
 ```
 
 
+
 ### Student clashes
 
 This query identifies students who are scheduled to attend two or more activities at the same time.  Identifying clashes is a complex undertaking and it is one where the graph structure in terms of nodes, properties and relationships could potentially make a significant different to performance. 

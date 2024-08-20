@@ -2,31 +2,31 @@
 title: Project Aims and Scope
 ---
 
-The primary aim of this project is to **investigate the viability of using graph data structures** for enhanced timetabling analytics and reporting. 
+The primary aim of this project is to **investigate the viability of using graph data structures** for enhanced timetabling analytics and reporting.
 
-### Objectives include: 
+### Objectives
+<br>
 
-1. Designing an **extensible, system-agnostic graph data model** for university timetables
-2. Developing a **configurable ETL** (extract, transform, load) pipeline to transition from relational to graph database representations of timetables
-3. Discussing how **graph-based approaches to timetabling analysis** could contribute to measuring and improving timetable quality.
+1.  Designing an **extensible, system-agnostic graph data model** for university timetables
+2.  Developing a **configurable ETL** (extract, transform, load) pipeline to transition from relational to graph database representations of timetables
+3.  Discussing how **graph-based approaches to timetabling analysis** could contribute to measuring and improving timetable quality.
 
-In order to achieve these objectives, I implement and evaluate a set of proof-of-concept analytical metrics which leverage the graph data model whilst discussing  performance capabilities (and limitations) against traditional relational approaches.
+In order to achieve these objectives, I implement and evaluate a set of proof-of-concept analytical metrics which leverage the graph data model whilst discussing performance capabilities (and limitations) against traditional relational approaches.
 
-It is important to note that this project is positioned as a proof-of-concept and exploratory study. 
+It is important to note that this project is positioned as a proof-of-concept and exploratory study.
 
 I will **not**:
 
-* reinvent a full-scale timetabling system 
-* attempt to optimise real-time timetable generation
-  
-I will: 
+-   reinvent a full-scale timetabling system
+-   attempt to optimise real-time timetable generation
 
-* focus on the data engineering aspects of transitioning from relational to graph data models
-* demonstrate the potential of graph-based approaches in the analysis of university timetables
-* provide a foundation for future analytical work.
+I will:
+
+-   focus on the data engineering aspects of transitioning from relational to graph data models
+-   demonstrate the potential of graph-based approaches in the analysis of university timetables
+-   provide a foundation for future analytical work.
 
 Let's graph!
-
 
 ```{dot}
 digraph G {
@@ -35,7 +35,7 @@ digraph G {
 	start=random
 	overlap=false
 	splines=true
-	size="6,6"
+	size="6,4"
 	"4zj99lz2" [label="" fillcolor="#c887ce" fontsize=1 height=0.12 shape=circle style=filled width=0.12]
 	"666n359b" [label="" fillcolor="#1a40e0" fontsize=1 height=0.12 shape=circle style=filled width=0.12]
 	"4s3xzocl" [label="" fillcolor="#4ddd8e" fontsize=1 height=0.12 shape=circle style=filled width=0.12]
@@ -340,7 +340,6 @@ digraph G {
 
 ```
 
-
-A randomly generated graph for visual purposes only.  
+A randomly generated graph for visual purposes only.
 
 [See Appendix for graph generator code](appendix-random-graph.qmd)

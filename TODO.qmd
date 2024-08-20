@@ -32,20 +32,39 @@
 - [x] supervisor notes page
 - [x] check other requirements and add
 
-**MONDAY**
+**Tuesday**
+
+
+- [x] draft tte quality section -> see notes and cypher query section
+- [x] draft conclusion section 
+- [x] update references page 
+- [ ] read ttq section
+- [ ] read and rewrite conclusion sections
+- [ ] reword bluesky oppos
+- [ ] reword perspectives
+- [ ] link bluesky and perspectives to main page 
+- [ ] link bluesky and perspective to yaml
 
 - [ ] word count check - and adjust
-- [ ] draft tte quality section -> see notes and cypher query section
-- 
-- [ ] draft conclusion section 
+- [x] add load times to somewhre
 
 
 - [ ] add cypher query insights page -> future questions which can be answered
 
 - [ ] update intro and objectives - three goals, sql-graph ETL, open door to insights, spec how timetable 'quality' can be formalised
-  - [ ] bulk is data engineering project - this is precursor which enables the other two objectives and future work
 
-**TUESDAY**
+
+
+
+
+
+
+**later**
+
+- perspectives:
+  - programme leader
+  - timetabling manager - use me as example with ttquality queries
+  - adminstrator - room utilisation
 
 - [ ] rewrite time model page with new images
 - [ ] load demo archibus data

@@ -36,20 +36,13 @@ Herres, B. and Schmitz, H. (2021) Decomposition of university course timetabling
 
 Holm, D.S., Mikkelsen, R.Ø., Sørensen, M. and Stidsen, T.J.R. (2022) A graph-based MIP formulation of the International Timetabling Competition 2019. Journal of Scheduling [online]. 25 (4), pp. 405–428. Available from: https://doi.org/10.1007/s10951-022-00724-y [Accessed 2 November 2023].
 
-Hutson, G. and Jackson, M. (2023) Graph Data Modeling in Python [online]. Packt Publishing. [Accessed 24 December 2023].
-
 Johnson, D. (1993) A Database Approach to Course Timetabling. The Journal of the Operational Research Society [online]. 44 (5), pp. 425–433. Available from: https://www.jstor.org.ezproxy.uwe.ac.uk/stable/2583909 [Accessed 28 July 2024].
 
 Khan, W., Kumar, T., Zhang, C., Raj, K., Roy, A.M. and Luo, B. (2023) SQL and NoSQL Database Software Architecture Performance Analysis and Assessments—A Systematic Literature Review. Big Data and Cognitive Computing [online]. 7 (2), p. 97. Available from: https://www.mdpi.com/2504-2289/7/2/97 [Accessed 28 July 2024].
 
-Lee, V., Nguyen, P.K. and Thomas, A. (2023) Graph-Powered Analytics and Machine Learning with TigerGraph [online]. [Accessed 4 November 2023].
-
 Lemos, A., Melo, F.S., Monteiro, P.T. and Lynce, I. (2019) Room usage optimization in timetabling: A case study at Universidade de Lisboa. Operations Research Perspectives [online]. 6, p. 100092. Available from: https://linkinghub.elsevier.com/retrieve/pii/S2214716018301696 [Accessed 26 January 2024].
 
 Lindahl, M., Mason, A.J., Stidsen, T. and Sørensen, M. (2018) A strategic view of University timetabling. European Journal of Operational Research [online]. 266 (1), pp. 35–45. Available from: https://www.sciencedirect.com/science/article/pii/S0377221717308433 [Accessed 28 July 2024].
-
-
-Mandal, A.K. (2020) Development of an Interactive Tool based on Combining Graph Heuristic with Local Search for Examination Timetable Problem. International Journal of Advanced Computer Science and Applications [online]. 11 (3). Available from: https://www.proquest.com/docview/2655156280/abstract/33CF4A9244324D32PQ/1 [Accessed 18 July 2024].
 
 MirHassani, S.A. and Habibi, F. (2013) Solution approaches to the course timetabling problem. Artificial Intelligence Review [online]. 39 (2), pp. 133–149. Available from: http://link.springer.com/10.1007/s10462-011-9262-6 [Accessed 26 January 2024].
 
@@ -78,8 +71,6 @@ Sanchez, C.A. (2015) An analytics based architecture and methodology for collabo
 Scifo, E. (2023) Graph Data Science with Neo4j [online]. [Accessed 4 November 2023].
 
 Sokolova, Marina V., Francisco J. Gómez, and Larisa N. Borisoglebskaya. ‘Migration from an SQL to a Hybrid SQL/NoSQL Data Model’. Journal of Management Analytics 7, no. 1 (March 2020): 1–11. https://doi.org/10.1080/23270012.2019.1700401.
-
-Thomas, J.J., Khader, A.T. and Belaton, B. (2009) Visualization Techniques on the Examination Timetabling Pre-processing Data. In: Imaging and Visualization 2009 Sixth International Conference on Computer Graphics [online]Imaging and Visualization 2009 Sixth International Conference on Computer Graphics. pp. 454–458. Available from: https://ieeexplore.ieee.org/document/5298764 [Accessed 25 January 2024].
 
 Webber, J., Eifrem, E. and Robinson, I. (2013) Graph Databases [online]. [Accessed 4 November 2023].
 

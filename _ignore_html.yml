@@ -55,7 +55,7 @@ website:
       - text: "Data Pipeline"
         menu:
           - href: 03-01-overview.qmd
-            text: Overview
+            text: ETL Overview
           - href: 03-02-approach.qmd
             text: Approach
           - href: 03-03-config.qmd
@@ -72,12 +72,8 @@ website:
             text: Reflection
       - href: 04-timetable-metrics.qmd
         text: Timetable Metrics
-      - text: "Conclusion"
-        menu:
-        - href: 05-future-opportunities.qmd
-          text: Future Opportunities
-        - href: 06-conclusion.qmd
-          text: Conclusion
+      - href: 05-final-thoughts.qmd
+        text: "Final Thoughts"
       - text: "Appendix & References"
         href: appendix-random-graph.qmd
         menu:
@@ -89,8 +85,10 @@ website:
           text: Configuration
         - href: appendix-anonymise.qmd
           text: Anonymisation
-        - text: ETL Code 
+        - text: ETL Summary and Code 
           menu:
+          - href: appendix-code-intro.qmd
+            text: ETL Summary
           - href: appendix-code.qmd
             text: ETL Code
           - href: appendix-code1-config.qmd
@@ -193,7 +191,7 @@ website:
       - section: "Data Pipeline"
         contents:
           - href: 03-01-overview.qmd
-            text: Overview
+            text: ETL Overview
           - href: 03-02-approach.qmd
             text: Approach
           - href: 03-03-config.qmd
@@ -210,12 +208,8 @@ website:
             text: Reflection
       - href: 04-timetable-metrics.qmd
         text: Timetable Metrics
-      - section: "Final Thoughts"
-        contents:
-          - href: 05-future-opportunities.qmd
-            text: Future Opportunities
-          - href: 06-conclusion.qmd
-            text: Conclusion
+      - href: 05-final-thoughts.qmd
+        text: "Final Thoughts"
       - section: "Appendix & References"
         contents:
           - href: appendix-random-graph.qmd
@@ -226,8 +220,10 @@ website:
             text: Configuration
           - href: appendix-anonymise.qmd
             text: Anonymisation
-          - section: "ETL Code"          
+          - section: "ETL Summary and Code"          
             contents:
+              - href: appendix-code-intro.qmd
+                text: ETL Summary
               - href: appendix-code.qmd
                 text: ETL Code
               - href: appendix-code1-config.qmd

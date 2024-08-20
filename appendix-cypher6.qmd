@@ -480,6 +480,29 @@ ORDER BY Date;
 
 ![Max hours in a day](./images/cypher-maxTotalDay.png)
 
+
+### Travel time between activities
+
+This query calculates the travel time between consecutive activities for a student on a specific date. It uses the lat/long coordinates of the buildings to calculate the distance and time taken to travel between them and a default walking speed of 1.4 m/s to calculate time.  
+
+This is a simple example and does not account for factors like traffic, walking speed, or other modes of transport.
+
+
+```{cypher}{.scroll-cypher}
+// Calculate travel time between consecutive activities for a student on a specific date
+MATCH (s:student {stuFullName_anon: "David Johnson"})-[:ATTENDS]->(a1:activity)-[:OCCUPIES]->(r1:room),
+      (s)-[:ATTENDS]->(a2:activity)-[:OCCUPIES]->(r2:room)
+WHERE a1.actEndTime = a2.actStartTime AND a1.actStartDate = a2.actStartDate AND a1 <> a2 AND
+      a1.actStartDate IN [date("2023-01-11"), date("2022-09-27"), date("2023-03-14")] 
+RETURN DISTINCT 
+    s.stuFullName_anon, 
+    a1.actName AS act1, a1.actStartDate AS date, a1.actStartTime+"-"+a1.actEndTime AS act1Times, a2.actStartTime+"-"+a2.actEndTime AS act2Times, a2.actName AS act2,
+    point.distance(r1.location, r2.location) AS distance,
+    round(point.distance(r1.location, r2.location) / 1.4) AS walkingTimeSeconds // Calculate walking time in seconds
+```
+
+![Travel time between activities](./images/cypher-b2b-travel.png)
+
 ### Lunch breaks
 
 It might be expected that a student (or staff) has a lunch break.  The cypher below calculates free and booked tie within a window, in this case 12:00 and 14:00.  It can be used to find students who do not have a lunch break or count the number of days that a student does not have a lunch break.  

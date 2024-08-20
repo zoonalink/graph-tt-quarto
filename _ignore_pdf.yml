@@ -35,12 +35,12 @@ book:
     - 03-06b-load.qmd
     - 03-07-reflection.qmd
     - 04-timetable-metrics.qmd
-    - 05-future-opportunities.qmd
-    - 06-conclusion.qmd
+    - 05-final-thoughts.qmd
     - appendix-random-graph.qmd
     - appendix-tech-stack.qmd
     - appendix-config.qmd
     - appendix-anonymise.qmd
+    - appendix-code-intro.qmd
     - appendix-code.qmd
     - appendix-code1-config.qmd
     - appendix-code2-sql.qmd

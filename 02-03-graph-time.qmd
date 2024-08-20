@@ -52,7 +52,8 @@ Option 1 addresses this by creating nodes for each unique combination of `name`,
 -   Each node has `date`, `startTime`, `endTime` properties
 -   Only `date` is different between each node.
 
-```{cypher}{.scroll-cypher}       
+```{cypher}{.scroll-cypher}  
+// cypher structure     
 (Activity {Name: "ITGD", Date: "2024-01-03", StartTime: "09:00", EndTime: "11:00"}) 
 (Activity {Name: "ITGD", Date: "2024-01-10", StartTime: "09:00", EndTime: "11:00"}) 
 ... 
@@ -90,7 +91,8 @@ Option 2 creates a *single activity* node but also additional `date` and `time` 
 
 <br>
 
-```{cypher}{.scroll-cypher}         
+```{cypher}{.scroll-cypher}
+// cypher structure         
 (Activity {Name: "ITGD"})
     -[:SCHEDULED_ON]-> (Date {date: "2024-01-03"})
     -[:SCHEDULED_ON]-> (Date {date: "2024-01-10"})
@@ -130,6 +132,7 @@ Option 3 creates a single activity but instead of individual start and end time 
     -   ...
   
 ```{cypher}{.scroll-cypher}
+// cypher structure
 (Activity {Name: "ITGD"}) 
     -[:SCHEDULED_ON]-> (Date {date: "2024-01-03"}) 
     -[:SCHEDULED_ON]-> (Date {date: "2024-01-10"})
@@ -156,7 +159,8 @@ Option 3 creates a single activity but instead of individual start and end time 
 
 **StartTime and Duration**: This option simplifies the model by representing time using only `StartTime` and `DurationInMinutes` properties on the `Activity` node, omitting explicit `EndTime` nodes. This approach is suitable for duration based queries but it is limiting in that it is more difficult to query events occurring at specific times, overlapping time ranges or on end-times.
 
-```{cypher .scroll-cypher}
+```{cypher}{.scroll-cypher}
+// cypher structure
 (Timeblock {name: "09:00-11:00", start: 09:00, end: 11:00, duration:120}) (Timeblock {name: "10:30-11:30", start: 10:30, end: 11:30, duration:60}) (Timeblock {name: "11:00-12:00", start: 11:00, end: 12:00, duration:60})
 ```
 
@@ -169,14 +173,16 @@ Option 3 creates a single activity but instead of individual start and end time 
 
 ### Summary
 
-|   | Option | Pros | Cons |
+| #  | Option | Pros | Cons |
 |--|------------------|---------------------------|---------------------------|
-| 0 | Direct transfer (Normalised) | Simple | Minimal benefits (for time calculations) |
-| 1 | Unique Activities | Simple, direct | High node count, complex time pattern queries |
-| 2 | Date & Time | Lower activity node count, good for time-based queries | More complex relationships |
-| 3 | Date & TimeBlock | Granular, easier duration calculations | Potentially high node count, sparsity if blocks are fine-grained |
+| 0 | **Direct transfer (Normalised)** | Simple | Minimal benefits (for time calculations) |
+| 1 | **Unique Occurrences** | Simple, direct | High node count, complex time pattern queries |
+| 2 | **Date & Time Nodes** | Lower activity node count, good for time-based queries | More complex relationships |
+| 3 | **Date & TimeBlock Nodes** | Granular, easier duration calculations | Potentially high node count, sparsity if blocks are fine-grained |
 
 : Option summary
+
+<br>
 
 Given the proof-of-concept scope of this project, I chose to proceed with Option 1. While this approach can lead to node proliferation, it offers the most straightforward implementation for exploring fundamental time-based queries and insights. It also acts as an easy jumping off point for exploring any of the other options.[^2]
 
