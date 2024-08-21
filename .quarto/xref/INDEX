@@ -245,5 +245,23 @@
   },
   "appendix-code-intro.qmd": {
     "appendix-code-intro.html": "64fcaee9"
+  },
+  "04-01-timetable-metrics.qmd": {
+    "04-01-timetable-metrics.html": "690b1740"
+  },
+  "04-02-timetable-agg.qmd": {
+    "04-02-timetable-agg.html": "f90b1927"
+  },
+  "04-04-timetable-summary.qmd": {
+    "04-04-timetable-summary.html": "b1adfea6"
+  },
+  "appendix-perspectives.qmd": {
+    "appendix-perspectives.html": "465ff121"
+  },
+  "appendix-toc.qmd": {
+    "appendix-toc.html": "32edceb6"
+  },
+  "04-03-timetable-cypher.qmd": {
+    "04-03-timetable-cypher.html": "6b9a57d2"
   }
 }

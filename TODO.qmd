@@ -40,19 +40,26 @@
 - [x] update references page 
 - [x] add load times to somewhre
 - [x] 2x word docs - 1x complete, 1x without headers, code, images, references, etc. (word count to be subtracted)
-- [ ] read ttq section
+- [x] read ttq section
 - [x] read and rewrite conclusion sections
+- [x] fix soft constraints - explanation
+- [x] appendix - rooms
+- [x] reword bluesky oppos
+- [x] reword perspectives
+- [x] link bluesky and perspective to yaml
+- [x] write absract
+
 - [ ] review conclusion after render
-- [ ] fix soft constraints - explanation
+- [ ] add bit about appendix heavy content
+- [ ] check front page - vids, links
 - [ ] new word count
-- [ ] reword bluesky oppos
-- [ ] reword perspectives
+
 - [x] link bluesky and perspectives to main page 
-- [ ] link bluesky and perspective to yaml
+
 
 - [ ] word count check - and adjust - currently 8127 words (ex appendix, refs, headers, code, tables, images)
 - [ ] word todo list
-  - [ ] add Appendix or prefix to appendix titles, e.g. A: Random Graph, B: Tech Stack
+  - [x] add Appendix or prefix to appendix titles, e.g. A: Random Graph, B: Tech Stack
   - [ ] add page numbers
   - [ ] fix footnotes
   - [ ] add word count break down
@@ -60,6 +67,7 @@
   - [ ] add alt text to images?
   - [ ] fix reference page
   - [ ] add graph to summary page -> the journey?
+  - [ ] fix links within doc
 
 
 

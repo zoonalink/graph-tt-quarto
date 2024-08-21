@@ -1,64 +1,325 @@
 project:
-  type: book
-  output-dir: _output/word  # Output directory for Word files
+  type: website
+  output-dir: _output/html
+  render:
+    - "*.qmd"
+    - "!ignored.qmd"
+    - "!code/"
+    - "!data/"
+    - "!images/"
+    - "!ignore/"
+    - "!TODO.qmd"
+  
 
-book:
-  title: "Graph Time"
-  chapters:
-    - index.qmd
-    - 01-01a-introduction.qmd
-    - 01-02-background.qmd
-    - 01-03-good-timetable.qmd
-    - 01-04-project.qmd
-    - 02-01-comparison.qmd
-    - 02-02-graph-timetable.qmd
-    - 02-02b-early.qmd
-    - 02-02c-expand.qmd
-    - 02-03-graph-time.qmd
-    - 03-01-overview.qmd
-    - 03-02-approach.qmd
-    - 03-03-config.qmd
-    - 03-04-extract.qmd
-    - 03-05-transform.qmd
-    - 03-06a-load.qmd
-    - 03-06b-load.qmd
-    - 03-07-reflections.qmd
-    - 04-timetable-metrics.qmd
-    - 05-final-thoughts.qmd
-    - appendix-toc.qmd
-    - appendix-random-graph.qmd
-    - appendix-tech-stack.qmd
-    - appendix-config.qmd
-    - appendix-anonymise.qmd
-    - appendix-code-intro.qmd
-    - appendix-code.qmd
-    - appendix-code1-config.qmd
-    - appendix-code2-sql.qmd
-    - appendix-code3-extract.qmd
-    - appendix-code4-gdrive.qmd
-    - appendix-code5-transform.qmd
-    - appendix-code6-load.qmd
-    - appendix-cypher.qmd
-    - appendix-cypher1.qmd
-    - appendix-cypher2.qmd
-    - appendix-cypher3.qmd
-    - appendix-cypher4.qmd
-    - appendix-cypher5.qmd
-    - appendix-cypher5a.qmd
-    - appendix-cypher6.qmd
-    - appendix-cypher7.qmd
-    - appendix-supervision.qmd
-    - appendix-supervision1.qmd
-    - appendix-supervision2.qmd
-    - appendix-supervision3.qmd
-    - references.qmd
-    - acknowledgements.qmd
+website:
+  
+  title: " "
+  page-navigation: true
+  
+  navbar:
+    pinned: true
+    logo: "images/logo3.png"
+    left:
+      - href: index.qmd
+        text: Home
+        icon: home
+      - text: Project Introduction
+        menu:
+          - href: 01-01a-introduction.qmd
+            text: Introduction
+        #  - href: 01-01b-timetable.qmd
+        #    text: University Timetabling
+          - href: 01-02-background.qmd
+            text: Background and Motivation
+          - href: 01-03-good-timetable.qmd
+            text: What is a Good Timetable?
+          - href: 01-04-project.qmd
+            text: Project Aims and Scope
+      - text: Graph Data Model
+        menu: 
+          #- href: 02-00-graph-model.qmd
+          #  text: Graph Data
+          - href: 02-01-comparison.qmd
+            text: Graph vs Relational Data Models
+          - href: 02-02-graph-timetable.qmd
+            text: Graph Data Model for Timetabling
+          - href: 02-02b-early.qmd
+            text: Early Insights
+          - href: 02-02c-expand.qmd
+            text: Model Expansion
+          #- href: 02-02c-challenge-oppos.qmd
+          #  text: Opportunities and Challenges
+          - href: 02-03-graph-time.qmd
+            text: Graphing Time
+          
+      - text: "Data Pipeline"
+        menu:
+          - href: 03-01-overview.qmd
+            text: ETL Overview
+          - href: 03-02-approach.qmd
+            text: Approach
+          - href: 03-03-config.qmd
+            text: Configuration and Logging
+          - href: 03-04-extract.qmd
+            text: Extract
+          - href: 03-05-transform.qmd
+            text: Transform
+          - href: 03-06a-load.qmd
+            text: Google Drive Load
+          - href: 03-06b-load.qmd
+            text: Neo4j Load
+          - href: 03-07-reflections.qmd
+            text: Reflection
+      - text: "Timetable Metrics"  
+        menu: 
+        - href: 04-01-timetable-metrics.qmd
+          text: Timetable Metrics
+        - href: 04-02-timetable-agg.qmd
+          text: Metric Aggregations
+        - href: 04-03-timetable-cypher.qmd
+          text: Implementing Metrics
+        - href: 04-04-timetable-summary.qmd
+          text: TQI Summary
+      - href: 05-final-thoughts.qmd
+        text: "Final Thoughts"
+      - text: "Appendices"
+        href: appendix-toc.qmd
+        menu:
+        - href: appendix-random-graph.qmd
+          text: Random Graph Generator
+        - href: appendix-tech-stack.qmd
+          text: Technology Stack
+        - href: appendix-config.qmd
+          text: Configuration
+        - href: appendix-anonymise.qmd
+          text: Anonymisation
+        - text: ETL Summary and Code 
+          menu:
+          - href: appendix-code-intro.qmd
+            text: ETL Summary
+          - href: appendix-code.qmd
+            text: ETL Code
+          - href: appendix-code1-config.qmd
+            text: Config and Misc
+          - href: appendix-code2-sql.qmd
+            text: Extract-SQL
+          - href: appendix-code3-extract.qmd
+            text: Extract
+          - href: appendix-code4-gdrive.qmd
+            text: Google Drive Load
+          - href: appendix-code5-transform.qmd
+            text: Transform
+          - href: appendix-code6-load.qmd
+            text: Neo4j Load
+        - text: Cypher Code
+          menu:
+          - href: appendix-cypher.qmd
+            text: Cypher Queries
+          - href: appendix-cypher1.qmd
+            text: Creating Nodes and Relationships
+          - href: appendix-cypher2.qmd
+            text: Deleting Nodes and  Relationships
+          - href: appendix-cypher3.qmd
+            text: General Queries
+          - href: appendix-cypher4.qmd
+            text: Count Queries
+          - href: appendix-cypher5.qmd
+            text: Hard (timetabling) Constraints
+          - href: appendix-cypher5a.qmd
+            text: Student Clashes
+          - href: appendix-cypher6.qmd
+            text: Soft Constraints
+          - href: appendix-cypher7.qmd
+            text: Rooms and Spaces
+          - href: appendix-perspectives.qmd
+            text: Perspectives
+        - text: Supervision
+          menu:
+          - href: appendix-supervision.qmd
+          - text: Supervision
+          - href: appendix-supervision1.qmd
+          - text: Notes Example 1
+          - href: appendix-supervision2.qmd
+            text: Notes Example 2
+          - href: appendix-supervision3.qmd
+            text: Notes Example 3
+      - text: References & Acknowledgements
+        menu:
+          - href: references.qmd
+            text: References
+          - href: acknowledgements.qmd
+            text: Acknowledgements
+    right:
+      - href: ./_output/pdf/Graph-Time.pdf
+        text: PDF Version
+        icon: file-pdf
+      - icon: bug
+        href: "https://github.com/zoonalink/graph-tt-quarto/issues/new"
+        aria-label: Report an issue
+      - icon: github
+        href: "https://github.com/zoonalink/graph-tt-quarto/"
+        aria-label: GitHub
+      - icon: envelope
+        href: "mailto:zoonalink@gmail.com"
+        aria-label: Email me
+  
+  sidebar: 
+    style: "docked"
+    search: true
+    collapse-level: 1
+    contents: 
+      - href: index.qmd
+        text: Home
+      - section: "Project Introduction"
+        contents:
+          - href: 01-01a-introduction.qmd
+            text: Introduction
+        #  - href: 01-01b-timetable.qmd
+        #    text: University Timetabling
+          - href: 01-02-background.qmd
+            text: Background and Motivation
+          - href: 01-03-good-timetable.qmd
+            text: What is a Good Timetable?
+          - href: 01-04-project.qmd
+            text: Project Aims and Scope
+      - section: "Graph Data Model" 
+        contents:
+          #- href: 02-00-graph-model.qmd
+          #  text: Graph Data
+          - href: 02-01-comparison.qmd
+            text: Graph vs Relational Data Models
+          - href: 02-02-graph-timetable.qmd
+            text: Graph Data Model for Timetabling
+          - href: 02-02b-early.qmd
+            text: Early Insights
+          - href: 02-02c-expand.qmd
+            text: Model Expansion
+          #- href: 02-02c-challenge-oppos.qmd
+          #  text: Opportunities and Challenges
+          - href: 02-03-graph-time.qmd
+            text: Graphing Time
+          #- href: 02-04-challenge-oppos.qmd
+          #  text: Opportunities and Challenges
+      - section: "Data Pipeline"
+        contents:
+          - href: 03-01-overview.qmd
+            text: ETL Overview
+          - href: 03-02-approach.qmd
+            text: Approach
+          - href: 03-03-config.qmd
+            text: Configuration and Logging
+          - href: 03-04-extract.qmd
+            text: Extract
+          - href: 03-05-transform.qmd
+            text: Transform
+          - href: 03-06a-load.qmd
+            text: Google Drive Load
+          - href: 03-06b-load.qmd
+            text: Neo4j Load
+          - href: 03-07-reflections.qmd
+            text: Reflection
+      - section: "Timetable Metrics"
+        contents: 
+        - href: 04-01-timetable-metrics.qmd
+          text: Timetable Metrics
+        - href: 04-02-timetable-agg.qmd
+          text: Metric Aggregations
+        - href: 04-03-timetable-cypher.qmd
+          text: Implementing Metrics
+        - href: 04-04-timetable-summary.qmd
+          text: TQI Summary
 
+      - href: 05-final-thoughts.qmd
+        text: "Final Thoughts"
+      - section: "Appendices"
+        contents:
+          - href: appendix-random-graph.qmd
+            text: Random Graph Generator
+          - href: appendix-tech-stack.qmd
+            text: Technology Stack
+          - href: appendix-config.qmd
+            text: Configuration
+          - href: appendix-anonymise.qmd
+            text: Anonymisation
+          - section: "ETL Summary and Code"          
+            contents:
+              - href: appendix-code-intro.qmd
+                text: ETL Summary
+              - href: appendix-code.qmd
+                text: ETL Code
+              - href: appendix-code1-config.qmd
+                text: Config and Misc
+              - href: appendix-code2-sql.qmd
+                text: Extract-SQL
+              - href: appendix-code3-extract.qmd
+                text: Extract
+              - href: appendix-code4-gdrive.qmd
+                text: Google Drive Load
+              - href: appendix-code5-transform.qmd
+                text: Transform
+              - href: appendix-code6-load.qmd
+                text: Neo4j Load    
+          - section: "Cypher Code"
+            contents:
+              - href: appendix-cypher.qmd
+                text: Cypher Queries
+              - href: appendix-cypher1.qmd
+                text: Creating Nodes and Relationships
+              - href: appendix-cypher2.qmd
+                text: Deleting Nodes and  Relationships 
+              - href: appendix-cypher3.qmd
+                text: General Queries
+              - href: appendix-cypher4.qmd
+                text: Count Queries  
+              - href: appendix-cypher5.qmd
+                text: Hard (timetabling) Constraints 
+              - href: appendix-cypher5a.qmd
+                text: Student Clashes 
+              - href: appendix-cypher6.qmd
+                text: Soft Constraints
+              - href: appendix-cypher7.qmd
+                text: Rooms and Spaces
+              - href: appendix-perspectives.qmd
+                text: Perspectives
+          - section: "Supervision"
+            contents:
+              - href: appendix-supervision.qmd
+              - text: Supervision
+              - href: appendix-supervision1.qmd
+              - text: Notes Example 1
+              - href: appendix-supervision2.qmd
+                text: Notes Example 2
+              - href: appendix-supervision3.qmd
+                text: Notes Example 3
+      - href: references.qmd
+        text: References
+      - href: acknowledgements.qmd
+        text: Acknowledgements
+
+
+         
+
+  page-footer:
+    left: "Copyright 2024, Petter Lövehagen"
+    right: "Built with Quarto"
 
 format:
-  wordcount-docx:
-    reference-doc: styles.docx
-    number-sections: true # or false, depending on your preference
+  
+  html: # see https://github.com/andrewheiss/quarto-wordcount#readme
+    #output-dir: _output/html
+    theme:
+      light: lightly
+      dark: cyborg
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    code-fold: true
+    code-overflow: wrap
+    code-summary: "Click to show code"
+    page-layout: full
+    
+    
+
 
 execute:
-  freeze: auto  # Or 'false' if you want to re-run code chunks each time
+  freeze: auto  #keep website up-to-date

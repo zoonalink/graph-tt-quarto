@@ -1,0 +1,126 @@
+---
+title: "V: Perspectives and Scenes for Neo4j Explore Functionality"
+---
+
+This page contains *example* scenarios for demonstrating Neo4j "Perspectives" and "Scenes" which are used to explore data in a graph database from the perspective of a particular user.  Perspectivies focus the view by selecting specific nodes and relationships, while scenes allow for visualising the data interactively.
+
+
+## Scenario 1: Programme Leader Perspective
+
+**Goal**: Enable a programme lead to gain insights into their programme's structure, student engagement, and potential areas for improvement.
+
+### Perspective:
+
+**Nodes**:
+
+* Programme (central node)
+* Module
+* Student
+* Activity
+* Room
+* Staff
+
+**Relationships**:
+
+* Programme <-[:BELONGS_TO]- Module
+* Module <-[:BELONGS_TO]- Activity
+* Student -[:REGISTERED_ON]-> Programme
+* Student -[:ATTENDS]-> Activity
+* Student-[:ENROLLED_ON]-> Module
+* Activity -[:OCCUPIES]-> Room
+* Staff -[:TEACHES]-> Activity
+
+### Scenes:
+
+**Programme Overview**: Visualise the entire programme structure, showcasing modules, their connections, and associated activities. Highlight popular and less popular modules based on student enrolment.
+
+**Student Engagement**: Focus on a specific module and visualise student attendance patterns. Identify students with low attendance and potential at-risk students.
+
+**Resource Allocation**: Visualise room utilisation across the programme's activities. Identify potential scheduling conflicts or underutilised spaces.
+
+**Staff Workload**: Analyse the distribution of teaching workload among staff members within the programme.
+
+
+### Example Cypher Queries:
+
+```{cypher}{scroll-cypher}
+//Programme Structure:
+
+MATCH (p:programme {name: 'Computer Science'})<-[:BELONGS_TO]-(m:module)
+RETURN p, m
+
+
+//Student Attendance:
+
+MATCH (m:module {name: 'Data Structures'})-[:BELONGS_TO]->(p:programme)<-[:REGISTERED_ON]-(s:student)-[:ATTENDS]->(a:Activity)
+RETURN m, s, a
+
+
+//Room Utilisation:
+
+MATCH (p:programme)<-[:BELONGS_TO]-(m:module)<-[:BELONGS_TO]-(a:activity)-[:OCCUPIES]->(r:room)
+RETURN p, m, a, r
+
+Staff Workload:
+
+MATCH (p:programme)<-[:BELONGS_TO]-(m:module)<-[:BELONGS_TO]-(a:activity)<-[:TEACHES]-(s:staff)
+RETURN p, m, a, s
+```
+
+## Scenario 2: Module Leader Perspective
+
+**Goal**: Provide a module leader with insights into their module's scheduling, student performance, and room allocation.
+
+### Perspective:
+
+**Nodes**:
+
+* Module (central node)
+* Activity
+* Student
+* Room
+* Assessment
+
+**Relationships**:
+
+* module <-[:BELONGS_TO]- activity
+* student -[:ATTENDS]-> activity
+* activity -[:OCCUPIES]-> room
+* student -[:HAS_RESULT_FOR]-> assessment
+* module -[:HAS_ASSESSMENT]-> assessment
+
+
+### Scenes:
+
+* **Module Schedule**: Visualise the module's activities, their timeslots, and associated rooms. Highlight potential scheduling conflicts or overlaps.
+* **Student Performance**: Focus on a specific assessment and visualise student results. Identify students who may need additional support.
+* **Room Suitability**: Analyse the rooms used for the module's activities and their capacities. Identify potential issues with room size or suitability.
+
+
+
+## Scenario 3: Administrator Perspective (Room Usage)
+
+**Goal**: Ability to analyse room usage, identify underutilised spaces, and optimise room allocation.
+
+### Perspective:
+
+**Nodes**:
+
+* Room (central node)
+* Activity
+* Module
+* Programme
+
+**Relationships**:
+
+* activity -[:OCCUPIES]-> room
+* module <-[:BELONGS_TO]- activity
+* programme <-[:BELONGS_TO]- module
+
+### Scenes:
+
+* **Room Utilization Overview**: Visualise all rooms and their occupancy levels across different time periods. Highlight rooms with low utilisation or frequent conflicts.
+* **Room Activity Breakdown**: Focus on a specific room and visualise the activities scheduled there. Identify peak usage times and potential scheduling issues.
+* **Programme Room Usage**: Analyse room usage by different programmes. Identify programmes with high room demands or potential conflicts.
+
+

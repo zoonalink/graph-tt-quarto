@@ -1,5 +1,5 @@
 ---
-title: "Creating Nodes and Relationships"
+title: "N: Creating Nodes and Relationships"
 ---
 
 <br> Creating nodes and relationships is the first step in building a graph database. Nodes represent entities in the graph, such as students, rooms, or activities. Relationships connect nodes and represent the connections between them.

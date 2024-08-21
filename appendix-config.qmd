@@ -1,5 +1,5 @@
 ---
-title: Configuration YAML
+title: "C: Configuration YAML"
 ---
 
 

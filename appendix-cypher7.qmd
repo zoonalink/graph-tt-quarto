@@ -1,5 +1,5 @@
 ---
-title: "Rooms and Spaces"
+title: "U: Rooms and Spaces"
 lightbox:
   match: auto
   effect: fade
@@ -8,12 +8,15 @@ lightbox:
 ---
 <br>
 
+The timetabling database contains some information about rooms and spaces on campus, but the master data systems contains much more.  I have added a few rooms and properties from the master source, as an experiemnt. 
 
-1. imported locations from file
+## Room Geo-location
+
+### Import locations from file
 
 ![imported locations from file](./images/demoRoom-import.png)
 
-2. load cypher
+### load cypher
 
 ```{cypher}{scroll-cypher}
 UNWIND $nodeRecords AS nodeRecord
@@ -37,44 +40,64 @@ SET n.`lat` = toFloat(trim(nodeRecord.`lat`))
 SET n.`roomHostKey` = nodeRecord.`roomHostKey`;
 ```
 
+### Thoughts
 
-![](./images/demoRoom-FR.png)
-![](./images/demoRoom-FR-zoom.png)
-![](./images/demoRoom-FR-CITY.png)
-
-Start from rooms in cypher-query-notes
-
-utilisation
-most popular rooms
-mapping rooms
-room types
+Some rooms have longitude and latitude, which have been used to calculate distance.  The screenshot below shows locations on Frenchay campus - you can clearly see rooms aligned into the shape our the buildings. 
+![Coordinate view of Frenchay rooms](./images/demoRoom-FR.png)
 
 
+![Close of up B Block rooms on Frenchay Campus](./images/demoRoom-FR-zoom.png)
 
-Understanding the issue
+An alternative view includes locations in City Campus.
 
-Building coordinates often use a local or custom coordinate system that might not align well with the default geographic coordinate system (latitude and longitude) used in the Coordinate layout.
-This mismatch can result in the coordinates appearing clustered or overlapping, making it difficult to visualize the spatial relationships between your rooms.
-Possible Solutions:
+![Frenchay and City Campus rooms](./images/demoRoom-FR-CITY.png)
 
-Transform Coordinates
-If you know the transformation parameters between your building coordinate system and a standard geographic coordinate system (e.g., UTM, State Plane), you can use Cypher queries or external tools to convert your building coordinates into latitude and longitude before visualizing them in the Coordinate layout.
-Use a Cartesian Coordinate System
-If you're primarily interested in the relative positions of the rooms within the building, and not their absolute geographic location, you can use a Cartesian coordinate system (x, y) instead of latitude and longitude.
-You can either:
-Store your building coordinates directly as x and y properties on your nodes.
-Convert your building coordinates into x and y values using Cypher queries or external tools.
-In the Coordinate layout settings, select the appropriate x and y properties for visualization.
-Experiment with Different Projections
-While Neo4j Bloom/Browser might have limited projection options, you could explore exporting your data to a dedicated mapping or GIS tool that supports various projections.
-This would allow you to experiment with different projections to find one that best visualizes the spatial relationships between your rooms based on their building coordinates
-Important considerations:
+The above images show the potential of using coordinates although there is a lot more to consider including actual locations, accuracy, missing data, and coordinate transformations. 
 
-Accuracy: The choice of coordinate system or projection should depend on the level of accuracy required for your visualization and analysis.
-Data Transformation: Converting coordinates between different systems might introduce some level of distortion or error.
-Tool Compatibility: Ensure that the chosen coordinate system or projection is supported by the visualization tool you're using.
-Example (using Cartesian coordinates)
+## Room use
 
-Assuming your demoRoom nodes have building_x and building_y properties representing their building coordinates, you can visualize them in the Coordinate layout as follows:
+Being able to measure room usage - utilisation, frequency, occupancy - is a key metric for the university.
 
-In the Coordinate layout settings, select building_x for the X-axis and building_y for the Y-axis
+```{cypher}{scroll-cypher}
+// room occupancy
+MATCH (room:room )<-[:OCCUPIES]-(activity:activity)
+WITH room, activity, 
+     activity.actDurationInMinutes / 60.0 AS occupancyHours
+RETURN room.roomName AS room, 
+       SUM(occupancyHours) AS totalOccupancyHours
+```
+
+![Room occupancy](./images/roomOccupancy.png)
+
+
+```{cypher}{scroll-cypher}
+// frequency
+MATCH (room:room )<-[:OCCUPIES]-(activity:activity)
+RETURN room.roomName AS room, 
+       COUNT(activity) AS totalActivities
+```
+
+![Room frequency](./images/roomFrequency.png)
+
+```{cypher}{scroll-cypher}
+// simple utilisation
+MATCH (room:room {roomName: "2Q12 FR"})<-[:OCCUPIES]-(activity:activity)
+WITH room, activity, 
+     CASE 
+         WHEN activity.actStartTime.hour = activity.actEndTime.hour 
+         THEN 1 
+         ELSE activity.actEndTime.hour - activity.actStartTime.hour + 1 
+     END AS occupiedHours
+UNWIND range(activity.actStartTime.hour, activity.actEndTime.hour) AS hour
+RETURN room.roomName AS room, 
+       hour AS hourBlockStart, 
+       hour + 1 AS hourBlockEnd,
+       SUM(CASE WHEN hour IN range(activity.actStartTime.hour, activity.actEndTime.hour) THEN 1 ELSE 0 END) AS utilizationCount,
+       occupiedHours AS totalOccupiedHours
+ORDER BY hourBlockStart
+```
+
+![Room utilisation](./images/roomUtilisationSimple.png)
+
+
+The above queries need to be developed further as they are very simplistic.  For example, the utilisation query does not take into account the day of the week, nor does it consider the number of people in the room.  The occupancy query does not consider the capacity of the room.

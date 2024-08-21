@@ -1,5 +1,5 @@
 ---
-title: "Cypher Queries"
+title: "M: Cypher Queries"
 ---
 
 <br> These pages collate Cypher[^1] queries used in the development of this project. The queries are grouped by the type of operation they perform, such as creating nodes, relationships, or querying the graph. The queries are presented in a format that can be copied and pasted directly into a Neo4j browser or other Cypher-compatible interface.

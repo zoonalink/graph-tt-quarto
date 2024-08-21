@@ -4,28 +4,40 @@ title: "Final Thoughts"
 
 As I reflect on this project, I am struck by my progress in realising the original objectives I set out to achieve and what it took to get here. Through a combination of perseverance, problem-solving, and a relentless drive to deliver a tangible solution, I am proud to say that I have successfully:
 
-1. Designed an **[extensible, system-agnostic graph data model](02-02-graph-timetable.qmd)** for university timetables, providing a flexible and adaptable foundation for capturing the complex relationships inherent in timetabling data.
+1.  Designed an [**extensible, system-agnostic graph data model**](02-02-graph-timetable.qmd) for university timetables, providing a flexible and adaptable foundation for capturing the complex relationships inherent in timetabling data.
 
-2. Developed a **[configurable ETL (extract, transform, load) pipeline](03-01-overview.qmd)** to seamlessly transition from relational database representations to a graph database, unlocking new possibilities for timetable analysis and optimisation.
+2.  Developed a [**configurable ETL (extract, transform, load) pipeline**](03-01-overview.qmd) to seamlessly transition from relational database representations to a graph database, unlocking new possibilities for timetable analysis and optimisation.
 
-3. Discussed how **[graph-based approaches to timetabling analysis](04-timetable-metrics.qmd)** can contribute to measuring and improving the overall quality of university timetables, a critical aspect of enhancing the student experience and institutional efficiency.
+3.  Discussed how [**graph-based approaches to timetabling analysis**](04-timetable-metrics.qmd) can contribute to measuring and improving the overall quality of university timetables, a critical aspect of enhancing the student experience and institutional efficiency.
 
-But I could not have done it without others.  I am [grateful for the support, guidance and encouragement](acknowledgements.qmd) I have received from many people along the way.
+But I could not have done it without others. I am [grateful for the support, guidance and encouragement](acknowledgements.qmd) I have received from many people along the way.
 
 ## Reflections on Journey
 
-This journey has had a little bit of everything: challenges, setbacks, breakthroughs, and moments of clarity. It has tested my limits, pushed me to grow, and allowed me to create something that I believe can make a meaningful impact.  I have learned a lot about myself, my capabilities, and the power of perseverance; I have gained new skills and insights; I have developed a deeper understanding of where I want to go from here.
+This journey has had a little bit of everything: challenges, setbacks, breakthroughs, and moments of clarity. It has tested my limits, pushed me to grow, and allowed me to create something that I believe can make a meaningful impact. I have learned a lot about myself, my capabilities, and the power of perseverance; I have gained new skills and insights; I have developed a deeper understanding of where I want to go from here.
 
-Admittedly, the project was ambitious, and I found myself struggling with to navigate the ever-expanding scope, not knowing when to 'stop.'  But, I am proud of what I have achieved and learned, as well as where I am right now - when I can comfortably draw a line under this project as a proof-of-concept, knowing that it provides a foundation for future work and exploration.
+Admittedly, the project was ambitious, and I found myself struggling with to navigate the ever-expanding scope, not knowing when to 'stop.' But, I am proud of what I have achieved and learned, as well as where I am right now - when I can comfortably draw a line under this project as a proof-of-concept, knowing that it provides a foundation for future work and exploration.
 
 In short, it has been fulfilling and I did what I wanted to do - something exploratory, practical, new, challenging, and impactful.
 
+But it is especially rewarding to receive feedback from subject matter experts, such as the timetabling data manager at UWE, who said:
+
+> -   `Opens new reporting and analytics opportunities`
+>
+> -   `Very useful graphical representation of the relations within the database`
+>
+> -   `Huge time saving comparing to current SQL methods`
+>
+> -   `Easily adjustable and scalable`
+>
+> -   `Date and time represented in much better way`
+>
+> -   `Makes reporting of timetable clashes such an easy task`
+
 ## Looking Ahead: The Future of Graph at Universities
 
-Looking ahead, I am confident that the potential of graph databases in the realm of timetabling analysis has only begun to be explored.  My project has only scratched the surface but there is a vast reserve of untapped opportunity. By continuing to explore and refine the concepts introduced in this project, Higher Edducation Institutions can unlock new levels of insight to improve efficiency, agility, and student satisfaction.  
+Looking ahead, I am confident that the potential of graph databases in the realm of timetabling analysis has only begun to be explored. My project has only scratched the surface but there is a vast reserve of untapped opportunity. By continuing to explore and refine the concepts introduced in this project, Higher Edducation Institutions can unlock new levels of insight to improve efficiency, agility, and student satisfaction.
 
-And it does not only apply to timetabling datasets.  
+And it does not only apply to timetabling datasets.
 
-Universities hold a significant amount of interconnected data that can be leveraged to improve the student experience, make more informed decisions, and drive positive change.  The possibilities are endless[^1] - some blue-skies thinking is included in this [appendix page](appendix-blue-sky.qmd).
-
-[^]: Within graph, I did not explore graph data science algorithms such as path finding, community detection, centrality, prediction, similarity, etc. There is also scope for exploring machine learning capabilities in timetabling production or optimisation.
+Universities hold a significant amount of interconnected data that can be leveraged to improve the student experience, make more informed decisions, and drive positive change. The possibilities are endless\[\^1\] - to illustrate, I have included some blue-skies thinking in the [Appendix](appendix-blue-sky.qmd).

@@ -1,5 +1,5 @@
 ---
-title: "Deleting Nodes and Relationships"
+title: "O: Deleting Nodes and Relationships"
 ---
 
 <br>

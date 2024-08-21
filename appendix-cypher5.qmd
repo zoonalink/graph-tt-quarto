@@ -1,5 +1,5 @@
 ---
-title: "Hard Constraints"
+title: "R: Hard Constraints"
 lightbox:
   match: auto
   effect: fade

@@ -1,5 +1,5 @@
 ---
-title: "Soft Constraints"
+title: "T: Soft Constraints"
 lightbox:
   match: auto
   effect: fade
@@ -10,7 +10,7 @@ lightbox:
 <br>
 Soft constraints in a timetabling context are (strong) preferences. They should be generally met and only violated when absolutely necessary, although there is an argument for a sliding scale of soft constraint adherence.
 
-For example, a member of staff may be unavailable on Fridays, generally, but at a push can be available. Other examples might include ensuring that students have an opportunity to eat lunch by ensuring at least 30 minutes free time between 12:00-14:00 or minimising travel between activities..
+For example, a member of staff may be unavailable on Fridays, generally, but at a push can be available. Other examples might include ensuring that students have an opportunity to eat lunch by ensuring at least 30 minutes free time between 12:00-14:00 or minimising travel between activities.
 
 This page contains cypher queries that can be used to identify where a timetabling soft constraint has been violated.
 
@@ -156,10 +156,16 @@ query = """
 // to be used for max block hours and max block activities per day
 // logic - example
 
+// matches specified student and all attended activities
 MATCH (s:student {stuID_anon:"stu-10085720"})-[:ATTENDS]->(a:activity)
+
+// sorts activities by start date and then by start time within each date
 WITH s, a ORDER BY a.actStartDate, a.actStartTime
+
+// calculates total hours spent on activities for each date
 WITH s, a.actStartDate AS date, 
      SUM(a.actDurationInMinutes) / 60.0 AS totalHours,
+     // groups activities into blocks based on time overlaps
      REDUCE(
         blockInfo = [],
         activity IN COLLECT(a)
@@ -172,10 +178,16 @@ WITH s, a.actStartDate AS date,
                  END
           END
      ) AS blocks
+
+// unwinds the list of blocks, processing each block individually
 UNWIND blocks AS block
+
+// calculates the total duration in hours for each block
 WITH s, date, totalHours, blocks,
      REDUCE(blockHours = 0.0, activity IN block | blockHours + activity.actDurationInMinutes) / 60.0 AS blockHours,
      SIZE(block) AS blockActivities
+
+// returns aggregated results
 RETURN s.stuFullName_anon AS student, date, totalHours, 
        MAX(blockHours) AS blockHours,
        MAX(blockActivities) AS blockActivities
@@ -201,37 +213,9 @@ session.close()
 driver.close()
 ```
 
-##### Explanation
-
-1.  Match and Sort Activities:
-
-    -   MATCH (s:student {stuID_anon:"stu-10085720"})-\[:ATTENDS\]-\>(a:activity): Matches the specified student and all their attended activities.
-    -   WITH s, a ORDER BY a.actStartDate, a.actStartTime: Sorts the activities by their start date and then by their start time within each date.
-
-2.  Calculate Total Hours and Group Activities into Blocks:
-
-    -   WITH s, a.actStartDate AS Date, SUM(a.actDurationInMinutes) / 60.0 AS totalHours, ...: Calculates the total hours spent on activities for each date by summing the durations of all activities on that date and converting minutes to hours.
-    -   REDUCE(blockInfo = \[\], activity IN COLLECT(a) \| ...): Groups activities into blocks based on time overlaps using a REDUCE function and a CASE expression.
-        -   Initialises an empty list blockInfo to store the blocks.
-        -   Iterates over the collected activities (COLLECT(a)).
-        -   For each activity:
-            -   If blockInfo is empty (first activity), it creates a new block with the activity.
-            -   Otherwise, it checks if the current activity overlaps with the last activity in the last block of blockInfo.
-                -   If there's an overlap, it adds the current activity to the last block.
-                -   If there's no overlap, it creates a new block with the current activity.
-
-3.  Calculate Block Hours and Number of Activities:
-
-    -   UNWIND blocks AS block: Unwinds the list of blocks, processing each block individually.
-    -   WITH s, Date, totalHours, blocks, REDUCE(blockHours = 0.0, activity IN block \| blockHours + activity.actDurationInMinutes) / 60.0 AS blockHours, SIZE(block) AS blockActivities: For each block, it calculates the total duration in hours (blockHours) by summing the durations of activities within the block and converting minutes to hours. It also calculates the number of activities in the block (blockActivities).
-
-4.  Return Aggregated Results:
-
-    -   RETURN s.stuFullName_anon AS Student, Date, totalHours, MAX(blockHours) AS blockHours, MAX(blockActivities) AS blockActivities ORDER BY Date;: Returns the student's full name, the date, the total hours for the day, the maximum block hours across all blocks for that day, and the maximum number of activities within a single block for that day. The results are ordered by date.
-
 #### Example Use case - identifying students with 5+ hours in a single block
 
-This query returns the first 5 rows where a student has more than 5 consecutive scheduled hours on a date. 
+This query returns the first five rows where a student has more than 5 consecutive scheduled hours on a date. 
 
 ```{python}
 from connect_to_neo4j_db import connect_to_neo4j
@@ -294,7 +278,7 @@ driver.close()
 
 #### Total hours per day
 
-In contrast, calculating simple total hours per day is done as follows: 
+In contrast, calculating simple total hours per day is achieved by: 
 
 ```{cypher}{.scroll-cypher}
 MATCH (s:student )-[:ATTENDS]->(a:activity)
@@ -465,7 +449,7 @@ driver.close()
 
 ### Max hours in a day
 
-This query calculates the total scheduled hours for each student on a day and returns the results ordered by date. This examples filters for students who have more than 7 hours of activities in a day.
+This query calculates the total scheduled hours for each student on a day and returns the results ordered by date. This example filters for students who have more than 7 hours of activities in a day.
 
 ```{cypher}{.scroll-cypher}
 // sum of activity durations

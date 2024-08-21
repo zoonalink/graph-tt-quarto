@@ -1,5 +1,5 @@
 ---
-title: "Student Clashes - Deeper Dive"
+title: "S: Student Clashes - Deeper Dive"
 lightbox:
   match: auto
   effect: fade

@@ -1,5 +1,5 @@
 ---
-title: "Count Queries"
+title: "Q: Count Queries"
 lightbox:
   match: auto
   effect: fade

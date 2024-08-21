@@ -1,5 +1,5 @@
 ---
-title: "Config and Misc"
+title: "G: Config and Misc"
 ---
 
 [**Graph Timetable - Quarto - Config and Misc**](https://gist.github.com/zoonalink/818cae9f20db1f1417725a1f297ff061)

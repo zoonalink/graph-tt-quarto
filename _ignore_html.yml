@@ -70,8 +70,16 @@ website:
             text: Neo4j Load
           - href: 03-07-reflections.qmd
             text: Reflection
-      - href: 04-timetable-metrics.qmd
-        text: Timetable Metrics
+      - text: "Timetable Metrics"  
+        menu: 
+        - href: 04-01-timetable-metrics.qmd
+          text: Timetable Metrics
+        - href: 04-02-timetable-agg.qmd
+          text: Metric Aggregations
+        - href: 04-03-timetable-cypher.qmd
+          text: Implementing Metrics
+        - href: 04-04-timetable-summary.qmd
+          text: TQI Summary
       - href: 05-final-thoughts.qmd
         text: "Final Thoughts"
       - text: "Appendices"
@@ -123,6 +131,8 @@ website:
             text: Soft Constraints
           - href: appendix-cypher7.qmd
             text: Rooms and Spaces
+          - href: appendix-perspectives.qmd
+            text: Perspectives
         - text: Supervision
           menu:
           - href: appendix-supervision.qmd
@@ -133,10 +143,12 @@ website:
             text: Notes Example 2
           - href: appendix-supervision3.qmd
             text: Notes Example 3
-      - href: references.qmd
-        text: References
-      - href: acknowledgements.qmd
-        text: Acknowledgements
+      - text: References & Acknowledgements
+        menu:
+          - href: references.qmd
+            text: References
+          - href: acknowledgements.qmd
+            text: Acknowledgements
     right:
       - href: ./_output/pdf/Graph-Time.pdf
         text: PDF Version
@@ -206,8 +218,17 @@ website:
             text: Neo4j Load
           - href: 03-07-reflections.qmd
             text: Reflection
-      - href: 04-timetable-metrics.qmd
-        text: Timetable Metrics
+      - section: "Timetable Metrics"
+        contents: 
+        - href: 04-01-timetable-metrics.qmd
+          text: Timetable Metrics
+        - href: 04-02-timetable-agg.qmd
+          text: Metric Aggregations
+        - href: 04-03-timetable-cypher.qmd
+          text: Implementing Metrics
+        - href: 04-04-timetable-summary.qmd
+          text: TQI Summary
+
       - href: 05-final-thoughts.qmd
         text: "Final Thoughts"
       - section: "Appendices"
@@ -258,6 +279,8 @@ website:
                 text: Soft Constraints
               - href: appendix-cypher7.qmd
                 text: Rooms and Spaces
+              - href: appendix-perspectives.qmd
+                text: Perspectives
           - section: "Supervision"
             contents:
               - href: appendix-supervision.qmd

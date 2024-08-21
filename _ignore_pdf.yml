@@ -30,7 +30,10 @@ book:
     - 03-06a-load.qmd
     - 03-06b-load.qmd
     - 03-07-reflections.qmd
-    - 04-timetable-metrics.qmd
+    - 04-01-timetable-metrics.qmd
+    - 04-02-timetable-agg.qmd
+    - 04-03-timetable-cypher.qmd
+    - 04-04-timetable-summary.qmd
     - 05-final-thoughts.qmd
     - appendix-toc.qmd
     - appendix-random-graph.qmd
@@ -54,6 +57,7 @@ book:
     - appendix-cypher5a.qmd
     - appendix-cypher6.qmd
     - appendix-cypher7.qmd
+    - appendix-perspectives.qmd
     - appendix-supervision.qmd
     - appendix-supervision1.qmd
     - appendix-supervision2.qmd

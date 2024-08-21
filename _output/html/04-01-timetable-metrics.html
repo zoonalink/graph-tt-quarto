@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>perspectives –  </title>
+<title>Timetable Metrics –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,6 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./04-02-timetable-agg.html" rel="next">
+<link href="./03-07-reflections.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -186,18 +188,52 @@ ul.task-list li input[type="checkbox"] {
   </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./04-timetable-metrics.html"> 
-<span class="menu-text">Timetable Metrics</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-timetable-metrics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Timetable Metrics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-timetable-metrics">    
+        <li>
+    <a class="dropdown-item" href="./04-01-timetable-metrics.html">
+ <span class="dropdown-text">Timetable Metrics</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./04-02-timetable-agg.html">
+ <span class="dropdown-text">Metric Aggregations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04-03-timetable-cypher.html">
+ <span class="dropdown-text">Implementing Metrics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04-04-timetable-summary.html">
+ <span class="dropdown-text">TQI Summary</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./05-final-thoughts.html"> 
 <span class="menu-text">Final Thoughts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./appendix-random-graph.html"> 
-<span class="menu-text">Appendix &amp; References</span></a>
+    <a class="nav-link" href="./appendix-toc.html"> 
+<span class="menu-text">Appendices</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-references--acknowledgements" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">References &amp; Acknowledgements</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-references--acknowledgements">    
+        <li>
+    <a class="dropdown-item" href="./references.html">
+ <span class="dropdown-text">References</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./acknowledgements.html">
+ <span class="dropdown-text">Acknowledgements</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
@@ -232,7 +268,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-01-timetable-metrics.html">Timetable Metrics</a></li><li class="breadcrumb-item"><a href="./04-01-timetable-metrics.html">Timetable Metrics</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -393,12 +429,41 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Timetable Metrics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-timetable-metrics.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-01-timetable-metrics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Timetable Metrics</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-02-timetable-agg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Metric Aggregations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-03-timetable-cypher.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Implementing Metrics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-04-timetable-summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TQI Summary</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-final-thoughts.html" class="sidebar-item-text sidebar-link">
@@ -407,13 +472,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">Appendix &amp; References</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-random-graph.html" class="sidebar-item-text sidebar-link">
@@ -440,13 +505,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
  <span class="menu-text">ETL Summary and Code</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-code-intro.html" class="sidebar-item-text sidebar-link">
@@ -499,13 +564,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
  <span class="menu-text">Cypher Code</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-cypher.html" class="sidebar-item-text sidebar-link">
@@ -560,21 +625,27 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Rooms and Spaces</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-perspectives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Perspectives</span></a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
  <span class="menu-text">Supervision</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-supervision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Supervision</span></a>
+ <span class="menu-text">W: Supervision</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -583,7 +654,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-supervision1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Weekly Update - 10 June 2024</span></a>
+ <span class="menu-text">X: Fortnightly Update - 10 June 2024</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -603,70 +674,124 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
-          <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#defining-timetable-quality" id="toc-defining-timetable-quality" class="nav-link active" data-scroll-target="#defining-timetable-quality">Defining Timetable Quality</a></li>
+  <li><a href="#towards-a-quantifiable-measure" id="toc-towards-a-quantifiable-measure" class="nav-link" data-scroll-target="#towards-a-quantifiable-measure">Towards a Quantifiable Measure</a></li>
+  <li><a href="#implemented-metrics" id="toc-implemented-metrics" class="nav-link" data-scroll-target="#implemented-metrics">Implemented Metrics</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-01-timetable-metrics.html">Timetable Metrics</a></li><li class="breadcrumb-item"><a href="./04-01-timetable-metrics.html">Timetable Metrics</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Timetable Metrics</h1>
+</div>
 
 
 
+<div class="quarto-title-meta column-body">
 
-<p>Scenarios for Demonstrating Neo4j Explore Functionality with Perspectives and Scenes</p>
-<p>Scenario 1: Programme Lead Perspective</p>
-<p>Goal: Enable a programme lead to gain insights into their program’s structure, student engagement, and potential areas for improvement.</p>
-<p>Perspective:</p>
-<p>Nodes:</p>
-<p>Programme (central node) Module Student Activity Room Staff Relationships:</p>
-<p>Programme -[:HAS_MODULE]-&gt; Module Module -[:HAS_ACTIVITY]-&gt; Activity Student -[:ENROLLED_IN]-&gt; Programme Student -[:ATTENDS]-&gt; Activity Activity -[:TAKES_PLACE_IN]-&gt; Room Staff -[:TEACHES]-&gt; Activity Scenes:</p>
-<p>Programme Overview: Visualize the entire programme structure, showcasing modules, their connections, and associated activities. Highlight popular and less popular modules based on student enrollment. Student Engagement: Focus on a specific module and visualize student attendance patterns. Identify students with low attendance and potential at-risk students. Resource Allocation: Visualize room utilization across the programme’s activities. Identify potential scheduling conflicts or underutilized spaces. Staff Workload: Analyze the distribution of teaching workload among staff members within the programme. Cypher Queries:</p>
-<p>Programme Structure: Cypher MATCH (p:Programme {name: ‘Computer Science’})-[:HAS_MODULE]-&gt;(m:Module) RETURN p, m Use code with caution.</p>
-<p>Student Attendance: Cypher MATCH (m:Module {name: ‘Data Structures’})&lt;-[:HAS_MODULE]-(p:Programme)&lt;-[:ENROLLED_IN]-(s:Student)-[:ATTENDS]-&gt;(a:Activity) RETURN m, s, a Use code with caution.</p>
-<p>Room Utilization: Cypher MATCH (p:Programme)&lt;-[:HAS_MODULE]-(m:Module)-[:HAS_ACTIVITY]-&gt;(a:Activity)-[:TAKES_PLACE_IN]-&gt;(r:Room) RETURN p, m, a, r Use code with caution.</p>
-<p>Staff Workload: Cypher MATCH (p:Programme)&lt;-[:HAS_MODULE]-(m:Module)-[:HAS_ACTIVITY]-&gt;(a:Activity)&lt;-[:TEACHES]-(s:Staff) RETURN p, m, a, s Use code with caution.</p>
-<p>Scenario 2: Module Lead Perspective</p>
-<p>Goal: Provide a module lead with insights into their module’s scheduling, student performance, and room allocation.</p>
-<p>Perspective:</p>
-<p>Nodes:</p>
-<p>Module (central node) Activity Student Room Assessment Relationships:</p>
-<p>Module -[:HAS_ACTIVITY]-&gt; Activity Student -[:ATTENDS]-&gt; Activity Activity -[:TAKES_PLACE_IN]-&gt; Room Student -[:HAS_RESULT_FOR]-&gt; Assessment Module -[:HAS_ASSESSMENT]-&gt; Assessment Scenes:</p>
-<p>Module Schedule: Visualize the module’s activities, their timeslots, and associated rooms. Highlight potential scheduling conflicts or overlaps. Student Performance: Focus on a specific assessment and visualize student results. Identify students who may need additional support. Room Suitability: Analyze the rooms used for the module’s activities and their capacities. Identify potential issues with room size or suitability. Cypher Queries:</p>
-<p>Module Schedule: Cypher MATCH (m:Module {name: ‘Calculus’})-[:HAS_ACTIVITY]-&gt;(a:Activity)-[:TAKES_PLACE_IN]-&gt;(r:Room) RETURN m, a, r Use code with caution.</p>
-<p>Student Performance: Cypher MATCH (m:Module {name: ‘Calculus’})-[:HAS_ASSESSMENT]-&gt;(as:Assessment)&lt;-[:HAS_RESULT_FOR]-(s:Student) RETURN m, as, s Use code with caution.</p>
-<p>Room Suitability: Cypher MATCH (m:Module {name: ‘Calculus’})-[:HAS_ACTIVITY]-&gt;(a:Activity)-[:TAKES_PLACE_IN]-&gt;(r:Room) RETURN m, a, r Use code with caution.</p>
-<p>Scenario 3: Administrator Perspective (Room Usage)</p>
-<p>Goal: Empower an administrator to analyze room usage, identify underutilized spaces, and optimize room allocation.</p>
-<p>Perspective:</p>
-<p>Nodes:</p>
-<p>Room (central node) Activity Module Programme Relationships:</p>
-<p>Activity -[:TAKES_PLACE_IN]-&gt; Room Module -[:HAS_ACTIVITY]-&gt; Activity Programme -[:HAS_MODULE]-&gt; Module Scenes:</p>
-<p>Room Utilization Overview: Visualize all rooms and their occupancy levels across different time periods. Highlight rooms with low utilization or frequent conflicts. Room Activity Breakdown: Focus on a specific room and visualize the activities scheduled there. Identify peak usage times and potential scheduling issues. Programme Room Usage: Analyze room usage by different programmes. Identify programmes with high room demands or potential conflicts. Cypher Queries:</p>
-<p>Room Utilization Overview: Cypher MATCH (r:Room)&lt;-[:TAKES_PLACE_IN]-(a:Activity) RETURN r, a Use code with caution.</p>
-<p>Room Activity Breakdown: Cypher MATCH (r:Room {name: ‘Lecture Hall A’})&lt;-[:TAKES_PLACE_IN]-(a:Activity) RETURN r, a Use code with caution.</p>
-<p>Programme Room Usage: Cypher MATCH (p:Programme)-[:HAS_MODULE]-&gt;(m:Module)-[:HAS_ACTIVITY]-&gt;(a:Activity)-[:TAKES_PLACE_IN]-&gt;(r:Room) RETURN p, m, a, r Use code with caution.</p>
-<p>Implementation Tips:</p>
-<p>Start Simple: Begin with a basic perspective and scene, then gradually add more nodes, relationships, and queries as you explore the data. Leverage Visualizations: Use Neo4j Bloom’s visualization capabilities to create intuitive and interactive scenes. Experiment with Filters: Apply filters to focus on specific aspects of the data and gain deeper insights. Collaborate: Involve programme leads, module leads, and administrators in the design and development process to ensure the perspectives and scenes meet their needs.</p>
+    
+  
+    
+  </div>
+  
 
 
+</header>
+
+
+<p>So far, we have explored the complexities and challenges of university timetabling, the pros and cons of graph databases and investigated different graph data models. We have also built and implemented a data engineering solution which extracts, transforms and loads data from SQL RDMS to a graph database.</p>
+<p>In this section, we delve deeper into the concept of timetable quality metrics and explore how graph databases can help us quantify and measure the quality of timetables.</p>
+<section id="defining-timetable-quality" class="level3">
+<h3 class="anchored" data-anchor-id="defining-timetable-quality">Defining Timetable Quality</h3>
+<p>As discussed in the introduction, the inherent complexity of timetabling, with its competing objectives and subjective evaluations, makes it difficult to objectively assess the quality of a timetable. There is no universally agreed-upon definition of a “good” timetable, as it is often a balancing act between satisfying hard constraints (e.g., avoiding clashes) and optimising for softer constraints (e.g., minimising travel time).</p>
+<p>How can we move beyond anecdotal evidence and subjective opinions to a more data-driven understanding of timetable quality?</p>
+<p>I propose the development of a <em>timetable quality index</em>.</p>
+</section>
+<section id="towards-a-quantifiable-measure" class="level3">
+<h3 class="anchored" data-anchor-id="towards-a-quantifiable-measure">Towards a Quantifiable Measure</h3>
+<p>A <strong>Timetable Quality Index</strong> (TQI)is a quantifiable and measurable <em>score</em> reflecting the overall “goodness” of a timetable, both at individual and aggregate levels. This score would be based on a flexible and adaptable system of penalties and rewards tied to specific metrics, allowing institutions to tailor the index to their unique needs and priorities.</p>
+<p>Use cases for TQI include:</p>
+<section id="benchmarking-and-comparison" class="level4">
+<h4 class="anchored" data-anchor-id="benchmarking-and-comparison">Benchmarking and comparison</h4>
+<p>The index allows institutions to compare timetable quality across different programmes, departments, or even years, facilitating the identification of best practices and areas for improvement. It would aid in benchmarking timetable models and approaches.</p>
+</section>
+<section id="resource-optimisation" class="level4">
+<h4 class="anchored" data-anchor-id="resource-optimisation">Resource optimisation</h4>
+<p>Insights from the index can help institutions allocate resources, such as lecture rooms and teaching staff, more effectively by identifying underutilised or overbooked facilities.</p>
+</section>
+<section id="student-experience-enhancement" class="level4">
+<h4 class="anchored" data-anchor-id="student-experience-enhancement">Student experience enhancement</h4>
+<p>By prioritising metrics related to student well-being, such as travel time and consecutive teaching hours, institutions can enhance the overall student experience and satisfaction.</p>
+</section>
+<section id="data-driven-decision-making" class="level4">
+<h4 class="anchored" data-anchor-id="data-driven-decision-making">Data-driven decision making</h4>
+<p>Historical timetable quality data can inform future planning and course scheduling, allowing institutions to anticipate and address potential issues proactively.</p>
+</section>
+<section id="stakeholder-communication" class="level4">
+<h4 class="anchored" data-anchor-id="stakeholder-communication">Stakeholder communication</h4>
+<p>The TQI can serve as a transparent and data-driven tool for communicating the performance and challenges of the timetabling process to various stakeholders, including faculty, students, and administrative staff. It takes the guesswork out of the discussion.</p>
+</section>
+</section>
+<section id="implemented-metrics" class="level3">
+<h3 class="anchored" data-anchor-id="implemented-metrics">Implemented Metrics</h3>
+<p>The foundation of this quality index lies in defining and calculating specific metrics that capture various aspects of timetable quality.</p>
+<section id="constraint-or-preference-violations" class="level4">
+<h4 class="anchored" data-anchor-id="constraint-or-preference-violations">Constraint or preference violations</h4>
+<p>Individual timetables have certain measurable qualities - the shape and feel of the timetable. Often, these can be summarised into rules or constraints - either desirable qualities to strive for or undesirable qualities to avoid. They can be ‘hard’ - <strong>must</strong> not be violated, or ‘soft’ - <em>should</em> not be violated.</p>
+<p>The presence or absence of these qualities on an individual’s timetable can be measured in the form of a reward or penalty. The flexibility of the graph database allows for experimentation in terms of which metrics are most relevant, how they should be calculated, where they should be stored, and how they should be weighted in the overall quality score.</p>
+<p>Examples include:</p>
+<ul>
+<li>maximum hours per day, e.g., no more than 6 hours of teaching per day</li>
+<li>maximum consecutive hours, e.g., no more than 3 hours of teaching without a break</li>
+<li>minimum hours per day, e.g., at least 2 hours of teaching per day</li>
+<li>lunch break, e.g., should have a break between 12-2pm</li>
+<li>minimal idle time, e.g., no more than a 4-hour gap between activities on a day</li>
+<li>preferred timeblocks, e.g., bonus points for activities scheduled in the core of the day</li>
+</ul>
+<p><br></p>
+</section>
+<section id="distance-based-metrics" class="level4">
+<h4 class="anchored" data-anchor-id="distance-based-metrics">Distance-based metrics</h4>
+<p>By incorporating room location data, we can calculate travel distances and times between activities. Long travel times or back-to-back activities in distant locations would incur penalties. See <a href="./appendix-cypher7.html">Rooms and Spaces</a> for more details.</p>
+</section>
+<section id="resource-utilisation" class="level4">
+<h4 class="anchored" data-anchor-id="resource-utilisation">Resource Utilisation</h4>
+<p>Metrics related to room utilisation, such as occupancy rates and frequency of use, can provide insights into the efficient allocation of space. Low utilisation rates could be penalised, encouraging more effective use of resources.</p>
+</section>
+<section id="activity-characteristics" class="level4">
+<h4 class="anchored" data-anchor-id="activity-characteristics">Activity Characteristics</h4>
+<p>Factors like activity clashes, oversubscription rates, and room suitability (size, type) can impact student experience. Penalties could be based on the severity of these characteristics.</p>
+
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1233,6 +1358,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="./03-07-reflections.html" class="pagination-link" aria-label="Reflection">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Reflection</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./04-02-timetable-agg.html" class="pagination-link" aria-label="Metric Aggregations">
+        <span class="nav-page-text">Metric Aggregations</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

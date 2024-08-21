@@ -1,0 +1,77 @@
+---
+title: "Timetable Metrics" 
+---
+
+So far, we have explored the complexities and challenges of university timetabling, the pros and cons of graph databases and investigated different graph data models.  We have also built and implemented a data engineering solution which extracts, transforms and loads data from SQL RDMS to a graph database.  
+
+In this section, we delve deeper into the concept of timetable quality metrics and explore how graph databases can help us quantify and measure the quality of timetables. 
+
+
+### Defining Timetable Quality
+
+As discussed in the introduction, the inherent complexity of timetabling, with its competing objectives and subjective evaluations, makes it difficult to objectively assess the quality of a timetable. There is no universally agreed-upon definition of a "good" timetable, as it is often a balancing act between satisfying hard constraints (e.g., avoiding clashes) and optimising for softer constraints (e.g., minimising travel time).
+
+How can we move beyond anecdotal evidence and subjective opinions to a more data-driven understanding of timetable quality?
+
+I propose the development of a *timetable quality index*. 
+
+### Towards a Quantifiable Measure
+
+A **Timetable Quality Index** (TQI)is a quantifiable and measurable *score* reflecting the overall "goodness" of a timetable, both at individual and aggregate levels. This score would be based on a flexible and adaptable system of penalties and rewards tied to specific metrics, allowing institutions to tailor the index to their unique needs and priorities.
+
+Use cases for TQI include:
+
+#### Benchmarking and comparison
+
+The index allows institutions to compare timetable quality across different programmes, departments, or even years, facilitating the identification of best practices and areas for improvement.  It would aid in benchmarking timetable models and approaches.
+
+#### Resource optimisation 
+
+Insights from the index can help institutions allocate resources, such as lecture rooms and teaching staff, more effectively by identifying underutilised or overbooked facilities.
+
+#### Student experience enhancement
+
+By prioritising metrics related to student well-being, such as travel time and consecutive teaching hours, institutions can enhance the overall student experience and satisfaction.
+
+#### Data-driven decision making
+
+Historical timetable quality data can inform future planning and course scheduling, allowing institutions to anticipate and address potential issues proactively.
+
+#### Stakeholder communication
+
+The TQI can serve as a transparent and data-driven tool for communicating the performance and challenges of the timetabling process to various stakeholders, including faculty, students, and administrative staff.  It takes the guesswork out of the discussion.
+
+### Implemented Metrics
+
+The foundation of this quality index lies in defining and calculating specific metrics that capture various aspects of timetable quality. 
+
+
+#### Constraint or preference violations
+
+Individual timetables have certain measurable qualities - the shape and feel of the timetable.  Often, these can be summarised into rules or constraints - either desirable qualities to strive for or undesirable qualities to avoid.  They can be 'hard' - **must** not be violated, or 'soft' - *should* not be violated. 
+
+The presence or absence of these qualities on an individual's timetable can be measured in the form of a reward or penalty.  The flexibility of the graph database allows for experimentation in terms of which metrics are most relevant, how they should be calculated, where they should be stored, and how they should be weighted in the overall quality score.
+
+Examples include:
+
+* maximum hours per day, e.g., no more than 6 hours of teaching per day
+* maximum consecutive hours, e.g., no more than 3 hours of teaching without a break
+* minimum hours per day, e.g., at least 2 hours of teaching per day
+* lunch break, e.g., should have a break between 12-2pm
+* minimal idle time, e.g., no more than a 4-hour gap between activities on a day
+* preferred timeblocks, e.g., bonus points for activities scheduled in the core of the day
+
+<br>
+
+#### Distance-based metrics
+
+By incorporating room location data, we can calculate travel distances and times between activities. Long travel times or back-to-back activities in distant locations would incur penalties.  See [Rooms and Spaces](appendix-cypher7.qmd) for more details.
+
+#### Resource Utilisation 
+
+Metrics related to room utilisation, such as occupancy rates and frequency of use, can provide insights into the efficient allocation of space. Low utilisation rates could be penalised, encouraging more effective use of resources.
+
+#### Activity Characteristics
+
+Factors like activity clashes, oversubscription rates, and room suitability (size, type) can impact student experience. Penalties could be based on the severity of these characteristics.  
+

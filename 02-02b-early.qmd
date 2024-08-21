@@ -22,7 +22,14 @@ Even with this basic model, we can easily extract valuable insights, for example
 
 **Busiest locations overall**
 
-`{cypher}{.scroll-cypher} MATCH (r:room)<-[:OCCUPIES]-(a:activity) WITH r, sum(a.actDuration)/60 AS totalDurationInHours RETURN r.roomName AS Room, r.roomCapacity AS Capacity, r.roomType AS Type, totalDurationInHours ORDER BY totalDurationInHours DESC LIMIT 3`
+```{cypher}{.scroll-cypher} 
+
+MATCH (r:room)<-[:OCCUPIES]-(a:activity) 
+WITH r, sum(a.actDuration)/60 AS totalDurationInHours 
+RETURN r.roomName AS Room, r.roomCapacity AS Capacity, r.roomType AS Type, totalDurationInHours 
+ORDER BY totalDurationInHours 
+DESC LIMIT 3
+```
 
 | Room    | Capacity | Type     | totalDurationInHours |
 |---------|----------|----------|----------------------|
@@ -32,7 +39,14 @@ Even with this basic model, we can easily extract valuable insights, for example
 
 **Busiest location for a specific time**
 
-`{cypher}{.scroll-cypher} MATCH (r:room)<-[:OCCUPIES]-(a:activity) WHERE a.actStartTime = localtime({hour:9, minute:0, second:0})  WITH r, count(a) AS Count, a.actStartTime AS StartTime RETURN r.roomName AS Room, Count, StartTime ORDER BY Count DESC LIMIT 3`
+```{cypher}{.scroll-cypher} 
+MATCH (r:room)<-[:OCCUPIES]-(a:activity) 
+WHERE a.actStartTime = localtime({hour:9, minute:0, second:0})  
+WITH r, count(a) AS Count, a.actStartTime AS StartTime 
+RETURN r.roomName AS Room, Count, StartTime 
+ORDER BY Count DESC 
+LIMIT 3
+```
 
 | Room    | Count | StartTime |
 |---------|-------|-----------|
@@ -46,7 +60,24 @@ This query returns students and whether they have more or less scheduled time on
 
 [^1]: The average is calculated based on the total duration of activities attended by each student. The below/above average classification is based on a 10% deviation from the average. Alternative approaches have been used to define the average and the deviation threshold including median values and standard deviations.
 
-`{cypher}{.scroll-cypher} MATCH (s:student)-[:ATTENDS]->(a:activity) WITH s.stuProgName AS progName, s.stuID_anon AS studentID, SUM(a.actDurationInMinutes) AS studentTotalDuration WITH progName,       AVG(studentTotalDuration) / 60 AS progAverageHoursPerStudent,       collect({studentID: studentID, studentTotalHours: studentTotalDuration / 60}) AS studentsData UNWIND studentsData AS studentData RETURN progName,         progAverageHoursPerStudent,        studentData.studentID AS studentID,         studentData.studentTotalHours AS studentTotalHours,         CASE             WHEN studentData.studentTotalHours < (progAverageHoursPerStudent * 0.9) THEN 'Below Average'            WHEN studentData.studentTotalHours > (progAverageHoursPerStudent * 1.1) THEN 'Above Average'            ELSE 'Average'        END AS compare`
+```{cypher}{.scroll-cypher} 
+
+MATCH (s:student)-[:ATTENDS]->(a:activity)
+WITH s.stuProgName AS progName, s.stuID_anon AS studentID, SUM(a.actDurationInMinutes) AS studentTotalDuration
+WITH progName, 
+     AVG(studentTotalDuration) / 60 AS progAverageHoursPerStudent, 
+     collect({studentID: studentID, studentTotalHours: studentTotalDuration / 60}) AS studentsData
+UNWIND studentsData AS studentData
+RETURN progName, 
+       progAverageHoursPerStudent,
+       studentData.studentID AS studentID, 
+       studentData.studentTotalHours AS studentTotalHours, 
+       CASE 
+           WHEN studentData.studentTotalHours < (progAverageHoursPerStudent * 0.9) THEN 'Below Average'
+           WHEN studentData.studentTotalHours > (progAverageHoursPerStudent * 1.1) THEN 'Above Average'
+           ELSE 'Average'
+       END AS performance
+```
 
 | progName | progAverageHoursPerStudent | studentID | studentTotalHours | compare |
 |---------------|---------------|---------------|---------------|---------------|

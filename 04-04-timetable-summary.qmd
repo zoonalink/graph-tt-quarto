@@ -1,0 +1,35 @@
+---
+title: "TQI Summary"
+---
+
+### Visualisation of Results
+
+The calculated scores and underlying metrics can be effectively visualised using various techniques:
+
+**Bloom visualisations in Neo4j**: These can provide an intuitive overview of timetable quality across different programmes, time slots, or other groupings.  They enable users to explore hierarchical relationships, identify patterns and outliers, and drill down into specific data points.  See [Appendix-perspectives.qmd] for initial ideas.
+
+**Charts and dashboards**: Bar charts, line graphs, and heatmaps can be used to display and compare scores, identify trends, and track changes over time.  Interactive dashboards can be built to provide a various views of timetable quality metrics and enable stakeholders to explore the data, identify trends, and make informed decisions.
+
+### Potential Challenges
+
+While the concept of a timetable quality index offers many benefits, there are several challenges to acknowledge:
+
+**Data quality and availability**: As with any analysis, accuracy and completeness of timetable data is crucial to calculate reliable quality scores. Inconsistent or missing data can lead to inaccurate results and skewed conclusions.
+
+**Complexity of metrics**: Defining and calculating meaningful metrics that capture the nuances of timetable quality can be challenging and time-consuming.
+
+**Metric Definition and Weighting**: Ironically, the very attempt to quantify quality is based on subjective judgements - which metrics to include, how to calculate them and how to weight them.
+
+### Benefits and Future Development
+
+A timetable quality index is a potentially a powerful mechanism which can help universities gain a more quantifiable and data-driven understanding of their timetabling function.  
+
+The flexibility of graph allows for rapid prototyping, experimentation and deployment of new metrics and scoring systems.  This can help institutions to identify areas for improvement, allocate resources more effectively, and enhance the overall student experience.
+
+Future developments could include:
+
+* Identifying additional metrics that capture the quality of timetables more comprehensively.
+* Refining the weighting system for penalties and rewards based on stakeholder feedback and institutional priorities.
+* Incorporating additional datasets, such as student preferences or transportation schedules, to enhance the accuracy and granularity of the quality index.
+* Incorporating additional constraints and preferences, such as room suitability, staff availability, student preferences and any reasonable adjustments.
+* Developing interactive dashboards that allow users to explore timetable data, simulate changes, and assess their impact on the quality score.

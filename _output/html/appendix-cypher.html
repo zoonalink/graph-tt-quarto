@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Cypher Queries –  </title>
+<title>M: Cypher Queries –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -222,18 +222,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./04-timetable-metrics.html"> 
-<span class="menu-text">Timetable Metrics</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-timetable-metrics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Timetable Metrics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-timetable-metrics">    
+        <li>
+    <a class="dropdown-item" href="./04-01-timetable-metrics.html">
+ <span class="dropdown-text">Timetable Metrics</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./04-02-timetable-agg.html">
+ <span class="dropdown-text">Metric Aggregations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04-03-timetable-cypher.html">
+ <span class="dropdown-text">Implementing Metrics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04-04-timetable-summary.html">
+ <span class="dropdown-text">TQI Summary</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./05-final-thoughts.html"> 
 <span class="menu-text">Final Thoughts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./appendix-random-graph.html"> 
-<span class="menu-text">Appendix &amp; References</span></a>
+    <a class="nav-link" href="./appendix-toc.html"> 
+<span class="menu-text">Appendices</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-references--acknowledgements" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">References &amp; Acknowledgements</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-references--acknowledgements">    
+        <li>
+    <a class="dropdown-item" href="./references.html">
+ <span class="dropdown-text">References</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./acknowledgements.html">
+ <span class="dropdown-text">Acknowledgements</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
@@ -268,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix-random-graph.html">Appendix &amp; References</a></li><li class="breadcrumb-item"><a href="./appendix-cypher.html">Cypher Code</a></li><li class="breadcrumb-item"><a href="./appendix-cypher.html">Cypher Queries</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix-random-graph.html">Appendices</a></li><li class="breadcrumb-item"><a href="./appendix-cypher.html">Cypher Code</a></li><li class="breadcrumb-item"><a href="./appendix-cypher.html">Cypher Queries</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -429,12 +463,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Timetable Metrics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-timetable-metrics.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-01-timetable-metrics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Timetable Metrics</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-02-timetable-agg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Metric Aggregations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-03-timetable-cypher.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Implementing Metrics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-04-timetable-summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TQI Summary</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-final-thoughts.html" class="sidebar-item-text sidebar-link">
@@ -443,13 +506,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendix &amp; References</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-random-graph.html" class="sidebar-item-text sidebar-link">
@@ -476,13 +539,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
  <span class="menu-text">ETL Summary and Code</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-code-intro.html" class="sidebar-item-text sidebar-link">
@@ -535,13 +598,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Cypher Code</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-cypher.html" class="sidebar-item-text sidebar-link active">
@@ -596,21 +659,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Rooms and Spaces</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-perspectives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Perspectives</span></a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
  <span class="menu-text">Supervision</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-supervision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Supervision</span></a>
+ <span class="menu-text">W: Supervision</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -619,7 +688,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-supervision1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Weekly Update - 10 June 2024</span></a>
+ <span class="menu-text">X: Fortnightly Update - 10 June 2024</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -639,20 +708,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-          <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -674,9 +743,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix-random-graph.html">Appendix &amp; References</a></li><li class="breadcrumb-item"><a href="./appendix-cypher.html">Cypher Code</a></li><li class="breadcrumb-item"><a href="./appendix-cypher.html">Cypher Queries</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix-random-graph.html">Appendices</a></li><li class="breadcrumb-item"><a href="./appendix-cypher.html">Cypher Code</a></li><li class="breadcrumb-item"><a href="./appendix-cypher.html">Cypher Queries</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Cypher Queries</h1>
+<h1 class="title">M: Cypher Queries</h1>
 </div>
 
 
@@ -707,10 +776,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="indexes" class="level2">
 <h2 class="anchored" data-anchor-id="indexes">Indexes</h2>
-<p>Indexes in Neo4j are used to speed up queries by allowing the database to quickly locate nodes or relationships based on a property value. They will depend heavily on graph structure and specific use-cases. For example, if performing regular seaches on <code>(activity{actStartTime})</code> it is probably beneficial to create an index on this property.</p>
+<p>Indexes in Neo4j are used to speed up queries by allowing the database to quickly locate nodes or relationships based on a property value. They will depend heavily on graph structure and specific use-cases. For example, if performing regular searches on <code>(activity{actStartTime})</code> it is probably beneficial to create an index on this property.</p>
 <p>Search performance indexes include <code>RANGE</code>, <code>FULLTEXT</code>, and <code>POINT</code>. Range indexes are the default and support most queries. Text indexes, like <code>FULLTEXT</code>, are used for <code>string</code> based searches and optimised for queries containing operators like <code>CONTAINS</code> or <code>STARTS WITH</code>. Point indexes are used for spatial queries and are optimised for <code>latitude</code> and <code>longitude</code> properties.</p>
 <p><strong>Indexes in Graph</strong></p>
-<div id="6c6d3d7f" class="cell" data-execution_count="1">
+<div id="7e91cfac" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to show code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
@@ -733,28 +802,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Connecting to Neo4j database....
-Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x00000208C9874690&gt;
+Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x0000023D862F1890&gt;
 Running query...
 
 &lt;Record id=7 name='activity_clash_index' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actStartDate', 'actStartTime', 'actEndTime'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
-&lt;Record id=19 name='graphid_demoRoom_uniq' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['demoRoom'] properties=['graphid'] indexProvider='range-1.0' owningConstraint='graphid_demoRoom_uniq' lastRead=neo4j.time.DateTime(2024, 8, 15, 18, 24, 22, 793000000, tzinfo=&lt;UTC&gt;) readCount=8952&gt;
+&lt;Record id=19 name='graphid_demoRoom_uniq' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['demoRoom'] properties=['graphid'] indexProvider='range-1.0' owningConstraint='graphid_demoRoom_uniq' lastRead=neo4j.time.DateTime(2024, 8, 20, 18, 16, 44, 231000000, tzinfo=&lt;UTC&gt;) readCount=3&gt;
 &lt;Record id=4 name='index_12b79beb' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actEndTime'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
 &lt;Record id=6 name='index_207d313' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['id'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
-&lt;Record id=8 name='index_241bd22f' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['room'] properties=['roomName'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 19, 9, 31, 24, 907000000, tzinfo=&lt;UTC&gt;) readCount=122&gt;
+&lt;Record id=8 name='index_241bd22f' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['room'] properties=['roomName'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 21, 14, 8, 33, 622000000, tzinfo=&lt;UTC&gt;) readCount=160&gt;
 &lt;Record id=9 name='index_2d375d70' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['room'] properties=['roomLatitude'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 15, 18, 40, 6, 645000000, tzinfo=&lt;UTC&gt;) readCount=107&gt;
-&lt;Record id=0 name='index_343aff4e' state='ONLINE' populationPercent=100.0 type='LOOKUP' entityType='NODE' labelsOrTypes=None properties=None indexProvider='token-lookup-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 19, 16, 28, 19, 533000000, tzinfo=&lt;UTC&gt;) readCount=117374&gt;
+&lt;Record id=0 name='index_343aff4e' state='ONLINE' populationPercent=100.0 type='LOOKUP' entityType='NODE' labelsOrTypes=None properties=None indexProvider='token-lookup-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 21, 14, 8, 44, 304000000, tzinfo=&lt;UTC&gt;) readCount=117816&gt;
 &lt;Record id=10 name='index_43c5c824' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['room'] properties=['roomLongitude'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 15, 18, 40, 6, 646000000, tzinfo=&lt;UTC&gt;) readCount=106&gt;
-&lt;Record id=2 name='index_6acb9a84' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actStartDate'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 19, 9, 32, 0, 575000000, tzinfo=&lt;UTC&gt;) readCount=92&gt;
+&lt;Record id=2 name='index_6acb9a84' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actStartDate'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 21, 14, 8, 45, 504000000, tzinfo=&lt;UTC&gt;) readCount=117&gt;
 &lt;Record id=5 name='index_7ade165f' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actModSplusID'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 15, 18, 40, 6, 638000000, tzinfo=&lt;UTC&gt;) readCount=148&gt;
 &lt;Record id=1 name='index_f7700477' state='ONLINE' populationPercent=100.0 type='LOOKUP' entityType='RELATIONSHIP' labelsOrTypes=None properties=None indexProvider='token-lookup-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 15, 13, 53, 33, 557000000, tzinfo=&lt;UTC&gt;) readCount=134&gt;
-&lt;Record id=3 name='index_f86013e' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actStartTime'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 19, 14, 27, 24, 263000000, tzinfo=&lt;UTC&gt;) readCount=16&gt;
+&lt;Record id=3 name='index_f86013e' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['activity'] properties=['actStartTime'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 21, 9, 8, 41, 307000000, tzinfo=&lt;UTC&gt;) readCount=18&gt;
 &lt;Record id=18 name='lat_demoRoom' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['demoRoom'] properties=['lat'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
 &lt;Record id=17 name='lon_demoRoom' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['demoRoom'] properties=['lon'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
-&lt;Record id=16 name='rm_cat_demoRoom' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['demoRoom'] properties=['rm_cat'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
-&lt;Record id=13 name='rm_id_demoRoom_uniq' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['demoRoom'] properties=['rm_id'] indexProvider='range-1.0' owningConstraint='rm_id_demoRoom_uniq' lastRead=neo4j.time.DateTime(2024, 8, 15, 18, 25, 31, 243000000, tzinfo=&lt;UTC&gt;) readCount=57296&gt;
-&lt;Record id=15 name='rm_type_demoRoom' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['demoRoom'] properties=['rm_type'] indexProvider='range-1.0' owningConstraint=None lastRead=None readCount=0&gt;
-&lt;Record id=11 name='room_fulltext_index' state='ONLINE' populationPercent=100.0 type='FULLTEXT' entityType='NODE' labelsOrTypes=['room'] properties=['roomName', 'roomDescription', 'roomType', 'roomCapacity'] indexProvider='fulltext-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 15, 18, 40, 2, 441000000, tzinfo=&lt;UTC&gt;) readCount=87&gt;
-&lt;Record id=12 name='room_geo_index' state='ONLINE' populationPercent=100.0 type='FULLTEXT' entityType='NODE' labelsOrTypes=['room'] properties=['roomLatitude', 'roomLongitude'] indexProvider='fulltext-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 15, 18, 40, 2, 457000000, tzinfo=&lt;UTC&gt;) readCount=6&gt;</code></pre>
+&lt;Record id=16 name='rm_cat_demoRoom' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['demoRoom'] properties=['rm_cat'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 20, 18, 16, 44, 250000000, tzinfo=&lt;UTC&gt;) readCount=3&gt;
+&lt;Record id=15 name='rm_type_demoRoom' state='ONLINE' populationPercent=100.0 type='RANGE' entityType='NODE' labelsOrTypes=['demoRoom'] properties=['rm_type'] indexProvider='range-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 20, 18, 16, 44, 258000000, tzinfo=&lt;UTC&gt;) readCount=3&gt;
+&lt;Record id=11 name='room_fulltext_index' state='ONLINE' populationPercent=100.0 type='FULLTEXT' entityType='NODE' labelsOrTypes=['room'] properties=['roomName', 'roomDescription', 'roomType', 'roomCapacity'] indexProvider='fulltext-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 20, 18, 16, 43, 786000000, tzinfo=&lt;UTC&gt;) readCount=99&gt;
+&lt;Record id=12 name='room_geo_index' state='ONLINE' populationPercent=100.0 type='FULLTEXT' entityType='NODE' labelsOrTypes=['room'] properties=['roomLatitude', 'roomLongitude'] indexProvider='fulltext-1.0' owningConstraint=None lastRead=neo4j.time.DateTime(2024, 8, 20, 18, 16, 43, 803000000, tzinfo=&lt;UTC&gt;) readCount=12&gt;</code></pre>
 </div>
 </div>
 <section id="creating-indexes" class="level3">

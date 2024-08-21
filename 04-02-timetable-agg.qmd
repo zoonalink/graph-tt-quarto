@@ -1,0 +1,20 @@
+---
+title: "Metric Aggregations" 
+---
+
+With the individual metrics calculated, the next step is to aggregate these into meaningful scores at different levels.  This could be at the student level, programme level, department level, or even at the room or building object.  
+
+The metrics used and their weightings will depend on the use-case and the priorities of the institution.  For example, a student-level score could be used to identify students with particularly poor timetables, while a programme-level score could be used to compare the quality of timetables across different programmes, and a room-level score could be used to identify rooms that are underutilised or overbooked or are otherwise unsuitable.
+
+This allows for a more nuanced understanding of timetable quality and can help identify areas for improvement.
+
+#### Student-level 
+
+Each student node can have a quality score reflecting their individual timetable experience based on assigned activities and associated penalties.
+
+#### Programme-level 
+
+By aggregating student scores within a programme, we gain insights into the overall quality experienced by students in that programme.
+
+#### Other groupings
+ Scores can be aggregated at various levels, such as by department, room type, or time slot, to identify potential areas for improvement.

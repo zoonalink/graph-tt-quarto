@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Rooms and Spaces –  </title>
+<title>U: Rooms and Spaces –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,7 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./appendix-supervision.html" rel="next">
+<link href="./appendix-perspectives.html" rel="next">
 <link href="./appendix-cypher6.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -42,6 +42,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -188,18 +191,52 @@ ul.task-list li input[type="checkbox"] {
   </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./04-timetable-metrics.html"> 
-<span class="menu-text">Timetable Metrics</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-timetable-metrics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Timetable Metrics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-timetable-metrics">    
+        <li>
+    <a class="dropdown-item" href="./04-01-timetable-metrics.html">
+ <span class="dropdown-text">Timetable Metrics</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./04-02-timetable-agg.html">
+ <span class="dropdown-text">Metric Aggregations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04-03-timetable-cypher.html">
+ <span class="dropdown-text">Implementing Metrics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04-04-timetable-summary.html">
+ <span class="dropdown-text">TQI Summary</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./05-final-thoughts.html"> 
 <span class="menu-text">Final Thoughts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./appendix-random-graph.html"> 
-<span class="menu-text">Appendix &amp; References</span></a>
+    <a class="nav-link" href="./appendix-toc.html"> 
+<span class="menu-text">Appendices</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-references--acknowledgements" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">References &amp; Acknowledgements</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-references--acknowledgements">    
+        <li>
+    <a class="dropdown-item" href="./references.html">
+ <span class="dropdown-text">References</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./acknowledgements.html">
+ <span class="dropdown-text">Acknowledgements</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
@@ -234,7 +271,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix-random-graph.html">Appendix &amp; References</a></li><li class="breadcrumb-item"><a href="./appendix-cypher.html">Cypher Code</a></li><li class="breadcrumb-item"><a href="./appendix-cypher7.html">Rooms and Spaces</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix-random-graph.html">Appendices</a></li><li class="breadcrumb-item"><a href="./appendix-cypher.html">Cypher Code</a></li><li class="breadcrumb-item"><a href="./appendix-cypher7.html">Rooms and Spaces</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -395,12 +432,41 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Timetable Metrics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-timetable-metrics.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-01-timetable-metrics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Timetable Metrics</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-02-timetable-agg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Metric Aggregations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-03-timetable-cypher.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Implementing Metrics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-04-timetable-summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TQI Summary</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-final-thoughts.html" class="sidebar-item-text sidebar-link">
@@ -409,13 +475,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendix &amp; References</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-random-graph.html" class="sidebar-item-text sidebar-link">
@@ -442,13 +508,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
  <span class="menu-text">ETL Summary and Code</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-code-intro.html" class="sidebar-item-text sidebar-link">
@@ -501,13 +567,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Cypher Code</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-cypher.html" class="sidebar-item-text sidebar-link">
@@ -562,21 +628,27 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Rooms and Spaces</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-perspectives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Perspectives</span></a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
  <span class="menu-text">Supervision</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-supervision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Supervision</span></a>
+ <span class="menu-text">W: Supervision</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -585,7 +657,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-supervision1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Weekly Update - 10 June 2024</span></a>
+ <span class="menu-text">X: Fortnightly Update - 10 June 2024</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -605,39 +677,51 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
-          <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#room-geo-location" id="toc-room-geo-location" class="nav-link active" data-scroll-target="#room-geo-location">Room Geo-location</a>
+  <ul class="collapse">
+  <li><a href="#import-locations-from-file" id="toc-import-locations-from-file" class="nav-link" data-scroll-target="#import-locations-from-file">Import locations from file</a></li>
+  <li><a href="#load-cypher" id="toc-load-cypher" class="nav-link" data-scroll-target="#load-cypher">load cypher</a></li>
+  <li><a href="#thoughts" id="toc-thoughts" class="nav-link" data-scroll-target="#thoughts">Thoughts</a></li>
+  </ul></li>
+  <li><a href="#room-use" id="toc-room-use" class="nav-link" data-scroll-target="#room-use">Room use</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix-random-graph.html">Appendix &amp; References</a></li><li class="breadcrumb-item"><a href="./appendix-cypher.html">Cypher Code</a></li><li class="breadcrumb-item"><a href="./appendix-cypher7.html">Rooms and Spaces</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix-random-graph.html">Appendices</a></li><li class="breadcrumb-item"><a href="./appendix-cypher.html">Cypher Code</a></li><li class="breadcrumb-item"><a href="./appendix-cypher7.html">Rooms and Spaces</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Rooms and Spaces</h1>
+<h1 class="title">U: Rooms and Spaces</h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -650,10 +734,109 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p><br></p>
-<p>Start from rooms in cypher-query-notes</p>
-<p>utilisation most popular rooms mapping rooms room types</p>
+<p>The timetabling database contains some information about rooms and spaces on campus, but the master data systems contains much more. I have added a few rooms and properties from the master source, as an experiemnt.</p>
+<section id="room-geo-location" class="level2">
+<h2 class="anchored" data-anchor-id="room-geo-location">Room Geo-location</h2>
+<section id="import-locations-from-file" class="level3">
+<h3 class="anchored" data-anchor-id="import-locations-from-file">Import locations from file</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./images/demoRoom-import.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="imported locations from file"><img src="./images/demoRoom-import.png" class="img-fluid figure-img" alt="imported locations from file"></a></p>
+<figcaption>imported locations from file</figcaption>
+</figure>
+</div>
+</section>
+<section id="load-cypher" class="level3">
+<h3 class="anchored" data-anchor-id="load-cypher">load cypher</h3>
+<pre class="{cypher}{scroll-cypher}"><code>UNWIND $nodeRecords AS nodeRecord
+WITH *
+WHERE NOT nodeRecord.`graphid` IN $idsToSkip AND NOT nodeRecord.`graphid` IS NULL
+MERGE (n: `demoRoom` { `graphid`: nodeRecord.`graphid` })
+SET n.`#rm.bl_id` = nodeRecord.`#rm.bl_id`
+SET n.`fl_id` = toInteger(trim(nodeRecord.`fl_id`))
+SET n.`rm_id` = nodeRecord.`rm_id`
+SET n.`rm_type` = nodeRecord.`rm_type`
+SET n.`dp_id` = nodeRecord.`dp_id`
+SET n.`bu_id` = nodeRecord.`bu_id`
+SET n.`rm_std` = nodeRecord.`rm_std`
+SET n.`rm_use` = nodeRecord.`rm_use`
+SET n.`site_id` = nodeRecord.`site_id`
+SET n.`dv_id` = nodeRecord.`dv_id`
+SET n.`asb_risk` = nodeRecord.`asb_risk`
+SET n.`rm_cat` = nodeRecord.`rm_cat`
+SET n.`lon` = toFloat(trim(nodeRecord.`lon`))
+SET n.`lat` = toFloat(trim(nodeRecord.`lat`))
+SET n.`roomHostKey` = nodeRecord.`roomHostKey`;</code></pre>
+</section>
+<section id="thoughts" class="level3">
+<h3 class="anchored" data-anchor-id="thoughts">Thoughts</h3>
+<p>Some rooms have longitude and latitude, which have been used to calculate distance. The screenshot below shows locations on Frenchay campus - you can clearly see rooms aligned into the shape our the buildings. <img src="./images/demoRoom-FR.png" class="img-fluid" alt="Coordinate view of Frenchay rooms"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./images/demoRoom-FR-zoom.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Close of up B Block rooms on Frenchay Campus"><img src="./images/demoRoom-FR-zoom.png" class="img-fluid figure-img" alt="Close of up B Block rooms on Frenchay Campus"></a></p>
+<figcaption>Close of up B Block rooms on Frenchay Campus</figcaption>
+</figure>
+</div>
+<p>An alternative view includes locations in City Campus.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./images/demoRoom-FR-CITY.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Frenchay and City Campus rooms"><img src="./images/demoRoom-FR-CITY.png" class="img-fluid figure-img" alt="Frenchay and City Campus rooms"></a></p>
+<figcaption>Frenchay and City Campus rooms</figcaption>
+</figure>
+</div>
+<p>The above images show the potential of using coordinates although there is a lot more to consider including actual locations, accuracy, missing data, and coordinate transformations.</p>
+</section>
+</section>
+<section id="room-use" class="level2">
+<h2 class="anchored" data-anchor-id="room-use">Room use</h2>
+<p>Being able to measure room usage - utilisation, frequency, occupancy - is a key metric for the university.</p>
+<pre class="{cypher}{scroll-cypher}"><code>// room occupancy
+MATCH (room:room )&lt;-[:OCCUPIES]-(activity:activity)
+WITH room, activity, 
+     activity.actDurationInMinutes / 60.0 AS occupancyHours
+RETURN room.roomName AS room, 
+       SUM(occupancyHours) AS totalOccupancyHours</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./images/roomOccupancy.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Room occupancy"><img src="./images/roomOccupancy.png" class="img-fluid figure-img" alt="Room occupancy"></a></p>
+<figcaption>Room occupancy</figcaption>
+</figure>
+</div>
+<pre class="{cypher}{scroll-cypher}"><code>// frequency
+MATCH (room:room )&lt;-[:OCCUPIES]-(activity:activity)
+RETURN room.roomName AS room, 
+       COUNT(activity) AS totalActivities</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./images/roomFrequency.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Room frequency"><img src="./images/roomFrequency.png" class="img-fluid figure-img" alt="Room frequency"></a></p>
+<figcaption>Room frequency</figcaption>
+</figure>
+</div>
+<pre class="{cypher}{scroll-cypher}"><code>// simple utilisation
+MATCH (room:room {roomName: "2Q12 FR"})&lt;-[:OCCUPIES]-(activity:activity)
+WITH room, activity, 
+     CASE 
+         WHEN activity.actStartTime.hour = activity.actEndTime.hour 
+         THEN 1 
+         ELSE activity.actEndTime.hour - activity.actStartTime.hour + 1 
+     END AS occupiedHours
+UNWIND range(activity.actStartTime.hour, activity.actEndTime.hour) AS hour
+RETURN room.roomName AS room, 
+       hour AS hourBlockStart, 
+       hour + 1 AS hourBlockEnd,
+       SUM(CASE WHEN hour IN range(activity.actStartTime.hour, activity.actEndTime.hour) THEN 1 ELSE 0 END) AS utilizationCount,
+       occupiedHours AS totalOccupiedHours
+ORDER BY hourBlockStart</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="./images/roomUtilisationSimple.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Room utilisation"><img src="./images/roomUtilisationSimple.png" class="img-fluid figure-img" alt="Room utilisation"></a></p>
+<figcaption>Room utilisation</figcaption>
+</figure>
+</div>
+<p>The above queries need to be developed further as they are very simplistic. For example, the utilisation query does not take into account the day of the week, nor does it consider the number of people in the room. The occupancy query does not consider the capacity of the room.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1220,15 +1403,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
       <a href="./appendix-cypher6.html" class="pagination-link" aria-label="Soft Constraints">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Soft Constraints</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./appendix-supervision.html" class="pagination-link" aria-label="Supervision">
-        <span class="nav-page-text">Supervision</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./appendix-perspectives.html" class="pagination-link" aria-label="Perspectives">
+        <span class="nav-page-text">Perspectives</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1246,6 +1429,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"fade","loop":false,"selector":".lightbox","descPosition":"bottom","openEffect":"fade"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

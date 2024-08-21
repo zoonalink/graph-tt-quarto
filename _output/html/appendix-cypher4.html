@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Count Queries –  </title>
+<title>Q: Count Queries –  </title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -225,18 +225,52 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
     </ul>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="./04-timetable-metrics.html"> 
-<span class="menu-text">Timetable Metrics</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-timetable-metrics" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Timetable Metrics</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-timetable-metrics">    
+        <li>
+    <a class="dropdown-item" href="./04-01-timetable-metrics.html">
+ <span class="dropdown-text">Timetable Metrics</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./04-02-timetable-agg.html">
+ <span class="dropdown-text">Metric Aggregations</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04-03-timetable-cypher.html">
+ <span class="dropdown-text">Implementing Metrics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./04-04-timetable-summary.html">
+ <span class="dropdown-text">TQI Summary</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./05-final-thoughts.html"> 
 <span class="menu-text">Final Thoughts</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./appendix-random-graph.html"> 
-<span class="menu-text">Appendix &amp; References</span></a>
+    <a class="nav-link" href="./appendix-toc.html"> 
+<span class="menu-text">Appendices</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-references--acknowledgements" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">References &amp; Acknowledgements</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-references--acknowledgements">    
+        <li>
+    <a class="dropdown-item" href="./references.html">
+ <span class="dropdown-text">References</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./acknowledgements.html">
+ <span class="dropdown-text">Acknowledgements</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
@@ -271,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix-random-graph.html">Appendix &amp; References</a></li><li class="breadcrumb-item"><a href="./appendix-cypher.html">Cypher Code</a></li><li class="breadcrumb-item"><a href="./appendix-cypher4.html">Count Queries</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix-random-graph.html">Appendices</a></li><li class="breadcrumb-item"><a href="./appendix-cypher.html">Cypher Code</a></li><li class="breadcrumb-item"><a href="./appendix-cypher4.html">Count Queries</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -432,12 +466,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Timetable Metrics</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-timetable-metrics.html" class="sidebar-item-text sidebar-link">
+  <a href="./04-01-timetable-metrics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Timetable Metrics</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-02-timetable-agg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Metric Aggregations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-03-timetable-cypher.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Implementing Metrics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-04-timetable-summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TQI Summary</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./05-final-thoughts.html" class="sidebar-item-text sidebar-link">
@@ -446,13 +509,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendix &amp; References</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-random-graph.html" class="sidebar-item-text sidebar-link">
@@ -479,13 +542,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
  <span class="menu-text">ETL Summary and Code</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-code-intro.html" class="sidebar-item-text sidebar-link">
@@ -538,13 +601,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Cypher Code</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-cypher.html" class="sidebar-item-text sidebar-link">
@@ -599,21 +662,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Rooms and Spaces</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix-perspectives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Perspectives</span></a>
+  </div>
+</li>
       </ul>
   </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
  <span class="menu-text">Supervision</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth2 ">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-supervision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Supervision</span></a>
+ <span class="menu-text">W: Supervision</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -622,7 +691,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix-supervision1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Weekly Update - 10 June 2024</span></a>
+ <span class="menu-text">X: Fortnightly Update - 10 June 2024</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -642,20 +711,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
-          <li class="sidebar-item">
+      </ul>
+  </li>
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./acknowledgements.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Acknowledgements</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -677,9 +746,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix-random-graph.html">Appendix &amp; References</a></li><li class="breadcrumb-item"><a href="./appendix-cypher.html">Cypher Code</a></li><li class="breadcrumb-item"><a href="./appendix-cypher4.html">Count Queries</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./appendix-random-graph.html">Appendices</a></li><li class="breadcrumb-item"><a href="./appendix-cypher.html">Cypher Code</a></li><li class="breadcrumb-item"><a href="./appendix-cypher4.html">Count Queries</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Count Queries</h1>
+<h1 class="title">Q: Count Queries</h1>
 </div>
 
 
@@ -772,7 +841,7 @@ RETURN DISTINCT a.actDayName AS dayName, count(a) AS activityCount</code></pre>
 <section id="activity-counts-by-time" class="level3">
 <h3 class="anchored" data-anchor-id="activity-counts-by-time">Activity counts by time</h3>
 <p>The query below connects to the graph via python and returns the result - that is, the number of activities which start at 17:00.</p>
-<div id="4d2e2b4d" class="cell" data-execution_count="1">
+<div id="80abfd1b" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Click to show code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
@@ -804,7 +873,7 @@ RETURN DISTINCT a.actDayName AS dayName, count(a) AS activityCount</code></pre>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Connecting to Neo4j database....
-Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x000001971C754790&gt;
+Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x0000027FA1066C50&gt;
 Running query...
 
 &lt;Record activitiesStartingAt5pm=172&gt;</code></pre>
@@ -814,7 +883,7 @@ Running query...
 <section id="staff-activity-count" class="level3">
 <h3 class="anchored" data-anchor-id="staff-activity-count">Staff activity count</h3>
 <p>This query returns the first 5 rows of the query which counts activities by member of staff.</p>
-<div id="88e7e5c7" class="cell" data-execution_count="2">
+<div id="506574ec" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Click to show code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> connect_to_neo4j_db <span class="im">import</span> connect_to_neo4j</span>
@@ -855,7 +924,7 @@ Running query...
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Connecting to Neo4j database....
-Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x00000197372BE610&gt;
+Connected to Neo4j database successfully! Driver: &lt;neo4j._sync.driver.Neo4jDriver object at 0x0000027FA10CE6D0&gt;
 Running query...
 
         staffName  activityCount
@@ -1461,7 +1530,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"openEffect":"fade","loop":false,"descPosition":"bottom","selector":".lightbox","closeEffect":"fade"});
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","openEffect":"fade","closeEffect":"fade","loop":false});
 (function() {
   let previousOnload = window.onload;
   window.onload = () => {
