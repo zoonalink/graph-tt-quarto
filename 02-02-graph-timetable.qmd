@@ -1,5 +1,5 @@
 ---
-title: Graph Data Model for Timebling
+title: Graph Data Model for Timetabling
 execute: 
   enabled: false
 lightbox:

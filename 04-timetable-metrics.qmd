@@ -23,7 +23,7 @@ Some key use cases for the timetable quality index include:
 
 #### Benchmarking and comparison
 
-The index allows institutions to compare timetable quality across different programmess, departments, or even years, facilitating the identification of best practices and areas for improvement.
+The index allows institutions to compare timetable quality across different programmes, departments, or even years, facilitating the identification of best practices and areas for improvement.
 
 #### Resource optimisation 
 

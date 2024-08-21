@@ -52,7 +52,7 @@ digraph transform {
 
 Configuration allows the user to control which nodes and relationships are included and how they are processed.  There are options to specify validation, cleaning, data linking, anonymisation and relationship details. 
 
-It is also possible to specify datatypes.  Neo4j assumes `string` datatype unless it is well-formatted or pre-determined.  Config allows the user to specify specific datatyples like dates, times, point, boolean, etc.
+It is also possible to specify datatypes.  Neo4j assumes `string` datatype unless it is well-formatted or pre-determined.  Config allows the user to specify specific datatypes like dates, times, point, Boolean, etc.
 
 
 ## All data

@@ -152,7 +152,7 @@ Option 3 creates a single activity but instead of individual start and end time 
 
 -   *Potential for Data Sparsity*: Some time blocks might be sparsely populated, leading to storage inefficiencies.
 -   *Potential for High Node Codes*: Lots of `TimeBlocks` if using small intervals
--   *Less flexibile*: Timeblocks are not dynamic.
+-   *Less flexible*: Timeblocks are not dynamic.
 
 ### Variations
 

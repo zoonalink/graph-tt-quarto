@@ -54,10 +54,21 @@ book:
     - acknowledgements.qmd
 
 
+#format:
+  #wordcount-docx:
+    #reference-doc: styles.docx
+    #number-sections: true # or false, depending on your preference
+
 format:
-  wordcount-docx:
+  docx:
     reference-doc: styles.docx
-    number-sections: true # or false, depending on your preference
+    pandoc-args: 
+      - "--reference-doc-content"
+    toc-depth: 2        # Set TOC depth to 2 (exclude Heading 1)
+    toc-location: "before-body"
+    toc-title: "Contents"
+    toc-level: 2
+    number-sections: false  # Disable section numbering in TOC
 
 execute:
   freeze: auto  # Or 'false' if you want to re-run code chunks each time

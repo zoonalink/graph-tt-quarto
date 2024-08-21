@@ -170,7 +170,7 @@ driver.close()
 
 This query identifies students who are scheduled to attend two or more activities at the same time.  Identifying clashes is a complex undertaking and it is one where the graph structure in terms of nodes, properties and relationships could potentially make a significant different to performance. 
 
-The reason for the complexity is that you need to look for overlapping times between two activities for each date, for each student.  The query to achieve this and the ensuing calculations will vary significantly depending on on the structure and syntax. 
+The reason for the complexity is that you need to look for overlapping times between two activities for each date, for each student.  The query to achieve this and the ensuing calculations will vary significantly depending on the structure and syntax. 
 
 Because of this, I explored the student clash scenario in more detail here: [Student Clashes](appendix-cypher5a.qmd)
 

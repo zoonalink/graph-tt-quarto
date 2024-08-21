@@ -21,7 +21,7 @@ I extend my sincere thanks to the faculty and staff of the MSc Data Science prog
 * [Dr Hisham Ihshaish](https://people.uwe.ac.uk/Person/HishamIhshaish) - Machine Learning and Predictive Analytics
   * Introduced me to Machine Learning, marrying programming and statistics.
 * [Dr Deirdre Toher](https://scholar.google.co.uk/citations?user=2P4klJcAAAAJ&hl=en) - Advanced Statistics
-  * Pulled me through challenging statistitics, introduced me to Quarto (in an R context) and was generally very supportive over the years.  Now working for [Central Statistics Office](https://www.cso.ie/en/index.html) in Ireland. 
+  * Pulled me through challenging statistics, introduced me to Quarto (in an R context) and was generally very supportive over the years.  Now working for [Central Statistics Office](https://www.cso.ie/en/index.html) in Ireland. 
 * [Dr Jason Anquandah](https://people.uwe.ac.uk/Person/JasonAnquandah) - Interdisciplinary Group Project
   * Supported me through the challenges of a group project.
 * [Dr Mahmoud Elbattah](https://people.uwe.ac.uk/Person/MahmoudElbattah) - Interdisciplinary Group Project

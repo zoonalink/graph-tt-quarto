@@ -47,4 +47,4 @@ File storage and directories are controlled via Config. I created a publicly sha
     - relationships
 ```
 
-![Screenshot of Google Drive foler and files for MSc Data Science (INB112): note that files were created by Google API](./images/google-drive-node.png)
+![Screenshot of Google Drive folder and files for MSc Data Science (INB112): note that files were created by Google API](./images/google-drive-node.png)

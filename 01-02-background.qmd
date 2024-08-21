@@ -12,7 +12,7 @@ This project is the result of a *deliberate clash* of my professional experience
 
 ## Research Gap: Bridging Theory and Practice
 
-Much current research into university timetabling centres on combinatorial optimisation (Chen et al., 2021), that is using various sophisticated techniques designed to efficiently generate feasible solutions given a set of constraints.  This computationally-driven optimisation research is often referred to as the university course timetabing problem (UCTTP) and is categorised as NP-hard[^1], meaning finding the absolute "best" timetable is exceptionally challenging (Babaei, Karimpour and Hadidi, 2015; Herres and Schmitz, 2021; Wikipedia contributors, 2024). 
+Much current research into university timetabling centres on combinatorial optimisation (Chen et al., 2021), that is using various sophisticated techniques designed to efficiently generate feasible solutions given a set of constraints.  This computationally-driven optimisation research is often referred to as the university course timetabling problem (UCTTP) and is categorised as NP-hard[^1], meaning finding the absolute "best" timetable is exceptionally challenging (Babaei, Karimpour and Hadidi, 2015; Herres and Schmitz, 2021; Wikipedia contributors, 2024). 
 
 Consequently, significant effort has been dedicated to developing algorithms like constraint programming (Holm et al., 2022) and local search techniques such as Tabu Search and simulated annealing (Oude Vrielink et al., 2019), aiming to create workable timetables within reasonable timeframes.  While crucial for advancing algorithmic development, these idealised scenarios[^2] do not fully capture the dynamic complexity of real-world university timetabling. 
 

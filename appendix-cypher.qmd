@@ -16,7 +16,7 @@ Constraints in Neo4j are used to enforce rules on the graph data, such as ensuri
 
 ## Indexes
 
-Indexes in Neo4j are used to speed up queries by allowing the database to quickly locate nodes or relationships based on a property value.  They will depend heavily on graph structure and specific use-cases.  For example, if performing regular seaches on `(activity{actStartTime})` it is probably beneficial to create an index on this property.
+Indexes in Neo4j are used to speed up queries by allowing the database to quickly locate nodes or relationships based on a property value.  They will depend heavily on graph structure and specific use-cases.  For example, if performing regular searches on `(activity{actStartTime})` it is probably beneficial to create an index on this property.
 
 Search performance indexes include `RANGE`, `FULLTEXT`, and `POINT`. Range indexes are the default and support most queries. Text indexes, like `FULLTEXT`, are used for `string` based searches and optimised for queries containing operators like `CONTAINS` or `STARTS WITH`. Point indexes are used for spatial queries and are optimised for `latitude` and `longitude` properties.
 

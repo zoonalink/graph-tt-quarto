@@ -8,7 +8,7 @@ lightbox:
 ---
 <br>
 
-This page explore different graph data structures and queries for the purposes of identifying student clashes.  It illustrates the inherent flexiblity of graph databases and that thorough modelling and profiling of the data can lead to more efficient and effective queries. 
+This page explore different graph data structures and queries for the purposes of identifying student clashes.  It illustrates the inherent flexibility of graph databases and that thorough modelling and profiling of the data can lead to more efficient and effective queries. 
 
 Use-case is king when it comes to optimised databases and performant queries.
 

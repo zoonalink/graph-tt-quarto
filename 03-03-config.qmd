@@ -9,7 +9,7 @@ Configuration and logging are essential components of the ETL pipeline.  Config 
 * Configuration parameters are centralised in Python scripts.
 * The design primarily aims for automatic and dynamic operation with well-structured data, but includes override options.
 * A YAML file ([Appendix-config](appendix-config.qmd)) holds configuration options, including general settings for filtering data extraction, dynamic folder/filepath creation, and secure credential storage.
-* Config also controls options for validation, data augementation and graph structures (nodes, relationships) to be created.
+* Config also controls options for validation, data augmentation and graph structures (nodes, relationships) to be created.
 
 ### Logging
 

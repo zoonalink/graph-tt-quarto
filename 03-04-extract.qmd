@@ -38,7 +38,7 @@ digraph extract {
 
 <br>
 
-EXTRACT starts by securely connecting to the specified SQL database using encrypted credentials stored with [keyring](https://pypi.org/project/keyring/).  The combination of `configuration` and `SQL scripts` determine which data will be extracted by filtering based on programme(s) of study and specifying which nodes, relationships and properties to extract.  Additional options include specifying `chunk size` if extracting signficicant amounts of data, for example.
+EXTRACT starts by securely connecting to the specified SQL database using encrypted credentials stored with [keyring](https://pypi.org/project/keyring/).  The combination of `configuration` and `SQL scripts` determine which data will be extracted by filtering based on programme(s) of study and specifying which nodes, relationships and properties to extract.  Additional options include specifying `chunk size` if extracting signficant amounts of data, for example.
 
 The process performs basic validation at every step ensuring secure connection before running SQL SELECT statements and storing extracted data as local csv files.
 
