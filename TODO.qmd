@@ -41,11 +41,13 @@
 - [x] add load times to somewhre
 - [x] 2x word docs - 1x complete, 1x without headers, code, images, references, etc. (word count to be subtracted)
 - [ ] read ttq section
-- [ ] read and rewrite conclusion sections
+- [x] read and rewrite conclusion sections
+- [ ] review conclusion after render
 - [ ] fix soft constraints - explanation
+- [ ] new word count
 - [ ] reword bluesky oppos
 - [ ] reword perspectives
-- [ ] link bluesky and perspectives to main page 
+- [x] link bluesky and perspectives to main page 
 - [ ] link bluesky and perspective to yaml
 
 - [ ] word count check - and adjust - currently 8127 words (ex appendix, refs, headers, code, tables, images)

@@ -74,8 +74,8 @@ website:
         text: Timetable Metrics
       - href: 05-final-thoughts.qmd
         text: "Final Thoughts"
-      - text: "Appendix & References"
-        href: appendix-random-graph.qmd
+      - text: "Appendices"
+        href: appendix-toc.qmd
         menu:
         - href: appendix-random-graph.qmd
           text: Random Graph Generator
@@ -133,10 +133,10 @@ website:
             text: Notes Example 2
           - href: appendix-supervision3.qmd
             text: Notes Example 3
-        - href: references.qmd
-          text: References
-        - href: acknowledgements.qmd
-          text: Acknowledgements
+      - href: references.qmd
+        text: References
+      - href: acknowledgements.qmd
+        text: Acknowledgements
     right:
       - href: ./_output/pdf/Graph-Time.pdf
         text: PDF Version
@@ -210,7 +210,7 @@ website:
         text: Timetable Metrics
       - href: 05-final-thoughts.qmd
         text: "Final Thoughts"
-      - section: "Appendix & References"
+      - section: "Appendices"
         contents:
           - href: appendix-random-graph.qmd
             text: Random Graph Generator
@@ -268,10 +268,10 @@ website:
                 text: Notes Example 2
               - href: appendix-supervision3.qmd
                 text: Notes Example 3
-          - href: references.qmd
-            text: References
-          - href: acknowledgements.qmd
-            text: Acknowledgements
+      - href: references.qmd
+        text: References
+      - href: acknowledgements.qmd
+        text: Acknowledgements
 
 
          

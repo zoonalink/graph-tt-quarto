@@ -25,6 +25,7 @@ book:
     - 03-07-reflections.qmd
     - 04-timetable-metrics.qmd
     - 05-final-thoughts.qmd
+    - appendix-toc.qmd
     - appendix-random-graph.qmd
     - appendix-tech-stack.qmd
     - appendix-config.qmd
