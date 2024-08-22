@@ -1,5 +1,0 @@
----
-title: University Timetabling
----
-
-(Babaei, Karimpour and Hadidi, 2015)

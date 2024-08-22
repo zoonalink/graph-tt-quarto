@@ -24,10 +24,9 @@ You can also download and view the pdf or docx files using appropriate software.
 * **root folder**: This directory includes the Quarto (.qmd) files used to generate the reports, along with any supporting files citations.
 
 * **_output**: This directory contains the rendered versions of the dissertation report in various formats:
-  * **_output\html**: HTML version of the report - open [index.html](_output\html\index.html)
-  * **_output\pdf_output\pdf**: PDF version of the report.
-  * **_output\word_output\word**: Word document version of the report.
-
+  * **_output\html\index.html**: HTML version of the report - open [index.html](_output\html\index.html)
+  * **_output\pdf\Graphing-University-Timetables.pdf**: PDF version of the report. Avoid - not well formatted.
+  * **_output\word\Graphing-University-Timetables.docx**: Word document version of the report.
 
 **Note**: The Quarto files may contain code snippets, but they are not intended to be executable. The repository does not include any raw data or scripts for running the analysis.
 
@@ -43,6 +42,8 @@ For any questions or further information, please [email me](mailto:zoonalink@gma
 
 ## Additional Points to Consider:
 
+* The appendices contain all of the prototype code.
+  
 * **[License](LICENSE.md)**: This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.
   * To view a copy of this license, visit
  [https://creativecommons.org/licenses/by-nc-nd/4.0/](https://creativecommons.org/licenses/by-nc-nd/4.0/)

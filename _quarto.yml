@@ -104,7 +104,7 @@ website:
       #- href: ./_output/pdf/Graph-University-Timetables.pdf
       #  text: PDF
       #  icon: file-pdf
-      - href: ./_output/word/Graph-University-Timetables.docx
+      - href: ./_output/word/Graphing-University-Timetables.docx
         text: Word
         icon: file-word
       - icon: bug

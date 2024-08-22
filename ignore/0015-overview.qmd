@@ -1,9 +1,0 @@
----
-title: Project Overview
----
-
-The remainder of this project will be structured as follows:
-
-
-
-Through this project, we aim to contribute to the ongoing dialogue about improving university timetabling practices and potentially open new avenues for enhancing the student experience through more insightful timetable analysis and design.
