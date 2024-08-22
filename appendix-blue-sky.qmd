@@ -2,7 +2,7 @@
 title: Blue Sky Opportunities
 ---
 
-Here I imagine how the timetabling data *could* be combined with other data sources to unlock insights.  This does not mean that any of this *should* be done.  It also does not mean that it can't be done very effectively using non-graph solutions.  It is very much *blue-skies* thinking in that it is not constrainted by the realities of data, systems, technology, or policy.
+Here I imagine how the timetabling data *could* be combined with other data sources to unlock insights.  This does not mean that any of this *should* be done.  It also does not mean that it can't be done very effectively using non-graph solutions.  It is very much *blue-skies* thinking in that it is not constrained by the realities of data, systems, technology, or policy.
 
 If any of these ideas are taken forward, the usual data governance, ethics and privacy considerations need to be addressed, in addition to the technical and practical challenges like data quality, integration, and scalability.
 
@@ -21,8 +21,8 @@ If any of these ideas are taken forward, the usual data governance, ethics and p
 ## Student Travel and Engagement:
 
 * **Data**: Include student term-time addresses and combine with attendance and engagement data.  Combine with public transport data, e.g. bus and train schedules.
-**Insights**: Understand the impact of travel distances on student engagement and academic performance. Identify potential transport barriers for specific student groups or areas.  This is particularly relevant to Bristol where there is a large student population and accommodation challenges. 
-**Action**: Optimise timetable scheduling to minimise travel distances, particularly for students with long commutes. Explore targeted transportation solutions or support services.
+* **Insights**: Understand the impact of travel distances on student engagement and academic performance. Identify potential transport barriers for specific student groups or areas.  This is particularly relevant to Bristol where there is a large student population and accommodation challenges. 
+* **Action**: Optimise timetable scheduling to minimise travel distances, particularly for students with long commutes. Explore targeted transportation solutions or support services.
 
 ## Equitable Access and Outcomes Analysis:
 
@@ -31,13 +31,13 @@ If any of these ideas are taken forward, the usual data governance, ethics and p
 * **Action**: Use insights to proactively address disparities in access and outcomes by adjusting timetables, providing targeted support, or informing policy changes.
 
 
-## Self-Serve Timetable Changes and Student Behavior:
+## Self-Serve Timetable Changes and Student Behaviour:
 
-* **Data**: Analyse student self-serve timetable changes[^1] and compare original and modified schedules.
+* **Data**: Analyse student self-serve timetable changes[^11] and compare original and modified schedules.
 * **Insights**: Gain insights into student preferences and identify common reasons for timetable modifications. This can inform timetable design and optimise scheduling processes - this could be particularly useful to inform the Timetable Quality Index.
-* **Action**: Address common issues identified through timetable adjustments, such as frequent clashes or gaps in scheduling. Optimize the self-serve process based on student behavior.
+* **Action**: Address common issues identified through timetable adjustments, such as frequent clashes or gaps in scheduling. Optimise the self-serve process based on student behaviour.
 
-[^1]: Students are able to make certain changes to their timetables, at activity and module level.  These changes are recorded and can be analysed.
+[^11]: Students are able to make certain changes to their timetables, at activity and module level.  These changes are recorded and can be analysed.
 
 
 ## Facilities Optimisation and Space Utilisation:

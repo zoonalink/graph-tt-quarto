@@ -1,5 +1,5 @@
 ---
-title: "Acknowledgement"
+title: "Acknowledgements"
 lightbox:
   match: auto
   effect: fade
@@ -9,7 +9,7 @@ execute:
   enabled: false
 ---
 
-First, I would like to express my gratitude to my supervisor, [Dr. Xiaodong Li](https://people.uwe.ac.uk/Person/XiaodongLi), for their guidance, support and feedback throughout this project.  They were particular helpful in keeping me focused and staying on topic, allowing me to incrementally achieve my goals.
+First, I would like to express my gratitude to my supervisor, [Dr. Xiaodong Li](https://people.uwe.ac.uk/Person/XiaodongLi), for his guidance, support and feedback throughout this project.  He was particular helpful in keeping me focused and staying on topic, allowing me to incrementally achieve my goals.
 
 I extend my sincere thanks to the faculty and staff of the MSc Data Science programme for providing the environment and resources necessary for my project: 
 
@@ -25,7 +25,7 @@ I extend my sincere thanks to the faculty and staff of the MSc Data Science prog
 * [Dr Jason Anquandah](https://people.uwe.ac.uk/Person/JasonAnquandah) - Interdisciplinary Group Project
   * Supported me through the challenges of a group project.
 * [Dr Mahmoud Elbattah](https://people.uwe.ac.uk/Person/MahmoudElbattah) - Interdisciplinary Group Project
-  * * Supported me through the challenges of a group project.
+  * Supported me through the challenges of a group project.
 
 
 I am indebted to my colleagues in SDS for their support, camaraderie, intellectual discussions and willingness to share knowledge, expertise and time. I am especially grateful to my mentor, colleague, manager and friend, Esther Williams, who has supported me throughout this journey and others, always magnanimously sharing her wisdom and unwavering encouragement.
@@ -34,4 +34,4 @@ Finally, I would like to thank my family and friends for their unwavering love a
 
 In the spirit of graphs...
 
-![Acknowledgement graph](./images/acknowledge.png)
+![Acknowledgement graph](./images/acknowledge.png){.small-image}

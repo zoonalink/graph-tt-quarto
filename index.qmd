@@ -9,26 +9,26 @@ date: "29 August 2024"
 
 **Programme**: [MSc Data Science](https://courses.uwe.ac.uk/INB112/data-science)
 
-**Abstract**: 
+**Institution**: [University of the West of England, Bristol](https://www.uwe.ac.uk/)
 
-Timetables are central to the daily experience of university students and staff.  Timetables also influence resource utilisation and play a key role in institutional efficiency.  In short, timetables are critical to the individual experience and the overall success of an institution.  But timetables are also contentious - there is no 'perfect' timetable, only a series of compromises that balance competing priorities. 
+**Intro Video**:
 
-This project explores the use of graph data models to provide deeper insights into timetables.  The aim is to investigate the viability of graph-based approaches for enhanced timetabling analytics and reporting.  The objectives include designing a graph data model, developing a configurable ETL pipeline, and discussing how graph-based analysis could contribute to quantitaviely measuring timetable quality by introducing the concept of a *Timetable Quality Index*.  
+<iframe width="560" height="315" src="https://drive.google.com/file/d/1KizPZrvKS7GQEWIhdgN7oRs8bDX081V5/preview" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 
-The project is a proof-of-concept, and the results are intended to inform future research and development in the area of timetabling analytics.  The project is implemented primarily in Python, using the Neo4j cloud instance graph database, and the results and documentation are presented in a Quarto website.
+</iframe>
 
+**Abstract**:
 
-**Word Count**:
+Timetables are central to the daily experience of university students and staff. Timetables also influence resource utilisation and play a key role in institutional efficiency. In short, timetables are critical to the individual experience and the overall success of an institution. But timetables are also contentious - there is no 'perfect' timetable, only a series of compromises that balance competing priorities.
 
-- Abstract: 
-- Main:
-- Appendices:
-- 
+This project explores the use of graph data models to provide deeper insights into timetables. The aim is to investigate the viability of graph-based approaches for enhanced timetabling analytics and reporting. The objectives include designing a graph data model, developing a configurable ETL pipeline, and discussing how graph-based analysis could contribute to quantitatively measuring timetable quality by introducing the concept of a *Timetable Quality Index*.
 
+The project is a proof-of-concept, and the results are intended to inform future research and development in timetabling analytics. The project is implemented primarily in Python, using the Neo4j cloud instance graph database, and the results and documentation are presented in a Quarto website.
 
+| Section | Word count |
+|------------------------------------|------------------------------------|
+| Abstract | 170 |
+| Main Sections (excl. tables, code, images, references, footnotes, headers) | 7189 |
+| Appendices (**inc**. everything) | 14082 |
 
-
-<iframe width="560" height="315" src="https://drive.google.com/file/d/1rl6TkRq3W9RpBLToaYLPGUDe6xsfFsM1/preview" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
-
+: Approximate Word Count Breakdown

@@ -2,9 +2,9 @@
 title: "M: Cypher Queries"
 ---
 
-<br> These pages collate Cypher[^1] queries used in the development of this project. The queries are grouped by the type of operation they perform, such as creating nodes, relationships, or querying the graph. The queries are presented in a format that can be copied and pasted directly into a Neo4j browser or other Cypher-compatible interface.
+<br> These pages collate Cypher[^10] queries used in the development of this project. The queries are grouped by the type of operation they perform, such as creating nodes, relationships, or querying the graph. The queries are presented in a format that can be copied and pasted directly into a Neo4j browser or other Cypher-compatible interface.
 
-[^1]: "**Cypher** is a declarative graph query language that allows for expressive and efficient data querying in a property graph" (Wikipedia contributors, 2024)
+[^10]: "**Cypher** is a declarative graph query language that allows for expressive and efficient data querying in a property graph" (Wikipedia contributors, 2024)
 
 They represent a *starting point* for further exploration and development of the graph database. The queries are not exhaustive, and there are many more possibilities for querying and analysing the data.
 
@@ -18,7 +18,7 @@ Constraints in Neo4j are used to enforce rules on the graph data, such as ensuri
 
 Indexes in Neo4j are used to speed up queries by allowing the database to quickly locate nodes or relationships based on a property value.  They will depend heavily on graph structure and specific use-cases.  For example, if performing regular searches on `(activity{actStartTime})` it is probably beneficial to create an index on this property.
 
-Search performance indexes include `RANGE`, `FULLTEXT`, and `POINT`. Range indexes are the default and support most queries. Text indexes, like `FULLTEXT`, are used for `string` based searches and optimised for queries containing operators like `CONTAINS` or `STARTS WITH`. Point indexes are used for spatial queries and are optimised for `latitude` and `longitude` properties.
+Search performance indexes include `RANGE`, `FULLTEXT`, and `POINT`. Range indexes are the default and support most queries. Text indexes, like `FULLTEXT`, are used for `string`-based searches and optimised for queries containing operators like `CONTAINS` or `STARTS WITH`. Point indexes are used for spatial queries and are optimised for `latitude` and `longitude` properties.
 
 **Indexes in Graph**
 

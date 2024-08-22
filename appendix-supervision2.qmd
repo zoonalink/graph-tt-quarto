@@ -1,5 +1,5 @@
 ---
-title: "Y: Fortnightly Update - 2024-06-24"
+title: "Fortnightly Update - 2024-06-24"
 ---
 
 ## Summary
@@ -62,7 +62,7 @@ Significant progress in the backend and more proof-of-concept in front end.
 
 ## Post-Meeting Notes
 
-My superviser and I spoke about where I am at in the project at the moment and next steps.  We discussed what I am attempting to do and why, including graph data structures, proof-of-concept, etc. and that it is becoming a data engineering project.  I stated that my timeline lookes to complete a robust data ETL pipeline by the middle of July, with a view to shifting towards more work within Neo4j from the end of July to the middle of August. 
+My supervisor and I spoke about where I am at in the project at the moment and next steps.  We discussed what I am attempting to do and why, including graph data structures, proof-of-concept, etc. and that it is becoming a data engineering project.  I stated that my timeline looks to complete a robust data ETL pipeline by the middle of July, with a view to shifting towards more work within Neo4j from the end of July to the middle of August. 
 
 We agreed to meet in two weeks.
 

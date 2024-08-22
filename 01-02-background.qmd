@@ -4,7 +4,7 @@ title: Background and Motivation
 
 ## Personal
 
-Many years ago I grappled with the complexities of timetable generation and optimisation, and battled with trying to balance competing, but conflicting demands like maximising room utilisation **and** adhering to staff working patterns **and** producing a 'decent' timetable for the students.  It is an *unwinnable* battle.
+Many years ago, I grappled with the complexities of timetable generation and optimisation, and battled with trying to balance competing, but conflicting demands like maximising room utilisation **and** adhering to staff working patterns **and** producing a 'decent' timetable for the students.  It is an *unwinnable* battle.
 
 These experiences and challenges left an indelible mark - highlighting the need for robust tools and metrics to understand and assess timetable quality - a factor which is often overshadowed by the pursuit of mere *feasibility.*
 
@@ -18,7 +18,7 @@ Consequently, significant effort has been dedicated to developing algorithms lik
 
 Universities grapple with constantly shifting demands: fluctuating student populations, evolving institutional preferences, resource limitations, and the ever-present need to balance diverse stakeholder needs. These complexities extend beyond simply finding a feasible solution – they necessitate tools to understand the trade-offs inherent in any timetable, enabling informed decisions about which "good" outcomes to prioritise (Lindahl, 2017). 
 
-## The hypothesis...Enter the Graph
+## Hypothesis...Enter the Graph
 
 This is where I believe graph data structures *could offer unique potential*.
 

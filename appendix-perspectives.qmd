@@ -2,12 +2,12 @@
 title: "V: Perspectives and Scenes for Neo4j Explore Functionality"
 ---
 
-This page contains *example* scenarios for demonstrating Neo4j "Perspectives" and "Scenes" which are used to explore data in a graph database from the perspective of a particular user.  Perspectivies focus the view by selecting specific nodes and relationships, while scenes allow for visualising the data interactively.
+This page contains *example* scenarios for demonstrating Neo4j "Perspectives" and "Scenes" which are used to explore data in a graph database from the perspective of a particular user.  Perspectives focus the view by selecting specific nodes and relationships, while scenes allow for visualising the data interactively.
 
 
 ## Scenario 1: Programme Leader Perspective
 
-**Goal**: Enable a programme lead to gain insights into their programme's structure, student engagement, and potential areas for improvement.
+**Goal**: Enable a programme leader to gain insights into their programme's structure, student engagement, and potential areas for improvement.
 
 ### Perspective:
 

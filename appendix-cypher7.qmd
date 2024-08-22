@@ -8,13 +8,13 @@ lightbox:
 ---
 <br>
 
-The timetabling database contains some information about rooms and spaces on campus, but the master data systems contains much more.  I have added a few rooms and properties from the master source, as an experiemnt. 
+The timetabling database contains some information about rooms and spaces on campus, but the master data systems contain much more.  I have added a few rooms and properties from the master source, as an experiment. 
 
 ## Room Geo-location
 
 ### Import locations from file
 
-![imported locations from file](./images/demoRoom-import.png)
+![Screenshot of demoRoom import](./images/demoRoom-import.png)
 
 ### load cypher
 
@@ -43,7 +43,7 @@ SET n.`roomHostKey` = nodeRecord.`roomHostKey`;
 ### Thoughts
 
 Some rooms have longitude and latitude, which have been used to calculate distance.  The screenshot below shows locations on Frenchay campus - you can clearly see rooms aligned into the shape our the buildings. 
-![Coordinate view of Frenchay rooms](./images/demoRoom-FR.png)
+![Coordinate representation of locations on Frenchay Campus ](./images/demoRoom-FR.png)
 
 
 ![Close of up B Block rooms on Frenchay Campus](./images/demoRoom-FR-zoom.png)
@@ -67,7 +67,7 @@ RETURN room.roomName AS room,
        SUM(occupancyHours) AS totalOccupancyHours
 ```
 
-![Room occupancy](./images/roomOccupancy.png)
+![Example table of Room Occupancy Hours ](./images/roomOccupancy.png)
 
 
 ```{cypher}{scroll-cypher}
@@ -77,7 +77,7 @@ RETURN room.roomName AS room,
        COUNT(activity) AS totalActivities
 ```
 
-![Room frequency](./images/roomFrequency.png)
+![Example of Room frequency](./images/roomFrequency.png)
 
 ```{cypher}{scroll-cypher}
 // simple utilisation
@@ -97,7 +97,7 @@ RETURN room.roomName AS room,
 ORDER BY hourBlockStart
 ```
 
-![Room utilisation](./images/roomUtilisationSimple.png)
+![Example of Room Utilisation](./images/roomUtilisationSimple.png)
 
 
 The above queries need to be developed further as they are very simplistic.  For example, the utilisation query does not take into account the day of the week, nor does it consider the number of people in the room.  The occupancy query does not consider the capacity of the room.

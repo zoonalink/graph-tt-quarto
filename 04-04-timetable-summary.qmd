@@ -6,7 +6,7 @@ title: "TQI Summary"
 
 The calculated scores and underlying metrics can be effectively visualised using various techniques:
 
-**Bloom visualisations in Neo4j**: These can provide an intuitive overview of timetable quality across different programmes, time slots, or other groupings.  They enable users to explore hierarchical relationships, identify patterns and outliers, and drill down into specific data points.  See [Appendix-perspectives.qmd] for initial ideas.
+**Bloom visualisations in Neo4j**: These can provide an intuitive overview of timetable quality across different programmes, time slots, or other groupings.  They enable users to explore hierarchical relationships, identify patterns and outliers, and drill down into specific data points.  See [Perspectives](Appendix-perspectives.qmd) for initial ideas.
 
 **Charts and dashboards**: Bar charts, line graphs, and heatmaps can be used to display and compare scores, identify trends, and track changes over time.  Interactive dashboards can be built to provide a various views of timetable quality metrics and enable stakeholders to explore the data, identify trends, and make informed decisions.
 

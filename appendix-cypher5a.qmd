@@ -240,7 +240,7 @@ The results are the same as Model 1 and Model 2, but the profile is different ag
 ![Model 3 profile](./images/cypher-clash3-db-hits.png)
 
 
-### Model 4 - 
+### Model 4 - Times on Relationships
 
 Model 4 uses a single node for each activity and date - start and end times are now properties of the *relationship* between the activity and the date.
 

@@ -20,7 +20,9 @@ Admittedly, the project was ambitious, and I found myself struggling with to nav
 
 In short, it has been fulfilling and I did what I wanted to do - something exploratory, practical, new, challenging, and impactful.
 
-But it is especially rewarding to receive feedback from subject matter experts, such as the timetabling data manager at UWE, who said:
+But it is especially rewarding to receive feedback from subject matter experts, such as the timetabling data manager at UWE[^9], who said:
+
+[^9]: Personal communication with Wojciech Lewicki, 19 August 2024 - when reviewing and discussion the project.
 
 > -   `Opens new reporting and analytics opportunities`
 >
@@ -36,8 +38,8 @@ But it is especially rewarding to receive feedback from subject matter experts, 
 
 ## Looking Ahead: The Future of Graph at Universities
 
-Looking ahead, I am confident that the potential of graph databases in the realm of timetabling analysis has only begun to be explored. My project has only scratched the surface but there is a vast reserve of untapped opportunity. By continuing to explore and refine the concepts introduced in this project, Higher Edducation Institutions can unlock new levels of insight to improve efficiency, agility, and student satisfaction.
+Looking ahead, I am confident that the potential of graph databases in the realm of timetabling analysis has only begun to be explored. My project has only scratched the surface but there is a vast reserve of untapped opportunity. By continuing to explore and refine the concepts introduced in this project, Higher Education Institutions can unlock new levels of insight to improve efficiency, agility, and student satisfaction.
 
 And it does not only apply to timetabling datasets.
 
-Universities hold a significant amount of interconnected data that can be leveraged to improve the student experience, make more informed decisions, and drive positive change. The possibilities are endless\[\^1\] - to illustrate, I have included some blue-skies thinking in the [Appendix](appendix-blue-sky.qmd).
+Universities hold a significant amount of interconnected data that can be leveraged to improve the student experience, make more informed decisions, and drive positive change. The possibilities are endless - to illustrate, I have included some blue-skies thinking in the [Appendix](appendix-blue-sky.qmd).

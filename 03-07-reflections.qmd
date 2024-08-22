@@ -4,9 +4,9 @@ title: "Reflections"
 
 I was always wary that the data engineering portion of my project might be too ambitious in both scale and scope.  However, the reality of its magnitude became increasingly apparent. 
 
-Yet, despite my initial awareness, I found myself continually expanding the project's boundaries, often pushing for a "gold-plated" solution rather than acknowledging when certain aspects were "good enough." [^1] This tendency towards scope creep, while driven by a desire for excellence, has significantly increased the project's complexity and time requirements.
+Yet, despite my initial awareness, I found myself continually expanding the project's boundaries, often pushing for a "gold-plated" solution rather than acknowledging when certain aspects were "good enough." [^8] This tendency towards scope creep, while driven by a desire for excellence, has significantly increased the project's complexity and time requirements.
 
-[^1]: As my manager often needs to remind me...
+[^8]: As my manager often needs to remind me...
 
 The learning curve has been exceptionally steep. I've had to rapidly acquire proficiency in a diverse range of technologies and tools: Python, Neo4j, Google APIs, Quarto, and GraphViz. This intensive learning process, while challenging, has also been incredibly rewarding.  My technical toolkit has expanded far beyond my initial expectations - but this also contributed to the continuously expanding scope, as each new skill opened possibilities for further enhancement and the necessity for on-the-fly troubleshooting. 
 
@@ -20,7 +20,7 @@ While often frustrating, these challenges have also provided valuable learning o
 
 2. **Embrace modularisation from the beginning**: Avoid the temptation to create oversized code blocks. Maintain a list of "future enhancements" to prevent immediate implementation of every idea.
 
-3. **Balance documentation with development**: Document sufficiently during the development process, but save comprehensive documentation for appropriate milestones. This approach maintains progress while ensuring proper record-keeping.
+3. **Balance documentation with development**: Document sufficiently during the development process but save comprehensive documentation for appropriate milestones. This approach maintains progress while ensuring proper record-keeping.
 
 4. **View obstacles as learning opportunities**: Embrace continuous learning and see challenges as chances to grow. Invest time in understanding the right technologies and approaches, particularly focusing on modularisation.
 

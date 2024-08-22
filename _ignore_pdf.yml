@@ -10,7 +10,7 @@ project:
     - "!TODO.qmd"
 
 book:
-  title: "Graph Time"
+  title: "Graphing University Timetables"
   chapters:
     - index.qmd
     - 01-01a-introduction.qmd
@@ -58,6 +58,7 @@ book:
     - appendix-cypher6.qmd
     - appendix-cypher7.qmd
     - appendix-perspectives.qmd
+    - appendix-blue-sky.qmd
     - appendix-supervision.qmd
     - appendix-supervision1.qmd
     - appendix-supervision2.qmd

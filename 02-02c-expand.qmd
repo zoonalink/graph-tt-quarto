@@ -11,7 +11,7 @@ lightbox:
 ---
 
 
-The true power of the graph model lies in its extensibility. Introducing additional nodes and properties allows for a more comprehensive representation and enables more sophisticated analysis.  The resulting graph model will depend on desired use cases and performance requirements but the following are some potential expansions to the basic model:
+The true power of the graph model lies in its extensibility. Introducing additional nodes and properties allows for a more comprehensive representation and enables more sophisticated analysis.  The resulting graph model will depend on desired use cases and performance requirements, but the following are some potential expansions to the basic model:
 
 ### Potential Expansions:
 

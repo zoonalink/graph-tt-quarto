@@ -56,12 +56,12 @@ RETURN s.stuID_anon AS student, times, gaps, reduce(maxGap = 0.0, gap IN gaps | 
 ```
 
 
-![Example student with gaps between activities](./images/cypher-maxGap-example.png)
+![Identifying blocks and time gaps](./images/cypher-maxGap-example.png)
 
 
 #### Python code on graph
 
-The below code cell returns the first 5 rows where a 6 hour maximum gap has been violated. 
+The below code cell returns the first 5 rows where a 6-hour maximum gap has been violated. 
 
 ```{python}
 from connect_to_neo4j_db import connect_to_neo4j
@@ -513,7 +513,7 @@ RETURN Student, Date, BreakWindow_12_14, BreakWindow_12_14 - SUM(BookedDurationM
 ORDER BY Date
 ```
 
-![Lunch breaks](./images/cypher-lunchBreak.png)
+![Identifying lunch breaks](./images/cypher-lunchBreak.png)
 
 Interestingly, `Michael Johnson` has a negative lunch break! A quick look showed that there are actually two `Michael Johnsons` attending this class and they both have 30 minutes free time in the 2-hour lunch break window.
 

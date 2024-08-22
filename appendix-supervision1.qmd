@@ -1,5 +1,5 @@
 ---
-title: "X: Fortnightly Update - 10 June 2024"
+title: "Fortnightly Update - 10 June 2024"
 ---
 
 ## Summary
@@ -71,11 +71,11 @@ This week has been about getting back on track after an extended period away fro
 
 ## Post-Meeting Notes
 
-We met on 13 June 2024 for approximatly 45 minutes.  I showed Xiaodong what I have been up to referencing my working files, poc files, and some code.  I also showed what I currently have in my free instance of neo4j aura - which was MSc DS students activities and rooms.  Staff and Students to be loaded but I want to ensure my anonymisation function is tested first. 
+We met on 13 June 2024 for approximately 45 minutes.  I showed Xiaodong what I have been up to referencing my working files, poc files, and some code.  I also showed what I currently have in my free instance of neo4j aura - which was MSc DS students activities and rooms.  Staff and Students to be loaded but I want to ensure my anonymisation function is tested first. 
 
-We discussed what my aims are with this project, clarifying that it is not an building a timetable schedule based on graph structure; it is also not a timetable optimiser.  Instead it is a data engineering project that ultimately explores whether representing timetables in graph format can bring opportunities for reporting and insight which is currently difficult to produce using the current system.  
+We discussed what my aims are with this project, clarifying that it is not building a timetable schedule based on graph structure; it is also not a timetable optimiser.  Instead it is a data engineering project that ultimately explores whether representing timetables in graph format can bring opportunities for reporting and insight which is currently difficult to produce using the current system.  
 
-We agreed to meet in two weeks time.  I will schedule a meeting for us. 
+We agreed to meet in two weeks' time.  I will schedule a meeting for us. 
 
 ## Additional Notes
 

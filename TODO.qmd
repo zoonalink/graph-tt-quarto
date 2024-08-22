@@ -48,26 +48,29 @@
 - [x] reword perspectives
 - [x] link bluesky and perspective to yaml
 - [x] write absract
+- [x] link bluesky and perspectives to main page 
+- [x] check front page - vids, links
 
 - [ ] review conclusion after render
-- [ ] add bit about appendix heavy content
-- [ ] check front page - vids, links
-- [ ] new word count
-
-- [x] link bluesky and perspectives to main page 
 
 
-- [ ] word count check - and adjust - currently 8127 words (ex appendix, refs, headers, code, tables, images)
+
+
+
+
+
+
+
 - [ ] word todo list
   - [x] add Appendix or prefix to appendix titles, e.g. A: Random Graph, B: Tech Stack
-  - [ ] add page numbers
-  - [ ] fix footnotes
-  - [ ] add word count break down
-  - [ ] resize images
+  - [x] add page numbers
+  - [x] fix footnotes
+  - [x] add word count break down
+  - [x] resize images
   - [ ] add alt text to images?
-  - [ ] fix reference page
+  - [x] fix reference page
   - [ ] add graph to summary page -> the journey?
-  - [ ] fix links within doc
+  - [x] fix links within doc
 
 
 

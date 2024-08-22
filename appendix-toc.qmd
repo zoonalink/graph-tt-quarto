@@ -2,35 +2,69 @@
 title: "Appendix: Table of Contents"
 ---
 
-This project contains several appendices that provide additional information, resources and code. 
+This project contains a significant amount of information in appendices.  It was always my intention to provide well-documented code and detailed explanations of the data engineering process, the Cypher queries, etc. 
 
 The appendices are listed below:
 
+**General**
+
 A. [Random Graph Generator](appendix-random-graph.qmd)
+
 B. [Technology Stack](appendix-tech-stack.qmd)
+
 C. [Configuration](appendix-config.qmd)
+
 D. [Anonymisation](appendix-anonymise.qmd)
+
+**Data Engineering**
+
 E. [ETL Summary](appendix-code-intro.qmd)
+
 F. [ETL Code](appendix-code.qmd)
+
 G. [Config and Misc](appendix-code1-config.qmd)
+
 H. [Extract-SQL](appendix-code2-sql.qmd)
+
 I. [Extract](appendix-code3-extract.qmd)
+
 J. [Google Drive Load](appendix-code4-gdrive.qmd)
+
 K. [Transform](appendix-code5-transform.qmd)
+
 L. [Neo4j Load](appendix-code6-load.qmd)
+
+**Cypher Queries**
+
 M. [Cypher Queries](appendix-cypher.qmd)
+
 N. [Creating Nodes and Relationships](appendix-cypher1.qmd)
+
 O. [Deleting Nodes and Relationships](appendix-cypher2.qmd)
+
 P. [General Queries](appendix-cypher3.qmd)
+
 Q. [Count Queries](appendix-cypher4.qmd)
+
 R. [Hard (timetabling) Constraints](appendix-cypher5.qmd)
+
 S. [Student Clashes](appendix-cypher5a.qmd)
+
 T. [Soft Constraints](appendix-cypher6.qmd)
+
 U. [Rooms and Spaces](appendix-cypher7.qmd)
+
 V. [Perspectives](appendix-perspectives.qmd)
+
+**Supervision**
+
 W. [Supervision](appendix-supervision.qmd)
+
 X. [Notes Example 1](appendix-supervision1.qmd)
+
 Y. [Notes Example 2](appendix-supervision2.qmd)
+
 Z. [Notes Example 3](appendix-supervision3.qmd)
+
 
 

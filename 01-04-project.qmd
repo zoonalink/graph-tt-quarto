@@ -11,7 +11,7 @@ The primary aim of this project is to **investigate the viability of using graph
 2.  Developing a **configurable ETL** (extract, transform, load) pipeline to transition from relational to graph database representations of timetables
 3.  Discussing how **graph-based approaches to timetabling analysis** could contribute to measuring and improving timetable quality.
 
-In order to achieve these objectives, I implement and evaluate a set of proof-of-concept analytical metrics which leverage the graph data model whilst discussing performance capabilities (and limitations) against traditional relational approaches.
+To achieve these objectives, I implement and evaluate a set of proof-of-concept analytical metrics which leverage the graph data model whilst discussing performance capabilities (and limitations) against traditional relational approaches.
 
 It is important to note that this project is positioned as a proof-of-concept and exploratory study.
 
@@ -340,6 +340,6 @@ digraph G {
 
 ```
 
-A randomly generated graph for visual purposes only.
+: A randomly generated graph for illustrative purposes.
 
 [See Appendix for graph generator code](appendix-random-graph.qmd)

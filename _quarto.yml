@@ -23,7 +23,8 @@ website:
       - href: index.qmd
         text: Home
         icon: home
-      - text: Project Introduction
+
+      - text: Project<br>Introduction
         menu:
           - href: 01-01a-introduction.qmd
             text: Introduction
@@ -35,7 +36,8 @@ website:
             text: What is a Good Timetable?
           - href: 01-04-project.qmd
             text: Project Aims and Scope
-      - text: Graph Data Model
+
+      - text: Graph Data<br>Model
         menu: 
           #- href: 02-00-graph-model.qmd
           #  text: Graph Data
@@ -52,7 +54,7 @@ website:
           - href: 02-03-graph-time.qmd
             text: Graphing Time
           
-      - text: "Data Pipeline"
+      - text: "Data<br>Pipeline"
         menu:
           - href: 03-01-overview.qmd
             text: ETL Overview
@@ -70,7 +72,8 @@ website:
             text: Neo4j Load
           - href: 03-07-reflections.qmd
             text: Reflection
-      - text: "Timetable Metrics"  
+
+      - text: "Timetable<br>Metrics"  
         menu: 
         - href: 04-01-timetable-metrics.qmd
           text: Timetable Metrics
@@ -80,79 +83,30 @@ website:
           text: Implementing Metrics
         - href: 04-04-timetable-summary.qmd
           text: TQI Summary
+
       - href: 05-final-thoughts.qmd
-        text: "Final Thoughts"
-      - text: "Appendices"
-        href: appendix-toc.qmd
+        text: "Final<br>Thoughts"
+
+      - text: "Appendices<br>& Extras"
         menu:
-        - href: appendix-random-graph.qmd
-          text: Random Graph Generator
-        - href: appendix-tech-stack.qmd
-          text: Technology Stack
-        - href: appendix-config.qmd
-          text: Configuration
-        - href: appendix-anonymise.qmd
-          text: Anonymisation
-        - text: ETL Summary and Code 
-          menu:
-          - href: appendix-code-intro.qmd
-            text: ETL Summary
-          - href: appendix-code.qmd
-            text: ETL Code
-          - href: appendix-code1-config.qmd
-            text: Config and Misc
-          - href: appendix-code2-sql.qmd
-            text: Extract-SQL
-          - href: appendix-code3-extract.qmd
-            text: Extract
-          - href: appendix-code4-gdrive.qmd
-            text: Google Drive Load
-          - href: appendix-code5-transform.qmd
-            text: Transform
-          - href: appendix-code6-load.qmd
-            text: Neo4j Load
-        - text: Cypher Code
-          menu:
-          - href: appendix-cypher.qmd
-            text: Cypher Queries
-          - href: appendix-cypher1.qmd
-            text: Creating Nodes and Relationships
-          - href: appendix-cypher2.qmd
-            text: Deleting Nodes and  Relationships
-          - href: appendix-cypher3.qmd
-            text: General Queries
-          - href: appendix-cypher4.qmd
-            text: Count Queries
-          - href: appendix-cypher5.qmd
-            text: Hard (timetabling) Constraints
-          - href: appendix-cypher5a.qmd
-            text: Student Clashes
-          - href: appendix-cypher6.qmd
-            text: Soft Constraints
-          - href: appendix-cypher7.qmd
-            text: Rooms and Spaces
-          - href: appendix-perspectives.qmd
-            text: Perspectives
-        - text: Supervision
-          menu:
-          - href: appendix-supervision.qmd
-          - text: Supervision
-          - href: appendix-supervision1.qmd
-          - text: Notes Example 1
-          - href: appendix-supervision2.qmd
-            text: Notes Example 2
-          - href: appendix-supervision3.qmd
-            text: Notes Example 3
-      - text: References & Acknowledgements
-        menu:
-          - href: references.qmd
-            text: References
-          - href: acknowledgements.qmd
-            text: Acknowledgements
+        - href: appendix-toc.qmd
+          text: Appendix Table of Contents      
+        - href: references.qmd
+          text: References
+        - href: acknowledgements.qmd
+          text: Acknowledgements
+      
+    
+          
+          
+    
     right:
-      - href: ./_output/pdf/Graph-Time.pdf
-        text: PDF Version
-        icon: file-pdf
+      #- href: ./_output/pdf/Graph-University-Timetables.pdf
+      #  text: PDF
+      #  icon: file-pdf
+      - href: ./_output/word/Graph-University-Timetables.docx
+        text: Word
+        icon: file-word
       - icon: bug
         href: "https://github.com/zoonalink/graph-tt-quarto/issues/new"
         aria-label: Report an issue
@@ -170,6 +124,7 @@ website:
     contents: 
       - href: index.qmd
         text: Home
+      
       - section: "Project Introduction"
         contents:
           - href: 01-01a-introduction.qmd
@@ -182,6 +137,7 @@ website:
             text: What is a Good Timetable?
           - href: 01-04-project.qmd
             text: Project Aims and Scope
+      
       - section: "Graph Data Model" 
         contents:
           #- href: 02-00-graph-model.qmd
@@ -200,6 +156,7 @@ website:
             text: Graphing Time
           #- href: 02-04-challenge-oppos.qmd
           #  text: Opportunities and Challenges
+      
       - section: "Data Pipeline"
         contents:
           - href: 03-01-overview.qmd
@@ -218,6 +175,7 @@ website:
             text: Neo4j Load
           - href: 03-07-reflections.qmd
             text: Reflection
+      
       - section: "Timetable Metrics"
         contents: 
         - href: 04-01-timetable-metrics.qmd
@@ -231,6 +189,7 @@ website:
 
       - href: 05-final-thoughts.qmd
         text: "Final Thoughts"
+      
       - section: "Appendices"
         contents:
           - href: appendix-random-graph.qmd
@@ -241,6 +200,7 @@ website:
             text: Configuration
           - href: appendix-anonymise.qmd
             text: Anonymisation
+          
           - section: "ETL Summary and Code"          
             contents:
               - href: appendix-code-intro.qmd
@@ -259,7 +219,8 @@ website:
                 text: Transform
               - href: appendix-code6-load.qmd
                 text: Neo4j Load    
-          - section: "Cypher Code"
+          
+          - section: "Neo4j & Cypher Code"
             contents:
               - href: appendix-cypher.qmd
                 text: Cypher Queries
@@ -281,18 +242,23 @@ website:
                 text: Rooms and Spaces
               - href: appendix-perspectives.qmd
                 text: Perspectives
-          - section: "Supervision"
-            contents:
-              - href: appendix-supervision.qmd
-              - text: Supervision
-              - href: appendix-supervision1.qmd
-              - text: Notes Example 1
-              - href: appendix-supervision2.qmd
-                text: Notes Example 2
-              - href: appendix-supervision3.qmd
-                text: Notes Example 3
+              - href: appendix-blue-sky.qmd
+                text: Blue Skies Opportunities
+          
+      - section: "Supervision"
+        contents:
+          - href: appendix-supervision.qmd
+            text: Supervision
+          - href: appendix-supervision1.qmd
+            text: Notes Example 1
+          - href: appendix-supervision2.qmd
+            text: Notes Example 2
+          - href: appendix-supervision3.qmd
+            text: Notes Example 3
+      
       - href: references.qmd
         text: References
+      
       - href: acknowledgements.qmd
         text: Acknowledgements
 

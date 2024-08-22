@@ -7,7 +7,7 @@ lightbox:
   loop: false
 ---
 <br>
-This page contains a *selection* general queries which can be used to explore the graph database. The queries are designed to provide insights into the data and relationships between nodes.
+This page contains a *selection* of general queries which can be used to explore the graph database. The queries are designed to provide insights into the data and relationships between nodes.
 
 ### List all nodes
 

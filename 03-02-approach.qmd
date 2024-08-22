@@ -2,7 +2,7 @@
 title: "Data Engineering Approach"
 ---
 
-I followed an interative, agile-inspired approach despite being a team of one.  This method allowed for flexibility, continuous improvement and the opportunity to adapt to new insights during the process (Beck, K., et al. 2001).  
+I followed an iterative, agile-inspired approach despite being a team of one.  This method allowed for flexibility, continuous improvement and the opportunity to adapt to new insights during the process (Beck, K., et al. 2001).  
 
 The bulk of my effort was spent *prototyping*, *testing* and *reviewing* with each iteration resulting in a new challenge, issue, or opportunity.
 

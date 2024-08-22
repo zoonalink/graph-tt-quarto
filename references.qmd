@@ -1,3 +1,7 @@
+---
+title: References
+---
+
 Abdipoor, S., Yaakob, R., Goh, S.L. and Abdullah, S. (2023) Meta-heuristic approaches for the University Course Timetabling Problem. Intelligent Systems with Applications [online]. 19, p. 200253. Available from: https://www.sciencedirect.com/science/article/pii/S2667305323000789 [Accessed 25 July 2024].
 
 Anon. (no date) CPB Projects [online]. Available from: https://www.cpbprojects.co.uk/solutions/timetabling-and-teaching-space [Accessed 25 July 2024a].
