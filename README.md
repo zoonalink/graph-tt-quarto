@@ -15,7 +15,9 @@ This repository contains the final dissertation project for a Master's degree in
 
 ## How to View the Project
 
-The easiest way to view the report is to open the [index.html](_output\html\index.html) file in your web browser.
+The easiest way to view the project is via Github pages -> [https://zoonalink.github.io/graph-tt-quarto/](https://zoonalink.github.io/graph-tt-quarto/)
+
+The webpage report can be viewed by opening [index.html](_output\html\index.html) file in your web browser.
 
 You can also download and view the pdf or docx files using appropriate software.
 
